@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Emission SLAM 6</name>
+  <date>07/12/2011</date>
+  <category>Slam</category>
+  <url></url>
+  <author>Slam</author>
+  <level>3</level>
+  <width>9</width>
+  <height>8</height>
+  <horizontal>
+    <word x="0" y="0" description="Laissés en vacances">inoccupes</word>
+    <word x="0" y="3" description="Fait le pont">relie</word>
+    <word x="4" y="4" description="Faire son temps">durer</word>
+    <word x="0" y="5" description="Bien reçu">senti</word>
+    <word x="2" y="7" description="Femme que l'on a contre soi">ennemie</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Elle n'est pas désirée">intruse</word>
+    <word x="2" y="0" description="On y nage avec aisance">opulence</word>
+    <word x="4" y="0" description="C'est un joueur professionnel">comedien</word>
+    <word x="6" y="2" description="Bébel pour Belmondo">surnom</word>
+    <word x="8" y="0" description="Il permet de donner son avis">suffrage</word>
+  </vertical>
+  </grid>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Grille 11</name>
+  <date>09/04/2012</date>
+  <category/>
+  <url/>
+  <author>Lucien Lacau</author>
+  <level>3</level>
+  <width>12</width>
+  <height>12</height>
+  <horizontal>
+	<word x="0" y="0" description="Habitué à prendre le temps">METEOROLOGUE</word>
+	<word x="0" y="1" description="Mettre en proie à l'effroi">APEURER</word>
+	<word x="8" y="1" description="Epreuve à prendre avec des gants">TEST</word>
+	<word x="0" y="2" description="Accusée sans preuves">TAXEE</word>
+	<word x="6" y="2" description="Sifflée par la bouche">AVALEE</word>
+	<word x="0" y="3" description="Lettre grecque">ETA</word>
+	<word x="4" y="3" description="Démarrait avec des rameurs">GALERE</word>
+	<word x="0" y="4" description="Le prix à payer pour connaître le relâchement">RANCON</word>
+	<word x="7" y="4" description="Est évidemment très liée avec une tante">NIECE</word>
+	<word x="0" y="5" description="Branché">IN</word>
+	<word x="3" y="5" description="Victime des eaux">INONDE</word>
+	<word x="10" y="5" description="Ville de fouilles">UR</word>
+	<word x="0" y="6" description="L'accueil du foyer">ATRE</word>
+	<word x="5" y="6" description="D'une partie du corps">DORSAL</word>
+	<word x="2" y="7" description="Il a pris une retraite anticipée">ERMITE</word>
+	<word x="9" y="7" description="Petites boîtes">PMI</word>
+	<word x="0" y="8" description="Féconde de manière artificielle">IMAGINE</word>
+	<word x="8" y="8" description="Marques de pantalon">PLIS</word>
+	<word x="0" y="9" description="Réunis dans un comité">SAGES</word>
+	<word x="6" y="9" description="Qui mérite une bonne correction">ERRONE</word>
+	<word x="0" y="10" description="Travail accompli avec beaucoup d'adresse">TRI</word>
+	<word x="4" y="10" description="Partir en colonie">ESSAIMER</word>
+	<word x="0" y="11" description="Nécessite de bien former le caractère">ECRIRE</word>
+	<word x="7" y="11" description="Rayé du monde animal">ZEBRE</word>
+  </horizontal>
+  <vertical>
+	<word x="0" y="0" description="La présence d'esprit n'est pas son point fort">MATERIALISTE</word>
+	<word x="1" y="0" description="C'est extra">EPATANT</word>
+	<word x="1" y="8" description="N'a pas forcément un avenir brillant dans le café">MARC</word>
+	<word x="2" y="0" description="Américain amateur de rodéo">TEXAN</word>
+	<word x="2" y="6" description="Ne pas rester sans réponses">REAGIR</word>
+	<word x="3" y="0" description="Bien roulée">EUE</word>
+	<word x="3" y="4" description="Une fière chandelle">CIERGE</word>
+	<word x="4" y="0" description="Une étoile sur la Bannière">OREGON</word>
+	<word x="4" y="7" description="Coucher sur le tapis">MISER</word>
+	<word x="5" y="0" description="Ile de France">RE</word>
+	<word x="5" y="3" description="Point important">ANODIN</word>
+	<word x="5" y="10" description="Pronom possessif">SE</word>
+	<word x="6" y="0" description="Supplice subit par un âne">ORAL</word>
+	<word x="6" y="5" description="Prises en bloc">NOTEES</word>
+	<word x="7" y="2" description="Faire acte de cession">VENDRE</word>
+	<word x="7" y="9" description="Fait une pointe en Bretagne">RAZ</word>
+	<word x="8" y="0" description="Elles savent renvoyer la balle aux gens du cirque">OTARIES</word>
+	<word x="8" y="8" description="S'adresse au patron en mettant un genou à terre">PRIE</word>
+	<word x="9" y="0" description="Souvent blanche à l'aurore">GELEE</word>
+	<word x="9" y="6" description="Permet de ne pas être pris en défaut d'assurance">APLOMB</word>
+	<word x="10" y="0" description="Bon à changer">USE</word>
+	<word x="10" y="4" description="Toucher le plafond">CULMINER</word>
+	<word x="11" y="0" description="Couper les citrons">ETETER</word>
+	<word x="11" y="7" description="Passe en courant à Moutiers">ISERE</word>
+  </vertical>
+</grid>

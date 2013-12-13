@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Emission SLAM 4</name>
+  <category>Slam</category>
+  <date>01/12/2011</date>
+  <author>Slam</author>
+  <level>3</level>
+  <width>9</width>
+  <height>8</height>
+  <horizontal>
+    <word x="0" y="0" description="Façon d'aller se faire voir ailleurs">voyage</word>
+    <word x="4" y="2" description="Ancien cercle de jeu">arene</word>
+    <word x="0" y="3" description="Il augmente l'addition">ajout</word>
+    <word x="4" y="4" description="Victime d'incompréhension">idiot</word>
+    <word x="0" y="7" description="Réserve de dauphins">monarchie</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="On y range ses boas">vivarium</word>
+    <word x="2" y="2" description="Grand parent du moustique">cousin</word>
+    <word x="4" y="0" description="Obtenir un joli fondu">gratiner</word>
+    <word x="6" y="1" description="Il a les dents longues">felin</word>
+    <word x="8" y="0" description="Jeu de l'amour et du hasard">aventure</word>
+  </vertical>
+  </grid>

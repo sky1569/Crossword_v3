@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="Plateau" >
+        <CheckBoxPreference
+            android:key="grid_check"
+            android:title="@string/preferences_check_title"
+            android:summary="@string/preferences_check_summary" />
+        <CheckBoxPreference
+            android:key="grid_is_lower"
+            android:title="@string/preferences_grid_is_lower_title" />
+        <CheckBoxPreference
+            android:key="solid_selection"
+            android:title="@string/preferences_solid_selection_title"
+            android:summary="@string/preferences_solid_selection_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Feedback" >
+        <Preference
+            android:key="feedback"
+            android:title="@string/preferences_feedback_title"
+            android:summary="@string/preferences_feedback_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Grilles" >
+        <Preference
+            android:key="clear_cache"
+            android:title="@string/preferences_clear_cache_title"
+            android:summary="@string/preferences_clear_cache_summary" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

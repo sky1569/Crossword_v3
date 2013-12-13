@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/feedback_text" />
+
+            <EditText
+                android:id="@+id/feed_message"
+                android:layout_width="fill_parent"
+                android:layout_height="200dp"
+                android:bufferType="normal"
+                android:gravity="top"
+                android:imeOptions="actionDone"
+                android:inputType="text|textMultiLine"
+                android:scrollHorizontally="false" />
+
+            <Button
+                android:id="@+id/feed_send"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/feedback_send" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

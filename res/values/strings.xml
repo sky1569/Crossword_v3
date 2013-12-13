@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, MainActivity!</string>
+    <string name="app_name">Crossword</string>
+    <string name="exception_file_not_found">Le fichier n\'a pas put être trouvé</string>
+    <string name="exception_grid_not_found">La grille n\'a pas put être trouvée</string>
+    <string name="exception_sav_not_found">Aucune sauvegarde pour cette grille</string>
+    <string name="exception_unknow">Unknow error occurs</string>
+    <string name="exception_network">Connexion impossible, vérifiez votre accès à internet</string>
+    <string name="dialog_display_correction">Êtes vous sure d\'afficher la correction ?</string>
+    <string name="yes">oui</string>
+    <string name="clear">vider</string>
+    <string name="no">non</string>
+    <string name="display">afficher</string>
+    <string name="cancel">annuler</string>
+    <string name="random">Au hasard</string>
+    <string name="list">Liste</string>
+    <string name="category">Categorie</string>
+    <string name="search">Recherche</string>
+    <string name="author_format">Auteur: %s</string>
+    <string name="level_format">Difficulté: %d</string>
+    <string name="button_last">Reprendre la\ndernière grille</string>
+    <string name="button_list">Liste des\ngrilles</string>
+    <string name="button_category">Grilles par\ncatégorie</string>
+    <string name="button_search">Rechercher\nun mot</string>
+    <string name="percent">Pourcentage</string>
+    <string name="save_dialog_title">Enregistrement</string>
+    <string name="save_dialog_content">Enregistrement de la grille</string>
+    <string name="today">"Aujourd\'hui"</string>
+    <string name="one_day_ago">Moins d\'une semaine</string>
+    <string name="one_week_ago">Plus une semaine</string>
+    <string name="one_month_ago">Plus d\'un mois</string>
+    <string name="one_year_ago">Plus d\'un an</string>
+    <string name="menu_solution">Révéler toute la grille</string>
+    <string name="menu_settings">Préférences</string>
+    <string name="menu_refresh">Actualiser</string>
+    <string name="menu_information">Information</string>
+    <string name="notification_check_grids">Vérifie la présence de nouvelles grilles...</string>
+    <string name="notification_update_grids">Téléchargements des nouvelles grilles...</string>
+    <string name="notification_update_grids_complete">Téléchargments terminés</string>
+    <string formatted="false" name="notification_update_grids_status">Grille %d sur %d</string>
+    <string name="grid_list_up_to_date">Pas de nouvelles grilles</string>
+    <string name="grid_list_new">%d nouvelles grilles</string>
+    <string name="grid_list_is_empty">Aucune grille enregistrée</string>
+    <string name="feedback_send_success">Message envoyé</string>
+    <string name="feedback_send_fail">Impossible d\'envoyer le message</string>
+    <string name="feedback_send">Envoyer</string>
+    <string name="feedback_sending">Envoi du message...</string>
+    <string name="feedback_text">
+Si vous avez des idées ou si vous rencontrez des problèmes vous pouvez me les faires remonter via cette page, ou sur le GitHub du projet: https://github.com/Isshun/Crossword\n\n
+Les fonctionnalitées à venirs sont:\n
+- Déplacement / zoom de la grille\n
+- Possiblité de switcher en mode paysage\n
+- Meilleur support des tablets\n</string>
+    <string name="preferences_clear_cache_warning">Les sauvegardes seront supprimées, continuer ?</string>
+    <string name="preferences_clear_cache_toast">Suppression des grilles...</string>
+    <string name="preferences_clear_cache_title">Vider le cache</string>
+    <string name="preferences_clear_cache_summary">Attention: Les sauvegardes seront supprimées</string>
+    <string name="preferences_feedback_summary">Donnez votre avis sur l\'application ou signaler une erreur</string>
+    <string name="preferences_solid_selection_title">Selection persistante</string>
+    <string name="preferences_solid_selection_summary">Toucher les cases noire n\'efface pas la sélection</string>
+    <string name="preferences_grid_is_lower_title">Grille en minuscule</string>
+    <string name="preferences_check_summary">Les lettres fausses apparaissent en rouge</string>
+    <string name="preferences_check_title">Correction pas à pas</string>
+    <string name="preferences_feedback_title">Feedback</string>
+
+</resources>

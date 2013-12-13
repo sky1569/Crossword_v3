@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Grille 10</name>
+  <date>09/04/2012</date>
+  <category></category>
+  <url></url>
+  <author>Gwen</author>
+  <level>1</level>
+  <width>9</width>
+  <height>9</height>
+  <horizontal>
+    <word x="0" y="0" description="Voyou hors la loi">terreur</word>
+    <word x="2" y="2" description="Bureau d'un comptable ou d'un avocat">cabinet</word>
+    <word x="0" y="4" description="Siège à la République">president</word>
+    <word x="2" y="5" description="Commune francaise de seine maritime">eu</word>
+    <word x="6" y="5" description="Réseau international Epivac">rie</word>
+    <word x="0" y="7" description="Dépêche d'un journal">nouvelle</word>
+    <word x="0" y="8" description="Heros de la guerre de troie">enee</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Allo">telephone</word>
+    <word x="1" y="7" description="Pronom personnel">on</word>
+    <word x="2" y="0" description="Sévère défaite dans un jeu">raclee</word>
+    <word x="2" y="7" description="Sigle de l'europe">ue</word>
+    <word x="3" y="4" description="Se dit quand on a une voix douce">suave</word>
+    <word x="5" y="6" description="Cri de stade">ola</word>
+    <word x="6" y="0" description="Essorer du linge">rincer</word>
+    <word x="7" y="4" description="Conjonction de coordination">ni</word>
+    <word x="8" y="0" description="Se dit d'une personne butée">entetee</word>
+  </vertical>
+</grid>

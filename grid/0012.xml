@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Grille 12</name>
+  <date>09/04/2012</date>
+  <category/>
+  <url/>
+  <author>Lucien Lacau</author>
+  <level>3</level>
+  <width>12</width>
+  <height>12</height>
+  <horizontal>
+	<word x="0" y="0" description="Ramener tout à moi">interioriser</word>
+	<word x="0" y="1" description="Leur décompte est vraiment soporifique">moutons</word>
+	<word x="8" y="1" description="Fait le sacrifice d'un bouc">rase</word>
+	<word x="0" y="2" description="Il se met beaucoup de monde à dos">mulet</word>
+	<word x="6" y="2" description="Ils sont destinés à rester">ecrits</word>
+	<word x="0" y="3" description="Compte en Suisse">uri</word>
+	<word x="4" y="3" description="État des lieux saints">israel</word>
+	<word x="0" y="4" description="Il pouvait bien remplacer quelques perches">arpent</word>
+	<word x="7" y="4" description="Il lui arrive souvent de drôle d'histoires">belge</word>
+	<word x="0" y="5" description="Une aide précieuse pour amener de l'eau à son moulin">bief</word>
+	<word x="5" y="5" description="Convertit à la cause(se)">rallie</word>
+	<word x="0" y="6" description="À bout de souffle">le</word>
+	<word x="3" y="6" description="Accomplir">faire</word>
+	<word x="9" y="6" description="Attendu après la tétée">rot</word>
+	<word x="0" y="7" description="Laisser des blancs">espacer</word>
+	<word x="10" y="7" description="Note">mi</word>
+	<word x="2" y="8" description="Permettre de mieux avaler">accrediter</word>
+	<word x="0" y="9" description="Divaguer">errer</word>
+	<word x="6" y="9" description="Elle ne comprend pas toujours la farce">tomate</word>
+	<word x="0" y="10" description="Amiral britanique">nelson</word>
+	<word x="7" y="10" description="Diminué">decru</word>
+	<word x="0" y="11" description="Le club peut l'expulser sans préavis">tee</word>
+	<word x="4" y="11" description="Annoncer la ponte">caqueter</word>
+  </horizontal>
+  <vertical>
+	<word x="0" y="0" description="Sans avoir à craindre le changement">immuablement</word>
+	<word x="1" y="0" description="Bien entretenues">nourries</word>
+	<word x="1" y="9" description="Remue le harpail">ree</word>
+	<word x="2" y="0" description="Récompense celui qui s'occupe bien de ses oignons ">tulipe</word>
+	<word x="2" y="7" description="Se réfère à un journal illisible ">parle</word>
+	<word x="3" y="0" description="Nous fait de plus en plus suer ">ete</word>
+	<word x="3" y="4" description="N'hésites pas à mettre  toute la gomme ">effaces</word>
+	<word x="4" y="0" description="Avec lui, on finit canné ">rotin</word>
+	<word x="4" y="6" description="Fait mauvais effets ">accroc</word>
+	<word x="5" y="0" description="Branché ">in</word>
+	<word x="5" y="3" description="Faire des barres parallèles ">strier</word>
+	<word x="5" y="10" description="Mot de chipie ">na</word>
+	<word x="6" y="0" description="Tenter ">oser</word>
+	<word x="6" y="5" description="Sa maison est close ">arret</word>
+	<word x="7" y="2" description="Ses abonnés ont droit au bouquet ">cable</word>
+	<word x="7" y="8" description="Contraire à l'étique ">dodu</word>
+	<word x="8" y="0" description="Imaginaire ">irreel</word>
+	<word x="8" y="7" description="Attaquée pour éviter les bavures ">limee</word>
+	<word x="9" y="0" description="Monter comme un colley ">saillir</word>
+	<word x="9" y="8" description="Toucher ">tact</word>
+	<word x="10" y="0" description="À droite sur la carte ">est</word>
+	<word x="10" y="4" description="Il coince la bulle dès qu'on lui parle de lever ">geometre</word>
+	<word x="11" y="0" description="Solde dans la division">reste</word>
+	<word x="11" y="6" description="Appartient à l'élite">tireur</word>
+  </vertical>
+</grid>

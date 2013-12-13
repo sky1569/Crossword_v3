@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/buttonA"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="A"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonZ"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="Z"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonE"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="E"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonR"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="R"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonT"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="T"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonY"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="Y"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonU"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="U"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonI"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="I"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonO"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="O"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonP"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="P"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:textSize="30sp" >
+
+        <Button
+            android:id="@+id/buttonQ"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="Q"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonS"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="S"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonD"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="D"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonF"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="F"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonG"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="G"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonH"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="H"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonJ"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="J"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonK"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="K"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonL"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="L"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:textSize="30sp" >
+
+        <ImageButton
+            android:id="@+id/buttonDRAFT"
+            style="@style/KeyboardButtonSpecial"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_keyboard_draft_release_unlock"
+            android:src="@drawable/keyboard_draft"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonW"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="W"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonX"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="X"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonC"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="C"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonV"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="V"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonB"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="B"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonN"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="N"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/buttonM"
+            style="@style/KeyboardButtonNormal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="M"
+            android:textSize="30sp" />
+
+        <ImageButton
+            android:id="@+id/buttonDELETE"
+            style="@style/KeyboardButtonSpecial"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="0.9"
+            android:background="@drawable/btn_keyboard_delete_release"
+            android:contentDescription="DEL"
+            android:src="@drawable/keyboard_delete"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+</LinearLayout>

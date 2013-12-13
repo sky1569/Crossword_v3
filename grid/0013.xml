@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Grille 13</name>
+  <date>11/04/2012</date>
+  <category></category>
+  <url></url>
+  <author>Gwen</author>
+  <level>1</level>
+  <width>9</width>
+  <height>9</height>
+  <horizontal>
+    <word x="1" y="1" description="Etendre de son long">allonger</word>
+    <word x="2" y="2" description="Longue période de temps">eon</word>
+    <word x="1" y="3" description="Unite monetaire">poudrer</word>
+    <word x="1" y="4" description="Héros de la guerre de Troie">enee</word>
+    <word x="7" y="4" description="Structure en selle de cheval ">col</word>
+    <word x="1" y="6" description="Faits de parole">citations</word>
+    <word x="2" y="8" description="Grandes performances">exploits</word>
+    <word x="3" y="9" description="Site web consacre a la culture">evene</word>
+  </horizontal>
+  <vertical>
+    <word x="1" y="3" description="Unite monetaire">pence</word>
+    <word x="2" y="1" description="J'ai les mêmes a la maison ">leon</word>
+    <word x="3" y="1" description="Encense une personne">loue</word>
+    <word x="3" y="6" description="Prelevement obligatoire">taxe</word>
+    <word x="4" y="1" description="Assimilee a des particules elementaires">onde</word>
+    <word x="4" y="8" description="Acte juridique ecrit">pv</word>
+    <word x="5" y="5" description="De courant ou de maree">etale</word>
+    <word x="6" y="1" description="Passage d'une rivière que l'on peut traverser à pied">gue</word>
+    <word x="6" y="8" description="Pronom Personnel">on</word>
+    <word x="7" y="3" description="Regime Complementaire">rc</word>
+    <word x="7" y="6" description="C'est l'un des cinq sens">ouie</word>
+    <word x="9" y="2" description="Transporte des vetements">valises</word>
+  </vertical>
+</grid>

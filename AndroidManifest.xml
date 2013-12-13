@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.crossword"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="7" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:name=".Crossword"
+        android:theme="@android:style/Theme.Black.NoTitleBar" >
+        <activity
+            android:label="@string/app_name"
+            android:name=".activity.MainActivity" >
+
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:name=".activity.GameActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        
+             <intent-filter >
+             <action android:name="android.intent.action.MAIN" />
+
+             <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:name=".activity.CategoryActivity" />
+        <activity
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:name=".activity.GridListActivity" />
+        <activity
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:name=".activity.FeedbackActivity" />
+        <activity
+            android:label="Preferences"
+            android:launchMode="singleTop"
+            android:name=".activity.PeferencesActivity" />
+        <activity
+            android:label="GridActivity"
+            android:launchMode="singleTop"
+            android:name=".activity.GridActivity"
+            android:screenOrientation="portrait" />
+        
+
+    </application>
+
+</manifest>

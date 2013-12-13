@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Emission SLAM 2</name>
+  <category>Slam</category>
+  <date>30/11/2011</date>
+  <author>Slam</author>
+  <url></url>
+  <level>3</level>
+  <width>9</width>
+  <height>8</height>
+  <horizontal>
+    <word x="0" y="1" description="Partager le quotidien">cohabiter</word>
+    <word x="4" y="3" description="Totalement baba">ahuri</word>
+    <word x="0" y="4" description="Il est très cher a Ulysse">ilien</word>
+    <word x="4" y="5" description="Il est dans les bouchons">liege</word>
+    <word x="0" y="7" description="Tirer une carotte">extorquer</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Touché par la grâce">acquitte</word>
+    <word x="2" y="0" description="Homme de fer">cheminot</word>
+    <word x="4" y="0" description="Faire trembler">ebranler</word>
+    <word x="6" y="1" description="Coincé entre le bélier et le gémeaux">taureau</word>
+    <word x="8" y="0" description="Il va et vient en mer">croiseur</word>
+  </vertical>
+  </grid>

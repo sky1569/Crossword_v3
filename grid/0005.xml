@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Grille 5</name>
+  <date>03/01/2012</date>
+  <author>Isshun</author>
+  <level>2</level>
+  <width>9</width>
+  <height>9</height>
+ <horizontal>
+    <word x="0" y="0" description="">enrageras</word>
+    <word x="2" y="1" description="">icone</word>
+    <word x="0" y="2" description="">dote</word>
+    <word x="5" y="2" description="">talc</word>
+    <word x="0" y="3" description="">ok</word>
+    <word x="3" y="3" description="">sieger</word>
+    <word x="0" y="4" description="">sac</word>
+    <word x="6" y="4" description="">ici</word>
+    <word x="0" y="5" description="">sprint</word>
+    <word x="7" y="5" description="">hl</word>
+    <word x="0" y="6" description="">oies</word>
+    <word x="5" y="6" description="">uree</word>
+    <word x="2" y="7" description="">ebene</word>
+    <word x="0" y="8" description="">strategie</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="">endossons</word>
+    <word x="1" y="2" description="">okapi</word>
+    <word x="2" y="0" description="">rit</word>
+    <word x="2" y="4" description="">creer</word>
+    <word x="3" y="0" description="">aces</word>
+    <word x="3" y="5" description="">isba</word>
+    <word x="4" y="0" description="">go</word>
+    <word x="4" y="3" description="">ion</word>
+    <word x="4" y="7" description="">et</word>
+    <word x="5" y="0" description="">ente</word>
+    <word x="5" y="5" description="">tune</word>
+    <word x="6" y="0" description="">reagi</word>
+    <word x="6" y="6" description="">reg</word>
+    <word x="7" y="2" description="">leche</word>
+    <word x="8" y="0" description="">sacrilege</word>
+  </vertical>
+</grid>

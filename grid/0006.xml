@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Grille 6</name>
+  <date>04/01/2012</date>
+  <author>Gwendoline Dufour</author>
+  <level>1</level>
+  <width>9</width>
+  <height>9</height>
+  <horizontal>
+    <word x="0" y="0" description="S'évader">rechapper</word>
+    <word x="2" y="1" description="Ancien dieu égyptien">ra</word>
+    <word x="5" y="1" description="Marcher sans but">erre</word>
+    <word x="0" y="2" description="Suinta">transpira</word>
+    <word x="0" y="3" description="Expérimenta">testa</word>
+    <word x="6" y="3" description="Département du Sud">var</word>
+    <word x="2" y="4" description="S'envoya en l'air">sauta</word>
+    <word x="0" y="5" description="Effectue une action">agi</word>
+    <word x="4" y="5" description="Tresse de cheveux">natte</word>
+    <word x="0" y="6" description="Ecrit le préambule">prefacier</word>
+    <word x="0" y="7" description="Monnaie unique">euro</word>
+    <word x="5" y="7" description="Echelle de réduction">ho</word>
+    <word x="0" y="8" description="Ressortissants">residents</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Sauver une mayonnaise">rattraper</word>
+    <word x="1" y="2" description="Faire à nouveau">re</word>
+    <word x="1" y="5" description="Oiseau des chantiers">grue</word>
+    <word x="2" y="0" description="Tas de déchets">crassiers</word>
+    <word x="3" y="0" description="Pourchassa">hanta</word>
+    <word x="3" y="6" description="Croyance">foi</word>
+    <word x="4" y="2" description="Bain de vapeur">sauna</word>
+    <word x="5" y="0" description="Plan d'épargne populaire">pep</word>
+    <word x="5" y="4" description="Part difficilement au lavage">tache</word>
+    <word x="6" y="0" description="Manque d'un bien">privation</word>
+    <word x="7" y="0" description="Marchera sans but">erra</word>
+    <word x="7" y="5" description="Pronom personnel">te</word>
+    <word x="8" y="0" description="Chargeras à nouveau">rearmeras</word>
+  </vertical>
+</grid>

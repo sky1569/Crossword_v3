@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>La mosaïque mystérieuse</name>
+  <category>Historique</category>
+  <date>09/11/1924</date>
+  <author>Dimanche illustre numéro 89</author>
+  <url>http://home.urbanet.ch/urba7038/motscroises/textes/histoire5.htm</url>
+  <level>3</level>
+  <width>9</width>
+  <height>9</height>
+  <horizontal>
+    <word x="0" y="0" description="Champêtre">pastorale</word>
+    <word x="0" y="1" description="Favorable">ami</word>
+    <word x="6" y="1" description="Chiffre">six</word>
+    <word x="0" y="2" description="Note">re</word>
+    <word x="3" y="2" description="Arme">arc</word>
+    <word x="7" y="2" description="Préposition">et</word>
+    <word x="0" y="4" description="Fleur">iris</word>
+    <word x="5" y="4" description="L'égal de quelqu’un">pair</word>
+    <word x="0" y="6" description="Pronom">il</word>
+    <word x="3" y="6" description="Appel">cri</word>
+    <word x="7" y="6" description="Note">si</word>
+    <word x="0" y="7" description="Arbre">pin</word>
+    <word x="6" y="7" description="Particule d’atome">ion</word>
+    <word x="0" y="8" description="Vive lueur">etincelle</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Temps de verbe">participe</word>
+    <word x="1" y="0" description="Conscience intime">ame</word>
+    <word x="1" y="6" description="Note">lit</word>
+    <word x="2" y="0" description="Personnage légendaire">si</word>
+    <word x="2" y="3" description="Terme de jeu">nil</word>
+    <word x="2" y="7" description="Dépôt de liquide">ni</word>
+    <word x="4" y="0" description="Détruit">ogre</word>
+    <word x="4" y="5" description="Fleuve">frac</word>
+    <word x="6" y="0" description="Petit animal">as</word>
+    <word x="6" y="3" description="Vêtement">rat</word>
+    <word x="6" y="7" description="Meuble">il</word>
+    <word x="7" y="0" description="La terre">lie</word>
+    <word x="7" y="6" description="Négation">sol</word>
+    <word x="8" y="0" description="Pronom">extermine</word>
+  </vertical>
+</grid>

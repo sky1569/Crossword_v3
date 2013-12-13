@@ -1,0 +1,60 @@
+<?xml version="10" encoding="utf-8"?>
+<grid>
+  <name>Grille de l'Excelsior</name>
+  <category>Historique</category>
+  <date>26/02/1925</date>
+  <author>L'Excelsior</author>
+  <level>2</level>
+  <width>11</width>
+  <height>11</height>
+  <horizontal>
+    <word x="0" y="0" description="Maladie infectieuse du larynx">croup</word>
+    <word x="6" y="0" description="Mesure de capacité">litre</word>
+    <word x="0" y="1" description="Fatigué">las</word>
+    <word x="8" y="1" description="Plante potagère">ail</word>
+    <word x="0" y="2" description="Unité de marque dans un jeu">as</word>
+    <word x="3" y="2" description="Adverbe de lieu">ci</word>
+    <word x="6" y="2" description="Exclamation">eh</word>
+    <word x="9" y="2" description="Pronom personnel">te</word>
+    <word x="2" y="3" description="Qui a de l'appétit">mangeur</word>
+    <word x="0" y="4" description="Forme de gouvernement">etat</word>
+    <word x="7" y="4" description="Inspiratrice du poète">muse</word>
+    <word x="3" y="5" description="Corpuscule invisible">atome</word>
+    <word x="0" y="6" description="Sucre produit par un insecte">miel</word>
+    <word x="7" y="6" description="Élève fortement la voix">crie</word>
+    <word x="2" y="7" description="Petit instrument servant dans le tissage">navette</word>
+    <word x="0" y="8" description="Adjectif possessif">ta</word>
+    <word x="3" y="8" description="Mot enfantin">na</word>
+    <word x="6" y="8" description="Note de musique">re</word>
+    <word x="9" y="8" description="Autre note de musique">mi</word>
+    <word x="0" y="9" description="Terme géographique">ile</word>
+    <word x="8" y="9" description="Enveloppe de toile">ail</word>
+    <word x="0" y="10" description="Empereur romain">neron</word>
+    <word x="6" y="10" description="Grande pièce d'étoffe portée sur les épaules par les femmes">chale</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Plateau d'osier à claire-voie">claie</word>
+    <word x="0" y="6" description="Partie de la journée">matin</word>
+    <word x="1" y="0" description="Coupe très court">ras</word>
+    <word x="1" y="8" description="Bière anglaise">ale</word>
+    <word x="2" y="0" description="Partie dure de l'organisme">os</word>
+    <word x="2" y="3" description="Adjectif possessif">ma</word>
+    <word x="2" y="6" description="Préposition">en</word>
+    <word x="2" y="9" description="Terminaison de verbe">er</word>
+    <word x="3" y="2" description="Habitant d'une province d'Espagne">catalan</word>
+    <word x="4" y="0" description="Aliment">pain</word>
+    <word x="4" y="7" description="Inutile">vain</word>
+    <word x="5" y="3" description="Nain difforme">gnome</word>
+    <word x="6" y="0" description="Attachée">liee</word>
+    <word x="6" y="7" description="Échange">troc</word>
+    <word x="7" y="2" description="Mouille légèrement">humecte</word>
+    <word x="8" y="0" description="Adjectif possessif">ta</word>
+    <word x="8" y="3" description="Très petit cours d'eau">ru</word>
+    <word x="8" y="6" description="Note de musique">re</word>
+    <word x="8" y="9" description="Adjectif possessif">sa</word>
+    <word x="9" y="0" description="S'égaie">rit</word>
+    <word x="9" y="8" description="Affliction, chagrin">mal</word>
+    <word x="10" y="0" description="Forme et instruit">eleve</word>
+    <word x="10" y="6" description="Condiment">epice</word>
+  </vertical>
+</grid>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Emission SLAM 3</name>
+  <category>Slam</category>
+  <date>30/11/2011</date>
+  <author>Slam</author>
+  <url></url>
+  <level>3</level>
+  <width>9</width>
+  <height>8</height>
+  <horizontal>
+    <word x="0" y="0" description="Sans précipitation">mollement</word>
+    <word x="4" y="2" description="Elle a sa cour">ecole</word>
+    <word x="0" y="3" description="Faire bouillir">enerver</word>
+    <word x="4" y="4" description="Effet de rasoir">ennui</word>
+    <word x="0" y="5" description="Groupe de gorilles">escorte</word>
+    <word x="1" y="7" description="Fille qui imite le garçon">serveuse</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Support pour artistes">mecenes</word>
+    <word x="2" y="0" description="Etudiant qui a réussi">licencie</word>
+    <word x="4" y="0" description="Faire le guide">elever</word>
+    <word x="5" y="2" description="C'est lui qui est visé">centre</word>
+    <word x="6" y="0" description="Faire un marque page">ecorne</word>
+    <word x="8" y="0" description="Donne des coups de pieds">trepigne</word>
+  </vertical>
+  </grid>

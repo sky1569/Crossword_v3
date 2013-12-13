@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Emission SLAM 1</name>
+  <category>Slam</category>
+  <date>28/11/2011</date>
+  <author>Slam</author>
+  <level>3</level>
+  <width>9</width>
+  <height>8</height>
+  <horizontal>
+    <word x="2" y="0" description="Elle n'aime pas le mono">stereo</word>
+    <word x="0" y="3" description="Elle n'est pas tout à fait juste">partial</word>
+    <word x="4" y="2" description="Elle est un peu caustique">chaux</word>
+    <word x="4" y="4" description="Petit bout de couverture">tuile</word>
+    <word x="0" y="5" description="Tat de ruine">gravats</word>
+    <word x="0" y="7" description="Etourdir comme un parfum">enteter</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Femme de ménage non déclaré">compagne</word>
+    <word x="2" y="0" description="Qui fait bonne figure">souriant</word>
+    <word x="4" y="0" description="Qui a un effet stimulant">excitant</word>
+    <word x="5" y="2" description="Loin du sol">haut</word>
+    <word x="6" y="0" description="Rejoindre l'adversaire">egaliser</word>
+    <word x="8" y="1" description="Depasser la limite">exceder</word>
+  </vertical>
+</grid>
+

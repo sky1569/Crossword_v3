@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Scalion</name>
+  <date>31/12/2001</date>
+  <author>Nicolas Rey</author>
+  <url>http://scalion.free.fr/prob12.htm</url>
+  <level>2</level>
+  <width>9</width>
+  <height>9</height>
+  <horizontal>
+    <word x="0" y="0" description="Enregistrement">archivage</word>
+    <word x="0" y="1" description="Tarin">pif</word>
+    <word x="4" y="1" description="Consignas">notas</word>
+    <word x="0" y="2" description="Papillon des villes">pv</word>
+    <word x="3" y="2" description="Centre d'exposition à La Défense">cnit</word>
+    <word x="0" y="3" description="Un peu piquant">aigrelet</word>
+    <word x="0" y="4" description="Sur les épaules">tete</word>
+    <word x="5" y="4" description="Choisis">elus</word>
+    <word x="0" y="5" description="Soucis">arias</word>
+    <word x="6" y="5" description="Belle saison">ete</word>
+    <word x="0" y="6" description="Direction">se</word>
+    <word x="3" y="6" description="Nickel chrome">nib</word>
+    <word x="7" y="6" description="N'importe qui">on</word>
+    <word x="2" y="7" description="Tuyau d'église">octavin</word>
+    <word x="2" y="8" description="Zone économique exclusive">zee</word>
+    <word x="6" y="8" description="Femme de pouvoir">fee</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Alléchasse">appatasse</word>
+    <word x="1" y="0" description="Serpent d'eau">riviere</word>
+    <word x="2" y="0" description="Abréviation">cf</word>
+    <word x="2" y="3" description="Moteur à turbo injection">gti</word>
+    <word x="2" y="7" description="Pays d'un magicien">oz</word>
+    <word x="3" y="2" description="C'est mieux quand elle est recouverte">creance</word>
+    <word x="4" y="0" description="Pas acquis">inne</word>
+    <word x="4" y="5" description="Endroit">site</word>
+    <word x="5" y="0" description="Sport sur quille">voile</word>
+    <word x="5" y="6" description="Geste bienveillant">ba</word>
+    <word x="6" y="0" description="Mis à la tâche">attele</word>
+    <word x="6" y="7" description="Version traduite">vf</word>
+    <word x="7" y="0" description="Extension du Gabon sur internet">ga</word>
+    <word x="7" y="3" description="Parle familièrement">tutoie</word>
+    <word x="8" y="0" description="Point cardinal">est</word>
+    <word x="8" y="4" description="Cours Belge">senne</word>
+  </vertical>
+</grid>

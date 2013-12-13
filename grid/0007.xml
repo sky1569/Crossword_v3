@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Grille 7</name>
+  <date>04/01/2012</date>
+  <author>Gwendoline Dufour</author>
+  <level>1</level>
+  <width>9</width>
+  <height>9</height>
+  <horizontal>
+    <word x="0" y="0" description="Mettre fin à quelque chose">terminer</word>
+    <word x="7" y="1" description="Période de temps">an</word>
+    <word x="0" y="2" description="Contraire de perdre">gagner</word>
+    <word x="7" y="3" description="Trésor canin">os</word>
+    <word x="0" y="4" description="Magazine féminin">elle</word>
+    <word x="4" y="5" description="Ce n'est pas exactement cela, mais ca y ressemble">sorte</word>
+    <word x="2" y="6" description="Indispensable à la vie">eau</word>
+    <word x="0" y="7" description="D'orange ou de pomme">jus</word>
+    <word x="4" y="7" description="Il mesure la température">degre</word>
+    <word x="2" y="8" description="Pronom personnel">tu</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Cousin du lion">tigre</word>
+    <word x="0" y="7" description="Pronom personnel">je</word>
+    <word x="1" y="4" description="Ici">la</word>
+    <word x="2" y="6" description="Errare Humanum">est</word>
+    <word x="3" y="0" description="L'endroit où l'on vit">monde</word>
+    <word x="4" y="5" description="Point cardinal">sud</word>
+    <word x="5" y="0" description="À son extrême se trouve l'Arctique">nord</word>
+    <word x="5" y="7" description="Conjonction de coordination">et</word>
+    <word x="7" y="0" description="Lire un conte ou une histoire">raconter</word>
+  </vertical>
+  </grid>

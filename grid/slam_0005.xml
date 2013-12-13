@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Emission SLAM 5</name>
+  <date>01/12/2011</date>
+  <category>Slam</category>
+  <url></url>
+  <author>Slam</author>
+  <level>3</level>
+  <width>9</width>
+  <height>9</height>
+  <horizontal>
+    <word x="0" y="1" description="C'est l'indépendance même">autonomie</word>
+    <word x="2" y="2" description="Elle est un peu voutée">ogive</word>
+    <word x="2" y="3" description="Il fait une fixation">rivet</word>
+    <word x="0" y="4" description="Il connaît les ficelles du métier">tisserand</word>
+    <word x="0" y="6" description="Territoire des brebis">diocese</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Pli qui a du mal à partir">habitude</word>
+    <word x="2" y="1" description="Essorage à la main">torsion</word>
+    <word x="3" y="0" description="Vieille demeure">logis</word>
+    <word x="4" y="1" description="Laisser tout en plan">niveler</word>
+    <word x="5" y="0" description="Mettre en boule">lover</word>
+    <word x="6" y="1" description="Il est paysan pour un bail">metayer</word>
+    <word x="8" y="0" description="Héritage non soumis à l'impôt">heredite</word>
+  </vertical>
+  </grid>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Grille 3</name>
+  <date>03/01/2012</date>
+  <author>Isshun</author>
+  <level>1</level>
+  <width>9</width>
+  <height>9</height>
+  <horizontal>
+    <word x="0" y="0" description="">virements</word>
+    <word x="2" y="1" description="">irise</word>
+    <word x="0" y="2" description="">tsar</word>
+    <word x="5" y="2" description="">trac</word>
+    <word x="0" y="3" description="">ut</word>
+    <word x="3" y="3" description="">elever</word>
+    <word x="0" y="4" description="">pas</word>
+    <word x="6" y="4" description="">ire</word>
+    <word x="0" y="5" description="">espoir</word>
+    <word x="7" y="5" description="">et</word>
+    <word x="0" y="6" description="">reis</word>
+    <word x="5" y="6" description="">apre</word>
+    <word x="2" y="7" description="">reelu</word>
+    <word x="0" y="8" description="">reessayer</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="">vituperer</word>
+    <word x="1" y="2" description="">stase</word>
+    <word x="2" y="0" description="">ria</word>
+    <word x="2" y="4" description="">spire</word>
+    <word x="3" y="0" description="">erre</word>
+    <word x="3" y="5" description="">oses</word>
+    <word x="4" y="0" description="">mi</word>
+    <word x="4" y="3" description="">lai</word>
+    <word x="4" y="7" description="">es</word>
+    <word x="5" y="0" description="">este</word>
+    <word x="5" y="5" description="">rala</word>
+    <word x="6" y="0" description="">nervi</word>
+    <word x="6" y="6" description="">puy</word>
+    <word x="7" y="2" description="">aerer</word>
+    <word x="8" y="0" description="">secreteur</word>
+  </vertical>
+  </grid>

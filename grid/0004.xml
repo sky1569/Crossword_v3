@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Grille 4</name>
+  <date>03/01/2012</date>
+  <author>Isshun</author>
+  <level>2</level>
+  <width>9</width>
+  <height>9</height>
+  <horizontal>
+    <word x="0" y="0" description="Gastronomie américaine">hamburger</word>
+    <word x="2" y="1" description="">munir</word>
+    <word x="0" y="2" description="Frontière vers la 4ème dimension">reel</word>
+    <word x="5" y="2" description="">rosi</word>
+    <word x="0" y="3" description="Unité de mesure de la latence">ms</word>
+    <word x="3" y="3" description="Débutant">bleues</word>
+    <word x="0" y="4" description="">ose</word>
+    <word x="6" y="4" description="">pro</word>
+    <word x="0" y="5" description="">nommai</word>
+    <word x="7" y="5" description="">in</word>
+    <word x="0" y="6" description="">irai</word>
+    <word x="5" y="6" description="">oman</word>
+    <word x="2" y="7" description="Dérivé du gui dans la grèce antique">ixode</word>
+    <word x="0" y="8" description="">enlacerai</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Se mettre au diapason">harmonise</word>
+    <word x="1" y="2" description="">essor</word>
+    <word x="2" y="0" description="">mme</word>
+    <word x="2" y="4" description="">email</word>
+    <word x="3" y="0" description="">bulb</word>
+    <word x="3" y="5" description="">mixa</word>
+    <word x="4" y="0" description="">un</word>
+    <word x="4" y="3" description="Elle est Parisienne">lea</word>
+    <word x="4" y="7" description="Dire oui">oc</word>
+    <word x="5" y="0" description="">rire</word>
+    <word x="5" y="5" description="Distribué en cas d'incident nucléaire">iode</word>
+    <word x="6" y="0" description="Sac d'argent cacheté, servant au transport de fonds">group</word>
+    <word x="6" y="6" description="Origine de la vie">mer</word>
+    <word x="7" y="2" description="">seria</word>
+    <word x="8" y="0" description="">raisonnai</word>
+  </vertical>
+</grid>

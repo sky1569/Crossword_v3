@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Emission SLAM 7</name>
+  <date>7/12/2011</date>
+  <category>Slam</category>
+  <url></url>
+  <author>Slam</author>
+  <level>3</level>
+  <width>9</width>
+  <height>8</height>
+  <horizontal>
+    <word x="2" y="0" description="Pas ramassé">elance</word>
+    <word x="4" y="2" description="Feu de nuit">phare</word>
+    <word x="0" y="3" description="Il finit bien avec le lapin">pruneau</word>
+    <word x="4" y="4" description="Moquerie du village">risee</word>
+    <word x="0" y="5" description="Chant du corbeau chez La Fontaine">ramages</word>
+    <word x="0" y="7" description="Tromper un gros poisson">leurrer</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Son châtiment fait mal">corporel</word>
+    <word x="2" y="0" description="Glace en pied">esquimau</word>
+    <word x="4" y="0" description="Faire la pluie pas le beau temps">asperger</word>
+    <word x="5" y="2" description="Obstacle à franchir">haie</word>
+    <word x="6" y="0" description="Prend son pied avec une charentaise">chausser</word>
+    <word x="8" y="1" description="Bouche d'aération">fenetre</word>
+  </vertical>
+</grid>

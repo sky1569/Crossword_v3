@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Sans case noire</name>
+  <category>Historique</category>
+  <date>01/01/2004</date>
+  <author>J.C. Meyrignac</author>
+  <level>2</level>
+  <width>9</width>
+  <height>9</height>
+  <horizontal>
+    <word x="0" y="0" description="">decroches</word>
+    <word x="0" y="1" description="">ecoeurant</word>
+    <word x="0" y="2" description="">ronflante</word>
+    <word x="0" y="3" description="">attrister</word>
+    <word x="0" y="4" description="">paraphera</word>
+    <word x="0" y="5" description="">emacieras</word>
+    <word x="0" y="6" description="">reiterais</word>
+    <word x="0" y="7" description="">assenasse</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="">derapera</word>
+    <word x="1" y="0" description="">ecotames</word>
+    <word x="2" y="0" description="">contrais</word>
+    <word x="3" y="0" description="">refracte</word>
+    <word x="4" y="0" description="">oulipien</word>
+    <word x="5" y="0" description="">crashera</word>
+    <word x="6" y="0" description="">hanteras</word>
+    <word x="7" y="0" description="">enterais</word>
+    <word x="8" y="0" description="">sterasse</word>
+  </vertical>
+  </grid>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Gator 52</name>
+  <date>25/12/2011</date>
+  <author>Gator</author>
+  <url>http://www.gator.fr/</url>
+  <level>2</level>
+  <width>9</width>
+  <height>9</height>
+  <horizontal>
+    <word x="0" y="0" description="Percepteurs">receveurs</word>
+    <word x="2" y="1" description="Appuyée">adossee</word>
+    <word x="0" y="2" description="Mois du poisson">avril</word>
+    <word x="6" y="2" description="Où point le jour">est</word>
+    <word x="0" y="3" description="Canons">mortiers</word>
+    <word x="0" y="4" description="Se permet">ose</word>
+    <word x="4" y="4" description="Il fait marcher">gr</word>
+    <word x="7" y="4" description="Voulait dire oui">oc</word>
+    <word x="2" y="5" description="Peinture murale">fresque</word>
+    <word x="0" y="6" description="Navires de guerre">croiseurs</word>
+    <word x="0" y="7" description="Minérales en bouteille">eaux</word>
+    <word x="5" y="7" description="Qui ne prennent pas de gants">secs</word>
+    <word x="0" y="8" description="Explosions de gaieté">rires</word>
+    <word x="6" y="8" description="Rebelle">lee</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Relancer">reamorcer</word>
+    <word x="1" y="2" description="À vous">vos</word>
+    <word x="1" y="6" description="Qui Jour qui passe">rai</word>
+    <word x="2" y="0" description="Rond-point">carrefour</word>
+    <word x="3" y="0" description="Loi">edit</word>
+    <word x="3" y="5" description="Empoignade">rixe</word>
+    <word x="4" y="0" description="Sous les toits">voliges</word>
+    <word x="5" y="0" description="Plus">es</word>
+    <word x="5" y="3" description="Boucles">erses</word>
+    <word x="6" y="0" description="Emousser">user</word>
+    <word x="6" y="5" description="Un je-ne-sais-quoi">quel</word>
+    <word x="7" y="0" description="Expédient">ressource</word>
+    <word x="8" y="0" description="Partie de partie">set</word>
+    <word x="8" y="4" description="Prend fin">cesse</word>
+  </vertical>
+</grid>

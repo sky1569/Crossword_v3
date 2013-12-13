@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Grille 8</name>
+  <date>01/04/2012</date>
+  <category></category>
+  <url></url>
+  <author>Gwendoline Dufour</author>
+  <level>1</level>
+  <width>9</width>
+  <height>9</height>
+  <horizontal>
+    <word x="0" y="0" description="ddddddddddddddddddddddddd">mari</word>
+    <word x="5" y="0" description="ddddddddddddddddddddddddd">daim</word>
+    <word x="0" y="2" description="ddddddddddddddddddddddddd">rayonne</word>
+    <word x="2" y="4" description="ddddddddddddddddddddddddd">alienee</word>
+    <word x="3" y="6" description="ddddddddddddddddddddddddd">depart</word>
+    <word x="2" y="7" description="ddddddddddddddddddddddddd">roti</word>
+    <word x="0" y="8" description="ddddddddddddddddddddddddd">ne</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="ddddddddddddddddddddddddd">mirages</word>
+    <word x="3" y="4" description="ddddddddddddddddddddddddd">lido</word>
+    <word x="4" y="6" description="ddddddddddddddddddddddddd">et</word>
+    <word x="5" y="0" description="ddddddddddddddddddddddddd">donne</word>
+    <word x="5" y="6" description="ddddddddddddddddddddddddd">pi</word>
+    <word x="7" y="6" description="ddddddddddddddddddddddddd">done</word>
+    <word x="8" y="0" description="ddddddddddddddddddddddddd">mefient</word>
+  </vertical>
+</grid>

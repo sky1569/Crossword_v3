@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Grille 2</name>
+  <date>03/01/2012</date>
+  <author>Isshun</author>
+  <level>1</level>
+  <width>9</width>
+  <height>9</height>
+  <horizontal>
+    <word x="0" y="0" description="Garnir de diamants">diamanter</word>
+    <word x="2" y="1" description="Articulation">genou</word>
+    <word x="0" y="2" description="Naitre au present">nais</word>
+    <word x="5" y="2" description="Père de Bambi">cerf</word>
+    <word x="0" y="3" description="Que l'on doit">du</word>
+    <word x="3" y="3" description="Policier américain">sherif</word>
+    <word x="0" y="4" description="Couleur or">ors</word>
+    <word x="6" y="4" description="Équidé à longues oreilles">ane</word>
+    <word x="0" y="5" description="Sentiment de dégoût">nausee</word>
+    <word x="7" y="5" description="Symbole chimique chrome">cr</word>
+    <word x="0" y="6" description="Noyaux de la terre">nife</word>
+    <word x="5" y="6" description="Transport publique de surface">tram</word>
+    <word x="2" y="7" description="Compagnon d'armes">frere</word>
+    <word x="0" y="8" description="Dégouliner">ruisseler</word>
+  </horizontal>
+  <vertical>
+    <word x="0" y="0" description="Prendre pour un pigeon">dindonner</word>
+    <word x="1" y="2" description="Posséderai">aurai</word>
+    <word x="2" y="0" description="Fait">agi</word>
+    <word x="2" y="4" description="Satisfait">suffi</word>
+    <word x="3" y="0" description="Restaurant d'officier">mess</word>
+    <word x="3" y="5" description="Amène">sers</word>
+    <word x="4" y="0" description="Période d'environ 365 jours">AN</word>
+    <word x="4" y="7" description="Suffixe internet de l'espagne">es</word>
+    <word x="5" y="0" description="D'argent ou de coutant">noce</word>
+    <word x="5" y="5" description="Entité">etre</word>
+    <word x="6" y="0" description="Ôtera la vie">tuera</word>
+    <word x="6" y="6" description="Réacteur à eau légère">rel</word>
+    <word x="7" y="2" description="Passa à l'eau">rinca</word>
+    <word x="8" y="0" description="Consolider">raffermir</word>
+  </vertical>
+  </grid>

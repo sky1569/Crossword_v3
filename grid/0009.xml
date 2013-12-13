@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grid>
+  <name>Grille 9</name>
+  <date>01/04/2012</date>
+  <category/>
+  <url/>
+  <author>Lucien Lacau</author>
+  <level>3</level>
+  <width>12</width>
+  <height>12</height>
+  <horizontal>
+	<word y="0" x="0" description="En usant des plus grandes atrocités">affreusement</word>
+	<word y="1" x="0" description="Grands de ce monde">colosses</word>
+	<word y="1" x="9" description="Changement de saison">mue</word>
+	<word y="2" x="0" description="Visibles dans la gueule du loup">crocs</word>
+	<word y="2" x="6" description="Aide précieuse pour aller à la selle">etrier</word>
+	<word y="3" x="0" description="Elle reste souvent en plan">eau</word>
+	<word y="3" x="4" description="Ouvertures pour se tirer d'affaire">issues</word>
+	<word y="4" x="0" description="Traitée sur la calandre">lissee</word>
+	<word y="4" x="7" description="Vieilles">agees</word>
+	<word y="5" x="0" description="A l'est d'Eden">en</word>
+	<word y="5" x="3" description="Il pique dans un plateau de fruits">oursin</word>
+	<word y="5" x="10" description="Possesif">sa</word>
+	<word y="6" x="0" description="Vu par son auteur">relu</word>
+	<word y="6" x="5" description="Sans issues">mures</word>
+	<word y="7" x="2" description="Bien élevé">arbore</word>
+	<word y="7" x="9" description="Souvent piquant s'il est bon">mot</word>
+	<word y="8" x="0" description="Présentant en avancant">tendant</word>
+	<word y="8" x="8" description="Dévorer des pavés ou prendre à la ligne">lire</word>
+	<word y="9" x="0" description="Prendre l'air du large">ioder</word>
+	<word y="9" x="6" description="Ne s'attache pas à l'argent">odorat</word>
+	<word y="10" x="0" description="Jeu du stade">ola</word>
+	<word y="10" x="4" description="Opération sur la bande des cinés">bruitage</word>
+	<word y="11" x="0" description="Sortie d'usine">neuve</word>
+	<word y="11" x="6" description="Exercer un contrôle">tester</word>
+  </horizontal>
+  <vertical>
+	<word x="0" y="0" description="Elle se prend généralement à toute vitesse">acceleration</word>
+	<word x="1" y="0" description="Elle tient bien la baraque">foraine</word>
+	<word x="1" y="8" description="Faisait divinement la bise">eole</word>
+	<word x="2" y="0" description="Pas très nets">flous</word>
+	<word x="2" y="6" description="Voiture à une place">landau</word>
+	<word x="3" y="0" description="Solide assise pour les grands bâtisseurs">roc</word>
+	<word x="3" y="4" description="Avec qui il est difficile de s'entendre">sourde</word>
+	<word x="4" y="0" description="Finit toujours dans les roues">essieu</word>
+	<word x="4" y="7" description="Poil au menton">barbe</word>
+	<word x="5" y="0" description="Conventions collectives">us</word>
+	<word x="5" y="3" description="Plaisir de la chaire">sermon</word>
+	<word x="6" y="0" description="Cité ornaise dans tous les sens">sees</word>
+	<word x="6" y="5" description="Plus particulièrement">surtout</word>
+	<word x="7" y="0" description="Embouchure évasée">estuaire</word>
+	<word x="7" y="9" description="Cité de la clairette">die</word>
+	<word x="8" y="2" description="Intérim de régent">regne</word>
+	<word x="8" y="8" description="Plus ils sont gros, plus on les aime">lots</word>
+	<word x="9" y="0" description="Envoyée au poste">emise</word>
+	<word x="9" y="6" description="Principauté du golfe Persique">smirat</word>
+	<word x="10" y="0" description="Qu'un rien habillerait">nue</word>
+	<word x="10" y="4" description="Suffixe internet de l'Espagne">es</word>
+	<word x="10" y="7" description="Opération de lavage">orage</word>
+	<word x="11" y="0" description="Bonne mère et prix Nobel">teresa</word>
+	<word x="11" y="7" description="Boire du lait cru">teter</word>
+  </vertical>
+</grid>

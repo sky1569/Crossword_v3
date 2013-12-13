@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grid>
+  <name>Basic 1</name>
+  <date>03/01/2013</date>
+  <author>ming</author>
+  <level>1</level>
+  <width>10</width>
+  <height>10</height>
+  <horizontal>
+    <word x="1" y="0" description="一种会飞的恐龙" answer = "翼手龙">YSL</word> 
+    <word x="0" y="1" description="古代妇德、妇言、妇容、妇功的合称" answer = "四德">SD</word>
+    <word x="5" y="1" description="周润发、钟楚红主演的一部经典电影" answer = "秋天的童话">QTDTH</word>
+    <word x="2" y="2" description="比如教育的作用普及而深入" answer = "春风化雨">CFHY</word>
+    <word x="0" y="3" description="《射雕英雄传》中黑风双煞之一" answer = "陈玄风">CXF</word>
+    <word x="8" y="3" description="指上吊自杀" answer = "投环">TH</word>
+    
+    <word x="2" y="4" description="旧时一种去除尘埃的器物" answer = "拂尘">FC</word>
+    <word x="5" y="4" description="《水浒传》中鲁智深自称的代词" answer = "洒家">SJ</word>
+    <word x="8" y="5" description="父母或祖先死亡的日子" answer = "忌日">JR</word>
+    <word x="1" y="6" description="我国著名花样滑冰运动员" answer = "陈露">CL</word>
+    <word x="4" y="6" description="用于上网的一种电脑硬件" answer = "调制解调器">TZJTQ</word>
+    <word x="0" y="8" description="欲把西湖比西子的下一句" answer = "淡妆浓抹总相宜">DZNMZXY</word>
+    <word x="6" y="9" description="加法和乘法的运算定律之一" answer = "结合律">JHL</word>
+  </horizontal>
+  <vertical>
+    <word x="1" y="0" description="张飞的表字" answer = "翼德">YD</word>
+    <word x="3" y="0" description="一种自然灾害" answer = "龙卷风">LJF</word>
+    <word x="5" y="0" description="我国一位著名当代作家" answer = "余秋雨">YQY</word>
+    <word x="9" y="0" description="贝尔的一项发明" answer = "电话">DH</word>
+    <word x="2" y="2" description="李白的一句诗" answer = "春风拂槛露华浓">CFFKLHN</word>
+    <word x="0" y="3" description="英年早逝的一位香港著名歌星" answer = "陈百强">CBQ</word>
+    <word x="6" y="3" description="指应当消除敌对、恢复和睦" answer = "冤家宜解不宜结">YJYJBYJ</word>
+    <word x="8" y="3" description="指做事有所顾忌、不敢放手进行" answer = "投鼠忌器">TSJQ</word>
+    <word x="4" y="5" description="保罗·福塞所著的一部畅销小说" answer = "格调">GD</word>
+    <word x="0" y="8" description="贻贝的肉煮熟后晒干而成的干制食品" answer = "淡菜">DC</word>
+    <word x="4" y="8" description="美国国家元首的职务名称" answer = "总统">ZT</word>
+    <word x="8" y="8" description="鸦片战争时英国侵略军的代表" answer = "义律">YL</word>
+  
+  </vertical>
+</grid>
