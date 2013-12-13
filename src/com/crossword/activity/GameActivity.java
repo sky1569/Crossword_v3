@@ -283,6 +283,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		// Si la case est noire => retour
 		if (this.gridAdapter.isBlock(x, y))
 			return;
+		String cellValue=this.gridAdapter.getCellValue(x, y);
 		/*if (value.equals(Crossword.BLANK)) {
 		
 		if(this.gridAdapter.getCellValue(x, y).equals(Crossword.BLANK))
@@ -340,15 +341,15 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		}
 		//this.gridAdapter.notifyDataSetChanged();
 		// Deplace sur le "curseur" sur la case precendante (effacer), ou suivante (lettres)
-		/*if (value.equals(Crossword.BLANK)) {
+		if (value.equals(Crossword.BLANK)) {
 			
-			if(this.gridAdapter.getCellValue(x, y).equals(Crossword.BLANK))
+			if(cellValue.equals(Crossword.BLANK))
 			{
 				x = (this.horizontal ? x - 1 : x);
 				y = (this.horizontal ? y: y - 1);
 			}
 			
-		}*/
+		}
 		/*if(this.horizontal )  x=value.equals(Crossword.BLANK)?x:x-1;
 		else y=value.equals(Crossword.BLANK)?y:y-1;*/
 		if(!value.equals(Crossword.BLANK))
