@@ -57,8 +57,12 @@ public class GameGridAdapter extends BaseAdapter {
 	private int 						displayHeight;
 	private int 						width;
 	private int 						height;
+<<<<<<< HEAD
 	private DBManager                   dbManager;
 	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,Module moudle)
+=======
+	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,Module module)
+>>>>>>> ca8d0d3e4cd605b8803a7676aa6704d1d76e70db
 	{
 		final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(act);
 		
@@ -111,8 +115,16 @@ public class GameGridAdapter extends BaseAdapter {
     			  continue;
     		   if(area[currentY][currentX]==null)
     			   continue;
+<<<<<<< HEAD
     		   Word currentWord = moudle.getWord(currentX,currentY,true);
     			   if(moudle.isCorrect(moudle.getWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()).getCap(),this.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz())))
+=======
+    		   Word currentWord = module.getWord(currentX,currentY,true);
+    		  // currentWord.getHorizontal();
+    		  
+    			   
+    			   if(module.isCorrect(module.getWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()).getCap(),this.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz())))
+>>>>>>> ca8d0d3e4cd605b8803a7676aa6704d1d76e70db
        		    	{
        				  for(int l = 0; l < currentWord.getLength(); l++)
        				  {
@@ -124,15 +136,16 @@ public class GameGridAdapter extends BaseAdapter {
        		    	}
     		    if(this.isCross(currentX,currentY))
         		  {
-    			   if(moudle.isCorrect(moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getCap(),
-   						this.getWord(moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getX(),moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getY(), 
-   								moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getLength(), 
-   								moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getHoriz())))
+    			   if(module.isCorrect(module.getWord(currentX, currentY, !currentWord.getHoriz()).getCap(),
+   						this.getWord(module.getWord(currentX, currentY, !currentWord.getHoriz()).getX(),module.getWord(currentX, currentY, !currentWord.getHoriz()).getY(), 
+   								module.getWord(currentX, currentY, !currentWord.getHoriz()).getLength(), 
+   								module.getWord(currentX, currentY, !currentWord.getHoriz()).getHoriz())))
 	   		    	{
-	   				  for(int l = 0; l < moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getLength(); l++)
+	   				  for(int l = 0; l < module.getWord(currentX, currentY, !currentWord.getHoriz()).getLength(); l++)
 	   				    {
 	   						if(!currentWord.getHoriz()) 
 	   						{
+<<<<<<< HEAD
 	   							this.setDisValue(moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getX()+l,moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getY(),moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));
 	   					
 	   						}
@@ -140,6 +153,15 @@ public class GameGridAdapter extends BaseAdapter {
 	   		            	{
 	   		            	this.setDisValue(moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getX(),moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getY()+l,moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));  
 	   		            
+=======
+	   							this.setDisValue(module.getWord(currentX, currentY, !currentWord.getHoriz()).getX()+l,module.getWord(currentX, currentY, !currentWord.getHoriz()).getY(),module.getWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));
+	   						  //  System.out.println("x:"+(currentX+l)+"y:"+currentY);
+	   						}
+	   						if(currentWord.getHoriz())
+	   		            	{
+	   		            	this.setDisValue(module.getWord(currentX, currentY, !currentWord.getHoriz()).getX(),module.getWord(currentX, currentY, !currentWord.getHoriz()).getY()+l,module.getWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));  
+	   		            	// System.out.println("x:"+currentX+"y:"+(currentY+l));
+>>>>>>> ca8d0d3e4cd605b8803a7676aa6704d1d76e70db
 	   		            	}
 	   		            }
 	   		         
@@ -173,7 +195,7 @@ public class GameGridAdapter extends BaseAdapter {
 		TextView v = this.views.get(position);
 		int y = (int)(position / this.width); 
 		int x = (int)(position % this.width);
-		String data = this.displayArea[y][x]!=Crossword.BLANK?this.displayArea[y][x]:" ";
+		String data = this.displayArea[y][x] != Crossword.BLANK ? this.displayArea[y][x] : " ";
 		String correction = this.correctionArea[y][x];
 		
 		// Creation du composant

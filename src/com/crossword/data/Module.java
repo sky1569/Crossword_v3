@@ -37,16 +37,7 @@ public class Module {
 		 this.entries = this.grid.getEntries();
 		 return this.grid.getEntries();
 	 }
-	/* public ArrayList<Word> getentry(String filename) throws CrosswordException{
-		 	//ArrayList<Word> entries;
-			//CrosswordParser crosswordParser = new CrosswordParser();
-			//SAXFileHandler.read((DefaultHandler)crosswordParser, String.format(Crossword.GRID_LOCAL_PATH, filename));
-			//this.entries = crosswordParser.getData();		
 	
-		  return this.entries;
-		  
-	 }
-	  */
 	  public boolean isCorrect(String currentWords,String correctWords)
 	    {	    	
 	    	return  currentWords.equalsIgnoreCase(correctWords)==true ?true:false;
