@@ -29,9 +29,9 @@ import com.crossword.activity.GameActivity;
 import com.crossword.data.Grid;
 import com.crossword.data.GridforSaved;
 import com.crossword.data.Word;
-import com.ming.crossword.utils.DBManager;
-import com.ming.crossword.utils.JsonUtil;
-import com.ming.crossword.utils.Module;
+import com.crossword.utils.DBManager;
+import com.crossword.utils.JsonUtil;
+import com.crossword.utils.Module;
 
 import android.app.Activity;
 import android.content.Context;

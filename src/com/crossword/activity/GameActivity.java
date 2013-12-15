@@ -31,10 +31,10 @@ import com.crossword.Crossword;
 import com.crossword.R;
 import com.crossword.keyboard.KeyboardView;
 import com.crossword.keyboard.KeyboardViewInterface;
+import com.crossword.utils.Module;
 import com.crossword.adapter.GameGridAdapter;
 import com.crossword.data.Grid;
 import com.crossword.data.Word;
-import com.ming.crossword.utils.Module;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
