@@ -28,10 +28,10 @@ import com.crossword.R;
 import com.crossword.activity.GameActivity;
 import com.crossword.data.Grid;
 import com.crossword.data.GridforSaved;
-import com.crossword.data.Module;
 import com.crossword.data.Word;
 import com.ming.crossword.utils.DBManager;
 import com.ming.crossword.utils.JsonUtil;
+import com.ming.crossword.utils.Module;
 
 import android.app.Activity;
 import android.content.Context;
@@ -58,13 +58,7 @@ public class GameGridAdapter extends BaseAdapter {
 	private int 						width;
 	private int 						height;
 	private DBManager					dbManager;    
-/*
-	<<<<<<< HEAD
-	private DBManager                   dbManager;
-	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,Module moudle)
-=======
-	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,Module module)
->>>>>>> ca8d0d3e4cd605b8803a7676aa6704d1d76e70db*/
+
 	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,Module module)
 	{
 		final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(act);
@@ -72,8 +66,6 @@ public class GameGridAdapter extends BaseAdapter {
 		this.context = (Context)act;
 		this.width = width;
 		this.height = height;
-		this.dbManager = new DBManager(act);
-		// Calcul area height
         Display display = act.getWindowManager().getDefaultDisplay();
         this.displayHeight = display.getWidth() / this.width;
 
@@ -118,21 +110,8 @@ public class GameGridAdapter extends BaseAdapter {
     			  continue;
     		   if(area[currentY][currentX]==null)
     			   continue;
-    		   /*
-<<<<<<< HEAD
-    		   Word currentWord = moudle.getWord(currentX,currentY,true);
-    			   if(moudle.isCorrect(moudle.getWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()).getCap(),this.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz())))
-=======
+
     		   Word currentWord = module.getWord(currentX,currentY,true);
-    		  // currentWord.getHorizontal();
-    		  
-    			   
-    			   if(module.isCorrect(module.getWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()).getCap(),this.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz())))
->>>>>>> ca8d0d3e4cd605b8803a7676aa6704d1d76e70db*/
-    		   Word currentWord = module.getWord(currentX,currentY,true);
-     		  // currentWord.getHorizontal();
-     		  
-     			   
      			   if(module.isCorrect(module.getWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()).getCap(),this.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz())))
        		    	{
        				  for(int l = 0; l < currentWord.getLength(); l++)
@@ -154,22 +133,14 @@ public class GameGridAdapter extends BaseAdapter {
 	   				    {
 	   						if(!currentWord.getHoriz()) 
 	   						{
-/*<<<<<<< HEAD
-	   							this.setDisValue(moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getX()+l,moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getY(),moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));
-	   					
+
+	   							this.setDisValue(module.getWord(currentX, currentY, !currentWord.getHoriz()).getX()+l,
+	   									module.getWord(currentX, currentY, !currentWord.getHoriz()).getY(),module.getWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));
 	   						}
 	   						if(currentWord.getHoriz())
 	   		            	{
-	   		            	this.setDisValue(moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getX(),moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getY()+l,moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));  
-	   		            
-=======>>>>>>> ca8d0d3e4cd605b8803a7676aa6704d1d76e70db*/
-	   							this.setDisValue(module.getWord(currentX, currentY, !currentWord.getHoriz()).getX()+l,module.getWord(currentX, currentY, !currentWord.getHoriz()).getY(),module.getWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));
-	   						  //  System.out.println("x:"+(currentX+l)+"y:"+currentY);
-	   						}
-	   						if(currentWord.getHoriz())
-	   		            	{
-	   		            	this.setDisValue(module.getWord(currentX, currentY, !currentWord.getHoriz()).getX(),module.getWord(currentX, currentY, !currentWord.getHoriz()).getY()+l,module.getWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));  
-	   		            	// System.out.println("x:"+currentX+"y:"+(currentY+l));
+	   		            	this.setDisValue(module.getWord(currentX, currentY, !currentWord.getHoriz()).getX(),
+	   		            			    module.getWord(currentX, currentY, !currentWord.getHoriz()).getY()+l,module.getWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));  
 
 	   		            	}
 	   		            }
@@ -255,7 +226,6 @@ public class GameGridAdapter extends BaseAdapter {
 		return (this.area[y][x] == null);
 	}
 	public boolean isChinese(int x,int y)
-	
 	{
 		
 		return  this.displayArea[y][x].getBytes().length==this.displayArea[y][x].length()?false:true;
@@ -266,7 +236,6 @@ public class GameGridAdapter extends BaseAdapter {
 	
 			{
 			this.area[y][x] = value.toUpperCase();
-		
 			System.out.println(this.area[y][x]);
 			}
 	}
@@ -274,9 +243,7 @@ public class GameGridAdapter extends BaseAdapter {
 		if (this.area[y][x] != null&&!this.isChinese(x,y))
 		
 			{
-		
 			this.displayArea[y][x] = value.toUpperCase();
-			
 			System.out.println(this.displayArea[y][x]);
 			}
 	}
@@ -286,17 +253,16 @@ public class GameGridAdapter extends BaseAdapter {
     	for (int i = 0; i < length; i++) {
     		if (isHorizontal) {
     			if (y < this.height && x+i < this.width)
-    				word.append(this.area[y][x+i] != null ? this.area[y][x+i] : " ");
+    				word.append(this.area[y][x+i].equals(Crossword.BLANK)?Crossword.TMPSIGN:this.area[y][x+i]);
     		}
     		else {
     			if (y+i < this.height && x < this.width)
-    				word.append(this.area[y+i][x] != null ? this.area[y+i][x] : " ");
+    				word.append(this.area[y+i][x].equals(Crossword.BLANK)?Crossword.TMPSIGN:this.area[y+i][x]);
     		}
     	}
     	return word.toString();
 	}
 
-	
 	//判断是否是交叉点
 	public boolean isCross(int x,int y){
 		boolean c = false;

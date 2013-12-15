@@ -56,12 +56,11 @@ public class JsonUtil {
 	
 	public String readJsonDataFromAssets(String filename){
 		
-		//filename = Crossword.GRID_DIRECTORY + filename;
-				//Log.v("tmd", filename);
 				String res = "";
 				try{
-				//FileInputStream in = this.context.getResources().getAssets().open(filename);
-				FileInputStream in = this.context.openFileInput(filename);
+				//FileInputStream in = this.context.openFileInput(filename);
+				InputStream in =  this.context.getAssets().open(filename);
+	
 				ByteArrayBuffer bb = new ByteArrayBuffer(in.available());
 				int current = 0;
 				while((current = in.read())!=-1){
@@ -81,7 +80,6 @@ public class JsonUtil {
 		
 		Grid grid = new Grid();
 		LinkedList<Word> entries = new LinkedList<Word>();
-		//String res = readJsonDataFromAssets(fileName);
 		JSONObject jsonObject;
 		JSONArray  jsonArray;
 		try {
@@ -100,8 +98,7 @@ public class JsonUtil {
 		    	entry.setCap(jObj.getString("cap"));
 		    	entry.setChi(jObj.getString("chi"));
 		    	entry.setMask(jObj.getString("mask"));
-		    	entries.add(entry);
-		    	//String desc = jsonArray.getJSONObject(i).getString("desp");	    	
+		    	entries.add(entry);	
 			}
 		    grid.setEntries(entries);
 		    grid.setFilename(jsonObject.getString("file"));
@@ -139,7 +136,7 @@ public class JsonUtil {
 			jObj.put("uniqueid", grid.getUniqueid());
 			jObj.put("vol", grid.getVol());
 			jObj.put("level", grid.getLevel());
-			
+			jObj.put("category", grid.getCategory());
 			//获取grid中的word信息
 			LinkedList<Word> entries = grid.getEntries();
 			for(Word entry:entries){
@@ -147,7 +144,7 @@ public class JsonUtil {
 				JSONObject jObjj = new JSONObject();
 				jObjj.put("desc", entry.getDesc());
 				jObjj.put("tmp", entry.getTmp());
-				jObjj.put("horiz", entry.getHoriz());
+				jObjj.put("horiz", entry.getHoriz() == true?1:0);
 				jObjj.put("x", entry.getX());
 				jObjj.put("y", entry.getY());
 				jObjj.put("len", entry.getLength());
@@ -163,7 +160,6 @@ public class JsonUtil {
 			jObj.put("author", grid.getAunthor());
 			jObj.put("width", grid.getWidth());
 			jObj.put("height", grid.getHeight());
-			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -107,7 +107,7 @@ public class DBManager {
 		cv.put("author", grid.getAunthor());
 		cv.put("width", grid.getWidth());
 		cv.put("height", grid.getHeight());
-		db.update(Crossword.TABLE_NAME, cv, "file = ?", new String[]{grid.getFilename()});
+		db.update(Crossword.TABLE_NAME, cv, "level = ?", new String[]{grid.getLevel().toString()});
 		db.close();
 	}
 	

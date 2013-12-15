@@ -41,7 +41,6 @@ public class Word {
 	
 	
 	
-	
 	public void     setDesc(String desc){this.desc = desc;}
 	public String   getDesc(){return this.desc;}
 	
@@ -72,35 +71,5 @@ public class Word {
 	public int      getLength(){return this.len;}
 	
 	public String   getAns(int l){return this.chi.substring(l,l+1);}
-	/*
-	public void		setText(String value) { this.text = value; this.length = value.length(); }
-	public String	getText() { return this.text; }
 	
-	public void     setAnswer(String answer){this.answer = answer;}
-	//public String   getAnswer(){return this.answer;}
-	
-	public void		setTmp(String value) { this.tmp = value; }
-	public String	getTmp() { return this.tmp; }
-	
-	public void		setDescription(String value) { this.description= value; }
-	public String	getDescription() { return this.description; }
-	
-	public boolean	getHorizontal() { return this.horizontal; }
-	public void		setHorizontal(boolean value) { this.horizontal = value; }
-
-	public void		setX(int value) { this.x = value; }
-	public int		getX() { return this.x; }
-	public int 		getXMax() { return this.horizontal ? this.x + this.length - 1: this.x; }
-	
-	public void		setY(int value) { this.y = value; }
-	public int		getY() { return this.y; }
-	public int 		getYMax() { return this.horizontal ? this.y : this.y + this.length - 1; }
-
-	public int 		getLength() { return this.length; }
-//	public void     setAns(String value){this .ans=value;}
-	public String   getAns(int l){			    		
-		
-		return this.answer.substring(l,l+1);
-		}
-*/
 }

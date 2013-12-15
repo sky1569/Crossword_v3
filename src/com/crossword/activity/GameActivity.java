@@ -33,8 +33,9 @@ import com.crossword.keyboard.KeyboardView;
 import com.crossword.keyboard.KeyboardViewInterface;
 import com.crossword.adapter.GameGridAdapter;
 import com.crossword.data.Grid;
-import com.crossword.data.Module;
 import com.crossword.data.Word;
+import com.ming.crossword.utils.Module;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -105,14 +106,13 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	@Override
 	public void onPause()
 	{
-	   // gridAdapter.save(this.grid);
-		//module.save(this.grid);
+		module.save(this.gridAdapter,this.grid);
 		super.onPause();
 	}
 	
 	@Override
 	public void onStop(){
-		//module.save(this.grid);
+		module.save(this.gridAdapter,this.grid);
 		super.onStop();
 	}
 	public void onCreate(Bundle savedInstanceState)
@@ -190,10 +190,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
                 this.downX = this.downPos % this.width;
                 this.downY = this.downPos / this.width;
                 System.out.println("ACTION_DOWN, x:" + this.downX + ", y:" + this.downY + ", position: " + this.downPos);
-
                 clearSelection();
-
-
             	this.gridAdapter.notifyDataSetChanged();
         		break;
             }
@@ -292,29 +289,20 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		if (this.gridAdapter.isBlock(x, y))
 			return;
 		String cellValue=this.gridAdapter.getCellValue(x, y);
-		/*if (value.equals(Crossword.BLANK)) {
-		
-		if(this.gridAdapter.getCellValue(x, y).equals(Crossword.BLANK))
-		{
-			int  tempx = (this.horizontal ? x - 1 : x);
-			int temy = (this.horizontal ? y: y - 1);
-		}
-		
-	}*/
-		// Ecrit la lettre sur le "curseur"
+	
 		this.gridAdapter.setValue(x, y, value);
 		this.gridAdapter.setDisValue(x, y,value);
 		this.gridAdapter.notifyDataSetChanged();
 		
-		//module.rightDisplay(this.currentWord,this.currentX, this.currentY, gridAdapter,this.isCross);
-		if(module.isCorrect(module.getWord(this.currentWord.getX(), this.currentWord.getY(), this.currentWord.getHoriz()).getCap(),gridAdapter.getWord(this.currentWord.getX(),this.currentWord.getY(),this.currentWord.getLength(), this.currentWord.getHoriz())))
+		
+		if(module.isCorrect(module.getWord(this.currentWord.getX(), this.currentWord.getY(), this.currentWord.getHoriz()).getCap(),
+				            gridAdapter.getWord(this.currentWord.getX(),this.currentWord.getY(),this.currentWord.getLength(), this.currentWord.getHoriz())))
 	    {
 			  for(int l = 0; l < this.currentWord.getLength(); l++)
 			  {
 				if(this.currentWord.getHoriz())  
 				{
 					gridAdapter.setDisValue(currentWord.getX()+l, currentWord.getY(),currentWord.getAns(l));
-					//gridAdapter.setValue(currentWord.getX()+l, currentWord.getY(),currentWord.getAns(l));
 				}
 	            if(!this.currentWord.getHoriz()) gridAdapter.setDisValue(currentWord.getX(), currentWord.getY()+l,currentWord.getAns(l));  
 	            
@@ -347,8 +335,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
     	    }	
 			else module.disTip();
 		}
-		//this.gridAdapter.notifyDataSetChanged();
-		// Deplace sur le "curseur" sur la case precendante (effacer), ou suivante (lettres)
+	
 		if (value.equals(Crossword.BLANK)) {
 			
 			if(cellValue.equals(Crossword.BLANK))
@@ -358,8 +345,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 			}
 			
 		}
-		/*if(this.horizontal )  x=value.equals(Crossword.BLANK)?x:x-1;
-		else y=value.equals(Crossword.BLANK)?y:y-1;*/
+
 		if(!value.equals(Crossword.BLANK))
 		{
 			x = (this.horizontal ? x + 1 : x);
@@ -370,8 +356,6 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		if (x >= 0 && x < this.width
 				&& y >= 0 && y < this.height
 				&& this.gridAdapter.isBlock(x,y) == false) {
-			//this.gridView.getChildAt(y * this.width + x).setBackgroundResource(R.drawable.area_current);
-			//this.gridView.getChildAt(this.currentY * this.width + this.currentX).setBackgroundResource(R.drawable.area_selected);
 			this.currentX = x;
 			this.currentY = y;
 		}
@@ -442,15 +426,6 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
           this.txtDescriptionVer.setText(descriptionVer);
 		 
 	}
-	/*
-	  private boolean isCorrect(String currentWords,String correctWords)
-	    {
-	    	System.out.println(currentWords);
-	    	System.out.println(correctWords);
-	    	System.out.println(currentWords.equalsIgnoreCase(correctWords)==true ?true:false);
-	    	
-	    	return  currentWords.equalsIgnoreCase(correctWords)==true ?true:false;
-	    }
-	*/
+
 	
 }

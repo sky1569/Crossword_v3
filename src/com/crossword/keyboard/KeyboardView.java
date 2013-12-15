@@ -139,10 +139,7 @@ public class KeyboardView extends LinearLayout implements OnTouchListener {
         		// Change key background (selector actually doesn't work with KeyboardView)
         		if (v.getId() == R.id.buttonDELETE)
         			this.currentView.setBackgroundResource(R.drawable.btn_keyboard_delete_pressed);
-        	/*	else if (v.getId() == R.id.buttonDRAFT)
-        			this.currentView.setBackgroundResource(this.isDraft
-        					? R.drawable.btn_keyboard_draft_pressed_lock
-        							: R.drawable.btn_keyboard_draft_pressed_lock);*/
+
         		else
         			this.currentView.setBackgroundResource(R.drawable.btn_keyboard_pressed);
         		
@@ -157,19 +154,11 @@ public class KeyboardView extends LinearLayout implements OnTouchListener {
         		case R.id.buttonDELETE:
             		this.delegate.onKeyUp(Crossword.BLANK);
         			break;
-        	/*	case R.id.buttonDRAFT:
-        			this.isDraft = !this.isDraft;
-        			this.delegate.setDraft(this.isDraft);
-        			break;*/
         		}
         		
         		// Change key background (selector actually doesn't work with KeyboardView)
         		if (v.getId() == R.id.buttonDELETE)
         			this.currentView.setBackgroundResource(R.drawable.btn_keyboard_delete_release);
-        	/*	else if (v.getId() == R.id.buttonDRAFT)
-        			this.currentView.setBackgroundResource(this.isDraft
-        					? R.drawable.btn_keyboard_draft_release_lock
-        							: R.drawable.btn_keyboard_draft_release_unlock);*/
         		else
         			this.currentView.setBackgroundResource(R.drawable.btn_keyboard_release);
 
