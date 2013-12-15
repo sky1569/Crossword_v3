@@ -214,8 +214,8 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
                 this.lastY = y;//获取上一次的纵向位置
                 this.currentX = x;
             	this.currentY = y;
-            	this.isCross = this.gridAdapter.isCross(currentX, currentY);
-            	currentWord = module.getWord(currentX,currentY,this.horizontal);
+            	this.isCross = this.module.isCross(currentX, currentY);
+            	currentWord = module.getCorrectWord(currentX,currentY,this.horizontal);
               
         	    if (this.currentWord == null)
         	    	break;
@@ -224,8 +224,8 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
         		this.gridAdapter.reDrawGridBackground(this.gridView);
                 if(isCross){
                 	
-                	this.currentWordHor = module.getWord(x, y, true);
-                	this.currentWordVer = module.getWord(x, y, false);
+                	this.currentWordHor = module.getCorrectWord(x, y, true);
+                	this.currentWordVer = module.getCorrectWord(x, y, false);
                 	this.setWordBackground(this.currentWordHor, x, y);
                 	this.setWordBackground(this.currentWordVer, x, y);
                 }else{
@@ -286,25 +286,25 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		int y = this.currentY;
         
 		// Si la case est noire => retour
-		if (this.gridAdapter.isBlock(x, y))
+		if (this.module.isBlock(x, y))
 			return;
-		String cellValue=this.gridAdapter.getCellValue(x, y);
+		String cellValue=this.module.getCellValue(x, y);
 	
-		this.gridAdapter.setValue(x, y, value);
-		this.gridAdapter.setDisValue(x, y,value);
+		this.module.setValue(x, y, value);
+		this.module.setDisValue(x, y,value);
 		this.gridAdapter.notifyDataSetChanged();
 		
-		
-		if(module.isCorrect(module.getWord(this.currentWord.getX(), this.currentWord.getY(), this.currentWord.getHoriz()).getCap(),
-				            gridAdapter.getWord(this.currentWord.getX(),this.currentWord.getY(),this.currentWord.getLength(), this.currentWord.getHoriz())))
+		module.toChinese();
+		/*if(module.isCorrect(module.getCorrectWord(this.currentWord.getX(), this.currentWord.getY(), this.currentWord.getHoriz()).getCap(),
+				           module.getWord(this.currentWord.getX(),this.currentWord.getY(),this.currentWord.getLength(), this.currentWord.getHoriz())))
 	    {
 			  for(int l = 0; l < this.currentWord.getLength(); l++)
 			  {
 				if(this.currentWord.getHoriz())  
 				{
-					gridAdapter.setDisValue(currentWord.getX()+l, currentWord.getY(),currentWord.getAns(l));
+					module.setDisValue(currentWord.getX()+l, currentWord.getY(),currentWord.getAns(l));
 				}
-	            if(!this.currentWord.getHoriz()) gridAdapter.setDisValue(currentWord.getX(), currentWord.getY()+l,currentWord.getAns(l));  
+	            if(!this.currentWord.getHoriz()) module.setDisValue(currentWord.getX(), currentWord.getY()+l,currentWord.getAns(l));  
 	            
 	            this.gridAdapter.notifyDataSetChanged();
 			  }
@@ -314,19 +314,19 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		if(this.isCross)
 		{		
 		
-			if(module.isCorrect(module.getWord(this.currentX, this.currentY, !currentWord.getHoriz()).getCap(),
-					gridAdapter.getWord(module.getWord(this.currentX, this.currentY, !currentWord.getHoriz()).getX(),module.getWord(this.currentX, this.currentY, !currentWord.getHoriz()).getY(), 
-							module.getWord(this.currentX, this.currentY, !currentWord.getHoriz()).getLength(), 
-							module.getWord(this.currentX, this.currentY, !currentWord.getHoriz()).getHoriz())))
+			if(module.isCorrect(module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getCap(),
+					module.getWord(module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getX(),module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getY(), 
+							module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getLength(), 
+							module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getHoriz())))
 	    	{
-			  for(int l = 0; l < module.getWord(this.currentX, this.currentY, !currentWord.getHoriz()).getLength(); l++)
+			  for(int l = 0; l < module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getLength(); l++)
 			    {
-					if(!this.currentWord.getHoriz())  {gridAdapter.setDisValue(module.getWord(this.currentX, this.currentY, !currentWord.getHoriz()).getX()+l,module.getWord(this.currentX, this.currentY, !currentWord.getHoriz()).getY(),module.getWord(this.currentX, this.currentY, !currentWord.getHoriz()).getAns(l));
+					if(!this.currentWord.getHoriz())  {module.setDisValue(module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getX()+l,module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getY(),module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getAns(l));
 					 System.out.println("x:"+(currentX+l)+"y:"+currentY);
 				}
 	            if(this.currentWord.getHoriz())
 	            {
-	            	gridAdapter.setDisValue(module.getWord(this.currentX, this.currentY, !currentWord.getHoriz()).getX(),module.getWord(this.currentX, this.currentY, !currentWord.getHoriz()).getY()+l,module.getWord(this.currentX, this.currentY, !currentWord.getHoriz()).getAns(l));  
+	            	module.setDisValue(module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getX(),module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getY()+l,module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getAns(l));  
 	            	 System.out.println("x:"+currentX+"y:"+(currentY+l));
 	            }
 	      
@@ -334,7 +334,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 			  }
     	    }	
 			else module.disTip();
-		}
+		}*/
 	
 		if (value.equals(Crossword.BLANK)) {
 			
@@ -355,15 +355,15 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		// Si la case suivante est disponible, met la case en jaune, remet l'ancienne en bleu, et set la nouvelle position
 		if (x >= 0 && x < this.width
 				&& y >= 0 && y < this.height
-				&& this.gridAdapter.isBlock(x,y) == false) {
+				&& this.module.isBlock(x,y) == false) {
 			this.currentX = x;
 			this.currentY = y;
 		}
 		
 		
-		this.isCross = this.gridAdapter.isCross(currentX, currentY);
+		this.isCross = this.module.isCross(currentX, currentY);
        
-		currentWord = module.getWord(currentX,currentY,this.horizontal);
+		currentWord = module.getCorrectWord(currentX,currentY,this.horizontal);
 		  
           
           this.horizontal = this.currentWord.getHoriz();
@@ -371,8 +371,8 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
         this.gridAdapter.reDrawGridBackground(this.gridView);
         if(this.isCross){
         	
-        	this.currentWordHor = module.getWord(currentX, currentY, true);
-        	this.currentWordVer = module.getWord(currentX, currentY, false);
+        	this.currentWordHor = module.getCorrectWord(currentX, currentY, true);
+        	this.currentWordVer = module.getCorrectWord(currentX, currentY, false);
         	
         	this.setWordBackground(this.currentWordHor, currentX, currentY);
         	this.setWordBackground(this.currentWordVer, currentX, currentY);
