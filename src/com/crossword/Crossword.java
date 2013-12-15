@@ -46,6 +46,16 @@ public class Crossword extends Application {
 	public static final String          BLANK="-";
 	public static final int 			AREA_BLOCK = -1;
 	public static final int 			AREA_WRITABLE = 0;
+	
+	
+	
+	//定义数据库的一些项
+	public static final String DATABASE_NAME = "crossword.db";
+	public static final int DATABASE_VERSION = 1;
+	public static final String TABLE_NAME = "Grid";
+	public static final String GRIDITEM= " file VARCHAR ,uniqueid INTEGER," +
+			"vol INTEGER,level INTEGER,category VARCHAR,jsonData TEXT,score INTEGER," +
+			" date VARCHAR,gamename VARCHAR,author VARCHAR,width INTEGER,height INTEGER";
    // public static final String  BLOCK = "#";
    // public static final String  BLANK = " ";
     private static Context context;

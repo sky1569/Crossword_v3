@@ -11,6 +11,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import android.content.Context;
 
 import com.crossword.Crossword;
+import com.ming.crossword.utils.DBManager;
 import com.ming.crossword.utils.JsonUtil;
 
 public class Module {
@@ -18,10 +19,16 @@ public class Module {
 	 private Grid   grid;                   //从json中解析出grid的所有信息，包括关卡的信息以及所有的Word
 	// private Grid			grid;	
 	 private LinkedList<Word> entries  =  new LinkedList<Word>();
+	 private JsonUtil jsonUtil;
+	 private DBManager dbManager;
 	 public Grid parseGrid(Context context,String filename){
 		 this.grid = new Grid();
-		 JsonUtil jsonUtil = new JsonUtil(context);
-		 this.grid =  jsonUtil.parseGridJson(filename);
+		 jsonUtil = new JsonUtil(context);
+		 dbManager = new DBManager(context);
+		 String jsonData = jsonUtil.readJsonDataFromFile(filename);
+		 this.grid =  jsonUtil.parseGridJson(jsonData);
+		//解析完，将Json数据加入数据库中
+		 dbManager.add(this.grid);
 		 return this.grid;
 	 }
 	 
@@ -108,4 +115,22 @@ public class Module {
 		  
 		    
 	  } */
+	  
+	  
+		//保存Grid信息，先写入JSON，再写入数据库
+		public void save(Grid grid){
+			JSONObject jObj = jsonUtil.writeToJson(grid);
+			//用以保存数据的grid类，主要是保存在数据库中，增加了jsonData字段
+			grid.setJsonData(jObj.toString());
+			dbManager.updateGridData(grid);	
+		}
+		
+		
+		//通过第几关查找数据库
+		public Grid queryByLevel(int level){
+			
+			Grid grid = dbManager.queryGridByKey("level", level,this.jsonUtil);
+			return grid;
+			
+		}
 }

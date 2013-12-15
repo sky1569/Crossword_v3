@@ -21,11 +21,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import org.json.JSONObject;
+
 import com.crossword.Crossword;
 import com.crossword.R;
 import com.crossword.activity.GameActivity;
+import com.crossword.data.Grid;
+import com.crossword.data.GridforSaved;
 import com.crossword.data.Module;
 import com.crossword.data.Word;
+import com.ming.crossword.utils.DBManager;
+import com.ming.crossword.utils.JsonUtil;
 
 import android.app.Activity;
 import android.content.Context;
@@ -48,10 +54,10 @@ public class GameGridAdapter extends BaseAdapter {
 	private String[][]					area;			// Tableau repr茅sentant les lettres du joueur
 	private String[][] 					displayArea;
 	private String[][] 					correctionArea; // Tableau repr茅sentant les lettres correctes
-	//boolean horizontal;
 	private int 						displayHeight;
 	private int 						width;
 	private int 						height;
+	private DBManager                   dbManager;
 	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,Module moudle)
 	{
 		final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(act);
@@ -59,7 +65,7 @@ public class GameGridAdapter extends BaseAdapter {
 		this.context = (Context)act;
 		this.width = width;
 		this.height = height;
-		
+		this.dbManager = new DBManager(act);
 		// Calcul area height
         Display display = act.getWindowManager().getDefaultDisplay();
         this.displayHeight = display.getWidth() / this.width;
@@ -106,19 +112,14 @@ public class GameGridAdapter extends BaseAdapter {
     		   if(area[currentY][currentX]==null)
     			   continue;
     		   Word currentWord = moudle.getWord(currentX,currentY,true);
-    		  // currentWord.getHorizontal();
-    		  
-    			   
     			   if(moudle.isCorrect(moudle.getWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()).getCap(),this.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz())))
        		    	{
        				  for(int l = 0; l < currentWord.getLength(); l++)
        				  {
        					if(currentWord.getHoriz())  this.setDisValue(currentWord.getX()+l, currentWord.getY(),currentWord.getAns(l));
        					       						
-       						//gridAdapter.setValue(currentWord.getX()+l, currentWord.getY(),currentWord.getAns(l));
             		    if(!currentWord.getHoriz()) this.setDisValue(currentWord.getX(), currentWord.getY()+l,currentWord.getAns(l));  
-       		            
-       		        //    this.gridAdapter.notifyDataSetChanged();
+       		            		   
        				  }
        		    	}
     		    if(this.isCross(currentX,currentY))
@@ -133,15 +134,15 @@ public class GameGridAdapter extends BaseAdapter {
 	   						if(!currentWord.getHoriz()) 
 	   						{
 	   							this.setDisValue(moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getX()+l,moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getY(),moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));
-	   						  //  System.out.println("x:"+(currentX+l)+"y:"+currentY);
+	   					
 	   						}
 	   						if(currentWord.getHoriz())
 	   		            	{
 	   		            	this.setDisValue(moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getX(),moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getY()+l,moudle.getWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));  
-	   		            	// System.out.println("x:"+currentX+"y:"+(currentY+l));
+	   		            
 	   		            	}
 	   		            }
-	   		           // this.gridAdapter.notifyDataSetChanged();
+	   		         
 	   			     }   
     	       }
     		}  		
@@ -194,12 +195,12 @@ public class GameGridAdapter extends BaseAdapter {
 			this.views.put(position, v);
 		}
 
-		if(data!=null)//test
+		if(data!=null)
 		{
 				
 					v.setTextColor(context.getResources().getColor(R.color.normal));//test
 					v.setText(data.toUpperCase());
-				//if((!data.matches("[a-zA-Z]"))&&(!data.equals(" "))){v.setTag(AREA_FISHED);}
+			
 		}
 		return v;
 	}
@@ -225,20 +226,18 @@ public class GameGridAdapter extends BaseAdapter {
 	public boolean isChinese(int x,int y)
 	
 	{
-		//if(this.displayArea[y][x].getBytes().length==this.displayArea[y][x].length())
 		
 		return  this.displayArea[y][x].getBytes().length==this.displayArea[y][x].length()?false:true;
 	}
 
 	public void setValue(int x, int y, String value) {
 		if (this.area[y][x] != null&&!this.isChinese(x,y))
-			//this.isDraft=false;//test
-		/*	this.area[y][x] = this.isDraft ? value.toLowerCase() : value.toUpperCase();*/
+	
 			{
 			this.area[y][x] = value.toUpperCase();
-			//this.displayArea[y][x] = value.toUpperCase();
+		
 			System.out.println(this.area[y][x]);
-			}//test}
+			}
 	}
 	public void setDisValue(int x, int y, String value) {
 		if (this.area[y][x] != null&&!this.isChinese(x,y))
@@ -248,7 +247,7 @@ public class GameGridAdapter extends BaseAdapter {
 			this.displayArea[y][x] = value.toUpperCase();
 			
 			System.out.println(this.displayArea[y][x]);
-			}//test}
+			}
 	}
 
 	public String getWord(int x, int y, int length, boolean isHorizontal) {
@@ -265,10 +264,6 @@ public class GameGridAdapter extends BaseAdapter {
     	}
     	return word.toString();
 	}
-/*
-	public void setDraft(boolean value) {
-		this.isDraft = value;
-	}*/
 
 	
 	//判断是否是交叉点
@@ -302,6 +297,7 @@ public class GameGridAdapter extends BaseAdapter {
 			}
 		}
 	}
+	
 	public String getCellValue(int x,int y)
 	
 	{
@@ -309,5 +305,7 @@ public class GameGridAdapter extends BaseAdapter {
 		return this.area[y][x];
 	}
 	
+	
+
 
 }

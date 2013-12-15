@@ -44,6 +44,8 @@ public class Grid implements Parcelable, Comparable<Grid> {
 	private String           author;
 	private Integer          width;
 	private Integer          height;
+	
+	private String           jsonData;
 	/*private String	name;
 	private String	description;
 	private int		percent;
@@ -97,6 +99,8 @@ public class Grid implements Parcelable, Comparable<Grid> {
     public Integer     getHeight(){return this.height;}
 
 
+    public void        setJsonData(String jsonData){this.jsonData = jsonData;}
+    public String      getJsonData(){return this.jsonData;}
 	@Override
 	public int compareTo(Grid arg0) {
 		// TODO Auto-generated method stub

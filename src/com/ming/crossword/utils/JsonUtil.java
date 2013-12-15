@@ -1,6 +1,7 @@
 package com.ming.crossword.utils;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -19,74 +20,72 @@ import android.content.Context;
 import android.util.Log;
 
 import com.crossword.data.Grid;
+import com.crossword.data.GridforSaved;
 import com.crossword.data.Word;
 
 
 public class JsonUtil {
 
-	private String  jsonData;
+	//private String  jsonData;//用以存储解析后的json数据
 	private Context context;
+	private JSONObject jObj;//用以解析和存储的JSONObject对象
+	private DBManager dbManager;//数据库管理的对象
 	public JsonUtil(Context context){
 		
 		this.context = context;
 	}
 	
 	
-	public String readJsonDataFromAssets(String filename){
-		
-		
+	public String readJsonDataFromFile(String filename){
 		String res = "";
 		try{
-		InputStream in = this.context.getResources().getAssets().open(filename);
-		//int length = in.available();
+		FileInputStream in = this.context.openFileInput(filename);
 		ByteArrayBuffer bb = new ByteArrayBuffer(in.available());
 		int current = 0;
 		while((current = in.read())!=-1){
 			bb.append(current);
 		}
-		//byte[] buffer = new byte[length];
-		//in.read(buffer);
 	    res = EncodingUtils.getString(bb.toByteArray(), "UTF-8");
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return res;
-		/*InputStream in = null;
-		InputStreamReader inputStreamReader = null;
-		try{
-			in = this.context.getResources().getAssets().open(filename);
-			inputStreamReader = new InputStreamReader(in,"utf-8");
-		}catch(UnsupportedEncodingException e){
-			e.printStackTrace();
-		}catch(Exception e1){
-			e1.printStackTrace();
-		}
-		
-		BufferedReader reader = new BufferedReader(inputStreamReader);
-		StringBuffer sb = new StringBuffer("");
-		String line;
-		
-		try{
-			while((line = reader.readLine()) != null){
-				sb.append(line);
-				sb.append("\n");
-			}
-		}catch(IOException e){
-			e.printStackTrace();
-		}*/
-		//return sb.toString();
+
 	}
 	
 	
-	public Grid parseGridJson(String fileName){
+	public String readJsonDataFromAssets(String filename){
+		
+		//filename = Crossword.GRID_DIRECTORY + filename;
+				//Log.v("tmd", filename);
+				String res = "";
+				try{
+				//FileInputStream in = this.context.getResources().getAssets().open(filename);
+				FileInputStream in = this.context.openFileInput(filename);
+				ByteArrayBuffer bb = new ByteArrayBuffer(in.available());
+				int current = 0;
+				while((current = in.read())!=-1){
+					bb.append(current);
+				}
+			    res = EncodingUtils.getString(bb.toByteArray(), "UTF-8");
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				return res;
+
+
+	}
+	
+	//读取json文件，转换成String变量再解析
+	public Grid parseGridJson(String jsonData){
 		
 		Grid grid = new Grid();
 		LinkedList<Word> entries = new LinkedList<Word>();
-		String res = readJsonDataFromAssets(fileName);
+		//String res = readJsonDataFromAssets(fileName);
 		JSONObject jsonObject;
 		JSONArray  jsonArray;
 		try {
-		    jsonObject = new JSONObject(res);
+		    jsonObject = new JSONObject(jsonData);
 		    jsonArray = jsonObject.getJSONArray("words");
 		    for(int i = 0;i < jsonArray.length();i++){
 				
@@ -116,18 +115,62 @@ public class JsonUtil {
 		    grid.setAuthor(jsonObject.getString("author"));
 		    grid.setWidth(jsonObject.getInt("width"));
 		    grid.setHeight(jsonObject.getInt("height"));
-		    
+		    grid.setJsonData(jsonData);
 		    
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//解析JSON数组
+		
 		
 		return grid;
 	}
 	
+
 	
+
+	//将当前Grid信息写入jsonData中，包含用户的填写信息以及分数
+	public JSONObject writeToJson(Grid grid){
+		
+		JSONObject jObj = new JSONObject();
+		JSONArray  jArry = new JSONArray();
+		try {
+			jObj.put("file", grid.getFilename());
+			jObj.put("uniqueid", grid.getUniqueid());
+			jObj.put("vol", grid.getVol());
+			jObj.put("level", grid.getLevel());
+			
+			//获取grid中的word信息
+			LinkedList<Word> entries = grid.getEntries();
+			for(Word entry:entries){
+			   
+				JSONObject jObjj = new JSONObject();
+				jObjj.put("desc", entry.getDesc());
+				jObjj.put("tmp", entry.getTmp());
+				jObjj.put("horiz", entry.getHoriz());
+				jObjj.put("x", entry.getX());
+				jObjj.put("y", entry.getY());
+				jObjj.put("len", entry.getLength());
+				jObjj.put("chi", entry.getChi());
+				jObjj.put("cap", entry.getCap());
+				jObjj.put("mask", entry.getMask());
+				jArry.put(jObjj);
+			}
+			jObj.put("words", jArry);
+			jObj.put("score", grid.getScore());
+			jObj.put("date", grid.getDate());
+			jObj.put("gamename", grid.getGamename());
+			jObj.put("author", grid.getAunthor());
+			jObj.put("width", grid.getWidth());
+			jObj.put("height", grid.getHeight());
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return jObj;
+	}
 	
 	
 	

@@ -105,17 +105,25 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	@Override
 	public void onPause()
 	{
-	
+	   // gridAdapter.save(this.grid);
+		//module.save(this.grid);
 		super.onPause();
 	}
 	
+	@Override
+	public void onStop(){
+		//module.save(this.grid);
+		super.onStop();
+	}
 	public void onCreate(Bundle savedInstanceState)
 	{
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.game);
 	    module = new Module();
 	    this.filename = "basic001.json";
-	    this.grid = module.parseGrid(this, this.filename);
+	    module.parseGrid(this, this.filename);
+	    this.grid = module.queryByLevel(0);
+	   
 	    if (this.grid == null) {
 	    	finish();
 	    	return;
