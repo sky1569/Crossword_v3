@@ -22,9 +22,11 @@ public class Module {
 	 private DBManager dbManager;
 	 private int width;
 	 private int height;
-	private String[][]		area;			// Tableau repr茅sentant les lettres du joueur
-	private String[][] 		displayArea;
-	private String[][] 		correctionArea; // Tableau repr茅sentant les lettres correctes
+
+	 private String[][]		area;			// Tableau repr茅sentant les lettres du joueur
+	 private String[][] 		displayArea;
+	 private String[][] 		correctionArea; // Tableau repr茅sentant les lettres correctes
+
 	 public void parseGrid(Context context,String filename){
 		 this.grid = new Grid();
 		 
@@ -136,11 +138,15 @@ public class Module {
 		}
 		
 		
+		
+		
 		//通过第几关查找数据库
-		public Grid queryByLevel(int level){
+		public Grid queryByUniqueid(int uniqueid){
 			
-			Grid grid = dbManager.queryGridByKey("level", level,this.jsonUtil);
+			Grid grid = dbManager.queryGridByKey("uniqueid", uniqueid,this.jsonUtil);
 			this.grid = grid;
+			 this.width = grid.getWidth();
+			 this.height = grid.getHeight();
 			return grid;
 			
 		}

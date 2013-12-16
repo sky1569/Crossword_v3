@@ -56,7 +56,7 @@ public class Crossword extends Application {
 	public static final int DATABASE_VERSION = 1;
 	public static final String TABLE_NAME = "Grid";
 	public static final String GRIDITEM= " file VARCHAR ,uniqueid INTEGER," +
-			"vol INTEGER,level INTEGER,category VARCHAR,jsonData TEXT,score INTEGER," +
+			"vol INTEGER,level INTEGER,degree INTEGER,category VARCHAR,jsonData TEXT,score INTEGER," +
 			" date VARCHAR,gamename VARCHAR,author VARCHAR,width INTEGER,height INTEGER";
    // public static final String  BLOCK = "#";
    // public static final String  BLANK = " ";

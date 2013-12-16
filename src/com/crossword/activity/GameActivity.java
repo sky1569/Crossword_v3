@@ -120,9 +120,9 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.game);
 	    module = new Module();
-	    this.filename = "basic001.json";
+	    this.filename = "td.json";
 	    module.parseGrid(this, this.filename);
-	    this.grid = module.queryByLevel(0);
+	    this.grid = module.queryByUniqueid(123456);
 	   
 	    if (this.grid == null) {
 	    	finish();
