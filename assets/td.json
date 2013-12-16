@@ -1,0 +1,38 @@
+{
+    "file" : "td.json",
+    "uniqueid" : 123456,
+    "vol": 1,
+    "level" : 0,
+    "degree" : 5,
+    "category" : "璇楄瘝",
+    "words" : [
+               {
+               "desc" : "鏃舵潵杩愯浆",
+               "tmp" : "HY-",
+               "horiz" : 1,
+               "x" : 1,
+               "y" : 2,
+               "len" : 3,
+               "chi" : "濂借繍鏉�,
+               "cap" : "HYL",
+               "mask" : "100"
+               },
+                {
+               "desc" : "good boy",
+               "tmp" : "D--",
+               "horiz" : 0,
+               "x" : 1,
+               "y" : 1,
+               "len" : 3,
+               "chi" : "澶уソ浜�,
+               "cap" : "DHR",
+               "mask" : "000"
+               }
+               ],
+    "score" : 10,
+    "date" : "2013-12-12",
+    "gamename" : "1",
+    "author" : "wangjz",
+    "width" : 10,
+    "height" : 10
+}
