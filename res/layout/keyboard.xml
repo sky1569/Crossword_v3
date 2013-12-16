@@ -179,7 +179,7 @@
         android:layout_weight="1" >
 
         <ImageButton
-            android:id="@+id/buttonDRAFT"
+            android:id="@+id/buttonREPLAY"
             style="@style/KeyboardButtonSpecial"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
