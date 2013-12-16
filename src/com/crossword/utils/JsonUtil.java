@@ -10,6 +10,13 @@ import java.lang.reflect.Type;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.util.ByteArrayBuffer;
 import org.apache.http.util.EncodingUtils;
 import org.json.JSONArray;
@@ -75,6 +82,32 @@ public class JsonUtil {
 
 	}
 	
+	
+	
+	public String readJsonFromHttp(String url){
+		
+		BufferedReader bufferedReader = null;
+		StringBuilder sb  = new StringBuilder();
+		String s = "";
+		try{
+			HttpClient client = new DefaultHttpClient();
+			HttpResponse response = client.execute(new HttpGet(url));
+			HttpParams httpParams = client.getParams();
+			HttpConnectionParams.setConnectionTimeout(httpParams, 3000);
+			HttpConnectionParams.setSoTimeout(httpParams, 5000);
+			HttpEntity entity = response.getEntity();
+			if(entity != null){
+				bufferedReader = new BufferedReader(new InputStreamReader(entity.getContent(),"UTF-8"));
+				while((s = bufferedReader.readLine()) != null){
+					sb.append(s);
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return sb.toString();
+	}
 	//读取json文件，转换成String变量再解析
 	public Grid parseGridJson(String jsonData){
 		
@@ -103,7 +136,7 @@ public class JsonUtil {
 		    grid.setEntries(entries);
 		    grid.setFilename(jsonObject.getString("file"));
 		    grid.setUniqueid(jsonObject.getInt("uniqueid"));
-		    grid.setVol(jsonObject.getInt("vol"));
+		    grid.setVol(jsonObject.getInt("volNumber"));
 		    grid.setLevel(jsonObject.getInt("level"));
 		    grid.setDegree(jsonObject.getInt("degree"));
 		    grid.setCategory(jsonObject.getString("category"));
@@ -135,7 +168,7 @@ public class JsonUtil {
 		try {
 			jObj.put("file", grid.getFilename());
 			jObj.put("uniqueid", grid.getUniqueid());
-			jObj.put("vol", grid.getVol());
+			jObj.put("volNumber", grid.getVol());
 			jObj.put("level", grid.getLevel());
 			jObj.put("degree", grid.getDegree());
 			jObj.put("category", grid.getCategory());

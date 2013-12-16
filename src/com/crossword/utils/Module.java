@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.xml.sax.helpers.DefaultHandler;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.crossword.Crossword;
 import com.crossword.adapter.GameGridAdapter;
@@ -26,14 +27,19 @@ public class Module {
 	 private String[][]			area;			// Tableau repr茅sentant les lettres du joueur
 	 private String[][] 		displayArea;
 	 private String[][] 		correctionArea; // Tableau repr茅sentant les lettres correctes
-
-	 public void parseGrid(Context context,String filename){
+     private Context            context;
+     
+     public Module(Context context){
+    	 this.context = context;
+     }
+	 
+	 public void parseGrid(Context context,String url){
 		 this.grid = new Grid();
-		 
 		 jsonUtil = new JsonUtil(context);
 		 dbManager = new DBManager(context);
 		// String jsonData = jsonUtil.readJsonDataFromFile(filename);
-		 String jsonData = jsonUtil.readJsonDataFromAssets(filename);
+		// String jsonData = jsonUtil.readJsonDataFromAssets(filename);
+		 String jsonData = jsonUtil.readJsonFromHttp(url);
 		 this.grid =  jsonUtil.parseGridJson(jsonData);
 		//解析完，将Json数据加入数据库中
 		 dbManager.add(this.grid);
@@ -145,11 +151,16 @@ public class Module {
 		
 		//通过第几关查找数据库
 		public Grid queryByUniqueid(int uniqueid){
-			
-			Grid grid = dbManager.queryGridByKey("uniqueid", uniqueid,this.jsonUtil);
+			//无论如何先看数据库里面有符合uniqueid的项
+			this.grid = dbManager.queryGridByKey("uniqueid", uniqueid,this.jsonUtil);
+			//如果没有查到，则打开网络访问
+			if(grid == null){
+			    parseGrid(this.context,Crossword.GRID_URL + uniqueid);
+			}
 			this.grid = grid;
 			 this.width = grid.getWidth();
 			 this.height = grid.getHeight();
+			 Log.v("width", ""+this.width);
 			return grid;
 			
 		}

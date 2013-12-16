@@ -58,7 +58,7 @@ public class DBManager {
 		ContentValues cv = new ContentValues();
 		cv.put("file", grid.getFilename());
 		cv.put("uniqueid", grid.getUniqueid());
-		cv.put("vol", grid.getVol());
+		cv.put("volNumber", grid.getVol());
 		cv.put("level", grid.getLevel());
 		cv.put("degree", grid.getDegree());
 		cv.put("category", grid.getCategory());
@@ -98,7 +98,7 @@ public class DBManager {
 		ContentValues cv = new ContentValues();
 		cv.put("file", grid.getFilename());
 		cv.put("uniqueid", grid.getUniqueid());
-		cv.put("vol", grid.getVol());
+		cv.put("volNumber", grid.getVol());
 		cv.put("level", grid.getLevel());
 		cv.put("degree", grid.getDegree());
 		cv.put("category", grid.getCategory());
@@ -205,7 +205,7 @@ public class DBManager {
 	 */
 	public Cursor queryCursorByKey(String key,Object value){
 		//db = helper.getWritableDatabase();
-		String[] columns = {"file","uniqueid","vol","level","degree","category","jsonData","score",
+		String[] columns = {"file","uniqueid","volNumber","level","degree","category","jsonData","score",
 				             "date","gamename","author","width","height"};
 		String selection = key+"="+value;
 		Cursor c = db.query(true, Crossword.TABLE_NAME, columns, selection, null, null, null, null, null);

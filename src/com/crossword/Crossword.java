@@ -25,7 +25,7 @@ import android.content.pm.ApplicationInfo;
 
 public class Crossword extends Application {
 
-	public static final String 		GRID_URL = "http://isshun.github.com/Crossword/Grids/%s";
+	public static final String      GRID_URL = "http://10.105.54.95/quiz.php?uid=";
 	//public static final String	GRID_LOCAL_PATH = "/data/data/com.crossword/grid/%s";
 	public static final String		GRID_LOCAL_PATH = "/sdcard/crossword/data/grid/%s";
 	public static final String		GRID_DIRECTORY = "/data/data/crossword/data/grid";
@@ -52,11 +52,11 @@ public class Crossword extends Application {
 	
 	
 	//定义数据库的一些项
-	public static final String DATABASE_NAME = "crossword.db";
+	public static final String DATABASE_NAME = "crossword2.db";
 	public static final int DATABASE_VERSION = 1;
 	public static final String TABLE_NAME = "Grid";
 	public static final String GRIDITEM= " file VARCHAR ,uniqueid INTEGER," +
-			"vol INTEGER,level INTEGER,degree INTEGER,category VARCHAR,jsonData TEXT,score INTEGER," +
+			"volNumber INTEGER,level INTEGER,degree INTEGER,category VARCHAR,jsonData TEXT,score INTEGER," +
 			" date VARCHAR,gamename VARCHAR,author VARCHAR,width INTEGER,height INTEGER";
    // public static final String  BLOCK = "#";
    // public static final String  BLANK = " ";

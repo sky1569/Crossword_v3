@@ -89,7 +89,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	private boolean 		horizontal;		// Sens de la selection
     private boolean 		isCross;        //判断是否是交叉点
 	private String 			filename;		// Nom de la grille
-
+    private String          url;            //下载地址
 	private boolean 		solidSelection;	// PREFERENCES: Selection persistante
 	private boolean			gridIsLower;	// PREFERENCES: Grille en minuscule
 	
@@ -120,9 +120,10 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.game);
 	    module = new Module();
-	    this.filename = "td.json";
-	    module.parseGrid(this, this.filename);
-	    this.grid = module.queryByUniqueid(223456);
+	    //this.filename = "td.json";
+	    this.url = Crossword.GRID_URL + 10002;
+	    module.parseGrid(this, this.url);
+	    this.grid = module.queryByUniqueid(10002);
 	   
 	    if (this.grid == null) {
 	    	finish();
