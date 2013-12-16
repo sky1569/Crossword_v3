@@ -44,8 +44,8 @@ public class Crossword extends Application {
 	//public static String[][]		area;			// Tableau représentant les lettres du joueur
 	//public static String[][] 		displayArea;
 	//public static String[][] 		correctionArea; // Tableau représentant les lettres correctes
-	public static final String      TMPSIGN = "#";
-	public static final String      BLANK="-";
+	public static final String      UNFILLED = "-";
+	public static final String      BLANK=" ";
 	public static final int 		AREA_BLOCK = -1;
 	public static final int 		AREA_WRITABLE = 0;
 	

@@ -22,7 +22,7 @@ public class Module {
 	 private DBManager dbManager;
 	 private int width;
 	 private int height;
-	 private String[][]		area;			// Tableau représentant les lettres du joueur
+	 private String[][]			area;			// Tableau représentant les lettres du joueur
 	 private String[][] 		displayArea;
 	 private String[][] 		correctionArea; // Tableau représentant les lettres correctes
 	 public void parseGrid(Context context,String filename){
@@ -90,10 +90,10 @@ public class Module {
 						//  continue;
 					//  else 
 						  {
-						  		//this.setDisValue(i, j, Crossword.BLANK);
-						  		//this.setValue(i, j, Crossword.BLANK);
-						  this.area[i][j] = Crossword.BLANK;
-						  this.displayArea[i][j] = Crossword.BLANK;
+						  		//this.setDisValue(i, j, Crossword.UNFILLED);
+						  		//this.setValue(i, j, Crossword.UNFILLED);
+						  this.area[i][j] = Crossword.UNFILLED;
+						  this.displayArea[i][j] = Crossword.UNFILLED;
 				  }
 			  
 			
@@ -165,8 +165,8 @@ public class Module {
 		    		{
 		    			if (y >= 0 && y < this.height && x+i >= 0 && x+i < this.width)
 		    			{
-		    				this.area[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
-		    				this.displayArea[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
+		    				this.area[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED)?Crossword.UNFILLED:String.valueOf(tmp.charAt(i));
+		    				this.displayArea[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED)?Crossword.UNFILLED:String.valueOf(tmp.charAt(i));
 		    				this.correctionArea[y][x+i] = String.valueOf(text.charAt(i));
 		    			}
 		    		}
@@ -174,8 +174,8 @@ public class Module {
 		    		{
 		    			if (y+i >= 0 && y+i < this.height && x >= 0 && x < this.width)
 		    			{
-		    				this.area[y+i][x] =  String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
-		    				this.displayArea[y+i][x] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
+		    				this.area[y+i][x] =  String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED)?Crossword.UNFILLED:String.valueOf(tmp.charAt(i));
+		    				this.displayArea[y+i][x] = String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED)?Crossword.UNFILLED:String.valueOf(tmp.charAt(i));
 		    				this.correctionArea[y+i][x] = String.valueOf(text.charAt(i));
 		    			}
 		    		}
@@ -294,11 +294,11 @@ public class Module {
 	    	for (int i = 0; i < length; i++) {
 	    		if (isHorizontal) {
 	    			if (y < this.height && x+i < this.width)
-	    				word.append(this.area[y][x+i].equals(Crossword.BLANK)?Crossword.TMPSIGN:this.area[y][x+i]);
+	    				word.append(this.area[y][x+i].equals(Crossword.UNFILLED)?Crossword.UNFILLED:this.area[y][x+i]);
 	    		}
 	    		else {
 	    			if (y+i < this.height && x < this.width)
-	    				word.append(this.area[y+i][x].equals(Crossword.BLANK)?Crossword.TMPSIGN:this.area[y+i][x]);
+	    				word.append(this.area[y+i][x].equals(Crossword.UNFILLED)?Crossword.UNFILLED:this.area[y+i][x]);
 	    		}
 	    	}
 	    	return word.toString();

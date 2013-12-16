@@ -155,9 +155,9 @@ public class KeyboardView extends LinearLayout implements OnTouchListener {
         		case R.id.buttonDELETE:
             		this.delegate.onKeyUp(Crossword.BLANK);
         			break;
-        		case R.id.buttonREPLAY:
+        		/*case R.id.buttonREPLAY:
         			this.delegate.onKeyUp("replay");
-        			break;
+        			break;*/
         		}
         		
         		// Change key background (selector actually doesn't work with KeyboardView)

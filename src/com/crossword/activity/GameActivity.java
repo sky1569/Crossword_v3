@@ -254,7 +254,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		System.out.println("onKeyDown: " + value + ", insert in: " + currentX + "x" + currentY);
 
 		// Deplace l'overlay du clavier
-		if (value.equals(Crossword.BLANK) == false) {
+		if (value.equals(Crossword.UNFILLED) == false) {
 			int offsetX = (this.keyboardOverlay.getWidth() - width) / 2;
 			int offsetY = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, Crossword.KEYBOARD_OVERLAY_OFFSET, getResources().getDisplayMetrics());
 			FrameLayout.LayoutParams lp = (LayoutParams)this.keyboardOverlay.getLayoutParams();
@@ -277,7 +277,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 				return;
 			}*/
 		// Efface l'overlay du clavier
-		if (value.equals(Crossword.BLANK) == false) {
+		if (value.equals(Crossword.UNFILLED) == false) {
 			this.keyboardOverlay.setAnimation(AnimationUtils.loadAnimation(this, R.anim.keyboard_overlay_fade_out));
 			this.keyboardOverlay.setVisibility(View.INVISIBLE);
 		}
@@ -341,9 +341,9 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 			else module.disTip();
 		}*/
 	
-		if (value.equals(Crossword.BLANK)) {
+		if (value.equals(Crossword.UNFILLED)) {
 			
-			if(areaValue.equals(Crossword.BLANK))
+			if(areaValue.equals(Crossword.UNFILLED))
 			{
 				x = (this.horizontal ? x - 1 : x);
 				y = (this.horizontal ? y: y - 1);
@@ -351,7 +351,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 			
 		}
 
-		if(!value.equals(Crossword.BLANK))
+		if(!value.equals(Crossword.UNFILLED))
 		{
 			x = (this.horizontal ? x + 1 : x);
 			y = (this.horizontal ? y: y + 1);
