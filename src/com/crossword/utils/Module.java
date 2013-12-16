@@ -58,26 +58,34 @@ public class Module {
 	
 	  public boolean isCorrect(Word correctWords,String currentWords,int x,int y)
 	    {	    	
-	    	
+	    	int currentX=correctWords.getX();
+	    	int currentY=correctWords.getY();
 		 // if(this.isCross(x, y))
-		  if(this.isCross(x, y))
-		  {
-			  
+		 // if(this.isCross(x, y))
+		 // {
+			  boolean Horiz = correctWords.getHoriz();
 			  for(int i = 0;i < correctWords.getLength(); i++)
 	    	{
-	    		if(currentWords.charAt(i) != correctWords.getCap().charAt(i)){
-	    		
-	    		int j = x-this.getCorrectWord(x, y,!correctWords.getHoriz()).getX()+y-this.getCorrectWord(x, y,!correctWords.getHoriz()).getY();
-	    		if(currentWords.charAt(i) != 
-	    		  this.getCorrectWord(x, y,!correctWords.getHoriz()).getCap().charAt(j))
-	    		   return false; 		  
-	    				 }
+	    		if(currentWords.charAt(i) != correctWords.getCap().charAt(i))
+	    		{
+	    			
+	    		currentX=Horiz ? correctWords.getX()+i:correctWords.getX();
+	    		currentY=Horiz ? correctWords.getY():correctWords.getY()+i;
+	    			if(isCross(currentX, currentY))
+	    			{
+	    				int j = currentX-this.getCorrectWord(currentX, currentY,!correctWords.getHoriz()).getX()+currentY-this.getCorrectWord(currentX, currentY,!correctWords.getHoriz()).getY();
+	    				if(currentWords.charAt(i) == 
+	    					this.getCorrectWord(currentX, currentY,!correctWords.getHoriz()).getCap().charAt(j)){continue;}
+	   				}
+	    		    		  
+	    				return false;	
+	    		}
 	    				
 	    	}
 			  return true;
-			  }
-		  else  
-			  return currentWords.equalsIgnoreCase(correctWords.getCap()) == true ? true:false;
+		//	  }
+		  //else  
+		//	  return currentWords.equalsIgnoreCase(correctWords.getCap()) == true ? true:false;
 		  
 		  
 		//  return  true;
@@ -143,7 +151,7 @@ public class Module {
 		}
 			
 		public void setValue(int x, int y, String value) {
-			if (this.area[y][x] != null&&!this.isChinese(x,y))
+			if (this.area[y][x] != Crossword.BLOCK&&!this.isChinese(x,y))
 			
 				{
 					this.area[y][x] = value.toUpperCase();
@@ -151,7 +159,7 @@ public class Module {
 				}
 			}
 		public void setDisValue(int x, int y, String value) {
-			if (this.area[y][x] != null&&!this.isChinese(x,y))
+			if (this.area[y][x] !=Crossword.BLOCK&&!this.isChinese(x,y))
 			
 				{
 				this.displayArea[y][x] = value.toUpperCase();
