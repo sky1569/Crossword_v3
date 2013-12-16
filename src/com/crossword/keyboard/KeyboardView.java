@@ -89,7 +89,7 @@ public class KeyboardView extends LinearLayout implements OnTouchListener {
 		this.findViewById(R.id.buttonX).setOnTouchListener(this);
 		this.findViewById(R.id.buttonY).setOnTouchListener(this);
 		this.findViewById(R.id.buttonZ).setOnTouchListener(this);
-		this.findViewById(R.id.buttonDRAFT).setOnTouchListener(this);
+		this.findViewById(R.id.buttonREPLAY).setOnTouchListener(this);
 		this.findViewById(R.id.buttonDELETE).setOnTouchListener(this);
 	}
 
@@ -129,7 +129,7 @@ public class KeyboardView extends LinearLayout implements OnTouchListener {
         		case R.id.buttonY: this.value = "Y"; break;
         		case R.id.buttonZ: this.value = "Z"; break;
         		case R.id.buttonDELETE: this.value = null; break;
-        		//case R.id.buttonDRAFT: this.value = null; break;
+        		case R.id.buttonREPLAY: this.value = null; break;
         		}
 
         		this.currentView = v;
@@ -139,6 +139,7 @@ public class KeyboardView extends LinearLayout implements OnTouchListener {
         		// Change key background (selector actually doesn't work with KeyboardView)
         		if (v.getId() == R.id.buttonDELETE)
         			this.currentView.setBackgroundResource(R.drawable.btn_keyboard_delete_pressed);
+        	
 
         		else
         			this.currentView.setBackgroundResource(R.drawable.btn_keyboard_pressed);
@@ -153,6 +154,9 @@ public class KeyboardView extends LinearLayout implements OnTouchListener {
         		switch (v.getId()) {
         		case R.id.buttonDELETE:
             		this.delegate.onKeyUp(Crossword.BLANK);
+        			break;
+        		case R.id.buttonREPLAY:
+        			this.delegate.onKeyUp("replay");
         			break;
         		}
         		
@@ -174,4 +178,8 @@ public class KeyboardView extends LinearLayout implements OnTouchListener {
 	public void setDelegate(KeyboardViewInterface delegate) {
 		this.delegate = delegate; 
 }
+	public void isReplay()
+	{
+		
+	}
 }

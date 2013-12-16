@@ -270,7 +270,12 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	@Override
 	public void onKeyUp(String value) {
 		System.out.println("onKeyUp: " + value + ", insert in: " + currentX + "x" + currentY);
-
+		/*if(value.equals("replay"))
+			{
+				this.module.replay();
+				this.gridAdapter.notifyDataSetChanged();
+				return;
+			}*/
 		// Efface l'overlay du clavier
 		if (value.equals(Crossword.BLANK) == false) {
 			this.keyboardOverlay.setAnimation(AnimationUtils.loadAnimation(this, R.anim.keyboard_overlay_fade_out));
@@ -288,13 +293,13 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		// Si la case est noire => retour
 		if (this.module.isBlock(x, y))
 			return;
-		String cellValue=this.module.getareaValue(x, y);
+		String areaValue=this.module.getareaValue(x, y);
 	
 		this.module.setValue(x, y, value);
 		this.module.setDisValue(x, y,value);
 		this.gridAdapter.notifyDataSetChanged();
 		
-		module.toChinese();
+		module.toChinese(x,y,this.currentWord);
 		/*if(module.isCorrect(module.getCorrectWord(this.currentWord.getX(), this.currentWord.getY(), this.currentWord.getHoriz()).getCap(),
 				           module.getWord(this.currentWord.getX(),this.currentWord.getY(),this.currentWord.getLength(), this.currentWord.getHoriz())))
 	    {
@@ -338,7 +343,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	
 		if (value.equals(Crossword.BLANK)) {
 			
-			if(cellValue.equals(Crossword.BLANK))
+			if(areaValue.equals(Crossword.BLANK))
 			{
 				x = (this.horizontal ? x - 1 : x);
 				y = (this.horizontal ? y: y - 1);

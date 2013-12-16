@@ -86,13 +86,16 @@ public class Module {
 			  for(int i = 0;i < this.width;i++)
 				  for(int j = 0;j < this.height;j++)
 				  {
-					  if(this.isBlock(i,j))
-						  continue;
-					  else {
-						  		this.setDisValue(i, j, Crossword.BLANK);
-						  		this.setValue(i, j, Crossword.BLANK);
+					  if(!this.isBlock(i,j))
+						//  continue;
+					//  else 
+						  {
+						  		//this.setDisValue(i, j, Crossword.BLANK);
+						  		//this.setValue(i, j, Crossword.BLANK);
+						  this.area[i][j] = Crossword.BLANK;
+						  this.displayArea[i][j] = Crossword.BLANK;
 				  }
-				  
+			  
 			
 			  }
 		  }
@@ -179,12 +182,22 @@ public class Module {
 		    	}
 		    	
 		   }
-			this.toChinese();
+			for(int currentX=0; currentX<this.width;currentX++)
+		    	for(int currentY=0;currentY<this.height;currentY++)
+		    		{
+		    		   if(this.isBlock(currentX,currentY))
+		    			  continue;
+		    		   if(this.area[currentY][currentX]==null)
+		    			   continue;
+
+		    		   Word currentWord = this.getCorrectWord(currentX,currentY,true);
+			this.toChinese(currentX,currentY,currentWord);
+			}
 		}
 			
-			public void toChinese()
+			public void toChinese(int currentX,int currentY,Word currentWord)
 			{
-				for(int currentX=0; currentX<this.width;currentX++)
+				/*for(int currentX=0; currentX<this.width;currentX++)
 			    	for(int currentY=0;currentY<this.height;currentY++)
 			    		{
 			    		   if(this.isBlock(currentX,currentY))
@@ -192,7 +205,7 @@ public class Module {
 			    		   if(this.area[currentY][currentX]==null)
 			    			   continue;
 
-			    		   Word currentWord = this.getCorrectWord(currentX,currentY,true);
+			    		   Word currentWord = this.getCorrectWord(currentX,currentY,true);*/
 			     			   if(this.isCorrect(this.getCorrectWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()).getCap(),this.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz())))
 			       		    	{
 			       				  for(int l = 0; l < currentWord.getLength(); l++)
@@ -228,7 +241,7 @@ public class Module {
 				   		         
 				   			     }   
 			    	       }
-			    		}  		
+			    		  		
 			}
 				
 					
@@ -239,12 +252,14 @@ public class Module {
 		
 		{
 			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
+			if(this.isBlock(x, y)) return null;
 			return this.area[y][x];
 		}
 		
 		public String getdisplayAreaValue(int x,int y)
 		
 		{
+			if(this.isBlock(x, y)) return null;
 			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
 			return this.displayArea[y][x];
 		}
@@ -252,6 +267,7 @@ public class Module {
 		public String getcorrectionAreaValue(int x,int y)
 		
 		{
+			if(this.isBlock(x, y)) return null;
 			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
 			return this.correctionArea[y][x];
 		}
