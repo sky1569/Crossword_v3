@@ -84,7 +84,7 @@ public class JsonUtil {
 	
 	
 	
-	public String readJsonFromHttp(String url){
+	public String readJsonFromUrl(String url){
 		
 		BufferedReader bufferedReader = null;
 		StringBuilder sb  = new StringBuilder();
@@ -152,8 +152,6 @@ public class JsonUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 		return grid;
 	}
 	

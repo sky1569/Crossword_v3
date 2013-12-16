@@ -31,34 +31,72 @@ public class Module {
      
      public Module(Context context){
     	 this.context = context;
+    	 this.dbManager = new DBManager(context);
+    	 this.jsonUtil = new JsonUtil(context);
      }
 	 
-	 public void parseGrid(Context context,String url){
-		 this.grid = new Grid();
-		 jsonUtil = new JsonUtil(context);
-		 dbManager = new DBManager(context);
+	 public Grid parseGridFromUrl(Context context,String url){
+		 Grid grid = new Grid();
+		 //jsonUtil = new JsonUtil(context);
+		 //dbManager = new DBManager(context);
 		// String jsonData = jsonUtil.readJsonDataFromFile(filename);
 		// String jsonData = jsonUtil.readJsonDataFromAssets(filename);
-		 String jsonData = jsonUtil.readJsonFromHttp(url);
+		 String jsonData = jsonUtil.readJsonFromUrl(url);
 		 this.grid =  jsonUtil.parseGridJson(jsonData);
 		//解析完，将Json数据加入数据库中
-		 dbManager.add(this.grid);
-		 this.width = grid.getWidth();
+		 dbManager.add(grid);
+	     return grid;
+	 }
+	 
+	//初始化Module中的width,height,area等
+	 public void initModule(Grid grid){
+		 
+		 this.width = grid.getWidth(); 
 		 this.height = grid.getHeight();
 		 this.area = new String[this.height][this.width];
 	     this.correctionArea = new String[this.height][this.width];
 	     this.displayArea = new String[this.height][this.width];
+	     for(int i = 0;i < this.width;i++)
+	    	 for(int j = 0;j < this.height;j++)
+	    	 {
+	    		 this.area[j][i]=Crossword.BLOCK;
+	    		 this.displayArea[j][i]=Crossword.BLOCK;
+	    	 }
 	 }
 	 
-	
 	 public LinkedList<Word>  getEntry(){
 		 this.entries = this.grid.getEntries();
 		 return this.grid.getEntries();
 	 }
 	
-	  public boolean isCorrect(String currentWords,String correctWords)
+	  public boolean isCorrect(Word correctWords,String currentWords,int x,int y)
 	    {	    	
-	    	return  currentWords.equalsIgnoreCase(correctWords)==true ?true:false;
+	    	
+		 // if(this.isCross(x, y))
+		  if(this.isCross(x, y))
+		  {
+			  
+			  for(int i = 0;i < correctWords.getLength(); i++)
+	    	{
+	    		if(currentWords.charAt(i) != correctWords.getCap().charAt(i)){
+	    		
+	    		int j = x-this.getCorrectWord(x, y,!correctWords.getHoriz()).getX()+y-this.getCorrectWord(x, y,!correctWords.getHoriz()).getY();
+	    		if(currentWords.charAt(i) != 
+	    		  this.getCorrectWord(x, y,!correctWords.getHoriz()).getCap().charAt(j))
+	    		   return false; 		  
+	    				 }
+	    				
+	    	}
+			  return true;
+			  }
+		  else  
+			  return currentWords.equalsIgnoreCase(correctWords.getCap()) == true ? true:false;
+		  
+		  
+		//  return  true;
+	    
+	    
+	    
 	    }
 	  
 	  public Word getCorrectWord(int x, int y, boolean horizontal)
@@ -109,7 +147,7 @@ public class Module {
 		  }
 		 public boolean isBlock(int x, int y)
 		 {
-				return (this.area[y][x] == null);
+				return (this.area[y][x].equals(Crossword.BLOCK));
 		 }
 	   	public boolean isChinese(int x,int y)
 		{
@@ -154,17 +192,24 @@ public class Module {
 			//无论如何先看数据库里面有符合uniqueid的项
 			this.grid = dbManager.queryGridByKey("uniqueid", uniqueid,this.jsonUtil);
 			//如果没有查到，则打开网络访问
-			if(grid == null){
-			    parseGrid(this.context,Crossword.GRID_URL + uniqueid);
+			if(this.grid == null){
+			   //通过URL解析Json
+				if((this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL + uniqueid)).getFilename() == null){
+					
+					return null;
+				}
 			}
-			this.grid = grid;
+			
+			
+			initModule(this.grid);
+			/*this.grid = grid;
 			 this.width = grid.getWidth();
 			 this.height = grid.getHeight();
-			 Log.v("width", ""+this.width);
+			 Log.v("width", ""+this.width);*/
 			return grid;
 			
 		}
-		
+		 
 		public void initentries()
 		{
 			
@@ -204,7 +249,7 @@ public class Module {
 		    		{
 		    		   if(this.isBlock(currentX,currentY))
 		    			  continue;
-		    		   if(this.area[currentY][currentX]==null)
+		    		   if(this.area[currentY][currentX].equals(Crossword.AREA_BLOCK))
 		    			   continue;
 
 		    		   Word currentWord = this.getCorrectWord(currentX,currentY,true);
@@ -223,7 +268,7 @@ public class Module {
 			    			   continue;
 
 			    		   Word currentWord = this.getCorrectWord(currentX,currentY,true);*/
-			     			   if(this.isCorrect(this.getCorrectWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()).getCap(),this.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz())))
+			     			   if(this.isCorrect(this.getCorrectWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()),this.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz()),currentX,currentY))
 			       		    	{
 			       				  for(int l = 0; l < currentWord.getLength(); l++)
 			       				  {
@@ -235,10 +280,10 @@ public class Module {
 			       		    	}
 			    		    if(this.isCross(currentX,currentY))
 			        		  {
-			    			   if(this.isCorrect(this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getCap(),
+			    			   if(this.isCorrect(this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()),
 			    					   this.getWord(this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getX(),this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getY(), 
 			    							   this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getLength(), 
-			    							   this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getHoriz())))
+			    							   this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getHoriz()),currentX,currentY))
 				   		    	{
 				   				  for(int l = 0; l < this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getLength(); l++)
 				   				    {
@@ -269,36 +314,36 @@ public class Module {
 		
 		{
 			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
-			if(this.isBlock(x, y)) return null;
+			if(this.isBlock(x, y)) return Crossword.BLOCK;
 			return this.area[y][x];
 		}
 		
 		public String getdisplayAreaValue(int x,int y)
 		
 		{
-			if(this.isBlock(x, y)) return null;
+			if(this.isBlock(x, y)) return Crossword.BLOCK;
 			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
 			return this.displayArea[y][x];
 		}
 		
-		public String getcorrectionAreaValue(int x,int y)
+		/*public String getcorrectionAreaValue(int x,int y)
 		
 		{
-			if(this.isBlock(x, y)) return null;
+			if(this.isBlock(x, y)) return Crossword.BLOCK;
 			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
 			return this.correctionArea[y][x];
-		}
+		}*/
 		
 		public boolean isCross(int x,int y){
 			boolean c = false;
 			String lD,rD,tD,bD;
 			
-	        lD = x - 1 < 0 ? null:this.area[y][x - 1];
+	        lD = x - 1 < 0 ? Crossword.BLOCK:this.area[y][x - 1];
 	        rD = x + 1 >= this.width?null:this.area[y][x + 1];
-	        tD = y - 1 < 0 ? null:this.area[y - 1][x];
-	        bD = y + 1 >= this.height?null:this.area[y + 1][x];
+	        tD = y - 1 < 0 ? Crossword.BLOCK:this.area[y - 1][x];
+	        bD = y + 1 >= this.height?Crossword.BLOCK:this.area[y + 1][x];
 			
-	        if((lD == null && rD == null) || (tD == null && bD == null)){
+	        if((lD .equals(Crossword.BLOCK)  && rD .equals(Crossword.BLOCK)) || (tD .equals(Crossword.BLOCK) && bD.equals(Crossword.BLOCK))){
 	        	c = false;
 	        }else{
 	        	c = true;
