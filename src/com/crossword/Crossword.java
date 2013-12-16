@@ -53,7 +53,7 @@ public class Crossword extends Application {
 	
 	
 	//定义数据库的一些项
-	public static final String DATABASE_NAME = "crossword2.db";
+	public static final String DATABASE_NAME = "crossword.db";
 	public static final int DATABASE_VERSION = 1;
 	public static final String TABLE_NAME = "Grid";
 	public static final String GRIDITEM= " file VARCHAR ,uniqueid INTEGER," +

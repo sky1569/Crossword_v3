@@ -42,7 +42,8 @@ public class Module {
 		// String jsonData = jsonUtil.readJsonDataFromFile(filename);
 		// String jsonData = jsonUtil.readJsonDataFromAssets(filename);
 		 String jsonData = jsonUtil.readJsonFromUrl(url);
-		 this.grid =  jsonUtil.parseGridJson(jsonData);
+		// System.out.println(jsonData);
+		 grid =  jsonUtil.parseGridJson(jsonData);
 		//解析完，将Json数据加入数据库中
 		 dbManager.add(grid);
 	     return grid;
@@ -56,6 +57,7 @@ public class Module {
 		 this.area = new String[this.height][this.width];
 	     this.correctionArea = new String[this.height][this.width];
 	     this.displayArea = new String[this.height][this.width];
+	     this.entries = grid.getEntries();
 	     for(int i = 0;i < this.width;i++)
 	    	 for(int j = 0;j < this.height;j++)
 	    	 {
@@ -202,33 +204,29 @@ public class Module {
 			//如果没有查到，则打开网络访问
 			if(this.grid == null){
 			   //通过URL解析Json
+				//this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL + uniqueid);
 				if((this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL + uniqueid)).getFilename() == null){
-					
 					return null;
 				}
 			}
 			
 			
 			initModule(this.grid);
-			/*this.grid = grid;
-			 this.width = grid.getWidth();
-			 this.height = grid.getHeight();
-			 Log.v("width", ""+this.width);*/
-			return grid;
+			return this.grid;
 			
 		}
 		 
 		public void initentries()
 		{
 			
-			for (Word entry: entries)
+			for (Word entry: this.entries)
 		    {
 		    	String tmp = entry.getTmp();
 		    	String text = entry.getCap();
 		    	boolean horizontal = entry.getHoriz();
 		    	int x = entry.getX();
 		    	int y = entry.getY();
-		    	
+		    	//System.out.println(tmp);
 		    	for (int i = 0 ; i < entry.getLength(); i++) 
 		    	{
 		    		if (horizontal)

@@ -105,8 +105,11 @@ public class JsonUtil {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
-		return sb.toString();
+		String str = sb.toString();
+		if(str != null && str.startsWith("\ufeff")){
+			str = str.substring(1);
+		}
+		return str;
 	}
 	//读取json文件，转换成String变量再解析
 	public Grid parseGridJson(String jsonData){

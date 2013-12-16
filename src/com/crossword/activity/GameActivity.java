@@ -132,7 +132,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	    	return;
 	    }
 
-	    this.entries= module.getEntry();
+	    this.entries= this.grid.getEntries();
 	    if (this.entries == null) {
 	    	finish();
 	    	return;
