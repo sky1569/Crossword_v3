@@ -3,6 +3,7 @@
     "uniqueid" : 223456,
     "vol": 1,
     "level" : 0,
+    "degree" :5,
     "category" : "诗词",
     "words" : [
                {
