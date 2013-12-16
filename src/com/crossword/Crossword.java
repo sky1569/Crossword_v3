@@ -25,27 +25,29 @@ import android.content.pm.ApplicationInfo;
 
 public class Crossword extends Application {
 
-	public static final String 	GRID_URL = "http://isshun.github.com/Crossword/Grids/%s";
+	public static final String 		GRID_URL = "http://isshun.github.com/Crossword/Grids/%s";
 	//public static final String	GRID_LOCAL_PATH = "/data/data/com.crossword/grid/%s";
-	public static final String	GRID_LOCAL_PATH = "/sdcard/crossword/data/grid/%s";
-	public static final String	GRID_DIRECTORY = "/data/data/crossword/data/grid";
+	public static final String		GRID_LOCAL_PATH = "/sdcard/crossword/data/grid/%s";
+	public static final String		GRID_DIRECTORY = "/data/data/crossword/data/grid";
    /**/ public static final String  GRID_LOCAL_PATH1 = "/sdcard/crossword/data/%s";
-	public static final String 	GRIDLIST_URL = "http://isshun.github.com/Crossword/Grids.xml";
-	public static final String	GRIDLIST_LOCAL_PATH = "/data/data/com.crossword/gridlist.xml";
-	public static final long 	GRIDLIST_LIFE_TIME = 86400000;
+	public static final String 		GRIDLIST_URL = "http://isshun.github.com/Crossword/Grids.xml";
+	public static final String		GRIDLIST_LOCAL_PATH = "/data/data/com.crossword/gridlist.xml";
+	public static final long 		GRIDLIST_LIFE_TIME = 86400000;
 	
-	public static final String 	MAIL_URL = "http://mail.alexislauper.com/";
-	public static final String 	FEEDBACK_URL = "http://isshun.github.com/Crossword/Feedback";
-	public static final int		REQUEST_PREFERENCES = 2;
-	public static final float 	KEYBOARD_OVERLAY_OFFSET = 90;
-	public static final String 	NAME = "Crossword";
-	public static final int 	NOTIFICATION_DOWNLOAD_ID = 1;
-	public static boolean 		DEBUG;
-	
-	public static final String          TMPSIGN = "#";
-	public static final String          BLANK="-";
-	public static final int 			AREA_BLOCK = -1;
-	public static final int 			AREA_WRITABLE = 0;
+	public static final String 		MAIL_URL = "http://mail.alexislauper.com/";
+	public static final String 		FEEDBACK_URL = "http://isshun.github.com/Crossword/Feedback";
+	public static final int			REQUEST_PREFERENCES = 2;
+	public static final float 		KEYBOARD_OVERLAY_OFFSET = 90;
+	public static final String	 	NAME = "Crossword";
+	public static final int 		NOTIFICATION_DOWNLOAD_ID = 1;
+	public static boolean 			DEBUG;
+	//public static String[][]		area;			// Tableau représentant les lettres du joueur
+	//public static String[][] 		displayArea;
+	//public static String[][] 		correctionArea; // Tableau représentant les lettres correctes
+	public static final String      TMPSIGN = "#";
+	public static final String      BLANK="-";
+	public static final int 		AREA_BLOCK = -1;
+	public static final int 		AREA_WRITABLE = 0;
 	
 	
 	

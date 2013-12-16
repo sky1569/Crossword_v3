@@ -51,18 +51,18 @@ public class GameGridAdapter extends BaseAdapter {
 
 	private HashMap<Integer, TextView>	views = new HashMap<Integer, TextView>();
 	private Context						context;
-	private String[][]					area;			// Tableau repr茅sentant les lettres du joueur
-	private String[][] 					displayArea;
-	private String[][] 					correctionArea; // Tableau repr茅sentant les lettres correctes
+	//private String[][]					area;			// Tableau repr茅sentant les lettres du joueur
+	//private String[][] 					displayArea;
+	//private String[][] 					correctionArea; // Tableau repr茅sentant les lettres correctes
 	private int 						displayHeight;
 	private int 						width;
 	private int 						height;
 	private DBManager					dbManager;    
-
+	private Module						module;
 	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,Module module)
 	{
 		final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(act);
-		
+		this.module = module;
 		this.context = (Context)act;
 		this.width = width;
 		this.height = height;
@@ -70,10 +70,12 @@ public class GameGridAdapter extends BaseAdapter {
         this.displayHeight = display.getWidth() / this.width;
 
         // Fill area and areaCorrection
-        this.area = new String[this.height][this.width];
-        this.correctionArea = new String[this.height][this.width];
-        this.displayArea = new String[this.height][this.width];
-	    for (Word entry: entries)
+       // Crossword.area = new String[this.height][this.width];
+        //Crossword.correctionArea = new String[this.height][this.width];
+        //Crossword.displayArea = new String[this.height][this.width];
+        this.module.initentries();
+        
+	  /*  for (Word entry: entries)
 	    {
 	    	String tmp = entry.getTmp();
 	    	String text = entry.getCap();
@@ -87,18 +89,18 @@ public class GameGridAdapter extends BaseAdapter {
 	    		{
 	    			if (y >= 0 && y < this.height && x+i >= 0 && x+i < this.width)
 	    			{
-	    				this.area[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
-	    				this.displayArea[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
-	    				this.correctionArea[y][x+i] = String.valueOf(text.charAt(i));
+	    				Crossword.area[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
+	    				Crossword.displayArea[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
+	    				Crossword.correctionArea[y][x+i] = String.valueOf(text.charAt(i));
 	    			}
 	    		}
 	    		else
 	    		{
 	    			if (y+i >= 0 && y+i < this.height && x >= 0 && x < this.width)
 	    			{
-	    				this.area[y+i][x] =  String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
-	    				this.displayArea[y+i][x] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
-	    				this.correctionArea[y+i][x] = String.valueOf(text.charAt(i));
+	    				Crossword.area[y+i][x] =  String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
+	    				Crossword.displayArea[y+i][x] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
+	    				Crossword.correctionArea[y+i][x] = String.valueOf(text.charAt(i));
 	    			}
 	    		}
 	    	}
@@ -106,41 +108,41 @@ public class GameGridAdapter extends BaseAdapter {
     for(int currentX=0; currentX<this.width;currentX++)
     	for(int currentY=0;currentY<this.height;currentY++)
     		{
-    		   if(isBlock(currentX,currentY))
+    		   if(module.isBlock(currentX,currentY))
     			  continue;
-    		   if(area[currentY][currentX]==null)
+    		   if(Crossword.area[currentY][currentX]==null)
     			   continue;
 
-    		   Word currentWord = module.getWord(currentX,currentY,true);
-     			   if(module.isCorrect(module.getWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()).getCap(),this.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz())))
+    		   Word currentWord = module.getCorrectWord(currentX,currentY,true);
+     			   if(module.isCorrect(module.getCorrectWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()).getCap(),module.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz())))
        		    	{
        				  for(int l = 0; l < currentWord.getLength(); l++)
        				  {
-       					if(currentWord.getHoriz())  this.setDisValue(currentWord.getX()+l, currentWord.getY(),currentWord.getAns(l));
+       					if(currentWord.getHoriz())  module.setDisValue(currentWord.getX()+l, currentWord.getY(),currentWord.getAns(l));
        					       						
-            		    if(!currentWord.getHoriz()) this.setDisValue(currentWord.getX(), currentWord.getY()+l,currentWord.getAns(l));  
+            		    if(!currentWord.getHoriz()) module.setDisValue(currentWord.getX(), currentWord.getY()+l,currentWord.getAns(l));  
        		            		   
        				  }
        		    	}
-    		    if(this.isCross(currentX,currentY))
+    		    if(module.isCross(currentX,currentY))
         		  {
-    			   if(module.isCorrect(module.getWord(currentX, currentY, !currentWord.getHoriz()).getCap(),
-   						this.getWord(module.getWord(currentX, currentY, !currentWord.getHoriz()).getX(),module.getWord(currentX, currentY, !currentWord.getHoriz()).getY(), 
-   								module.getWord(currentX, currentY, !currentWord.getHoriz()).getLength(), 
-   								module.getWord(currentX, currentY, !currentWord.getHoriz()).getHoriz())))
+    			   if(module.isCorrect(module.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getCap(),
+   						module.getWord(module.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getX(),module.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getY(), 
+   								module.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getLength(), 
+   								module.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getHoriz())))
 	   		    	{
-	   				  for(int l = 0; l < module.getWord(currentX, currentY, !currentWord.getHoriz()).getLength(); l++)
+	   				  for(int l = 0; l < module.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getLength(); l++)
 	   				    {
 	   						if(!currentWord.getHoriz()) 
 	   						{
 
-	   							this.setDisValue(module.getWord(currentX, currentY, !currentWord.getHoriz()).getX()+l,
-	   									module.getWord(currentX, currentY, !currentWord.getHoriz()).getY(),module.getWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));
+	   							module.setDisValue(module.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getX()+l,
+	   									module.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getY(),module.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));
 	   						}
 	   						if(currentWord.getHoriz())
 	   		            	{
-	   		            	this.setDisValue(module.getWord(currentX, currentY, !currentWord.getHoriz()).getX(),
-	   		            			    module.getWord(currentX, currentY, !currentWord.getHoriz()).getY()+l,module.getWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));  
+	   							module.setDisValue(module.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getX(),
+	   		            			    module.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getY()+l,module.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getAns(l));  
 
 	   		            	}
 	   		            }
@@ -148,7 +150,7 @@ public class GameGridAdapter extends BaseAdapter {
 	   			     }   
     	       }
     		}  		
-    		  	      
+    		  	*/      
 	}
 	
 	@Override
@@ -175,8 +177,9 @@ public class GameGridAdapter extends BaseAdapter {
 		TextView v = this.views.get(position);
 		int y = (int)(position / this.width); 
 		int x = (int)(position % this.width);
-		String data = this.displayArea[y][x] != Crossword.BLANK ? this.displayArea[y][x] : " ";
-		String correction = this.correctionArea[y][x];
+		
+		String data = this.module.getdisplayAreaValue(x, y) != Crossword.BLANK ? this.module.getdisplayAreaValue(x, y) : " ";
+		String correction = this.module.getcorrectionAreaValue(x, y);
 		
 		// Creation du composant
 		if (v == null)
@@ -207,71 +210,71 @@ public class GameGridAdapter extends BaseAdapter {
 		return v;
 	}
 
-	public int getPercent() {
+	/*public int getPercent() {
 		int filled = 0;
 		int empty = 0;
 		
 		for (int y = 0; y < this.height; y++)
 			for (int x = 0; x < this.width; x++)
-				if (this.area[y][x] != null) {
-					if (this.area[y][x].equals(" "))
+				if (Crossword.area[y][x] != null) {
+					if (Crossword.area[y][x].equals(" "))
 						empty++;
 					else
 						filled++;
 				}
 		return filled * 100 / (empty + filled);
-	}
+	}*/
 
-	public boolean isBlock(int x, int y) {
-		return (this.area[y][x] == null);
+	/*public boolean isBlock(int x, int y) {
+		return (Crossword.area[y][x] == null);
 	}
 	public boolean isChinese(int x,int y)
 	{
 		
-		return  this.displayArea[y][x].getBytes().length==this.displayArea[y][x].length()?false:true;
+		return  Crossword.displayArea[y][x].getBytes().length == Crossword.displayArea[y][x].length()?false:true;
 	}
 
 	public void setValue(int x, int y, String value) {
-		if (this.area[y][x] != null&&!this.isChinese(x,y))
+		if (Crossword.area[y][x] != null&&!this.isChinese(x,y))
 	
 			{
-			this.area[y][x] = value.toUpperCase();
-			System.out.println(this.area[y][x]);
+				Crossword.area[y][x] = value.toUpperCase();
+				System.out.println(Crossword.area[y][x]);
 			}
 	}
 	public void setDisValue(int x, int y, String value) {
-		if (this.area[y][x] != null&&!this.isChinese(x,y))
+		if (Crossword.area[y][x] != null&&!this.isChinese(x,y))
 		
 			{
-			this.displayArea[y][x] = value.toUpperCase();
-			System.out.println(this.displayArea[y][x]);
+			Crossword.displayArea[y][x] = value.toUpperCase();
+			System.out.println(Crossword.displayArea[y][x]);
 			}
-	}
-
+	}*/
+/*
 	public String getWord(int x, int y, int length, boolean isHorizontal) {
     	StringBuffer word = new StringBuffer();
     	for (int i = 0; i < length; i++) {
     		if (isHorizontal) {
     			if (y < this.height && x+i < this.width)
-    				word.append(this.area[y][x+i].equals(Crossword.BLANK)?Crossword.TMPSIGN:this.area[y][x+i]);
+    				word.append(Crossword.area[y][x+i].equals(Crossword.BLANK)?Crossword.TMPSIGN:Crossword.area[y][x+i]);
     		}
     		else {
     			if (y+i < this.height && x < this.width)
-    				word.append(this.area[y+i][x].equals(Crossword.BLANK)?Crossword.TMPSIGN:this.area[y+i][x]);
+    				word.append(Crossword.area[y+i][x].equals(Crossword.BLANK)?Crossword.TMPSIGN:Crossword.area[y+i][x]);
     		}
     	}
     	return word.toString();
 	}
-
+*/
 	//判断是否是交叉点
-	public boolean isCross(int x,int y){
+/*	public boolean isCross(int x,int y){
 		boolean c = false;
 		String lD,rD,tD,bD;
 		
-        lD = x - 1<0?null:this.area[y][x - 1];
-        rD = x + 1>=this.width?null:this.area[y][x + 1];
-        tD = y - 1<0?null:this.area[y - 1][x];
-        bD = y + 1>=this.height?null:this.area[y + 1][x];
+        lD = x - 1<0?null:Crossword.area[y][x - 1];
+        rD = x + 1>=this.width?null:Crossword.area[y][x + 1];
+        tD = y - 1<0?null:Crossword.area[y - 1][x];
+        bD = y + 1>=this.height?null:Crossword.area[y + 1][x];
 		
         if((lD == null && rD == null) || (tD == null && bD == null)){
         	c = false;
@@ -280,7 +283,7 @@ public class GameGridAdapter extends BaseAdapter {
         }
 		return c;
 	}
-	
+	*/
 	
 	//重新绘制，把小格的背景变为初始状态
 	public void reDrawGridBackground(GridView v){
@@ -289,20 +292,21 @@ public class GameGridAdapter extends BaseAdapter {
 			for(int j = 0;j < this.width;j++){
 				
 				int index = i*width + j;
-				v.getChildAt(index).setBackgroundResource(area[i][j] == null?
+				String value =  this.module.getareaValue(i,j);
+				v.getChildAt(index).setBackgroundResource(value == null?
 						                                    R.drawable.area_block1:R.drawable.area_empty);
 			}
 		}
 	}
-	
+	/*
 	public String getCellValue(int x,int y)
 	
 	{
-		System.out.println("fanhui le zhege zhi"+this.area[y][x]);
-		return this.area[y][x];
+		System.out.println("fanhui le zhege zhi"+Crossword.area[y][x]);
+		return Crossword.area[y][x];
 	}
 	
-	
+	*/
 
 
 }
