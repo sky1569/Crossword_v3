@@ -41,9 +41,9 @@ public class Crossword extends Application {
 	public static final String	 	NAME = "Crossword";
 	public static final int 		NOTIFICATION_DOWNLOAD_ID = 1;
 	public static boolean 			DEBUG;
-	public static String[][]		area;			// Tableau représentant les lettres du joueur
-	public static String[][] 		displayArea;
-	public static String[][] 		correctionArea; // Tableau représentant les lettres correctes
+	//public static String[][]		area;			// Tableau représentant les lettres du joueur
+	//public static String[][] 		displayArea;
+	//public static String[][] 		correctionArea; // Tableau représentant les lettres correctes
 	public static final String      TMPSIGN = "#";
 	public static final String      BLANK="-";
 	public static final int 		AREA_BLOCK = -1;

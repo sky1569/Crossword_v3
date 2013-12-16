@@ -58,11 +58,11 @@ public class GameGridAdapter extends BaseAdapter {
 	private int 						width;
 	private int 						height;
 	private DBManager					dbManager;    
-
+	private Module						module;
 	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,Module module)
 	{
 		final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(act);
-		
+		this.module = module;
 		this.context = (Context)act;
 		this.width = width;
 		this.height = height;
@@ -70,10 +70,10 @@ public class GameGridAdapter extends BaseAdapter {
         this.displayHeight = display.getWidth() / this.width;
 
         // Fill area and areaCorrection
-        Crossword.area = new String[this.height][this.width];
-        Crossword.correctionArea = new String[this.height][this.width];
-        Crossword.displayArea = new String[this.height][this.width];
-        module.initentries();
+       // Crossword.area = new String[this.height][this.width];
+        //Crossword.correctionArea = new String[this.height][this.width];
+        //Crossword.displayArea = new String[this.height][this.width];
+        this.module.initentries();
         
 	  /*  for (Word entry: entries)
 	    {
@@ -177,8 +177,9 @@ public class GameGridAdapter extends BaseAdapter {
 		TextView v = this.views.get(position);
 		int y = (int)(position / this.width); 
 		int x = (int)(position % this.width);
-		String data = Crossword.displayArea[y][x] != Crossword.BLANK ? Crossword.displayArea[y][x] : " ";
-		String correction = Crossword.correctionArea[y][x];
+		
+		String data = this.module.getdisplayAreaValue(x, y) != Crossword.BLANK ? this.module.getdisplayAreaValue(x, y) : " ";
+		String correction = this.module.getcorrectionAreaValue(x, y);
 		
 		// Creation du composant
 		if (v == null)
@@ -291,7 +292,8 @@ public class GameGridAdapter extends BaseAdapter {
 			for(int j = 0;j < this.width;j++){
 				
 				int index = i*width + j;
-				v.getChildAt(index).setBackgroundResource(Crossword.area[i][j] == null?
+				String value =  this.module.getareaValue(i,j);
+				v.getChildAt(index).setBackgroundResource(value == null?
 						                                    R.drawable.area_block1:R.drawable.area_empty);
 			}
 		}

@@ -22,6 +22,9 @@ public class Module {
 	 private DBManager dbManager;
 	 private int width;
 	 private int height;
+	private String[][]		area;			// Tableau repr茅sentant les lettres du joueur
+	private String[][] 		displayArea;
+	private String[][] 		correctionArea; // Tableau repr茅sentant les lettres correctes
 	 public void parseGrid(Context context,String filename){
 		 this.grid = new Grid();
 		 
@@ -34,6 +37,9 @@ public class Module {
 		 dbManager.add(this.grid);
 		 this.width = grid.getWidth();
 		 this.height = grid.getHeight();
+		 this.area = new String[this.height][this.width];
+	     this.correctionArea = new String[this.height][this.width];
+	     this.displayArea = new String[this.height][this.width];
 	 }
 	 
 	
@@ -70,51 +76,52 @@ public class Module {
 		    	return (verticalWord != null) ? verticalWord : horizontalWord;
 	    }
 	  
-	  public void disTip()//错误提示
-	  {
-		  
-	  }
-	  
-	  public void replay() //记得调用重绘
-	  {
-		  for(int i = 0;i < this.width;i++)
-			  for(int j = 0;j < this.height;j++)
-			  {
-				  if(this.isBlock(i,j))
-					  continue;
-				  else {
-					  		this.setDisValue(i, j, Crossword.BLANK);
-					  		this.setValue(i, j, Crossword.BLANK);
-			  }
+		  public void disTip()//错误提示
+		  {
 			  
-		
 		  }
-	  }
-public boolean isBlock(int x, int y) {
-	return (Crossword.area[y][x] == null);
-}
-public boolean isChinese(int x,int y)
-{
-	
-	return  Crossword.displayArea[y][x].getBytes().length == Crossword.displayArea[y][x].length()?false:true;
-}
-
-public void setValue(int x, int y, String value) {
-	if (Crossword.area[y][x] != null&&!this.isChinese(x,y))
-
+		  
+		  public void replay() //记得调用重绘
+		  {
+			  for(int i = 0;i < this.width;i++)
+				  for(int j = 0;j < this.height;j++)
+				  {
+					  if(this.isBlock(i,j))
+						  continue;
+					  else {
+						  		this.setDisValue(i, j, Crossword.BLANK);
+						  		this.setValue(i, j, Crossword.BLANK);
+				  }
+				  
+			
+			  }
+		  }
+		 public boolean isBlock(int x, int y)
+		 {
+				return (this.area[y][x] == null);
+		 }
+	   	public boolean isChinese(int x,int y)
 		{
-			Crossword.area[y][x] = value.toUpperCase();
-			System.out.println(Crossword.area[y][x]);
+				
+			return  this.displayArea[y][x].getBytes().length == this.displayArea[y][x].length()?false:true;
 		}
-}
-public void setDisValue(int x, int y, String value) {
-	if (Crossword.area[y][x] != null&&!this.isChinese(x,y))
-	
-		{
-		Crossword.displayArea[y][x] = value.toUpperCase();
-		System.out.println(Crossword.displayArea[y][x]);
+			
+		public void setValue(int x, int y, String value) {
+			if (this.area[y][x] != null&&!this.isChinese(x,y))
+			
+				{
+					this.area[y][x] = value.toUpperCase();
+					//	System.out.println(this.area[y][x]);
+				}
+			}
+		public void setDisValue(int x, int y, String value) {
+			if (this.area[y][x] != null&&!this.isChinese(x,y))
+			
+				{
+				this.displayArea[y][x] = value.toUpperCase();
+				System.out.println(this.displayArea[y][x]);
+				}
 		}
-}
 	  
 		//保存Grid信息，先写入JSON，再写入数据库
 		public void save(GameGridAdapter gridAdapter,Grid grid){
@@ -155,18 +162,18 @@ public void setDisValue(int x, int y, String value) {
 		    		{
 		    			if (y >= 0 && y < this.height && x+i >= 0 && x+i < this.width)
 		    			{
-		    				Crossword.area[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
-		    				Crossword.displayArea[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
-		    				Crossword.correctionArea[y][x+i] = String.valueOf(text.charAt(i));
+		    				this.area[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
+		    				this.displayArea[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
+		    				this.correctionArea[y][x+i] = String.valueOf(text.charAt(i));
 		    			}
 		    		}
 		    		else
 		    		{
 		    			if (y+i >= 0 && y+i < this.height && x >= 0 && x < this.width)
 		    			{
-		    				Crossword.area[y+i][x] =  String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
-		    				Crossword.displayArea[y+i][x] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
-		    				Crossword.correctionArea[y+i][x] = String.valueOf(text.charAt(i));
+		    				this.area[y+i][x] =  String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
+		    				this.displayArea[y+i][x] = String.valueOf(tmp.charAt(i)).equals(Crossword.TMPSIGN)?Crossword.BLANK:String.valueOf(tmp.charAt(i));
+		    				this.correctionArea[y+i][x] = String.valueOf(text.charAt(i));
 		    			}
 		    		}
 		    	}
@@ -182,7 +189,7 @@ public void setDisValue(int x, int y, String value) {
 			    		{
 			    		   if(this.isBlock(currentX,currentY))
 			    			  continue;
-			    		   if(Crossword.area[currentY][currentX]==null)
+			    		   if(this.area[currentY][currentX]==null)
 			    			   continue;
 
 			    		   Word currentWord = this.getCorrectWord(currentX,currentY,true);
@@ -223,28 +230,40 @@ public void setDisValue(int x, int y, String value) {
 			    	       }
 			    		}  		
 			}
-			
-			
-			
-			
-			
+				
+					
 			
 		
 		
-		public String getCellValue(int x,int y)
+		public String getareaValue(int x,int y)
 		
 		{
-			System.out.println("fanhui le zhege zhi"+Crossword.area[y][x]);
-			return Crossword.area[y][x];
+			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
+			return this.area[y][x];
 		}
+		
+		public String getdisplayAreaValue(int x,int y)
+		
+		{
+			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
+			return this.displayArea[y][x];
+		}
+		
+		public String getcorrectionAreaValue(int x,int y)
+		
+		{
+			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
+			return this.correctionArea[y][x];
+		}
+		
 		public boolean isCross(int x,int y){
 			boolean c = false;
 			String lD,rD,tD,bD;
 			
-	        lD = x - 1 < 0 ? null:Crossword.area[y][x - 1];
-	        rD = x + 1 >= this.width?null:Crossword.area[y][x + 1];
-	        tD = y - 1 < 0 ? null:Crossword.area[y - 1][x];
-	        bD = y + 1 >= this.height?null:Crossword.area[y + 1][x];
+	        lD = x - 1 < 0 ? null:this.area[y][x - 1];
+	        rD = x + 1 >= this.width?null:this.area[y][x + 1];
+	        tD = y - 1 < 0 ? null:this.area[y - 1][x];
+	        bD = y + 1 >= this.height?null:this.area[y + 1][x];
 			
 	        if((lD == null && rD == null) || (tD == null && bD == null)){
 	        	c = false;
@@ -259,11 +278,11 @@ public void setDisValue(int x, int y, String value) {
 	    	for (int i = 0; i < length; i++) {
 	    		if (isHorizontal) {
 	    			if (y < this.height && x+i < this.width)
-	    				word.append(Crossword.area[y][x+i].equals(Crossword.BLANK)?Crossword.TMPSIGN:Crossword.area[y][x+i]);
+	    				word.append(this.area[y][x+i].equals(Crossword.BLANK)?Crossword.TMPSIGN:this.area[y][x+i]);
 	    		}
 	    		else {
 	    			if (y+i < this.height && x < this.width)
-	    				word.append(Crossword.area[y+i][x].equals(Crossword.BLANK)?Crossword.TMPSIGN:Crossword.area[y+i][x]);
+	    				word.append(this.area[y+i][x].equals(Crossword.BLANK)?Crossword.TMPSIGN:this.area[y+i][x]);
 	    		}
 	    	}
 	    	return word.toString();
@@ -275,8 +294,8 @@ public void setDisValue(int x, int y, String value) {
 			
 			for (int y = 0; y < this.height; y++)
 				for (int x = 0; x < this.width; x++)
-					if (Crossword.area[y][x] != null) {
-						if (Crossword.area[y][x].equals(" "))
+					if (this.area[y][x] != null) {
+						if (this.area[y][x].equals(" "))
 							empty++;
 						else
 							filled++;

@@ -288,7 +288,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		// Si la case est noire => retour
 		if (this.module.isBlock(x, y))
 			return;
-		String cellValue=this.module.getCellValue(x, y);
+		String cellValue=this.module.getareaValue(x, y);
 	
 		this.module.setValue(x, y, value);
 		this.module.setDisValue(x, y,value);
