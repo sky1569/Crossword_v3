@@ -105,6 +105,7 @@ public class JsonUtil {
 		    grid.setUniqueid(jsonObject.getInt("uniqueid"));
 		    grid.setVol(jsonObject.getInt("vol"));
 		    grid.setLevel(jsonObject.getInt("level"));
+		    grid.setDegree(jsonObject.getInt("degree"));
 		    grid.setCategory(jsonObject.getString("category"));
 		    grid.setScore(jsonObject.getInt("score"));
 		    grid.setDate(jsonObject.getString("date"));
@@ -136,6 +137,7 @@ public class JsonUtil {
 			jObj.put("uniqueid", grid.getUniqueid());
 			jObj.put("vol", grid.getVol());
 			jObj.put("level", grid.getLevel());
+			jObj.put("degree", grid.getDegree());
 			jObj.put("category", grid.getCategory());
 			//获取grid中的word信息
 			LinkedList<Word> entries = grid.getEntries();

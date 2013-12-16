@@ -179,7 +179,7 @@ public class GameGridAdapter extends BaseAdapter {
 		int x = (int)(position % this.width);
 	
 		
-		String data = this.module.getdisplayAreaValue(x, y) != Crossword.UNFILLED  ? this.module.getdisplayAreaValue(x, y) :Crossword.BLANK;
+		String data = (!this.module.getdisplayAreaValue(x, y).equals(Crossword.UNFILLED) ) ? this.module.getdisplayAreaValue(x, y) :Crossword.BLANK;
 		String correction = this.module.getcorrectionAreaValue(x, y);
 		
 		// Creation du composant
@@ -190,7 +190,7 @@ public class GameGridAdapter extends BaseAdapter {
 			v.setTextSize((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4 ? 30 : 20);
 			v.setGravity(Gravity.CENTER);
 
-			if (data != null) {
+			if (!data .equals( Crossword.BLOCK)) {
 				v.setBackgroundResource(R.drawable.area_empty);
 				v.setTag(Crossword.AREA_WRITABLE);
 			} else {
@@ -201,7 +201,7 @@ public class GameGridAdapter extends BaseAdapter {
 			this.views.put(position, v);
 		}
 
-		if(data!=null)
+		if(!data .equals( Crossword.BLOCK))
 		{
 				
 					v.setTextColor(context.getResources().getColor(R.color.normal));//test
@@ -293,8 +293,11 @@ public class GameGridAdapter extends BaseAdapter {
 			for(int j = 0;j < this.width;j++){
 				
 				int index = i*width + j;
+
+				
 				String value =  this.module.getareaValue(j,i);
-				v.getChildAt(index).setBackgroundResource(value == null?
+
+				v.getChildAt(index).setBackgroundResource(value .equals(( Crossword.BLOCK))?
 						                                    R.drawable.area_block1:R.drawable.area_empty);
 			}
 		}

@@ -22,9 +22,11 @@ public class Module {
 	 private DBManager dbManager;
 	 private int width;
 	 private int height;
+
 	 private String[][]			area;			// Tableau repr茅sentant les lettres du joueur
 	 private String[][] 		displayArea;
 	 private String[][] 		correctionArea; // Tableau repr茅sentant les lettres correctes
+
 	 public void parseGrid(Context context,String filename){
 		 this.grid = new Grid();
 		 
@@ -40,6 +42,12 @@ public class Module {
 		 this.area = new String[this.height][this.width];
 	     this.correctionArea = new String[this.height][this.width];
 	     this.displayArea = new String[this.height][this.width];
+	     for(int i = 0;i < this.width;i++)
+	    	 for(int j = 0;j < this.height;j++)
+	    	 {
+	    		 this.area[j][i]=Crossword.BLOCK;
+	    		 this.displayArea[j][i]=Crossword.BLOCK;
+	    	 }
 	 }
 	 
 	
@@ -101,7 +109,7 @@ public class Module {
 		  }
 		 public boolean isBlock(int x, int y)
 		 {
-				return (this.area[y][x] == null);
+				return (this.area[y][x].equals(Crossword.BLOCK));
 		 }
 	   	public boolean isChinese(int x,int y)
 		{
@@ -139,11 +147,15 @@ public class Module {
 		}
 		
 		
+		
+		
 		//通过第几关查找数据库
-		public Grid queryByLevel(int level){
+		public Grid queryByUniqueid(int uniqueid){
 			
-			Grid grid = dbManager.queryGridByKey("level", level,this.jsonUtil);
+			Grid grid = dbManager.queryGridByKey("uniqueid", uniqueid,this.jsonUtil);
 			this.grid = grid;
+			 this.width = grid.getWidth();
+			 this.height = grid.getHeight();
 			return grid;
 			
 		}
@@ -252,14 +264,14 @@ public class Module {
 		
 		{
 			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
-			if(this.isBlock(x, y)) return null;
+			if(this.isBlock(x, y)) return Crossword.BLOCK;
 			return this.area[y][x];
 		}
 		
 		public String getdisplayAreaValue(int x,int y)
 		
 		{
-			if(this.isBlock(x, y)) return null;
+			if(this.isBlock(x, y)) return Crossword.BLOCK;
 			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
 			return this.displayArea[y][x];
 		}
@@ -267,7 +279,7 @@ public class Module {
 		public String getcorrectionAreaValue(int x,int y)
 		
 		{
-			if(this.isBlock(x, y)) return null;
+			if(this.isBlock(x, y)) return Crossword.BLOCK;
 			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
 			return this.correctionArea[y][x];
 		}
@@ -276,12 +288,12 @@ public class Module {
 			boolean c = false;
 			String lD,rD,tD,bD;
 			
-	        lD = x - 1 < 0 ? null:this.area[y][x - 1];
+	        lD = x - 1 < 0 ? Crossword.BLOCK:this.area[y][x - 1];
 	        rD = x + 1 >= this.width?null:this.area[y][x + 1];
-	        tD = y - 1 < 0 ? null:this.area[y - 1][x];
-	        bD = y + 1 >= this.height?null:this.area[y + 1][x];
+	        tD = y - 1 < 0 ? Crossword.BLOCK:this.area[y - 1][x];
+	        bD = y + 1 >= this.height?Crossword.BLOCK:this.area[y + 1][x];
 			
-	        if((lD == null && rD == null) || (tD == null && bD == null)){
+	        if((lD .equals(Crossword.BLOCK)  && rD .equals(Crossword.BLOCK)) || (tD .equals(Crossword.BLOCK) && bD.equals(Crossword.BLOCK))){
 	        	c = false;
 	        }else{
 	        	c = true;

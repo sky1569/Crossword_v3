@@ -47,7 +47,7 @@ public class DBManager {
 		}*/
 		//这儿要打开
 		db = helper.getWritableDatabase();
-		Cursor c = queryCursorByKey("level",grid.getLevel());
+		Cursor c = queryCursorByKey("uniqueid",grid.getUniqueid());
 		//如果不为空就不用再插入了
 		if(c.getCount() != 0){
 			
@@ -60,6 +60,7 @@ public class DBManager {
 		cv.put("uniqueid", grid.getUniqueid());
 		cv.put("vol", grid.getVol());
 		cv.put("level", grid.getLevel());
+		cv.put("degree", grid.getDegree());
 		cv.put("category", grid.getCategory());
 		cv.put("jsonData",grid.getJsonData());
 		cv.put("score", grid.getScore());
@@ -99,6 +100,7 @@ public class DBManager {
 		cv.put("uniqueid", grid.getUniqueid());
 		cv.put("vol", grid.getVol());
 		cv.put("level", grid.getLevel());
+		cv.put("degree", grid.getDegree());
 		cv.put("category", grid.getCategory());
 		cv.put("jsonData",grid.getJsonData());
 		cv.put("score", grid.getScore());
@@ -171,6 +173,7 @@ public class DBManager {
 			g.setUniqueid(c.getInt(c.getColumnIndex("uniqueid")));
 			g.setVol(c.getInt(c.getColumnIndex("vol")));
 			g.setLevel(c.getInt(c.getColumnIndex("level")));
+			g.setDegree(c.getInt(c.getColumnIndex("degree")));
 			g.setCategory(c.getString(c.getColumnIndex("category")));
 			g.setJsonData(c.getString(c.getColumnIndex("jsonData")));
 			g.setScore(c.getInt(c.getColumnIndex("score")));
@@ -202,7 +205,7 @@ public class DBManager {
 	 */
 	public Cursor queryCursorByKey(String key,Object value){
 		//db = helper.getWritableDatabase();
-		String[] columns = {"file","uniqueid","vol","level","category","jsonData","score",
+		String[] columns = {"file","uniqueid","vol","level","degree","category","jsonData","score",
 				             "date","gamename","author","width","height"};
 		String selection = key+"="+value;
 		Cursor c = db.query(true, Crossword.TABLE_NAME, columns, selection, null, null, null, null, null);

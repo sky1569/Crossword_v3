@@ -153,7 +153,7 @@ public class KeyboardView extends LinearLayout implements OnTouchListener {
             {
         		switch (v.getId()) {
         		case R.id.buttonDELETE:
-            		this.delegate.onKeyUp(Crossword.BLANK);
+            		this.delegate.onKeyUp(Crossword.UNFILLED);
         			break;
         		/*case R.id.buttonREPLAY:
         			this.delegate.onKeyUp("replay");

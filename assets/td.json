@@ -4,27 +4,27 @@
     "vol": 1,
     "level" : 0,
     "degree" : 5,
-    "category" : "璇楄瘝",
+    "category" : "诗词",
     "words" : [
                {
-               "desc" : "鏃舵潵杩愯浆",
+               "desc" : "时来运转",
                "tmp" : "HY-",
                "horiz" : 1,
                "x" : 1,
                "y" : 2,
                "len" : 3,
-               "chi" : "濂借繍鏉�,
+               "chi" : "好运来",
                "cap" : "HYL",
                "mask" : "100"
                },
-                {
+               {
                "desc" : "good boy",
                "tmp" : "D--",
                "horiz" : 0,
                "x" : 1,
                "y" : 1,
                "len" : 3,
-               "chi" : "澶уソ浜�,
+               "chi" : "大好人",
                "cap" : "DHR",
                "mask" : "000"
                }
@@ -33,6 +33,6 @@
     "date" : "2013-12-12",
     "gamename" : "1",
     "author" : "wangjz",
-    "width" : 10,
-    "height" : 10
+    "width" : 8,
+    "height" : 6
 }
