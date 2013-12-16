@@ -22,12 +22,8 @@ public class Module {
 	 private DBManager dbManager;
 	 private int width;
 	 private int height;
-<<<<<<< HEAD
 
-	 private String[][]		area;			// Tableau représentant les lettres du joueur
-=======
 	 private String[][]			area;			// Tableau représentant les lettres du joueur
->>>>>>> 689fc3005b59f030bee2f6b85d0e31606297dc9a
 	 private String[][] 		displayArea;
 	 private String[][] 		correctionArea; // Tableau représentant les lettres correctes
 
