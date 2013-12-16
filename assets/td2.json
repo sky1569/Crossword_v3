@@ -1,0 +1,39 @@
+{
+    "file" : "td2.json",
+    "uniqueid" : 10002,
+    "volNumber": 1,
+    "level" : 1,
+    "degree" : 6,
+    "category" : "高效",
+    "islocked" : 0,
+    "words" : [
+               {
+               "desc" : "百无聊赖",
+               "tmp" : "HY-",
+               "horiz" : 1,
+               "x" : 1,
+               "y" : 1,
+               "len" : 2,
+               "chi" : "单调",
+               "cap" : "DD",
+               "mask" : "00"
+               },
+               {
+               "desc" : "阿猫",
+               "tmp" : "D--",
+               "horiz" : 0,
+               "x" : 2,
+               "y" : 0,
+               "len" : 3,
+               "chi" : "解调器",
+               "cap" : "JTQ",
+               "mask" : "000"
+               }
+               ],
+    "score" : 10,
+    "date" : "2013-12-12",
+    "gamename" : "1",
+    "author" : "jz",
+    "width" : 10,
+    "height" : 10
+}
