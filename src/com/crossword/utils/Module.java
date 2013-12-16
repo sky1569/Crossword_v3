@@ -22,9 +22,9 @@ public class Module {
 	 private DBManager dbManager;
 	 private int width;
 	 private int height;
-	private String[][]		area;			// Tableau représentant les lettres du joueur
-	private String[][] 		displayArea;
-	private String[][] 		correctionArea; // Tableau représentant les lettres correctes
+	 private String[][]		area;			// Tableau représentant les lettres du joueur
+	 private String[][] 		displayArea;
+	 private String[][] 		correctionArea; // Tableau représentant les lettres correctes
 	 public void parseGrid(Context context,String filename){
 		 this.grid = new Grid();
 		 

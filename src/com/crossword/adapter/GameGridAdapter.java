@@ -292,7 +292,7 @@ public class GameGridAdapter extends BaseAdapter {
 			for(int j = 0;j < this.width;j++){
 				
 				int index = i*width + j;
-				String value =  this.module.getareaValue(i,j);
+				String value =  this.module.getareaValue(j,i);
 				v.getChildAt(index).setBackgroundResource(value == null?
 						                                    R.drawable.area_block1:R.drawable.area_empty);
 			}
