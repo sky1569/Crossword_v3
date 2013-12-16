@@ -180,7 +180,7 @@ public class GameGridAdapter extends BaseAdapter {
 	
 		
 		String data = (!this.module.getdisplayAreaValue(x, y).equals(Crossword.UNFILLED) ) ? this.module.getdisplayAreaValue(x, y) :Crossword.BLANK;
-		String correction = this.module.getcorrectionAreaValue(x, y);
+	//	String correction = this.module.getcorrectionAreaValue(x, y);
 		
 		// Creation du composant
 		if (v == null)

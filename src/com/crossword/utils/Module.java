@@ -56,9 +56,34 @@ public class Module {
 		 return this.grid.getEntries();
 	 }
 	
-	  public boolean isCorrect(String currentWords,String correctWords)
+	  public boolean isCorrect(Word correctWords,String currentWords,int x,int y)
 	    {	    	
-	    	return  currentWords.equalsIgnoreCase(correctWords)==true ?true:false;
+	    	
+		 // if(this.isCross(x, y))
+		  if(this.isCross(x, y))
+		  {
+			  
+			  for(int i = 0;i < correctWords.getLength(); i++)
+	    	{
+	    		if(currentWords.charAt(i) != correctWords.getCap().charAt(i)){
+	    		
+	    		int j = x-this.getCorrectWord(x, y,!correctWords.getHoriz()).getX()+y-this.getCorrectWord(x, y,!correctWords.getHoriz()).getY();
+	    		if(currentWords.charAt(i) != 
+	    		  this.getCorrectWord(x, y,!correctWords.getHoriz()).getCap().charAt(j))
+	    		   return false; 		  
+	    				 }
+	    				
+	    	}
+			  return true;
+			  }
+		  else  
+			  return currentWords.equalsIgnoreCase(correctWords.getCap()) == true ? true:false;
+		  
+		  
+		//  return  true;
+	    
+	    
+	    
 	    }
 	  
 	  public Word getCorrectWord(int x, int y, boolean horizontal)
@@ -199,7 +224,7 @@ public class Module {
 		    		{
 		    		   if(this.isBlock(currentX,currentY))
 		    			  continue;
-		    		   if(this.area[currentY][currentX]==null)
+		    		   if(this.area[currentY][currentX].equals(Crossword.AREA_BLOCK))
 		    			   continue;
 
 		    		   Word currentWord = this.getCorrectWord(currentX,currentY,true);
@@ -218,7 +243,7 @@ public class Module {
 			    			   continue;
 
 			    		   Word currentWord = this.getCorrectWord(currentX,currentY,true);*/
-			     			   if(this.isCorrect(this.getCorrectWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()).getCap(),this.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz())))
+			     			   if(this.isCorrect(this.getCorrectWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()),this.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz()),currentX,currentY))
 			       		    	{
 			       				  for(int l = 0; l < currentWord.getLength(); l++)
 			       				  {
@@ -230,10 +255,10 @@ public class Module {
 			       		    	}
 			    		    if(this.isCross(currentX,currentY))
 			        		  {
-			    			   if(this.isCorrect(this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getCap(),
+			    			   if(this.isCorrect(this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()),
 			    					   this.getWord(this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getX(),this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getY(), 
 			    							   this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getLength(), 
-			    							   this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getHoriz())))
+			    							   this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getHoriz()),currentX,currentY))
 				   		    	{
 				   				  for(int l = 0; l < this.getCorrectWord(currentX, currentY, !currentWord.getHoriz()).getLength(); l++)
 				   				    {
@@ -276,13 +301,13 @@ public class Module {
 			return this.displayArea[y][x];
 		}
 		
-		public String getcorrectionAreaValue(int x,int y)
+		/*public String getcorrectionAreaValue(int x,int y)
 		
 		{
 			if(this.isBlock(x, y)) return Crossword.BLOCK;
 			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
 			return this.correctionArea[y][x];
-		}
+		}*/
 		
 		public boolean isCross(int x,int y){
 			boolean c = false;
