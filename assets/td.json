@@ -1,4 +1,4 @@
-{
+﻿{
     "file" : "td.json",
     "uniqueid" : 123456,
     "vol": 1,
@@ -25,7 +25,7 @@
                "y" : 1,
                "len" : 3,
                "chi" : "大好人",
-               "cap" : "DHR",
+               "cap" : "DSR",
                "mask" : "000"
                }
                ],
