@@ -26,7 +26,9 @@ public class Module {
 	 private String[][] 		displayArea;
 	 private String[][] 		correctionArea; // Tableau repr茅sentant les lettres correctes
      private Context            context;
-     
+     private int 				score;
+     private int				filled;
+     private int 				empty;
      public Module(Context context){
     	 this.context = context;
     	 this.dbManager = new DBManager(context);
@@ -73,9 +75,7 @@ public class Module {
 	    {	    	
 	    	int currentX=correctWords.getX();
 	    	int currentY=correctWords.getY();
-		 // if(this.isCross(x, y))
-		 // if(this.isCross(x, y))
-		 // {
+	
 			  boolean Horiz = correctWords.getHoriz();
 			  for(int i = 0;i < correctWords.getLength(); i++)
 	    	{
@@ -95,15 +95,7 @@ public class Module {
 	    		}
 	    				
 	    	}
-			  return true;
-		//	  }
-		  //else  
-		//	  return currentWords.equalsIgnoreCase(correctWords.getCap()) == true ? true:false;
-		  
-		  
-		//  return  true;
-	    
-	    
+			  return true;   	    
 	    
 	    }
 	  
@@ -130,12 +122,12 @@ public class Module {
 		    	return (verticalWord != null) ? verticalWord : horizontalWord;
 	    }
 	  
-		  public void disTip()//错误提示
+		  public void disTip()//错误提示，暂时没用上
 		  {
 			  
 		  }
 		  
-		  public void replay() //记得调用重绘
+		  public void replay() //记得调用重绘,暂时没用上
 		  {
 			  for(int i = 0;i < this.width;i++)
 				  for(int j = 0;j < this.height;j++)
@@ -157,20 +149,20 @@ public class Module {
 		 {
 				return (this.area[y][x].equals(Crossword.BLOCK));
 		 }
-	   	public boolean isChinese(int x,int y)
-		{
-				
+	   	 public boolean isChinese(int x,int y)
+	     {
+		 		
 			return  this.displayArea[y][x].getBytes().length == this.displayArea[y][x].length()?false:true;
-		}
+		 }
 			
-		public void setValue(int x, int y, String value) {
+		public void setValue(int x, int y, String value) 
+		{
 			if (this.area[y][x] != Crossword.BLOCK&&!this.isChinese(x,y))
 			
-				{
+				
 					this.area[y][x] = value.toUpperCase();
-					//	System.out.println(this.area[y][x]);
-				}
-			}
+		}
+		
 		public void setDisValue(int x, int y, String value) {
 			if (this.area[y][x] !=Crossword.BLOCK&&!this.isChinese(x,y))
 			
@@ -263,15 +255,7 @@ public class Module {
 			
 			public void toChinese(int currentX,int currentY,Word currentWord)
 			{
-				/*for(int currentX=0; currentX<this.width;currentX++)
-			    	for(int currentY=0;currentY<this.height;currentY++)
-			    		{
-			    		   if(this.isBlock(currentX,currentY))
-			    			  continue;
-			    		   if(this.area[currentY][currentX]==null)
-			    			   continue;
-
-			    		   Word currentWord = this.getCorrectWord(currentX,currentY,true);*/
+				
 			     			   if(this.isCorrect(this.getCorrectWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()),this.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz()),currentX,currentY))
 			       		    	{
 			       				  for(int l = 0; l < currentWord.getLength(); l++)
@@ -317,7 +301,7 @@ public class Module {
 		public String getareaValue(int x,int y)
 		
 		{
-			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
+			
 			if(this.isBlock(x, y)) return Crossword.BLOCK;
 			return this.area[y][x];
 		}
@@ -326,17 +310,10 @@ public class Module {
 		
 		{
 			if(this.isBlock(x, y)) return Crossword.BLOCK;
-			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
+			
 			return this.displayArea[y][x];
 		}
 		
-		/*public String getcorrectionAreaValue(int x,int y)
-		
-		{
-			if(this.isBlock(x, y)) return Crossword.BLOCK;
-			System.out.println("fanhui le zhege zhi"+this.area[y][x]);
-			return this.correctionArea[y][x];
-		}*/
 		
 		public boolean isCross(int x,int y){
 			boolean c = false;
@@ -370,22 +347,26 @@ public class Module {
 	    	return word.toString();
 		}
 		
-		public boolean isACh(Activity act) {
-			int filled = 0;
-			int empty = 0;
+		public int getScore(){
+			this.score=0;
+			return this.score;
+		}
+		public boolean isComplete(Activity act) {
+			this.filled = 0;
+			this.empty = 0;
 			
 			for (int y = 0; y < this.height; y++)
 				for (int x = 0; x < this.width; x++)
 					if (!this.area[y][x].equals(Crossword.BLOCK) ) {
 						if (this.isChinese(x, y))
-							filled++;
+							this.filled++;
 						else
-							empty++;
+							this.empty++;
 					}
 			
-			if(filled==empty+filled) 
+			if(this.filled==this.empty+this.filled) 
 			{
-				Toast toast=Toast.makeText(act, "通关了，你这么厉害，你家里人知道么".toString(), Toast.LENGTH_SHORT);
+				Toast toast=Toast.makeText(act, Crossword.COMPLETETIP, Toast.LENGTH_SHORT);
 				toast.setGravity(Gravity.CENTER, 0, 0);
 				toast.show();
 				return true;

@@ -106,12 +106,14 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	@Override
 	public void onPause()
 	{
+		//module.getScore();
 		module.save(this.gridAdapter,this.grid);
 		super.onPause();
 	}
 	
 	@Override
 	public void onStop(){
+		//module.getScore();
 		module.save(this.gridAdapter,this.grid);
 		super.onStop();
 	}
@@ -304,7 +306,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		
 		module.toChinese(x,y,this.currentWord);
 		
-		if(module.isACh(this)) return;
+		if(module.isComplete(this)) return;
 		
 		if (value.equals(Crossword.UNFILLED)) {
 			
