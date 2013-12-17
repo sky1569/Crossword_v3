@@ -73,11 +73,9 @@ public class GameGridAdapter extends BaseAdapter {
        // Crossword.area = new String[this.height][this.width];
         //Crossword.correctionArea = new String[this.height][this.width];
         //Crossword.displayArea = new String[this.height][this.width];
-<<<<<<< HEAD
-=======
         this.module.initentries();
         this.module.isComplete(act);
->>>>>>> 96904524cafb695438811f96a7dbc6f9b8a812f7
+
         
 	 
 	}

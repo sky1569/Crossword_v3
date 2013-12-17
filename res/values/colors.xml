@@ -13,4 +13,5 @@
     <color name="empty_color">#ffffffff</color>
     <color name="current_selected_color">#ff7fb873</color>
     <color name="selected_area_color">#ffddf7d7</color>
+    <color name="key_button_text_color">#ff6e6c6d</color>
 </resources>

@@ -13,12 +13,13 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dip"
             android:paddingTop="10dip"
+            android:paddingBottom="10dip"
+            android:gravity="center_vertical"
             android:orientation="vertical">
             
             <ImageButton android:id="@+id/backbutton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:src="@drawable/navigationbar_backbutton"
                 android:background="@null"/>
             
@@ -30,10 +31,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:gravity="center_horizontal|left"
-            android:padding="5dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
             android:textColor="@color/desc_text_color"
             android:background="@color/desc_background_color"
             android:textSize="@dimen/desc_text_size"
+            android:text="横向:"
             />
         <TextView 
             android:id="@+id/description_vertical"
@@ -42,11 +46,14 @@
             android:layout_weight="0"
             android:gravity="center_horizontal|left"
             android:layout_gravity="left"
-            android:padding="5dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
             android:textColor="@color/desc_text_color"
             android:background="@color/desc_background_color"
             android:textSize="@dimen/desc_text_size"
             android:layout_marginTop="1dip"
+            android:text="纵向:"
         />
         <GridView
             android:id="@+id/grid"

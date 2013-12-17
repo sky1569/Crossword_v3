@@ -107,14 +107,14 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	public void onPause()
 	{
 		//module.getScore();
-		module.save(this.gridAdapter,this.grid);
+		//module.save(this.gridAdapter,this.grid);
 		super.onPause();
 	}
 	
 	@Override
 	public void onStop(){
 		//module.getScore();
-		module.save(this.gridAdapter,this.grid);
+		//module.save(this.gridAdapter,this.grid);
 		super.onStop();
 	}
 	public void onCreate(Bundle savedInstanceState)
@@ -391,9 +391,9 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	//设置描述信息
 	public void setDescription(Word currentWordHor,Word currentWordVer,Word currentWord){//设置提示信息
 		  String descriptionHor = isCross?"横向:"+this.currentWordHor.getDesc():
-              (this.horizontal?"横向:"+currentWord.getDesc():"");
+              (this.horizontal?"横向:"+currentWord.getDesc():"横向:");
           String descriptionVer = isCross?"纵向:"+this.currentWordVer.getDesc():
-              (this.horizontal?"":"纵向:"+currentWord.getDesc());
+              (this.horizontal?"纵向:":"纵向:"+currentWord.getDesc());
 
           this.txtDescriptionHor.setText(descriptionHor);
           this.txtDescriptionVer.setText(descriptionVer);

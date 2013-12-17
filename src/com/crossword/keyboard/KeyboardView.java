@@ -71,7 +71,6 @@ public class KeyboardView extends LinearLayout implements OnTouchListener {
 		this.findViewById(R.id.buttonF).setOnTouchListener(this);
 		this.findViewById(R.id.buttonG).setOnTouchListener(this);
 		this.findViewById(R.id.buttonH).setOnTouchListener(this);
-		this.findViewById(R.id.buttonI).setOnTouchListener(this);
 		this.findViewById(R.id.buttonJ).setOnTouchListener(this);
 		this.findViewById(R.id.buttonK).setOnTouchListener(this);
 		this.findViewById(R.id.buttonL).setOnTouchListener(this);
@@ -83,13 +82,10 @@ public class KeyboardView extends LinearLayout implements OnTouchListener {
 		this.findViewById(R.id.buttonR).setOnTouchListener(this);
 		this.findViewById(R.id.buttonS).setOnTouchListener(this);
 		this.findViewById(R.id.buttonT).setOnTouchListener(this);
-		this.findViewById(R.id.buttonU).setOnTouchListener(this);
-		this.findViewById(R.id.buttonV).setOnTouchListener(this);
 		this.findViewById(R.id.buttonW).setOnTouchListener(this);
 		this.findViewById(R.id.buttonX).setOnTouchListener(this);
 		this.findViewById(R.id.buttonY).setOnTouchListener(this);
 		this.findViewById(R.id.buttonZ).setOnTouchListener(this);
-		this.findViewById(R.id.buttonREPLAY).setOnTouchListener(this);
 		this.findViewById(R.id.buttonDELETE).setOnTouchListener(this);
 	}
 
@@ -129,7 +125,6 @@ public class KeyboardView extends LinearLayout implements OnTouchListener {
         		case R.id.buttonY: this.value = "Y"; break;
         		case R.id.buttonZ: this.value = "Z"; break;
         		case R.id.buttonDELETE: this.value = null; break;
-        		case R.id.buttonREPLAY: this.value = null; break;
         		}
 
         		this.currentView = v;
@@ -137,12 +132,12 @@ public class KeyboardView extends LinearLayout implements OnTouchListener {
         		this.currentView.getLocationOnScreen(location);
         		
         		// Change key background (selector actually doesn't work with KeyboardView)
-        		if (v.getId() == R.id.buttonDELETE)
+        		/*if (v.getId() == R.id.buttonDELETE)
         			this.currentView.setBackgroundResource(R.drawable.btn_keyboard_delete_pressed);
         	
 
         		else
-        			this.currentView.setBackgroundResource(R.drawable.btn_keyboard_pressed);
+        			this.currentView.setBackgroundResource(R.drawable.btn_keyboard_pressed);*/
         		
             	if (this.value != null)
             		this.delegate.onKeyDown(value, location, this.currentView.getWidth());
@@ -161,11 +156,11 @@ public class KeyboardView extends LinearLayout implements OnTouchListener {
         		}
         		
         		// Change key background (selector actually doesn't work with KeyboardView)
-        		if (v.getId() == R.id.buttonDELETE)
+        		/*if (v.getId() == R.id.buttonDELETE)
         			this.currentView.setBackgroundResource(R.drawable.btn_keyboard_delete_release);
         		else
         			this.currentView.setBackgroundResource(R.drawable.btn_keyboard_release);
-
+                */
         		if (this.value != null)
             		this.delegate.onKeyUp(value);
         		break;
