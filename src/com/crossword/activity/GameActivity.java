@@ -106,12 +106,14 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	@Override
 	public void onPause()
 	{
+		//module.getScore();
 		module.save(this.gridAdapter,this.grid);
 		super.onPause();
 	}
 	
 	@Override
 	public void onStop(){
+		//module.getScore();
 		module.save(this.gridAdapter,this.grid);
 		super.onStop();
 	}
@@ -303,47 +305,9 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		this.gridAdapter.notifyDataSetChanged();
 		
 		module.toChinese(x,y,this.currentWord);
-		/*if(module.isCorrect(module.getCorrectWord(this.currentWord.getX(), this.currentWord.getY(), this.currentWord.getHoriz()).getCap(),
-				           module.getWord(this.currentWord.getX(),this.currentWord.getY(),this.currentWord.getLength(), this.currentWord.getHoriz())))
-	    {
-			  for(int l = 0; l < this.currentWord.getLength(); l++)
-			  {
-				if(this.currentWord.getHoriz())  
-				{
-					module.setDisValue(currentWord.getX()+l, currentWord.getY(),currentWord.getAns(l));
-				}
-	            if(!this.currentWord.getHoriz()) module.setDisValue(currentWord.getX(), currentWord.getY()+l,currentWord.getAns(l));  
-	            
-	            this.gridAdapter.notifyDataSetChanged();
-			  }
-    	}
-		else module.disTip();
 		
-		if(this.isCross)
-		{		
+		if(module.isComplete(this)) return;
 		
-			if(module.isCorrect(module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getCap(),
-					module.getWord(module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getX(),module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getY(), 
-							module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getLength(), 
-							module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getHoriz())))
-	    	{
-			  for(int l = 0; l < module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getLength(); l++)
-			    {
-					if(!this.currentWord.getHoriz())  {module.setDisValue(module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getX()+l,module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getY(),module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getAns(l));
-					 System.out.println("x:"+(currentX+l)+"y:"+currentY);
-				}
-	            if(this.currentWord.getHoriz())
-	            {
-	            	module.setDisValue(module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getX(),module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getY()+l,module.getCorrectWord(this.currentX, this.currentY, !currentWord.getHoriz()).getAns(l));  
-	            	 System.out.println("x:"+currentX+"y:"+(currentY+l));
-	            }
-	      
-	            this.gridAdapter.notifyDataSetChanged();
-			  }
-    	    }	
-			else module.disTip();
-		}*/
-	
 		if (value.equals(Crossword.UNFILLED)) {
 			
 			if(areaValue.equals(Crossword.UNFILLED))

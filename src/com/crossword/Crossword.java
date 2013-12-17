@@ -49,8 +49,7 @@ public class Crossword extends Application {
 	public static final String      BLOCK="";
 	public static final int 		AREA_BLOCK = -1;
 	public static final int 		AREA_WRITABLE = 0;
-	
-	
+	public static final String      COMPLETETIP="通关了，你这么厉害，你家里人知道么";
 	
 	//定义数据库的一些项
 	public static final String DATABASE_NAME = "crossword.db";
