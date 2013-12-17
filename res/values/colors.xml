@@ -6,5 +6,11 @@
     <color name="wrong">#F00</color>
     <color name="right">#0F0</color>
     <color name="gridlist_divider">#BBB</color>
-
+    <color name="background_color">#ffffffff</color>
+    <color name="desc_background_color">#ffdcdcdc</color>
+    <color name="desc_text_color">#ff706e6e</color>
+    <color name="block_color">#ffcfcccc</color>
+    <color name="empty_color">#ffffffff</color>
+    <color name="current_selected_color">#ff7fb873</color>
+    <color name="selected_area_color">#ffddf7d7</color>
 </resources>

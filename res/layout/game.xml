@@ -4,17 +4,36 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#000000"
+        android:background="@color/background_color"
         android:orientation="vertical" >
 
-             <TextView
+
+        <LinearLayout android:id="@+id/backbutton_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dip"
+            android:paddingTop="10dip"
+            android:orientation="vertical">
+            
+            <ImageButton android:id="@+id/backbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/navigationbar_backbutton"
+                android:background="@null"/>
+            
+            </LinearLayout>
+
+        <TextView
             android:id="@+id/description_horizotal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:gravity="center_horizontal|left"
             android:padding="5dp"
-            android:textColor="#DDDDDD"
+            android:textColor="@color/desc_text_color"
+            android:background="@color/desc_background_color"
+            android:textSize="@dimen/desc_text_size"
             />
         <TextView 
             android:id="@+id/description_vertical"
@@ -24,7 +43,10 @@
             android:gravity="center_horizontal|left"
             android:layout_gravity="left"
             android:padding="5dp"
-            android:textColor="#DDDDDD"
+            android:textColor="@color/desc_text_color"
+            android:background="@color/desc_background_color"
+            android:textSize="@dimen/desc_text_size"
+            android:layout_marginTop="1dip"
         />
         <GridView
             android:id="@+id/grid"

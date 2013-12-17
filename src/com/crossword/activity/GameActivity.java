@@ -154,7 +154,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
         gridParams.height = height - keyboardHeight - this.txtDescriptionHor.getLayoutParams().height;
         this.gridView.setLayoutParams(gridParams);
         this.gridView.setVerticalScrollBarEnabled(false);
-		this.gridAdapter = new GameGridAdapter(this, this.entries, this.width, this.height,module);
+		this.gridAdapter = new GameGridAdapter(this, this.entries, this.width, this.height,this.module);
 		this.gridView.setAdapter(this.gridAdapter);
 
         this.keyboardView = (KeyboardView)findViewById(R.id.keyboard);
@@ -415,8 +415,9 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 			int index = y*this.width + x + l*(horizontal?1:this.width);
 			View currentChild = this.gridView.getChildAt(index);
 			if(currentChild != null){
-				currentChild.setBackgroundResource(index == currIndex?R.drawable.area_current:R.drawable.area_selected);
-			    selectedArea.add(currentChild);
+				//currentChild.setBackgroundResource(index == currIndex?R.drawable.area_current:R.drawable.area_selected);
+				currentChild.setBackgroundResource(index == currIndex?R.color.current_selected_color:R.color.selected_area_color);
+				selectedArea.add(currentChild);
 			}
 		}
 	}

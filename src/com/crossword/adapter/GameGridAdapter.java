@@ -68,12 +68,11 @@ public class GameGridAdapter extends BaseAdapter {
 		this.height = height;
         Display display = act.getWindowManager().getDefaultDisplay();
         this.displayHeight = display.getWidth() / this.width;
-
+       
         // Fill area and areaCorrection
        // Crossword.area = new String[this.height][this.width];
         //Crossword.correctionArea = new String[this.height][this.width];
         //Crossword.displayArea = new String[this.height][this.width];
-        this.module.initentries();
         
 	  /*  for (Word entry: entries)
 	    {
@@ -173,14 +172,12 @@ public class GameGridAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-		 
 		TextView v = this.views.get(position);
 		int y = (int)(position / this.width); 
 		int x = (int)(position % this.width);
 	
-		
 		String data = (!this.module.getdisplayAreaValue(x, y).equals(Crossword.UNFILLED) ) ? this.module.getdisplayAreaValue(x, y) :Crossword.BLANK;
-	//	String correction = this.module.getcorrectionAreaValue(x, y);
+		//	String correction = this.module.getcorrectionAreaValue(x, y);
 		
 		// Creation du composant
 		if (v == null)
@@ -191,10 +188,14 @@ public class GameGridAdapter extends BaseAdapter {
 			v.setGravity(Gravity.CENTER);
 
 			if (!data .equals( Crossword.BLOCK)) {
-				v.setBackgroundResource(R.drawable.area_empty);
+				//v.setBackgroundResource(R.drawable.area_empty);
+				//设置textview的背景颜色为empty_color
+				v.setBackgroundResource(R.color.empty_color);
 				v.setTag(Crossword.AREA_WRITABLE);
 			} else {
-				v.setBackgroundResource(R.drawable.area_block1);
+				//v.setBackgroundResource(R.drawable.area_block1);
+				//设置textview的背景颜色是block_color
+				v.setBackgroundResource(R.color.block_color);
 				v.setTag(Crossword.AREA_BLOCK);
 			}
 			
@@ -202,8 +203,7 @@ public class GameGridAdapter extends BaseAdapter {
 		}
 
 		if(!data .equals( Crossword.BLOCK))
-		{
-				
+		{            System.out.println(""+this.width);
 					v.setTextColor(context.getResources().getColor(R.color.normal));//test
 					v.setText(data.toUpperCase());
 			
@@ -297,8 +297,10 @@ public class GameGridAdapter extends BaseAdapter {
 				
 				String value =  this.module.getareaValue(j,i);
 
+				/*v.getChildAt(index).setBackgroundResource(value .equals(( Crossword.BLOCK))?
+						                                    R.drawable.area_block1:R.drawable.area_empty);*/
 				v.getChildAt(index).setBackgroundResource(value .equals(( Crossword.BLOCK))?
-						                                    R.drawable.area_block1:R.drawable.area_empty);
+                        R.color.block_color:R.color.empty_color);
 			}
 		}
 	}
