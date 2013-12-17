@@ -1,15 +1,13 @@
 package com.crossword.utils;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.xml.sax.helpers.DefaultHandler;
 
+import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import com.crossword.Crossword;
 import com.crossword.adapter.GameGridAdapter;
@@ -372,18 +370,26 @@ public class Module {
 	    	return word.toString();
 		}
 		
-		public int getPercent() {
+		public boolean isACh(Activity act) {
 			int filled = 0;
 			int empty = 0;
 			
 			for (int y = 0; y < this.height; y++)
 				for (int x = 0; x < this.width; x++)
-					if (this.area[y][x] != null) {
-						if (this.area[y][x].equals(" "))
-							empty++;
-						else
+					if (!this.area[y][x].equals(Crossword.BLOCK) ) {
+						if (this.isChinese(x, y))
 							filled++;
+						else
+							empty++;
 					}
-			return filled * 100 / (empty + filled);
+			
+			if(filled==empty+filled) 
+			{
+				Toast toast=Toast.makeText(act, "通关了，你这么厉害，你家里人知道么".toString(), Toast.LENGTH_SHORT);
+				toast.setGravity(Gravity.CENTER, 0, 0);
+				toast.show();
+				return true;
+				}
+			return false;//return filled * 100 / (empty + filled);
 		}
 }
