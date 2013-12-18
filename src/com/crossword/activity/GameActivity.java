@@ -93,27 +93,28 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	private boolean 		solidSelection;	// PREFERENCES: Selection persistante
 	private boolean			gridIsLower;	// PREFERENCES: Grille en minuscule
 	
-	private int width;
-	private int height;
+	private int 			width;
+	private int 			height;
 
-	@Override
+
+	/*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.crossword, menu);
         return true;
-    }
+    }*/
 
 	@Override
 	public void onPause()
 	{
-		//module.getScore();
+		//module.score();
 		//module.save(this.gridAdapter,this.grid);
 		super.onPause();
 	}
 	
 	@Override
 	public void onStop(){
-		//module.getScore();
+		//module.score();
 		//module.save(this.gridAdapter,this.grid);
 		super.onStop();
 	}
@@ -306,7 +307,14 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		
 		module.toChinese(x,y,this.currentWord);
 		
-		if(module.isComplete(this)) return;
+		
+		if(module.isComplete(this)) 
+		{
+		    //this.module.score();
+		   // module.save(this.gridAdapter,this.grid);
+		    
+			return;
+		}
 		
 		if (value.equals(Crossword.UNFILLED)) {
 			

@@ -44,9 +44,10 @@ public class Grid implements Parcelable, Comparable<Grid> {
 	private String           author;
 	private Integer          width;
 	private Integer          height;
-	
+	private Integer          islocked;
+	private Integer			 star;
 	private String           jsonData;
-   
+
 	
 	
 	public Grid() {
@@ -96,7 +97,11 @@ public class Grid implements Parcelable, Comparable<Grid> {
     public void        setJsonData(String jsonData){this.jsonData = jsonData;}
     public String      getJsonData(){return this.jsonData;}
     
-       
+    public void 	   setIslocked(Integer islocked){this.islocked = islocked;}
+    public Integer	   getIslocked(){return this.islocked;}  
+    
+    public void 	   setStar(Integer star) {this.star = star;}
+    public Integer	   getStar(){return this.star;} 
 	@Override
 	public int compareTo(Grid arg0) {
 		// TODO Auto-generated method stub

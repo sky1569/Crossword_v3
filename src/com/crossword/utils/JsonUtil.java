@@ -143,6 +143,8 @@ public class JsonUtil {
 		    grid.setLevel(jsonObject.getInt("level"));
 		    grid.setDegree(jsonObject.getInt("degree"));
 		    grid.setCategory(jsonObject.getString("category"));
+		    grid.setIslocked(jsonObject.getInt("islocked"));
+		    grid.setStar(jsonObject.getInt("star"));
 		    grid.setScore(jsonObject.getInt("score"));
 		    grid.setDate(jsonObject.getString("date"));
 		    grid.setGamename(jsonObject.getString("gamename"));
@@ -173,6 +175,8 @@ public class JsonUtil {
 			jObj.put("level", grid.getLevel());
 			jObj.put("degree", grid.getDegree());
 			jObj.put("category", grid.getCategory());
+			jObj.put("islocked", grid.getIslocked());
+			jObj.put("star",grid.getStar());
 			//获取grid中的word信息
 			LinkedList<Word> entries = grid.getEntries();
 			for(Word entry:entries){

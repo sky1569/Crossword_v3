@@ -50,6 +50,10 @@ public class Crossword extends Application {
 	public static final int 		AREA_BLOCK = -1;
 	public static final int 		AREA_WRITABLE = 0;
 	public static final String      COMPLETETIP="通关了，你这么厉害，你家里人知道么";
+	//得分常量
+	public static final int      HINT_PENALTY = 5;
+	public static final int      SCORE_PER_CHARACTER = 3;
+	public static final int      WORD_ERROR_PENALTY = 1 ;
 	
 	//定义数据库的一些项
 	public static final String DATABASE_NAME = "crossword.db";
