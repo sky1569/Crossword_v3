@@ -62,6 +62,8 @@ public class DBManager {
 		cv.put("level", grid.getLevel());
 		cv.put("degree", grid.getDegree());
 		cv.put("category", grid.getCategory());
+		cv.put("islocked", grid.getIslocked());
+		//cv.put("star", grid.getStar());
 		cv.put("jsonData",grid.getJsonData());
 		cv.put("score", grid.getScore());
 		cv.put("date", grid.getDate());
@@ -102,6 +104,8 @@ public class DBManager {
 		cv.put("level", grid.getLevel());
 		cv.put("degree", grid.getDegree());
 		cv.put("category", grid.getCategory());
+		cv.put("islocked", grid.getIslocked());
+		//cv.put("star", grid.getStar());
 		cv.put("jsonData",grid.getJsonData());
 		cv.put("score", grid.getScore());
 		cv.put("date", grid.getDate());
@@ -109,6 +113,8 @@ public class DBManager {
 		cv.put("author", grid.getAunthor());
 		cv.put("width", grid.getWidth());
 		cv.put("height", grid.getHeight());
+		
+		
 		db.update(Crossword.TABLE_NAME, cv, "level = ?", new String[]{grid.getLevel().toString()});
 		db.close();
 	}
@@ -164,17 +170,19 @@ public class DBManager {
 	 * 查询grid表的所有grid，并返回其列表
 	 * @return
 	 */
-	public List<GridforSaved> query(){
+	/**/public List<GridforSaved> query(){
 		ArrayList<GridforSaved> grids = new ArrayList<GridforSaved>();
 		Cursor c = queryTheCursor();
 		while(c.moveToNext()){
 			GridforSaved g = new GridforSaved();
 			g.setFilename(c.getString(c.getColumnIndex("file")));
 			g.setUniqueid(c.getInt(c.getColumnIndex("uniqueid")));
-			g.setVol(c.getInt(c.getColumnIndex("vol")));
+			g.setVol(c.getInt(c.getColumnIndex("volNumber")));
 			g.setLevel(c.getInt(c.getColumnIndex("level")));
 			g.setDegree(c.getInt(c.getColumnIndex("degree")));
 			g.setCategory(c.getString(c.getColumnIndex("category")));
+			g.setIslocked(c.getInt(c.getColumnIndex("islocked")));
+			//g.setStar(c.getInt(c.getColumnIndex("star")));
 			g.setJsonData(c.getString(c.getColumnIndex("jsonData")));
 			g.setScore(c.getInt(c.getColumnIndex("score")));
 			g.setDate(c.getString(c.getColumnIndex("date")));
@@ -182,6 +190,8 @@ public class DBManager {
 			g.setAuthor(c.getString(c.getColumnIndex("author")));
 			g.setWidth(c.getInt(c.getColumnIndex("width")));
 			g.setHeight(c.getInt(c.getColumnIndex("height")));
+			
+			
 			grids.add(g);
 		}
 		//c.close();
@@ -205,7 +215,9 @@ public class DBManager {
 	 */
 	public Cursor queryCursorByKey(String key,Object value){
 		//db = helper.getWritableDatabase();
-		String[] columns = {"file","uniqueid","volNumber","level","degree","category","jsonData","score",
+		String[] columns = {"file","uniqueid","volNumber","level","degree","category","islocked",
+				//"star",
+				"jsonData","score",
 				             "date","gamename","author","width","height"};
 		String selection = key+"="+value;
 		Cursor c = db.query(true, Crossword.TABLE_NAME, columns, selection, null, null, null, null, null);

@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
@@ -29,6 +30,11 @@ public class Module {
      private int 				score;
      private int				filled;
      private int 				empty;
+ 	 private int 			hintCount ;
+ 	 private int 			corCount ;
+ 	 private int 			errCount ;
+ 	 
+ 	 
      public Module(Context context){
     	 this.context = context;
     	 this.dbManager = new DBManager(context);
@@ -64,12 +70,16 @@ public class Module {
 	    		 this.area[j][i]=Crossword.BLOCK;
 	    		 this.displayArea[j][i]=Crossword.BLOCK;
 	    	 }
+	     this.errCount = 0;
+	     this.corCount = 0;
+	     this.hintCount = 0;
+	     this.score = 0;
 	 }
 	 
-	 public LinkedList<Word>  getEntry(){
+	/* public LinkedList<Word>  getEntry(){
 		 this.entries = this.grid.getEntries();
 		 return this.grid.getEntries();
-	 }
+	 }*/
 	
 	  public boolean isCorrect(Word correctWords,String currentWords,int x,int y)
 	    {	    	
@@ -82,45 +92,26 @@ public class Module {
 	    		if(currentWords.charAt(i) != correctWords.getCap().charAt(i))
 	    		{
 	    			
-	    		currentX=Horiz ? correctWords.getX()+i:correctWords.getX();
-	    		currentY=Horiz ? correctWords.getY():correctWords.getY()+i;
+	    		  currentX=Horiz ? correctWords.getX()+i:correctWords.getX();
+	    		  currentY=Horiz ? correctWords.getY():correctWords.getY()+i;
 	    			if(isCross(currentX, currentY))
 	    			{
 	    				int j = currentX-this.getCorrectWord(currentX, currentY,!correctWords.getHoriz()).getX()+currentY-this.getCorrectWord(currentX, currentY,!correctWords.getHoriz()).getY();
 	    				if(currentWords.charAt(i) == 
 	    					this.getCorrectWord(currentX, currentY,!correctWords.getHoriz()).getCap().charAt(j)){continue;}
 	   				}
-	    		    		  
+	    		    if(this.isWordComplete(x, y,Horiz))  this.isErr();		  //计分
+	    			//if(i < correctWords.getLength())
 	    				return false;	
 	    		}
 	    				
 	    	}
+			  if(this.isWordComplete(x, y,Horiz)) this.isCor(correctWords.getLength());	//计分
 			  return true;   	    
 	    
 	    }
 	  
-	  public Word getCorrectWord(int x, int y, boolean horizontal)
-	    {
-	        Word horizontalWord = null;
-	        Word verticalWord = null;
-		    for (Word entry: this.entries) {
-		    	if (x >= entry.getX() && x <= entry.getXMax())
-		    		if (y >= entry.getY() && y <= entry.getYMax()) {
-	        	    	if (entry.getHoriz())
-	        	    		        	    		
-	        	    			horizontalWord = entry;
-	        	    		
-	        	    	else
-	        	    		verticalWord = entry;
-		    		}
-		    }
-		    if (horizontal)
-		    {
-		    	System.out.println((horizontalWord != null) ? horizontalWord : verticalWord);
-		    	return (horizontalWord != null) ? horizontalWord : verticalWord;}
-		    else
-		    	return (verticalWord != null) ? verticalWord : horizontalWord;
-	    }
+	 
 	  
 		  public void disTip()//错误提示，暂时没用上
 		  {
@@ -133,44 +124,29 @@ public class Module {
 				  for(int j = 0;j < this.height;j++)
 				  {
 					  if(!this.isBlock(i,j))
-						//  continue;
+						 // continue;
 					//  else 
 						  {
 						  		//this.setDisValue(i, j, Crossword.UNFILLED);
 						  		//this.setValue(i, j, Crossword.UNFILLED);
-						  this.area[i][j] = Crossword.UNFILLED;
-						  this.displayArea[i][j] = Crossword.UNFILLED;
+						  this.area[j][i] = Crossword.UNFILLED;
+						  this.displayArea[j][i] = Crossword.UNFILLED;
 				  }
 			  
 			
 			  }
 		  }
-		 public boolean isBlock(int x, int y)
-		 {
-				return (this.area[y][x].equals(Crossword.BLOCK));
-		 }
-	   	 public boolean isChinese(int x,int y)
-	     {
-		 		
-			return  this.displayArea[y][x].getBytes().length == this.displayArea[y][x].length()?false:true;
-		 }
-			
-		public void setValue(int x, int y, String value) 
+		 
+		/*public void delete(int x,int y)
 		{
-			if (this.area[y][x] != Crossword.BLOCK&&!this.isChinese(x,y))
-			
-				
-					this.area[y][x] = value.toUpperCase();
-		}
+			if(area[y][x].equals(Crossword.UNFILLED))
+			{
+				x = (this.horizontal ? x - 1 : x);
+				y = (this.horizontal ? y: y - 1);
+			}
+		}*/
 		
-		public void setDisValue(int x, int y, String value) {
-			if (this.area[y][x] !=Crossword.BLOCK&&!this.isChinese(x,y))
-			
-				{
-				this.displayArea[y][x] = value.toUpperCase();
-				System.out.println(this.displayArea[y][x]);
-				}
-		}
+		
 	  
 		//保存Grid信息，先写入JSON，再写入数据库
 		public void save(GameGridAdapter gridAdapter,Grid grid){
@@ -196,7 +172,7 @@ public class Module {
 			   //通过URL解析Json
 				//this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL + uniqueid);
 				if((this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL + uniqueid)).getFilename() == null){
-					return null;
+					return null;//要提示获取失败
 				}
 			}
 			
@@ -253,7 +229,7 @@ public class Module {
 			}
 		}
 			
-			public void toChinese(int currentX,int currentY,Word currentWord)
+	  public void toChinese(int currentX,int currentY,Word currentWord)
 			{
 				
 			     			   if(this.isCorrect(this.getCorrectWord(currentWord.getX(), currentWord.getY(), currentWord.getHoriz()),this.getWord(currentWord.getX(),currentWord.getY(),currentWord.getLength(), currentWord.getHoriz()),currentX,currentY))
@@ -265,6 +241,7 @@ public class Module {
 			            		    if(!currentWord.getHoriz()) this.setDisValue(currentWord.getX(), currentWord.getY()+l,currentWord.getAns(l));  
 			       		            		   
 			       				  }
+			       			//	  this.isCor();
 			       		    	}
 			    		    if(this.isCross(currentX,currentY))
 			        		  {
@@ -288,23 +265,39 @@ public class Module {
 
 				   		            	}
 				   		            }
-				   		         
+				   			//	  this.isCor();
 				   			     }   
 			    	       }
 			    		  		
 			}
 				
 					
+	  public void setValue(int x, int y, String value) 
+		{
+			if (this.area[y][x] != Crossword.BLOCK&&!this.isChinese(x,y))
 			
+				
+					this.area[y][x] = value.toUpperCase();
+		}
 		
-		
-		public String getareaValue(int x,int y)
+	  public String getareaValue(int x,int y)
 		
 		{
 			
 			if(this.isBlock(x, y)) return Crossword.BLOCK;
 			return this.area[y][x];
 		}
+	  
+	  public void setDisValue(int x, int y, String value) {
+			if (this.area[y][x] !=Crossword.BLOCK&&!this.isChinese(x,y))
+			
+				{
+				this.displayArea[y][x] = value.toUpperCase();
+			//	System.out.println(this.displayArea[y][x]);
+				}
+		}
+		
+			
 		
 		public String getdisplayAreaValue(int x,int y)
 		
@@ -313,6 +306,59 @@ public class Module {
 			
 			return this.displayArea[y][x];
 		}
+		
+		
+		
+		
+		public String getWord(int x, int y, int length, boolean isHorizontal) {
+	    	StringBuffer word = new StringBuffer();
+	    	for (int i = 0; i < length; i++) {
+	    		if (isHorizontal) {
+	    			if (y < this.height && x+i < this.width)
+	    				word.append(this.area[y][x+i].equals(Crossword.UNFILLED)?Crossword.UNFILLED:this.area[y][x+i]);
+	    		}
+	    		else {
+	    			if (y+i < this.height && x < this.width)
+	    				word.append(this.area[y+i][x].equals(Crossword.UNFILLED)?Crossword.UNFILLED:this.area[y+i][x]);
+	    		}
+	    	}
+	    	return word.toString();
+		}
+		
+		
+		 public Word getCorrectWord(int x, int y, boolean horizontal)
+		    {
+		        Word horizontalWord = null;
+		        Word verticalWord = null;
+			    for (Word entry: this.entries) {
+			    	if (x >= entry.getX() && x <= entry.getXMax())
+			    		if (y >= entry.getY() && y <= entry.getYMax()) {
+		        	    	if (entry.getHoriz())
+		        	    		        	    		
+		        	    			horizontalWord = entry;
+		        	    		
+		        	    	else
+		        	    		verticalWord = entry;
+			    		}
+			    }
+			    if (horizontal)
+			    {
+			    	//System.out.println((horizontalWord != null) ? horizontalWord : verticalWord);
+			    	return (horizontalWord != null) ? horizontalWord : verticalWord;}
+			    else
+			    	return (verticalWord != null) ? verticalWord : horizontalWord;
+		    }
+		
+		
+		 public void score(){
+			this.score=this.corCount-this.hintCount-this.errCount;	
+			this.grid.setScore(this.score);	
+			//Log.isLoggable("score", this.score);
+			System.out.println("score..."+this.score);
+		    //return this.score;
+			
+		}
+		 
 		
 		
 		public boolean isCross(int x,int y){
@@ -332,25 +378,19 @@ public class Module {
 			return c;
 		}
 		
-		public String getWord(int x, int y, int length, boolean isHorizontal) {
-	    	StringBuffer word = new StringBuffer();
-	    	for (int i = 0; i < length; i++) {
-	    		if (isHorizontal) {
-	    			if (y < this.height && x+i < this.width)
-	    				word.append(this.area[y][x+i].equals(Crossword.UNFILLED)?Crossword.UNFILLED:this.area[y][x+i]);
-	    		}
-	    		else {
-	    			if (y+i < this.height && x < this.width)
-	    				word.append(this.area[y+i][x].equals(Crossword.UNFILLED)?Crossword.UNFILLED:this.area[y+i][x]);
-	    		}
-	    	}
-	    	return word.toString();
-		}
+		 public boolean isBlock(int x, int y)
+		 {
+				return (this.area[y][x].equals(Crossword.BLOCK));
+		 }
 		
-		public int getScore(){
-			this.score=0;
-			return this.score;
-		}
+		
+		
+	   	 public boolean isChinese(int x,int y)
+	     {
+		 		
+			return  this.displayArea[y][x].getBytes().length == this.displayArea[y][x].length()?false:true;
+		 }
+		
 		public boolean isComplete(Activity act) {
 			this.filled = 0;
 			this.empty = 0;
@@ -372,5 +412,32 @@ public class Module {
 				return true;
 				}
 			return false;//return filled * 100 / (empty + filled);
+		}
+		
+		//以下计分功能
+		public boolean isWordComplete(int x ,int y,boolean h)
+		{
+			
+			Word corw = this.getCorrectWord(x, y, h);
+			String curw = this.getWord(x, y,corw.getLength(), corw.getHoriz());
+			if(curw.contains(Crossword.UNFILLED))   return false;	
+			
+			return true;
+		}
+		
+		public void isCor(int l)
+		{
+			//if(this.isWordComplete(x, y)){}
+			this.corCount = Crossword.SCORE_PER_CHARACTER*l+this.corCount;
+		}
+		public void isErr()
+		{
+			//if(this.isWordComplete(x, y)){}
+			this.errCount = Crossword.WORD_ERROR_PENALTY+this.errCount;
+		}
+		
+		public void isHint()
+		{
+			this.hintCount++;
 		}
 }

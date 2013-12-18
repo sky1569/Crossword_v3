@@ -93,27 +93,28 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	private boolean 		solidSelection;	// PREFERENCES: Selection persistante
 	private boolean			gridIsLower;	// PREFERENCES: Grille en minuscule
 	
-	private int width;
-	private int height;
+	private int 			width;
+	private int 			height;
 
-	@Override
+
+	/*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.crossword, menu);
         return true;
-    }
+    }*/
 
 	@Override
 	public void onPause()
 	{
-		//module.getScore();
+		module.score();
 		//module.save(this.gridAdapter,this.grid);
 		super.onPause();
 	}
 	
 	@Override
 	public void onStop(){
-		//module.getScore();
+		module.score();
 		//module.save(this.gridAdapter,this.grid);
 		super.onStop();
 	}
@@ -220,13 +221,17 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
                 this.currentX = x;
             	this.currentY = y;
             	this.isCross = this.module.isCross(currentX, currentY);
+            	//
+            	
             	currentWord = module.getCorrectWord(currentX,currentY,this.horizontal);
-              
+            	Log.v("h", currentWord.getCap());
         	    if (this.currentWord == null)
         	    	break;
         	    this.horizontal = this.currentWord.getHoriz();
         	  //在设置背景之前先重绘一遍
         		this.gridAdapter.reDrawGridBackground(this.gridView);
+        		this.gridAdapter.notifyDataSetChanged();
+        		
                 if(isCross){
                 	
                 	this.currentWordHor = module.getCorrectWord(x, y, true);
@@ -306,17 +311,32 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		
 		module.toChinese(x,y,this.currentWord);
 		
-		if(module.isComplete(this)) return;
 		
-		if (value.equals(Crossword.UNFILLED)) {
+		if(module.isComplete(this)) 
+		{
+		   this.module.score();
+		   // module.save(this.gridAdapter,this.grid);
+		    
+			return;
+		}
+		
+		if (value.equals(Crossword.UNFILLED)) 
 			
-			if(areaValue.equals(Crossword.UNFILLED))
+			//删除键功能不要删！！！！
+			/*{
+			 * if(areaValue.equals(Crossword.UNFILLED))
 			{
 				x = (this.horizontal ? x - 1 : x);
 				y = (this.horizontal ? y: y - 1);
 			}
-			
-		}
+			}
+			*/
+			{
+				this.module.replay();
+				//this.gridAdapter.reDrawGridBackground(this.gridView);
+				return;
+			}
+		
 
 		if(!value.equals(Crossword.UNFILLED))
 		{
@@ -378,7 +398,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		for(int l = 0;l<word.getLength();l++){
 			int index = y*this.width + x + l*(horizontal?1:this.width);
 			View currentChild = this.gridView.getChildAt(index);
-			if(currentChild != null){
+			if(!currentChild .equals( Crossword.BLOCK)){
 				//currentChild.setBackgroundResource(index == currIndex?R.drawable.area_current:R.drawable.area_selected);
 				currentChild.setBackgroundResource(index == currIndex?R.color.current_selected_color:R.color.selected_area_color);
 				selectedArea.add(currentChild);
