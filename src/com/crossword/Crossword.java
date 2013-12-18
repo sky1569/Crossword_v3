@@ -36,6 +36,8 @@ public class Crossword extends Application {
 	
 	public static final String 		MAIL_URL = "http://mail.alexislauper.com/";
 	public static final String 		FEEDBACK_URL = "http://isshun.github.com/Crossword/Feedback";
+	
+	
 	public static final int			REQUEST_PREFERENCES = 2;
 	public static final float 		KEYBOARD_OVERLAY_OFFSET = 90;
 	public static final String	 	NAME = "Crossword";
@@ -46,7 +48,7 @@ public class Crossword extends Application {
 	//public static String[][] 		correctionArea; // Tableau repr茅sentant les lettres correctes
 	public static final String      UNFILLED = "-";
 	public static final String      BLANK=" ";
-	public static final String      BLOCK="";
+	public static final String      BLOCK="#";
 	public static final int 		AREA_BLOCK = -1;
 	public static final int 		AREA_WRITABLE = 0;
 	public static final String      COMPLETETIP="通关了，你这么厉害，你家里人知道么";
@@ -60,7 +62,9 @@ public class Crossword extends Application {
 	public static final int DATABASE_VERSION = 1;
 	public static final String TABLE_NAME = "Grid";
 	public static final String GRIDITEM= " file VARCHAR ,uniqueid INTEGER," +
-			"volNumber INTEGER,level INTEGER,degree INTEGER,category VARCHAR,jsonData TEXT,score INTEGER," +
+			"volNumber INTEGER,level INTEGER,degree INTEGER,category VARCHAR,islocked INTGER," +
+			//"star INTGER," +
+			"jsonData TEXT,score INTEGER," +
 			" date VARCHAR,gamename VARCHAR,author VARCHAR,width INTEGER,height INTEGER";
    // public static final String  BLOCK = "#";
    // public static final String  BLANK = " ";

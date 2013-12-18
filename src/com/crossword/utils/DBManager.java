@@ -63,7 +63,7 @@ public class DBManager {
 		cv.put("degree", grid.getDegree());
 		cv.put("category", grid.getCategory());
 		cv.put("islocked", grid.getIslocked());
-		cv.put("star", grid.getStar());
+		//cv.put("star", grid.getStar());
 		cv.put("jsonData",grid.getJsonData());
 		cv.put("score", grid.getScore());
 		cv.put("date", grid.getDate());
@@ -105,7 +105,7 @@ public class DBManager {
 		cv.put("degree", grid.getDegree());
 		cv.put("category", grid.getCategory());
 		cv.put("islocked", grid.getIslocked());
-		cv.put("star", grid.getStar());
+		//cv.put("star", grid.getStar());
 		cv.put("jsonData",grid.getJsonData());
 		cv.put("score", grid.getScore());
 		cv.put("date", grid.getDate());
@@ -182,7 +182,7 @@ public class DBManager {
 			g.setDegree(c.getInt(c.getColumnIndex("degree")));
 			g.setCategory(c.getString(c.getColumnIndex("category")));
 			g.setIslocked(c.getInt(c.getColumnIndex("islocked")));
-			g.setStar(c.getInt(c.getColumnIndex("star")));
+			//g.setStar(c.getInt(c.getColumnIndex("star")));
 			g.setJsonData(c.getString(c.getColumnIndex("jsonData")));
 			g.setScore(c.getInt(c.getColumnIndex("score")));
 			g.setDate(c.getString(c.getColumnIndex("date")));
@@ -215,7 +215,9 @@ public class DBManager {
 	 */
 	public Cursor queryCursorByKey(String key,Object value){
 		//db = helper.getWritableDatabase();
-		String[] columns = {"file","uniqueid","volNumber","level","degree","category","islocked","star","jsonData","score",
+		String[] columns = {"file","uniqueid","volNumber","level","degree","category","islocked",
+				//"star",
+				"jsonData","score",
 				             "date","gamename","author","width","height"};
 		String selection = key+"="+value;
 		Cursor c = db.query(true, Crossword.TABLE_NAME, columns, selection, null, null, null, null, null);

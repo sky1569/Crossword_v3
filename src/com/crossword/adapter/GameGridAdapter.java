@@ -131,7 +131,7 @@ public class GameGridAdapter extends BaseAdapter {
 		}
 
 		if(!data .equals( Crossword.BLOCK))
-		{            System.out.println(""+this.width);
+		{         //   System.out.println(""+this.width);
 					v.setTextColor(context.getResources().getColor(R.color.normal));//test
 					v.setText(data.toUpperCase());
 			
@@ -143,19 +143,31 @@ public class GameGridAdapter extends BaseAdapter {
 	
 	//重新绘制，把小格的背景变为初始状态
 	public void reDrawGridBackground(GridView v){
-		
-		for(int i = 0;i < this.height;i++){
+		/*for(int i = 0;i < this.height;i++){
 			for(int j = 0;j < this.width;j++){
-				
-				int index = i*width + j;
+				int index2 = i*this.width + j;
 
 				
 				String value =  this.module.getareaValue(j,i);
+				Log.v("test4", value);
+				System.out.println("test4..."+index2);
+			}
+			}*/
+		for(int y = 0;y < this.height;y++){
+			for(int x = 0;x < this.width;x++){
+				
+				int index = y*this.width + x;
 
-				/*v.getChildAt(index).setBackgroundResource(value .equals(( Crossword.BLOCK))?
-						                                    R.drawable.area_block1:R.drawable.area_empty);*/
+				
+				String value =  this.module.getareaValue(x,y);
+				
+			//	Log.v("test", value);
+			if(v.getChildAt(index)!=null)
 				v.getChildAt(index).setBackgroundResource(value .equals(( Crossword.BLOCK))?
                         R.color.block_color:R.color.empty_color);
+			//	Log.v("test2", value);
+			//	System.out.println("test3..."+index);
+				else  Log.v("test5", "你家里人知道吗");
 			}
 		}
 	}

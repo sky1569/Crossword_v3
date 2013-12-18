@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
@@ -29,9 +30,9 @@ public class Module {
      private int 				score;
      private int				filled;
      private int 				empty;
- 	 private int 			hintCount = 0;
- 	 private int 			corCount = 0;
- 	 private int 			errCount = 0;
+ 	 private int 			hintCount ;
+ 	 private int 			corCount ;
+ 	 private int 			errCount ;
  	 
  	 
      public Module(Context context){
@@ -69,6 +70,10 @@ public class Module {
 	    		 this.area[j][i]=Crossword.BLOCK;
 	    		 this.displayArea[j][i]=Crossword.BLOCK;
 	    	 }
+	     this.errCount = 0;
+	     this.corCount = 0;
+	     this.hintCount = 0;
+	     this.score = 0;
 	 }
 	 
 	/* public LinkedList<Word>  getEntry(){
@@ -87,19 +92,21 @@ public class Module {
 	    		if(currentWords.charAt(i) != correctWords.getCap().charAt(i))
 	    		{
 	    			
-	    		currentX=Horiz ? correctWords.getX()+i:correctWords.getX();
-	    		currentY=Horiz ? correctWords.getY():correctWords.getY()+i;
+	    		  currentX=Horiz ? correctWords.getX()+i:correctWords.getX();
+	    		  currentY=Horiz ? correctWords.getY():correctWords.getY()+i;
 	    			if(isCross(currentX, currentY))
 	    			{
 	    				int j = currentX-this.getCorrectWord(currentX, currentY,!correctWords.getHoriz()).getX()+currentY-this.getCorrectWord(currentX, currentY,!correctWords.getHoriz()).getY();
 	    				if(currentWords.charAt(i) == 
 	    					this.getCorrectWord(currentX, currentY,!correctWords.getHoriz()).getCap().charAt(j)){continue;}
 	   				}
-	    		    		  
+	    		    if(this.isWordComplete(x, y,Horiz))  this.isErr();		  //计分
+	    			//if(i < correctWords.getLength())
 	    				return false;	
 	    		}
 	    				
 	    	}
+			  if(this.isWordComplete(x, y,Horiz)) this.isCor(correctWords.getLength());	//计分
 			  return true;   	    
 	    
 	    }
@@ -117,20 +124,28 @@ public class Module {
 				  for(int j = 0;j < this.height;j++)
 				  {
 					  if(!this.isBlock(i,j))
-						//  continue;
+						 // continue;
 					//  else 
 						  {
 						  		//this.setDisValue(i, j, Crossword.UNFILLED);
 						  		//this.setValue(i, j, Crossword.UNFILLED);
-						  this.area[i][j] = Crossword.UNFILLED;
-						  this.displayArea[i][j] = Crossword.UNFILLED;
+						  this.area[j][i] = Crossword.UNFILLED;
+						  this.displayArea[j][i] = Crossword.UNFILLED;
 				  }
 			  
 			
 			  }
 		  }
 		 
-			
+		/*public void delete(int x,int y)
+		{
+			if(area[y][x].equals(Crossword.UNFILLED))
+			{
+				x = (this.horizontal ? x - 1 : x);
+				y = (this.horizontal ? y: y - 1);
+			}
+		}*/
+		
 		
 	  
 		//保存Grid信息，先写入JSON，再写入数据库
@@ -278,7 +293,7 @@ public class Module {
 			
 				{
 				this.displayArea[y][x] = value.toUpperCase();
-				System.out.println(this.displayArea[y][x]);
+			//	System.out.println(this.displayArea[y][x]);
 				}
 		}
 		
@@ -328,17 +343,19 @@ public class Module {
 			    }
 			    if (horizontal)
 			    {
-			    	System.out.println((horizontalWord != null) ? horizontalWord : verticalWord);
+			    	//System.out.println((horizontalWord != null) ? horizontalWord : verticalWord);
 			    	return (horizontalWord != null) ? horizontalWord : verticalWord;}
 			    else
 			    	return (verticalWord != null) ? verticalWord : horizontalWord;
 		    }
 		
 		
-		 public int score(){
-			this.score=0;	
+		 public void score(){
+			this.score=this.corCount-this.hintCount-this.errCount;	
 			this.grid.setScore(this.score);	
-		    return this.score;
+			//Log.isLoggable("score", this.score);
+			System.out.println("score..."+this.score);
+		    //return this.score;
 			
 		}
 		 
@@ -397,25 +414,26 @@ public class Module {
 			return false;//return filled * 100 / (empty + filled);
 		}
 		
-		public boolean isWordComplete(int x ,int y)
+		//以下计分功能
+		public boolean isWordComplete(int x ,int y,boolean h)
 		{
 			
-			Word corw = this.getCorrectWord(x, y, true);
+			Word corw = this.getCorrectWord(x, y, h);
 			String curw = this.getWord(x, y,corw.getLength(), corw.getHoriz());
 			if(curw.contains(Crossword.UNFILLED))   return false;	
 			
 			return true;
 		}
 		
-		public void isCor()
+		public void isCor(int l)
 		{
 			//if(this.isWordComplete(x, y)){}
-			this.corCount++;
+			this.corCount = Crossword.SCORE_PER_CHARACTER*l+this.corCount;
 		}
 		public void isErr()
 		{
 			//if(this.isWordComplete(x, y)){}
-			this.errCount++;
+			this.errCount = Crossword.WORD_ERROR_PENALTY+this.errCount;
 		}
 		
 		public void isHint()

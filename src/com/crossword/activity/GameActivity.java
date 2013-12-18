@@ -107,14 +107,14 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	@Override
 	public void onPause()
 	{
-		//module.score();
+		module.score();
 		//module.save(this.gridAdapter,this.grid);
 		super.onPause();
 	}
 	
 	@Override
 	public void onStop(){
-		//module.score();
+		module.score();
 		//module.save(this.gridAdapter,this.grid);
 		super.onStop();
 	}
@@ -221,13 +221,17 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
                 this.currentX = x;
             	this.currentY = y;
             	this.isCross = this.module.isCross(currentX, currentY);
+            	//
+            	
             	currentWord = module.getCorrectWord(currentX,currentY,this.horizontal);
-              
+            	Log.v("h", currentWord.getCap());
         	    if (this.currentWord == null)
         	    	break;
         	    this.horizontal = this.currentWord.getHoriz();
         	  //在设置背景之前先重绘一遍
         		this.gridAdapter.reDrawGridBackground(this.gridView);
+        		this.gridAdapter.notifyDataSetChanged();
+        		
                 if(isCross){
                 	
                 	this.currentWordHor = module.getCorrectWord(x, y, true);
@@ -310,21 +314,29 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		
 		if(module.isComplete(this)) 
 		{
-		    //this.module.score();
+		   this.module.score();
 		   // module.save(this.gridAdapter,this.grid);
 		    
 			return;
 		}
 		
-		if (value.equals(Crossword.UNFILLED)) {
+		if (value.equals(Crossword.UNFILLED)) 
 			
-			if(areaValue.equals(Crossword.UNFILLED))
+			//删除键功能不要删！！！！
+			/*{
+			 * if(areaValue.equals(Crossword.UNFILLED))
 			{
 				x = (this.horizontal ? x - 1 : x);
 				y = (this.horizontal ? y: y - 1);
 			}
-			
-		}
+			}
+			*/
+			{
+				this.module.replay();
+				//this.gridAdapter.reDrawGridBackground(this.gridView);
+				return;
+			}
+		
 
 		if(!value.equals(Crossword.UNFILLED))
 		{
@@ -386,7 +398,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		for(int l = 0;l<word.getLength();l++){
 			int index = y*this.width + x + l*(horizontal?1:this.width);
 			View currentChild = this.gridView.getChildAt(index);
-			if(currentChild != null){
+			if(!currentChild .equals( Crossword.BLOCK)){
 				//currentChild.setBackgroundResource(index == currIndex?R.drawable.area_current:R.drawable.area_selected);
 				currentChild.setBackgroundResource(index == currIndex?R.color.current_selected_color:R.color.selected_area_color);
 				selectedArea.add(currentChild);
