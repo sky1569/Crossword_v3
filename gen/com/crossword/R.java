@@ -139,7 +139,11 @@ public final class R {
         public static final int grid=0x7f0b000a;
         public static final int gridListMessage=0x7f0b0012;
         public static final int gridListView=0x7f0b0013;
+<<<<<<< HEAD
         public static final int home_logo=0x7f0b0016;
+=======
+        public static final int gridview=0x7f0b0016;
+>>>>>>> de6f23f46e4aa2e1923e14cafff369abc32299b5
         public static final int keyboard=0x7f0b000b;
         public static final int keyboard_overlay=0x7f0b000c;
         public static final int level=0x7f0b0015;
@@ -166,7 +170,11 @@ public final class R {
         public static final int gridlist=0x7f030004;
         public static final int gridlist_item=0x7f030005;
         public static final int gridlist_separator=0x7f030006;
+<<<<<<< HEAD
         public static final int home=0x7f030007;
+=======
+        public static final int gridview=0x7f030007;
+>>>>>>> de6f23f46e4aa2e1923e14cafff369abc32299b5
         public static final int keyboard=0x7f030008;
         public static final int main=0x7f030009;
     }
