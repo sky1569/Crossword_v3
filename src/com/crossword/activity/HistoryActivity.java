@@ -12,16 +12,21 @@ import com.crossword.utils.Module;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.GridView;
 
-public class HistoryActivity extends Activity {
+public class HistoryActivity extends Activity implements OnTouchListener{
 
 	
 	private LinkedList<Vol> entities;
 	private GridView        volGridView;
 	private VolGridAdapter  volGridAdapter;
 	private Module          module;
+	private Vol             currentVol;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,6 +43,27 @@ public class HistoryActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.history, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		// TODO Auto-generated method stub
+		switch(event.getAction()){
+		 
+		    case MotionEvent.ACTION_UP:
+		    	int x = (int) event.getX();
+		    	int y = (int) event.getY();
+		    	int index = this.volGridView.pointToPosition(x, y);
+		    	this.currentVol = this.entities.get(index);
+		    	Intent intent = new Intent();
+		    	intent.setClass(this, HomeActivity.class);
+		    	Bundle bundle = new Bundle();
+		    	bundle.putSerializable("currentVol", currentVol);
+		    	intent.putExtras(bundle);
+		    	startActivity(intent);
+		    	break;
+		}
 		return true;
 	}
 

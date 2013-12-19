@@ -1,7 +1,10 @@
 package com.crossword.data;
 
-public class Vol {
+import java.io.Serializable;
 
+public class Vol implements Serializable{
+
+	public static final long serialVersionUID = -7060210544600464481L;
 	private String name ;
 	private String openDate;
 	private int    amountOfLevels;
