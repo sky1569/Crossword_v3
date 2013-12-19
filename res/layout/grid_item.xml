@@ -10,8 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:paddingTop="30dip"
-        android:text="第1关"
+        android:paddingTop="20dip"
+        
         android:textSize="@dimen/vol_number_textsize"
         android:textColor="@color/text_black" />
     <ImageView 

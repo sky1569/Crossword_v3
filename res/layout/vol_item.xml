@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="84dip"
-    android:layout_height="85dip"
+    android:layout_width="85dip"
+    android:layout_height="84dip"
     android:orientation="vertical" 
     android:background="@drawable/vol_active"
     android:id="@+id/vol_gird_layout">
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:paddingTop="30dip"
+        android:paddingTop="20dip"
         android:text="第1期"
         android:textSize="@dimen/vol_number_textsize"
         android:textColor="@color/text_black" />
