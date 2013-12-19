@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper{
 
 
+	
 	//CursorFactory设置为null
 	public DBHelper(Context context){
 		super(context, Crossword.DATABASE_NAME, null, Crossword.DATABASE_VERSION);
@@ -19,6 +20,9 @@ public class DBHelper extends SQLiteOpenHelper{
 		super(context, name, factory, version);
 		// TODO Auto-generated constructor stub
 	}
+	
+
+	
 
 	//数据库第一次被创建时onCreate会被调用
 	@Override
@@ -26,12 +30,15 @@ public class DBHelper extends SQLiteOpenHelper{
 		// TODO Auto-generated method stub
 		db.execSQL("CREATE TABLE IF NOT EXISTS "+Crossword.GRID_TABLE+
 				"(_id INTEGER PRIMARY KEY AUTOINCREMENT,"+Crossword.GRIDITEM+")");
+		db.execSQL("CREATE TABLE IF NOT EXISTS "+Crossword.VOL_TABLE+
+				"(_id INTEGER PRIMARY KEY AUTOINCREMENT,"+Crossword.VOLITEM+")");
 	}
    //如果DARABASE_VERSION值被改为2，系统发现有数据库版本不同，即会调用onUpgrade
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
-		db.execSQL("ALERT TABLE"+Crossword.GRID_TABLE +"ADD COLUMN onter STRING");
+		db.execSQL("ALERT TABLE"+Crossword.GRID_TABLE+"ADD COLUMN onter STRING");
+		db.execSQL("ALERT TABLE"+Crossword.VOL_TABLE+"ADD COLUMN onter STRING");
 		
 	}
 

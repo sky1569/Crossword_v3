@@ -19,6 +19,7 @@ public class DBManager {
 	private DBHelper helper;
 	private SQLiteDatabase db;
 	
+
 	public DBManager(Context context){
 		
 		helper = new DBHelper(context);
@@ -38,25 +39,42 @@ public class DBManager {
 	//将新的期信息加入到数据库中
 	public void add(Vol vol){
 		
+		db = helper.getWritableDatabase();
+		Cursor c = queryCursorByKey(Crossword.VOL_TABLE,Crossword.columnsOfVolTable,"vol_no",vol.getVolNumber());
+		//如果不为空就不用再插入
+		if(c.getCount() != 0){
+			
+			return ;
+		}
+		
+		db.beginTransaction();
+		try{
+			
+			ContentValues cv = new ContentValues();
+			cv.put("name", vol.getVolName());
+			cv.put("open_date", vol.getOpenDate());
+			cv.put("amount_of_levels", vol.getAmountOfLevels());
+			cv.put("vol_no", vol.getVolNumber());
+			cv.put("score", vol.getScore());
+			//开始插入进VOL_TABLE表中
+			db.insert(Crossword.VOL_TABLE, null, cv);
+			db.setTransactionSuccessful();
+			
+		}finally{
+			db.endTransaction();
+			db.close();
+		}
+		
 	}
 	
 	
 	
 	//将新的grid增加到数据库中
 	public void add(Grid grid){
-		//Cursor c = queryTheCursor();
-		//若某一个grid已经存在，则返回
-		/*while(c.moveToNext()){
-			if(c.getString(c.getColumnIndex("filename")).equals(grid.getFilename())){
-				
-				return;
-			}
-			
-			break;
-		}*/
+
 		//这儿要打开
 		db = helper.getWritableDatabase();
-		Cursor c = queryCursorByKey("uniqueid",grid.getUniqueid());
+		Cursor c = queryCursorByKey(Crossword.GRID_TABLE,Crossword.columnsOfGridTable,"uniqueid",grid.getUniqueid());
 		//如果不为空就不用再插入了
 		if(c.getCount() != 0){
 			
@@ -129,30 +147,36 @@ public class DBManager {
 	}
 	
 	/**
+	 * 更新VOL_TABLE
+	 */
+	
+	public void updateVolData(Vol vol){
+		
+		db = helper.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put("name", vol.getVolName());
+		cv.put("open_date", vol.getOpenDate());
+		cv.put("amount_of_levels", vol.getAmountOfLevels());
+		cv.put("vol_no", vol.getVolNumber());
+		cv.put("score", vol.getScore());
+		//更新VOL_TABLE项
+		db.update(Crossword.VOL_TABLE, cv, "vol_no = ?", new String[]{vol.getVolNumber().toString()});
+		db.close();
+	}
+	
+	/**
 	 * 
 	 */
 	
 	public Grid queryGridByKey(String key,Object value,JsonUtil jsonUtil){
 		db = helper.getWritableDatabase();
-		Cursor c = queryCursorByKey(key,value);
+		Cursor c = queryCursorByKey(Crossword.GRID_TABLE,Crossword.columnsOfGridTable,key,value);
 		//如果没有查到
 		if(c.getCount() == 0){
 			return null;
 		}
 		Grid g = new Grid();
 		if(c.moveToFirst()){
-			/*g.setFilename(c.getString(c.getColumnIndex("file")));
-			g.setUniqueid(c.getInt(c.getColumnIndex("uniqueid")));
-			g.setVol(c.getInt(c.getColumnIndex("vol")));
-			g.setLevel(c.getInt(c.getColumnIndex("level")));
-			g.setCategory(c.getString(c.getColumnIndex("category")));
-			g.setJsonData(c.getString(c.getColumnIndex("jsonData")));
-			g.setScore(c.getInt(c.getColumnIndex("score")));
-			g.setDate(c.getString(c.getColumnIndex("date")));
-			g.setGamename(c.getString(c.getColumnIndex("gamename")));
-			g.setAuthor(c.getString(c.getColumnIndex("author")));
-			g.setWidth(c.getInt(c.getColumnIndex("width")));
-			g.setHeight(c.getInt(c.getColumnIndex("height")));*/
 			String jsonData = c.getString(c.getColumnIndex("jsonData"));
 			g = jsonUtil.parseGridJson(jsonData);
 		}
@@ -162,7 +186,38 @@ public class DBManager {
 		return g;
 	}
 	
+
 	
+	
+	/**
+	 * 根据关键值查找Vol，一般通过期数
+	 */
+	
+	public Vol queryVolByKey(String key,Object value){
+		
+		db = helper.getWritableDatabase();
+		Cursor c = queryCursorByKey(Crossword.VOL_TABLE,Crossword.columnsOfVolTable,key,value);
+		
+		//如果没有查到
+		if(c.getCount() == 0){
+			
+			return null;
+		}
+		
+		Vol vol = new Vol();
+		if(c.moveToFirst()){
+			vol.setVolName(c.getString(c.getColumnIndex("name")));
+			vol.setOpenDate(c.getString(c.getColumnIndex("open_date")));
+			vol.setAmountOfLevels(c.getInt(c.getColumnIndex("amount_of_levels")));
+			vol.setVolNumber(c.getInt(c.getColumnIndex("vol_no")));
+			vol.setScore(c.getInt(c.getColumnIndex("score")));
+	
+		}
+		
+		c.close();
+		db.close();
+		return vol;
+	}
 	
 	/**
 	 * 删除grid
@@ -182,7 +237,7 @@ public class DBManager {
 	 */
 	/**/public List<GridforSaved> query(){
 		ArrayList<GridforSaved> grids = new ArrayList<GridforSaved>();
-		Cursor c = queryTheCursor();
+		Cursor c = queryTheCursor(Crossword.GRID_TABLE);
 		while(c.moveToNext()){
 			GridforSaved g = new GridforSaved();
 			g.setFilename(c.getString(c.getColumnIndex("file")));
@@ -208,13 +263,36 @@ public class DBManager {
 		return grids;
 	}
 	
+	
+	/**
+	 * 查询Vol列表中所有vol，并返回列表
+	 */
+	
+	public LinkedList<Vol> queryAllExistVol(){
+		db = helper.getWritableDatabase();
+		LinkedList<Vol> entities = new LinkedList<Vol>();
+		Cursor c = queryTheCursor(Crossword.VOL_TABLE);
+		while(c.moveToNext()){
+			
+			Vol entity = new Vol();
+			entity.setVolName(c.getString(c.getColumnIndex("name")));
+			entity.setOpenDate(c.getString(c.getColumnIndex("open_date")));
+			entity.setAmountOfLevels(c.getInt(c.getColumnIndex("amount_of_levels")));
+			entity.setVolNumber(c.getInt(c.getColumnIndex("vol_no")));
+			entity.setScore(c.getInt(c.getColumnIndex("score")));
+			entities.add(entity);
+		}
+		db.close();
+		return entities;
+	}
+	
 	/**
 	 * 查询grid表的所有grid，返回一个指针
 	 * @return
 	 */
-	public Cursor queryTheCursor(){
+	public Cursor queryTheCursor(String tableName){
 		//db = helper.getWritableDatabase();
-		Cursor c = db.rawQuery("SELECT * FROM "+Crossword.GRID_TABLE, null);
+		Cursor c = db.rawQuery("SELECT * FROM "+tableName, null);
 		//db.close();
 		return c;
 	}
@@ -223,14 +301,15 @@ public class DBManager {
 	 * 查询表中带条件值的记录
 	 *
 	 */
-	public Cursor queryCursorByKey(String key,Object value){
+	public Cursor queryCursorByKey(String tableName,String[] columns,String key,Object value){
 		//db = helper.getWritableDatabase();
-		String[] columns = {"file","uniqueid","volNumber","level","degree","category","islocked",
+		
+		/*String[] columns = {"file","uniqueid","volNumber","level","degree","category","islocked",
 				//"star",
 				"jsonData","score",
-				             "date","gamename","author","width","height"};
+				             "date","gamename","author","width","height"};*/
 		String selection = key+"="+value;
-		Cursor c = db.query(true, Crossword.GRID_TABLE, columns, selection, null, null, null, null, null);
+		Cursor c = db.query(true, tableName, columns, selection, null, null, null, null, null);
 		//db.close();
 		return c;
 	}

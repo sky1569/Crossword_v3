@@ -159,7 +159,7 @@ public class GameGridAdapter extends BaseAdapter {
 				int index = y*this.width + x;
 
 				
-				String value =  this.module.getareaValue(x,y);
+				String value =  this.module.getAreaValue(x,y);
 				
 			//	Log.v("test", value);
 			//if(v.getChildAt(index)!=null)

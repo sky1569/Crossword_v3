@@ -11,28 +11,31 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.crossword.R;
+import com.crossword.data.Grid;
 import com.crossword.data.Vol;
 
 public class GridListAdapter extends BaseAdapter {
 	private int columnNum ;
-	private int volLength;
+	private int gridListLength;
 	private Context context;
-	private LinkedList<Vol> entities;
+	private LinkedList<Grid> entities;
+	private Vol				vol;
 	//private RelativeLayout volGridLayout;
 	private LayoutInflater inflater;
-	public GridListAdapter(Context context,LinkedList<Vol> entities){
+	public GridListAdapter(Context context,LinkedList<Grid> entities){
 		this.context = context;
 		//列数是固定的3
 		this.columnNum = 3;
-		this.volLength = entities.size();
+		this.gridListLength = entities.size();
 		this.entities = entities;
 		this.inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+		TextView gridListTitleText = (TextView)view.findViewById(R.id.gridlist_title_text);
 	}
 	
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return volLength+1;
+		return gridListLength;
 	}
 
 	@Override
@@ -54,14 +57,14 @@ public class GridListAdapter extends BaseAdapter {
 		View view = new View(this.context);
 	    view = inflater.inflate(R.layout.grid_item, null);
 		RelativeLayout gridListLayout = (RelativeLayout) view.findViewById(R.id.gridList_layout);
-		TextView volNumberText = (TextView)view.findViewById(R.id.vol_number_text);
-		TextView volScoreText = (TextView)view.findViewById(R.id.vol_score_text);
+		TextView gridNumberText = (TextView)view.findViewById(R.id.grid_number_text);
+	//	TextView volScoreText = (TextView)view.findViewById(R.id.vol_score_text);
 		
-	     if(position < volLength){//若position不超过volLength,则显示所有期的信息；否则显示下一期和正在直播的
-			Vol entity = entities.get(position);
-			String volName = entity.getVolName();
+	     if(position < gridListLength){//若position不超过volLength,则显示所有期的信息；否则显示下一期和正在直播的
+			Grid entity = entities.get(position);
+			String volName = vol.getVolName();
 			System.out.println(volName);
-			int score = entity.getScore();
+		//	int score = entity.getScore();
 			volNumberText.setText(volName);
 			//如果当前的积分是0，则计算
 			if(score == 0){

@@ -18,6 +18,7 @@ import com.crossword.data.Word;
 
 public class Module {
 	 private Grid   grid;                   //从json中解析出grid的所有信息，包括关卡的信息以及所有的Word
+	 private Vol    currVol;                    //当前期
 	 private LinkedList<Word> entries  =  new LinkedList<Word>();
 	 private JsonUtil jsonUtil;
 	 private DBManager dbManager;
@@ -34,7 +35,7 @@ public class Module {
  	 private int 			hintCount ;
  	 private int 			corCount ;
  	 private int 			errCount ;
- 	 
+          
  	 
      public Module(Context context){
     	 this.context = context;
@@ -61,8 +62,15 @@ public class Module {
 		 
 		 LinkedList<Vol> entities = new LinkedList<Vol>();
 		 String jsonData = jsonUtil.readJsonFromUrl(url);
+		 //如果jsonData为空，说明没有下载成功
+		 if(jsonData == null){
+			 return null;
+		 }
 		 entities = jsonUtil.parseVolJson(jsonData);
-		 //从数据库中读出对应期的关卡的积分并累加，最后存入entities中
+		 //将解析到的Vol数据插入到数据库中VOLTABLE中
+		 for(Vol entity:entities){
+			 dbManager.add(entity);
+		 }
 		 return entities;
 	 }
 	 
@@ -70,7 +78,6 @@ public class Module {
 	 public void initModule(Grid grid){
 		 
 		 this.width = grid.getWidth(); 
-		 this.height = grid.getHeight();
 		 this.area = new String[this.height][this.width];
 	     this.correctionArea = new String[this.height][this.width];
 	     this.displayArea = new String[this.height][this.width];
@@ -171,8 +178,8 @@ public class Module {
 		
 		
 		
-		//通过第几关查找数据库
-		public Grid queryByUniqueid(int uniqueid){
+		//通过uniqueid查找数据库
+		public Grid queryGridByUniqueid(int uniqueid){
 			//无论如何先看数据库里面有符合uniqueid的项
 			this.grid = dbManager.queryGridByKey("uniqueid", uniqueid,this.jsonUtil);
 			//如果没有查到，则打开网络访问
@@ -189,6 +196,28 @@ public class Module {
 			return this.grid;
 			
 		}
+		//先遍历VOLTABLE中的所有项，为了画往期回顾，再下载
+		public LinkedList<Vol> getNewestVol(){
+			
+			LinkedList<Vol> entities = new LinkedList<Vol>();
+			
+			//这段应当加一个多线程从服务器上加载最新的vol的，目前先不考虑，只做先下载后读取所有的vol
+			parseVolFromUrl(Crossword.VOL_REQUEST_URL);
+			entities = dbManager.queryAllExistVol();
+			return entities;
+		}
+		
+		
+		//通过当前的grid查找当前的vol
+		public Vol queryVolByVolNumber(Grid grid){
+			
+			Vol vol = dbManager.queryVolByKey("vol_no", grid.getVol());
+			
+			return vol;
+		}
+		
+		
+		
 		 
 		public void initentries()
 		{
@@ -288,7 +317,7 @@ public class Module {
 					this.area[y][x] = value.toUpperCase();
 		}
 		
-	  public String getareaValue(int x,int y)
+	  public String getAreaValue(int x,int y)
 		
 		{
 			
@@ -358,11 +387,12 @@ public class Module {
 		    }
 		
 		
-		 public void score(){
+		 public void scoring(){
 			this.isCor();
 			this.score=this.corCount-this.hintCount-this.errCount;	
 			this.grid.setScore(this.score);	
 			//Log.isLoggable("score", this.score);
+			
 			System.out.println("score..."+this.score);
 		    //return this.score;
 			
