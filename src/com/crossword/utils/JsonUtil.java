@@ -61,7 +61,7 @@ public class JsonUtil {
 
 	}
 	
-	
+/*	
 	public String readJsonDataFromAssets(String filename){
 		
 				String res = "";
@@ -83,7 +83,7 @@ public class JsonUtil {
 
 	}
 	
-	
+	*/
 	
 	public String readJsonFromUrl(String url){
 		

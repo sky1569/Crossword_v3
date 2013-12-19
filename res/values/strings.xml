@@ -63,10 +63,18 @@ Les fonctionnalitées à venirs sont:\n
     <string name="preferences_check_summary">Les lettres fausses apparaissent en rouge</string>
     <string name="preferences_check_title">Correction pas à pas</string>
     <string name="preferences_feedback_title">Feedback</string>
+<<<<<<< HEAD
     <string name="title_activity_history">HistoryActivity</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="history_review">往期回顾</string>
     <string name="no_current_socre">暂无积分</string>
     <string name ="next_vol_text">下一期</string>
+=======
+    <string name="button_history">往期回顾</string>
+    <string name="button_live">直播互动</string>
+    <string name="button_breakthough">闯关模式</string>
+    <string name="button_rank">积分排名</string>
+
+>>>>>>> 0d74e4e0cdd83201c772fe204471921ea3f02c17
 </resources>

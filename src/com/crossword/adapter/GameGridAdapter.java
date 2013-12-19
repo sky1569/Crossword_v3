@@ -162,12 +162,12 @@ public class GameGridAdapter extends BaseAdapter {
 				String value =  this.module.getareaValue(x,y);
 				
 			//	Log.v("test", value);
-			if(v.getChildAt(index)!=null)
+			//if(v.getChildAt(index)!=null)
 				v.getChildAt(index).setBackgroundResource(value .equals(( Crossword.BLOCK))?
                         R.color.block_color:R.color.empty_color);
 			//	Log.v("test2", value);
 			//	System.out.println("test3..."+index);
-				else  Log.v("test5", "你家里人知道吗");
+			//	else  Log.v("test5", "你家里人知道吗");
 			}
 		}
 	}
