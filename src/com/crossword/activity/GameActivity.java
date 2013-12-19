@@ -108,14 +108,14 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	@Override
 	public void onPause()
 	{
-		module.score();
+		module.scoring();
 		//module.save(this.gridAdapter,this.grid);
 		super.onPause();
 	}
 	
 	@Override
 	public void onStop(){
-		module.score();
+		module.scoring();
 		//module.save(this.gridAdapter,this.grid);
 		super.onStop();
 	}
@@ -129,7 +129,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	  //  this.url = Crossword.GRID_URL + 10002;
 	  //  module.parseGrid(this, this.url);
 	    //通过uniqueid查找grid，如果没有就会从网页下载
-	    this.grid = module.queryByUniqueid(10002);
+	    this.grid = module.queryGridByUniqueid(10002);
 
 	    if (this.grid == null) {
 	    	finish();
@@ -305,7 +305,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		// Si la case est noire => retour
 		if (this.module.isBlock(x, y))
 			return;
-		String areaValue=this.module.getareaValue(x, y);
+		String areaValue=this.module.getAreaValue(x, y);
 	/*
 		this.module.setValue(x, y, value);
 		this.module.setDisValue(x, y,value);
@@ -335,7 +335,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		    		
 		   // module.save(this.gridAdapter,this.grid);
 		   
-			    	this.module.score();
+			    	this.module.scoring();
 			//    	this.completeFlag = true ;
 			    	return;
 		    	

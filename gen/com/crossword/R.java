@@ -114,12 +114,13 @@ public final class R {
         public static final int progress_6=0x7f020039;
         public static final int set_button=0x7f02003a;
         public static final int sym_keyboard_delete=0x7f02003b;
-        public static final int vol_active=0x7f02003c;
-        public static final int vol_active_2x=0x7f02003d;
-        public static final int vol_enable=0x7f02003e;
-        public static final int vol_enable_2x=0x7f02003f;
-        public static final int vol_next=0x7f020040;
-        public static final int vol_next_2x=0x7f020041;
+        public static final int unlocked_icon=0x7f02003c;
+        public static final int vol_active=0x7f02003d;
+        public static final int vol_active_2x=0x7f02003e;
+        public static final int vol_enable=0x7f02003f;
+        public static final int vol_enable_2x=0x7f020040;
+        public static final int vol_next=0x7f020041;
+        public static final int vol_next_2x=0x7f020042;
     }
     public static final class id {
         public static final int action_settings=0x7f0b004d;

@@ -29,7 +29,7 @@ public class HistoryActivity extends Activity {
 		volGridView = (GridView) findViewById(R.id.vol_grid);
 		module = new Module(this);
 		//从URL请求期数，并解析
-		entities = module.parseVolFromUrl(Crossword.VOL_REQUEST_RUL);
+		entities = module.getNewestVol();
 		volGridAdapter = new VolGridAdapter(this,entities);
 		volGridView.setAdapter(volGridAdapter);
 	}

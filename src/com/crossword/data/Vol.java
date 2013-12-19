@@ -15,11 +15,11 @@ public class Vol {
 	public String  getOpenDate(){return this.openDate;}
 	
 	public void    setAmountOfLevels(int levels){this.amountOfLevels = levels;}
-	public int     getAmountOfLevels(){return this.amountOfLevels;}
+	public Integer getAmountOfLevels(){return this.amountOfLevels;}
 	
 	public void    setVolNumber(int volNumber){this.volNumber = volNumber;}
-	public int     getVolNumber(){return this.volNumber;}
+	public Integer getVolNumber(){return this.volNumber;}
 	
 	public void    setScore(int score){this.score = score;}
-	public int     getScore(){return this.score;}
+	public Integer getScore(){return this.score;}
 }

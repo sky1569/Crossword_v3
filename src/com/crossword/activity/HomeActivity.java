@@ -26,7 +26,7 @@ public class HomeActivity extends Activity{
 			public void onClick(View source) {
 				// TODO Auto-generated method stub
 				
-				Intent intent = new Intent (HomeActivity.this,GameActivity.class);
+				Intent intent = new Intent (HomeActivity.this,HistoryActivity.class);
 				startActivity(intent);
 				
 			}
