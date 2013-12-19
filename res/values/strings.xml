@@ -64,5 +64,9 @@ Les fonctionnalitées à venirs sont:\n
     <string name="preferences_check_summary">Les lettres fausses apparaissent en rouge</string>
     <string name="preferences_check_title">Correction pas à pas</string>
     <string name="preferences_feedback_title">Feedback</string>
+    <string name="button_history">往期回顾</string>
+    <string name="button_live">直播互动</string>
+    <string name="button_breakthough">闯关模式</string>
+    <string name="button_rank">积分排名</string>
 
 </resources>

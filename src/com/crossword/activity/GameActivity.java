@@ -95,7 +95,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	
 	private int 			width;
 	private int 			height;
-
+	//private boolean         completeFlag ;
 
 	/*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -145,6 +145,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	    this.height = this.grid.getHeight();
         this.lastX = -1;
         this.lastY = -1;
+       // this.completeFlag = false;
 	    Display display = getWindowManager().getDefaultDisplay();
         int height = display.getHeight();
         int keyboardHeight = (int)(height / 4.4);
@@ -304,38 +305,60 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		if (this.module.isBlock(x, y))
 			return;
 		String areaValue=this.module.getareaValue(x, y);
-	
+	/*
 		this.module.setValue(x, y, value);
 		this.module.setDisValue(x, y,value);
 		this.gridAdapter.notifyDataSetChanged();
 		
 		module.toChinese(x,y,this.currentWord);
+		*/
 		
+		this.module.setValue(x, y, value);
+		this.module.setDisValue(x, y,value);
+		this.gridAdapter.notifyDataSetChanged();
+		//if(!module.isComplete(this)) 
+		//if(!this.completeFlag)
+		   module.toChinese(x,y,this.currentWord);
 		
-		if(module.isComplete(this)) 
-		{
-		   this.module.score();
-		   // module.save(this.gridAdapter,this.grid);
-		    
-			return;
-		}
-		
-		if (value.equals(Crossword.UNFILLED)) 
-			
-			//删除键功能不要删！！！！
-			/*{
-			 * if(areaValue.equals(Crossword.UNFILLED))
-			{
-				x = (this.horizontal ? x - 1 : x);
-				y = (this.horizontal ? y: y - 1);
-			}
-			}
-			*/
+		   if (value.equals(Crossword.UNFILLED)) 
+				
 			{
 				this.module.replay();
 				//this.gridAdapter.reDrawGridBackground(this.gridView);
 				return;
 			}
+	
+		
+		if(module.isComplete(this)) 
+		{
+		    		
+		   // module.save(this.gridAdapter,this.grid);
+		   
+			    	this.module.score();
+			//    	this.completeFlag = true ;
+			    	return;
+		    	
+			
+		}
+	//	else module.toChinese(x,y,this.currentWord);
+		 /* 
+		  * if (value.equals(Crossword.UNFILLED)) //删除键功能不要删！！！！
+		
+		
+		{
+			  if(areaValue.equals(Crossword.UNFILLED))
+			{
+				x = (this.horizontal ? x - 1 : x);
+				y = (this.horizontal ? y: y - 1);
+			}
+		}
+			
+			*/
+		
+		
+		//module.toChinese(x,y,this.currentWord);
+  
+	
 		
 
 		if(!value.equals(Crossword.UNFILLED))

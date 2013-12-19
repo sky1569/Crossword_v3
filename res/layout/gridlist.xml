@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/linearLayout3"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-
-    <TextView
-        android:id="@+id/gridListMessage"
-        android:layout_width="fill_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#a000"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="@string/grid_list_is_empty"
-        android:textColor="#DDDDDD"
-        android:visibility="gone" />
+        android:background="@color/background_color"
+        android:orientation="vertical" >
+    
+        
+          <LinearLayout android:id="@+id/backbutton_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dip"
+            android:paddingTop="3dip"
+            android:paddingBottom="3dip"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            
+            <ImageButton android:id="@+id/backbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/navigationbar_backbutton"
+                android:background="@null"/>
+            
+            </LinearLayout>
+            
+          <LinearLayout 
+             android:id="@+id/backbutton_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dip"
+            android:paddingTop="3dip"
+            android:paddingBottom="3dip"
+            android:gravity="center_vertical"
+            android:orientation="vertical" 
+              >
+              
+         
+          
+     </LinearLayout>
 
-    <ListView
-        android:id="@+id/gridListView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
-
-</FrameLayout>
+</LinearLayout>

@@ -70,10 +70,7 @@ public class Module {
 	    		 this.area[j][i]=Crossword.BLOCK;
 	    		 this.displayArea[j][i]=Crossword.BLOCK;
 	    	 }
-	     this.errCount = 0;
-	     this.corCount = 0;
-	     this.hintCount = 0;
-	     this.score = 0;
+	    this.resetScore();
 	 }
 	 
 	/* public LinkedList<Word>  getEntry(){
@@ -106,7 +103,7 @@ public class Module {
 	    		}
 	    				
 	    	}
-			  if(this.isWordComplete(x, y,Horiz)) this.isCor(correctWords.getLength());	//计分
+		//	  if(this.isWordComplete(x, y,Horiz)) this.isCor(correctWords.getLength());	//计分
 			  return true;   	    
 	    
 	    }
@@ -133,7 +130,7 @@ public class Module {
 						  this.displayArea[j][i] = Crossword.UNFILLED;
 				  }
 			  
-			
+			  this.resetScore();
 			  }
 		  }
 		 
@@ -351,6 +348,7 @@ public class Module {
 		
 		
 		 public void score(){
+			this.isCor();
 			this.score=this.corCount-this.hintCount-this.errCount;	
 			this.grid.setScore(this.score);	
 			//Log.isLoggable("score", this.score);
@@ -424,12 +422,45 @@ public class Module {
 			
 			return true;
 		}
-		
-		public void isCor(int l)
-		{
+		//统分不对！！！
+		public void isCor()
+		{   
+			this.corCount = 0;
 			//if(this.isWordComplete(x, y)){}
-			this.corCount = Crossword.SCORE_PER_CHARACTER*l+this.corCount;
-		}
+			for (Word entry: this.entries)
+		    {
+		    	String tmp = entry.getTmp();
+		    	String text = entry.getCap();
+		    	boolean horizontal = entry.getHoriz();
+		    	int x = entry.getX();
+		    	int y = entry.getY();
+		    	//System.out.println(tmp);
+		    	for (int i = 0 ; i < entry.getLength(); i++) 
+		    	{
+		    		if (horizontal)
+		    		{
+		    			if (y >= 0 && y < this.height && x+i >= 0 && x+i < this.width)
+		    			{
+		    				//this.area[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED)?Crossword.UNFILLED:String.valueOf(tmp.charAt(i));
+		    				//this.displayArea[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED)?Crossword.UNFILLED:String.valueOf(tmp.charAt(i));
+		    				//this.correctionArea[y][x+i] = String.valueOf(text.charAt(i));
+		    				if(this.isChinese(x+i, y)) this.corCount = this.corCount+Crossword.SCORE_PER_CHARACTER;
+		    			}
+		    		}
+		    		else
+		    		{
+		    			if (y+i >= 0 && y+i < this.height && x >= 0 && x < this.width)
+		    			{
+		    				if(this.isChinese(x, y+i)) this.corCount = this.corCount+Crossword.SCORE_PER_CHARACTER;
+		    				//this.area[y+i][x] =  String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED)?Crossword.UNFILLED:String.valueOf(tmp.charAt(i));
+		    				//this.displayArea[y+i][x] = String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED)?Crossword.UNFILLED:String.valueOf(tmp.charAt(i));
+		    				//this.correctionArea[y+i][x] = String.valueOf(text.charAt(i));
+		    			}
+		    		}
+		    	}
+		    	
+		    }//this.corCount = Crossword.SCORE_PER_CHARACTER*l+this.corCount;
+		 }
 		public void isErr()
 		{
 			//if(this.isWordComplete(x, y)){}
@@ -440,4 +471,11 @@ public class Module {
 		{
 			this.hintCount++;
 		}
+		public void resetScore()
+		{
+			this.corCount = 0;
+			this.errCount = 0;
+			this.hintCount = 0;
+			this.score =0 ;
+			}
 }
