@@ -71,7 +71,7 @@
             >
 
             <ImageButton
-                android:id="@+id/imagebutton_setting"
+                android:id="@+id/set_button"
                 android:layout_width="30dip"
                 android:layout_height="30dip"
                 android:src="@drawable/set_button" 

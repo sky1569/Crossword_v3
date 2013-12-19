@@ -73,6 +73,7 @@ Les fonctionnalitées à venirs sont:\n
     <string name="button_live">直播互动</string>
     <string name="button_breakthough">闯关模式</string>
     <string name="button_rank">积分排名</string>
+    <string name="gridlist_review">第1期</string>
 
 
 </resources>
