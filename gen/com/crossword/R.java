@@ -26,9 +26,9 @@ public final class R {
         public static final int draft=0x7f060001;
         public static final int empty_color=0x7f060009;
         public static final int gridlist_divider=0x7f060004;
-        public static final int home_background_color=0x7f06000d;
-        public static final int home_disable_text_color=0x7f06000f;
-        public static final int home_normal_text_color=0x7f06000e;
+        public static final int home_background_color=0x7f060011;
+        public static final int home_disable_text_color=0x7f060013;
+        public static final int home_normal_text_color=0x7f060012;
         public static final int key_button_text_color=0x7f06000c;
         public static final int normal=0x7f060000;
         public static final int right=0x7f060003;
@@ -68,55 +68,6 @@ public final class R {
         public static final int btn_keyboard_draft_release_unlock=0x7f02000b;
         public static final int btn_keyboard_pressed=0x7f02000c;
         public static final int btn_keyboard_release=0x7f02000d;
-<<<<<<< HEAD
-        public static final int ic_launcher=0x7f02000e;
-        public static final int ic_menu_check=0x7f02000f;
-        public static final int ic_menu_check_enable=0x7f020010;
-        public static final int ic_menu_grid=0x7f020011;
-        public static final int ic_menu_notifications=0x7f020012;
-        public static final int ic_menu_preferences=0x7f020013;
-        public static final int ic_menu_refresh=0x7f020014;
-        public static final int ic_menu_solve=0x7f020015;
-        public static final int ic_menu_solve_enable=0x7f020016;
-        public static final int icon=0x7f020017;
-        public static final int icon_category=0x7f020018;
-        public static final int icon_crossword=0x7f020019;
-        public static final int icon_horizontal=0x7f02001a;
-        public static final int icon_level_1=0x7f02001b;
-        public static final int icon_level_2=0x7f02001c;
-        public static final int icon_level_3=0x7f02001d;
-        public static final int icon_list=0x7f02001e;
-        public static final int icon_random=0x7f02001f;
-        public static final int icon_search=0x7f020020;
-        public static final int icon_vertical=0x7f020021;
-        public static final int key_bg=0x7f020022;
-        public static final int key_button=0x7f020023;
-        public static final int keyboard_delete=0x7f020024;
-        public static final int keyboard_done=0x7f020025;
-        public static final int keyboard_draft=0x7f020026;
-        public static final int keyboard_normal=0x7f020027;
-        public static final int keyboard_overlay=0x7f020028;
-        public static final int keyboard_return=0x7f020029;
-        public static final int keyboard_shift=0x7f02002a;
-        public static final int keyboard_space=0x7f02002b;
-        public static final int navigationbar_backbutton=0x7f02002c;
-        public static final int navigationbar_backbutton2x=0x7f02002d;
-        public static final int percent_progress=0x7f02002e;
-        public static final int progress_0=0x7f02002f;
-        public static final int progress_1=0x7f020030;
-        public static final int progress_2=0x7f020031;
-        public static final int progress_3=0x7f020032;
-        public static final int progress_4=0x7f020033;
-        public static final int progress_5=0x7f020034;
-        public static final int progress_6=0x7f020035;
-        public static final int sym_keyboard_delete=0x7f020036;
-        public static final int vol_active=0x7f020037;
-        public static final int vol_active_2x=0x7f020038;
-        public static final int vol_enable=0x7f020039;
-        public static final int vol_enable_2x=0x7f02003a;
-        public static final int vol_next=0x7f02003b;
-        public static final int vol_next_2x=0x7f02003c;
-=======
         public static final int button_selector=0x7f02000e;
         public static final int ic_launcher=0x7f02000f;
         public static final int ic_menu_check=0x7f020010;
@@ -163,121 +114,92 @@ public final class R {
         public static final int progress_6=0x7f020039;
         public static final int set_button=0x7f02003a;
         public static final int sym_keyboard_delete=0x7f02003b;
->>>>>>> 0d74e4e0cdd83201c772fe204471921ea3f02c17
+        public static final int vol_active=0x7f02003c;
+        public static final int vol_active_2x=0x7f02003d;
+        public static final int vol_enable=0x7f02003e;
+        public static final int vol_enable_2x=0x7f02003f;
+        public static final int vol_next=0x7f020040;
+        public static final int vol_next_2x=0x7f020041;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b0049;
+        public static final int action_settings=0x7f0b004d;
         public static final int author=0x7f0b000f;
         public static final int backbutton=0x7f0b0007;
         public static final int backbutton_layout=0x7f0b0006;
-<<<<<<< HEAD
-        public static final int buttonA=0x7f0b001b;
-        public static final int buttonB=0x7f0b001c;
-        public static final int buttonC=0x7f0b001d;
-        public static final int buttonD=0x7f0b001e;
-        public static final int buttonDELETE=0x7f0b0033;
-        public static final int buttonDRAFT=0x7f0b0036;
-        public static final int buttonE=0x7f0b001f;
-        public static final int buttonF=0x7f0b0020;
-        public static final int buttonG=0x7f0b0021;
-        public static final int buttonH=0x7f0b0022;
-=======
-        public static final int buttonA=0x7f0b001c;
-        public static final int buttonB=0x7f0b001d;
-        public static final int buttonC=0x7f0b001e;
-        public static final int buttonD=0x7f0b001f;
-        public static final int buttonDELETE=0x7f0b0033;
-        public static final int buttonDRAFT=0x7f0b0036;
-        public static final int buttonE=0x7f0b0020;
-        public static final int buttonF=0x7f0b0021;
-        public static final int buttonG=0x7f0b0022;
-        public static final int buttonH=0x7f0b0023;
->>>>>>> 0d74e4e0cdd83201c772fe204471921ea3f02c17
-        public static final int buttonI=0x7f0b0035;
-        public static final int buttonJ=0x7f0b0024;
-        public static final int buttonK=0x7f0b0025;
-        public static final int buttonL=0x7f0b0026;
-        public static final int buttonM=0x7f0b0027;
-        public static final int buttonN=0x7f0b0028;
-        public static final int buttonO=0x7f0b0029;
-        public static final int buttonP=0x7f0b002a;
-        public static final int buttonQ=0x7f0b002b;
-        public static final int buttonR=0x7f0b002c;
-        public static final int buttonS=0x7f0b002d;
-        public static final int buttonT=0x7f0b002e;
-        public static final int buttonU=0x7f0b0034;
-        public static final int buttonV=0x7f0b0037;
-        public static final int buttonW=0x7f0b002f;
-        public static final int buttonX=0x7f0b0030;
-        public static final int buttonY=0x7f0b0031;
-        public static final int buttonZ=0x7f0b0032;
-<<<<<<< HEAD
-=======
-        public static final int button_1=0x7f0b0016;
-        public static final int button_2=0x7f0b0017;
-        public static final int button_3=0x7f0b0018;
-        public static final int button_4=0x7f0b0019;
->>>>>>> 0d74e4e0cdd83201c772fe204471921ea3f02c17
-        public static final int button_category=0x7f0b003d;
-        public static final int button_last=0x7f0b0039;
-        public static final int button_list=0x7f0b003b;
-        public static final int button_search=0x7f0b003f;
+        public static final int buttonA=0x7f0b0020;
+        public static final int buttonB=0x7f0b0021;
+        public static final int buttonC=0x7f0b0022;
+        public static final int buttonD=0x7f0b0023;
+        public static final int buttonDELETE=0x7f0b0037;
+        public static final int buttonDRAFT=0x7f0b003a;
+        public static final int buttonE=0x7f0b0024;
+        public static final int buttonF=0x7f0b0025;
+        public static final int buttonG=0x7f0b0026;
+        public static final int buttonH=0x7f0b0027;
+        public static final int buttonI=0x7f0b0039;
+        public static final int buttonJ=0x7f0b0028;
+        public static final int buttonK=0x7f0b0029;
+        public static final int buttonL=0x7f0b002a;
+        public static final int buttonM=0x7f0b002b;
+        public static final int buttonN=0x7f0b002c;
+        public static final int buttonO=0x7f0b002d;
+        public static final int buttonP=0x7f0b002e;
+        public static final int buttonQ=0x7f0b002f;
+        public static final int buttonR=0x7f0b0030;
+        public static final int buttonS=0x7f0b0031;
+        public static final int buttonT=0x7f0b0032;
+        public static final int buttonU=0x7f0b0038;
+        public static final int buttonV=0x7f0b003b;
+        public static final int buttonW=0x7f0b0033;
+        public static final int buttonX=0x7f0b0034;
+        public static final int buttonY=0x7f0b0035;
+        public static final int buttonZ=0x7f0b0036;
+        public static final int button_1=0x7f0b001a;
+        public static final int button_2=0x7f0b001b;
+        public static final int button_3=0x7f0b001c;
+        public static final int button_4=0x7f0b001d;
+        public static final int button_category=0x7f0b0041;
+        public static final int button_last=0x7f0b003d;
+        public static final int button_list=0x7f0b003f;
+        public static final int button_search=0x7f0b0043;
         public static final int date=0x7f0b0010;
         public static final int description=0x7f0b000d;
         public static final int description_horizotal=0x7f0b0008;
         public static final int description_vertical=0x7f0b0009;
         public static final int feed_message=0x7f0b0004;
         public static final int feed_send=0x7f0b0005;
-        public static final int frameLayout1=0x7f0b0038;
-        public static final int frameLayout2=0x7f0b003a;
-        public static final int frameLayout3=0x7f0b003c;
-        public static final int frameLayout4=0x7f0b003e;
+        public static final int frameLayout1=0x7f0b003c;
+        public static final int frameLayout2=0x7f0b003e;
+        public static final int frameLayout3=0x7f0b0040;
+        public static final int frameLayout4=0x7f0b0042;
         public static final int grid=0x7f0b000a;
-<<<<<<< HEAD
-        public static final int gridListMessage=0x7f0b0012;
-        public static final int gridListView=0x7f0b0013;
-        public static final int gridview=0x7f0b0016;
-        public static final int history_backbutton=0x7f0b0018;
-        public static final int history_title=0x7f0b0017;
-        public static final int history_title_text=0x7f0b0019;
-=======
         public static final int gridview=0x7f0b0014;
-        public static final int home_logo=0x7f0b0015;
-        public static final int imagebutton_setting=0x7f0b001b;
->>>>>>> 0d74e4e0cdd83201c772fe204471921ea3f02c17
+        public static final int history_backbutton=0x7f0b0016;
+        public static final int history_title=0x7f0b0015;
+        public static final int history_title_text=0x7f0b0017;
+        public static final int home_logo=0x7f0b0019;
+        public static final int imagebutton_setting=0x7f0b001f;
         public static final int keyboard=0x7f0b000b;
         public static final int keyboard_overlay=0x7f0b000c;
         public static final int level=0x7f0b0013;
         public static final int linearLayout1=0x7f0b0002;
-<<<<<<< HEAD
-        public static final int linearLayout2=0x7f0b0023;
+        public static final int linearLayout2=0x7f0b001e;
         public static final int linearLayout3=0x7f0b0011;
         public static final int main_layout=0x7f0b0000;
-        public static final int menu_check=0x7f0b0043;
-        public static final int menu_feedback=0x7f0b0046;
-        public static final int menu_grid=0x7f0b0045;
-        public static final int menu_main_preferences=0x7f0b0047;
-        public static final int menu_refresh=0x7f0b0048;
-        public static final int menu_solve=0x7f0b0044;
-=======
-        public static final int linearLayout2=0x7f0b001a;
-        public static final int linearLayout3=0x7f0b0011;
-        public static final int main_layout=0x7f0b0000;
-        public static final int menu_check=0x7f0b0040;
-        public static final int menu_feedback=0x7f0b0043;
-        public static final int menu_grid=0x7f0b0042;
-        public static final int menu_main_preferences=0x7f0b0044;
-        public static final int menu_refresh=0x7f0b0045;
-        public static final int menu_solve=0x7f0b0041;
->>>>>>> 0d74e4e0cdd83201c772fe204471921ea3f02c17
+        public static final int menu_check=0x7f0b0047;
+        public static final int menu_feedback=0x7f0b004a;
+        public static final int menu_grid=0x7f0b0049;
+        public static final int menu_main_preferences=0x7f0b004b;
+        public static final int menu_refresh=0x7f0b004c;
+        public static final int menu_solve=0x7f0b0048;
         public static final int name=0x7f0b000e;
         public static final int percent=0x7f0b0012;
         public static final int scrollView1=0x7f0b0001;
         public static final int textView1=0x7f0b0003;
-        public static final int vol_gird_layout=0x7f0b0040;
-        public static final int vol_grid=0x7f0b001a;
-        public static final int vol_number_text=0x7f0b0041;
-        public static final int vol_score_text=0x7f0b0042;
+        public static final int vol_gird_layout=0x7f0b0044;
+        public static final int vol_grid=0x7f0b0018;
+        public static final int vol_number_text=0x7f0b0045;
+        public static final int vol_score_text=0x7f0b0046;
     }
     public static final class layout {
         public static final int category=0x7f030000;
@@ -288,17 +210,12 @@ public final class R {
         public static final int gridlist_item=0x7f030005;
         public static final int gridlist_separator=0x7f030006;
         public static final int gridview=0x7f030007;
-<<<<<<< HEAD
         public static final int history=0x7f030008;
-        public static final int keyboard=0x7f030009;
-        public static final int main=0x7f03000a;
-        public static final int register=0x7f03000b;
-        public static final int vol_item=0x7f03000c;
-=======
-        public static final int home=0x7f030008;
-        public static final int keyboard=0x7f030009;
-        public static final int main=0x7f03000a;
->>>>>>> 0d74e4e0cdd83201c772fe204471921ea3f02c17
+        public static final int home=0x7f030009;
+        public static final int keyboard=0x7f03000a;
+        public static final int main=0x7f03000b;
+        public static final int register=0x7f03000c;
+        public static final int vol_item=0x7f03000d;
     }
     public static final class menu {
         public static final int crossword=0x7f0a0000;
@@ -310,13 +227,13 @@ public final class R {
         public static final int action_settings=0x7f08003b;
         public static final int app_name=0x7f080001;
         public static final int author_format=0x7f080011;
-        public static final int button_breakthough=0x7f08003c;
+        public static final int button_breakthough=0x7f080042;
         public static final int button_category=0x7f080015;
-        public static final int button_history=0x7f08003a;
+        public static final int button_history=0x7f080040;
         public static final int button_last=0x7f080013;
         public static final int button_list=0x7f080014;
-        public static final int button_live=0x7f08003b;
-        public static final int button_rank=0x7f08003d;
+        public static final int button_live=0x7f080041;
+        public static final int button_rank=0x7f080043;
         public static final int button_search=0x7f080016;
         public static final int cancel=0x7f08000c;
         public static final int category=0x7f08000f;

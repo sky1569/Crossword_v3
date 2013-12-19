@@ -14,14 +14,14 @@
     <color name="current_selected_color">#ff7fb873</color>
     <color name="selected_area_color">#ffddf7d7</color>
     <color name="key_button_text_color">#ff6e6c6d</color>
-<<<<<<< HEAD
+
     <color name="title_background_color">#ffffffff</color>
     <color name="background_gray">#ffeaeaea</color>
     <color name="text_white">#ffdadada</color>
     <color name="text_black">#ff212121</color>
-=======
+
     <color name="home_background_color">#ffeaeaea</color>
     <color name="home_normal_text_color">#ff272626</color>
     <color name="home_disable_text_color">#ff989898</color>
->>>>>>> 0d74e4e0cdd83201c772fe204471921ea3f02c17
+
 </resources>
