@@ -32,6 +32,7 @@ import com.crossword.R;
 import com.crossword.keyboard.KeyboardView;
 import com.crossword.keyboard.KeyboardViewInterface;
 import com.crossword.utils.Module;
+import com.crossword.view.KeyboardPopupWindow;
 import com.crossword.adapter.GameGridAdapter;
 import com.crossword.data.Grid;
 import com.crossword.data.Word;
@@ -69,7 +70,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	private TextView        txtDescriptionHor;
 	private TextView        txtDescriptionVer;
 	private TextView 		keyboardOverlay;
- 
+    private KeyboardPopupWindow keyboardPopupWindow;
 	private Grid			grid;
 	private LinkedList<Word> entries;		// Liste des mots
 	private ArrayList<View>	selectedArea = new ArrayList<View>(); // Liste des cases selectionnées
@@ -159,7 +160,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
         this.gridView.setVerticalScrollBarEnabled(false);
 		this.gridAdapter = new GameGridAdapter(this, this.entries, this.width, this.height,this.module);
 		this.gridView.setAdapter(this.gridAdapter);
-
+		keyboardPopupWindow = new KeyboardPopupWindow(this);
         this.keyboardView = (KeyboardView)findViewById(R.id.keyboard);
         this.keyboardView.setDelegate(this);
         android.view.ViewGroup.LayoutParams KeyboardParams = this.keyboardView.getLayoutParams();

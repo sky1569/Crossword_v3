@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.crossword.Crossword;
 import com.crossword.adapter.GameGridAdapter;
 import com.crossword.data.Grid;
+import com.crossword.data.Vol;
 import com.crossword.data.Word;
 
 public class Module {
@@ -53,6 +54,16 @@ public class Module {
 		//解析完，将Json数据加入数据库中
 		 dbManager.add(grid);
 	     return grid;
+	 }
+	 
+	 //调用JsonUtil的parseVolJson函数，从json中解析期数据，但是没有积分信息，需要人工计算
+	 public LinkedList<Vol> parseVolFromUrl(String url){
+		 
+		 LinkedList<Vol> entities = new LinkedList<Vol>();
+		 String jsonData = jsonUtil.readJsonFromUrl(url);
+		 entities = jsonUtil.parseVolJson(jsonData);
+		 //从数据库中读出对应期的关卡的积分并累加，最后存入entities中
+		 return entities;
 	 }
 	 
 	//初始化Module中的width,height,area等

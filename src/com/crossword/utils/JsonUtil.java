@@ -28,6 +28,7 @@ import android.util.Log;
 
 import com.crossword.data.Grid;
 import com.crossword.data.GridforSaved;
+import com.crossword.data.Vol;
 import com.crossword.data.Word;
 
 
@@ -161,8 +162,31 @@ public class JsonUtil {
 	}
 	
 
-	
+	public LinkedList<Vol> parseVolJson(String jsonData){
+		
+		LinkedList<Vol> entities = new LinkedList<Vol>();
+		try {
+			JSONArray  jArr = new JSONArray(jsonData);
+			for(int i = 0;i < jArr.length();i++){
+				JSONObject jObj = jArr.getJSONObject(i);
+				Vol vol = new Vol();
+				vol.setVolName(jObj.getString("name"));
+				vol.setOpenDate(jObj.getString("open_date"));
+				vol.setAmountOfLevels(jObj.getInt("amount_of_levels"));
+				vol.setVolNumber(jObj.getInt("vol_no"));
+				entities.add(vol);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return entities;
+	}
 
+	
+	
+	
 	//将当前Grid信息写入jsonData中，包含用户的填写信息以及分数
 	public JSONObject writeToJson(Grid grid){
 		

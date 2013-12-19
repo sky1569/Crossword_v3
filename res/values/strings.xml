@@ -39,7 +39,7 @@
     <string name="notification_check_grids">Vérifie la présence de nouvelles grilles...</string>
     <string name="notification_update_grids">Téléchargements des nouvelles grilles...</string>
     <string name="notification_update_grids_complete">Téléchargments terminés</string>
-    <string formatted="false" name="notification_update_grids_status">Grille %d sur %d</string>
+    <string name="notification_update_grids_status" formatted="false">Grille %d sur %d</string>
     <string name="grid_list_up_to_date">Pas de nouvelles grilles</string>
     <string name="grid_list_new">%d nouvelles grilles</string>
     <string name="grid_list_is_empty">Aucune grille enregistrée</string>
@@ -47,8 +47,7 @@
     <string name="feedback_send_fail">Impossible d\'envoyer le message</string>
     <string name="feedback_send">Envoyer</string>
     <string name="feedback_sending">Envoi du message...</string>
-    <string name="feedback_text">
-Si vous avez des idées ou si vous rencontrez des problèmes vous pouvez me les faires remonter via cette page, ou sur le GitHub du projet: https://github.com/Isshun/Crossword\n\n
+    <string name="feedback_text">Si vous avez des idées ou si vous rencontrez des problèmes vous pouvez me les faires remonter via cette page, ou sur le GitHub du projet: https://github.com/Isshun/Crossword\n\n
 Les fonctionnalitées à venirs sont:\n
 - Déplacement / zoom de la grille\n
 - Possiblité de switcher en mode paysage\n
@@ -64,5 +63,10 @@ Les fonctionnalitées à venirs sont:\n
     <string name="preferences_check_summary">Les lettres fausses apparaissent en rouge</string>
     <string name="preferences_check_title">Correction pas à pas</string>
     <string name="preferences_feedback_title">Feedback</string>
-
+    <string name="title_activity_history">HistoryActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="history_review">往期回顾</string>
+    <string name="no_current_socre">暂无积分</string>
+    <string name ="next_vol_text">下一期</string>
 </resources>

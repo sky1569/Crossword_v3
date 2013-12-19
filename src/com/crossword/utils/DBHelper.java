@@ -24,14 +24,14 @@ public class DBHelper extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		db.execSQL("CREATE TABLE IF NOT EXISTS "+Crossword.TABLE_NAME+
+		db.execSQL("CREATE TABLE IF NOT EXISTS "+Crossword.GRID_TABLE+
 				"(_id INTEGER PRIMARY KEY AUTOINCREMENT,"+Crossword.GRIDITEM+")");
 	}
    //如果DARABASE_VERSION值被改为2，系统发现有数据库版本不同，即会调用onUpgrade
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
-		db.execSQL("ALERT TABLE"+Crossword.TABLE_NAME +"ADD COLUMN onter STRING");
+		db.execSQL("ALERT TABLE"+Crossword.GRID_TABLE +"ADD COLUMN onter STRING");
 		
 	}
 

@@ -33,7 +33,7 @@ public class Crossword extends Application {
 	public static final String 		GRIDLIST_URL = "http://isshun.github.com/Crossword/Grids.xml";
 	public static final String		GRIDLIST_LOCAL_PATH = "/data/data/com.crossword/gridlist.xml";
 	public static final long 		GRIDLIST_LIFE_TIME = 86400000;
-	
+	public static final String      VOL_REQUEST_RUL = "http://10.105.223.24/CrossWordPuzzlePHP/overview.php";//获取全部期数的URL
 	public static final String 		MAIL_URL = "http://mail.alexislauper.com/";
 	public static final String 		FEEDBACK_URL = "http://isshun.github.com/Crossword/Feedback";
 	
@@ -60,12 +60,15 @@ public class Crossword extends Application {
 	//定义数据库的一些项
 	public static final String DATABASE_NAME = "crossword.db";
 	public static final int DATABASE_VERSION = 1;
-	public static final String TABLE_NAME = "Grid";
+	public static final String GRID_TABLE = "Grid";
+	public static final String VOL_TABLE = "vol_table";
 	public static final String GRIDITEM= " file VARCHAR ,uniqueid INTEGER," +
 			"volNumber INTEGER,level INTEGER,degree INTEGER,category VARCHAR,islocked INTGER," +
 			//"star INTGER," +
 			"jsonData TEXT,score INTEGER," +
 			" date VARCHAR,gamename VARCHAR,author VARCHAR,width INTEGER,height INTEGER";
+	public static final String VOLITEM = "name VARCHAR,open_date VARCHAR,amount_of_levels INTEGER," +
+			                              "vol_no INTEGER,score INTEGER";
    // public static final String  BLOCK = "#";
    // public static final String  BLANK = " ";
     private static Context context;

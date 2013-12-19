@@ -7,6 +7,7 @@ import java.util.List;
 import com.crossword.Crossword;
 import com.crossword.data.Grid;
 import com.crossword.data.GridforSaved;
+import com.crossword.data.Vol;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -34,6 +35,14 @@ public class DBManager {
 	}
 	
 	
+	//将新的期信息加入到数据库中
+	public void add(Vol vol){
+		
+	}
+	
+	
+	
+	//将新的grid增加到数据库中
 	public void add(Grid grid){
 		//Cursor c = queryTheCursor();
 		//若某一个grid已经存在，则返回
@@ -71,7 +80,7 @@ public class DBManager {
 		cv.put("author", grid.getAunthor());
 		cv.put("width", grid.getWidth());
 		cv.put("height", grid.getHeight());
-		db.insert(Crossword.TABLE_NAME, null, cv);
+		db.insert(Crossword.GRID_TABLE, null, cv);
 		db.setTransactionSuccessful();
 		}finally{
 			db.endTransaction();
@@ -115,7 +124,7 @@ public class DBManager {
 		cv.put("height", grid.getHeight());
 		
 		
-		db.update(Crossword.TABLE_NAME, cv, "level = ?", new String[]{grid.getLevel().toString()});
+		db.update(Crossword.GRID_TABLE, cv, "level = ?", new String[]{grid.getLevel().toString()});
 		db.close();
 	}
 	
@@ -204,7 +213,7 @@ public class DBManager {
 	 */
 	public Cursor queryTheCursor(){
 		//db = helper.getWritableDatabase();
-		Cursor c = db.rawQuery("SELECT * FROM "+Crossword.TABLE_NAME, null);
+		Cursor c = db.rawQuery("SELECT * FROM "+Crossword.GRID_TABLE, null);
 		//db.close();
 		return c;
 	}
@@ -220,7 +229,7 @@ public class DBManager {
 				"jsonData","score",
 				             "date","gamename","author","width","height"};
 		String selection = key+"="+value;
-		Cursor c = db.query(true, Crossword.TABLE_NAME, columns, selection, null, null, null, null, null);
+		Cursor c = db.query(true, Crossword.GRID_TABLE, columns, selection, null, null, null, null, null);
 		//db.close();
 		return c;
 	}
