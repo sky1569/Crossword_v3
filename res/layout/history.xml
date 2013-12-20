@@ -27,11 +27,13 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/history_review"
+        android:text="@string/title_history_review"
         android:textColor="@color/text_black" />
 
 </RelativeLayout>
-
+    <ImageView android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/title_bottom_line_tile"/>
 
 
 <FrameLayout android:layout_width="fill_parent"
