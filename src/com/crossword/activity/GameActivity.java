@@ -35,6 +35,7 @@ import com.crossword.utils.Module;
 import com.crossword.view.KeyboardPopupWindow;
 import com.crossword.adapter.GameGridAdapter;
 import com.crossword.data.Grid;
+import com.crossword.data.Vol;
 import com.crossword.data.Word;
 
 import android.content.Intent;
@@ -123,13 +124,17 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	{
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.game);
-	    module = new Module(this);
-
+	   
+	    Intent intent2 = getIntent();
+		Bundle bundle2 = intent2.getExtras();
+		Grid currentGrid=(Grid)bundle2.getSerializable("currentGrid"); 
+		System.out.println("this.currentGrid..."+currentGrid==null?"t":"f");
+		module = new Module(this);
 	    //this.filename = "td.json";
 	  //  this.url = Crossword.GRID_URL + 10002;
 	  //  module.parseGrid(this, this.url);
 	    //通过uniqueid查找grid，如果没有就会从网页下载
-	    this.grid = module.queryGridByUniqueid(10002);
+	    this.grid = module.queryGridByUniqueid(currentGrid.getVol(),currentGrid.getLevel(),currentGrid.getUniqueid()==null?-1:currentGrid.getUniqueid());
 
 	    if (this.grid == null) {
 	    	finish();
@@ -141,7 +146,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	    	finish();
 	    	return;
 	    }
-	
+	    Log.v("initMoudle..this.entries", ""+ this.entries.size());
 	    this.width = this.grid.getWidth();
 	    this.height = this.grid.getHeight();
         this.lastX = -1;

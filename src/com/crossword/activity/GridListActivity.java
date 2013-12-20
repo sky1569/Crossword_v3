@@ -5,21 +5,20 @@ import java.util.LinkedList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.GridView;
 import android.widget.TextView;
 
 import com.crossword.R;
 import com.crossword.adapter.GridListAdapter;
-import com.crossword.adapter.VolGridAdapter;
 import com.crossword.data.Grid;
 import com.crossword.data.Vol;
 import com.crossword.utils.DBManager;
 import com.crossword.utils.Module;
 
-public class GridListActivity extends Activity{
+public class GridListActivity extends Activity implements OnTouchListener{
 	private Module          module;
 	private GridView        gridListView;
 	private LinkedList<Grid> entities; 
@@ -46,6 +45,7 @@ public class GridListActivity extends Activity{
 		gridListView = (GridView) findViewById(R.id.gridlist_grid);
 		GridListAdapter gridListAdapter = new GridListAdapter(this,this.entities);
 		gridListView.setAdapter(gridListAdapter);
+		gridListView.setOnTouchListener(this);
 		//从URL请求期数，并解析
 		//entities = module.getNewestVol();
 		//volGridAdapter = new VolGridAdapter(this,entities);
@@ -67,13 +67,14 @@ public class GridListActivity extends Activity{
 		    	int y = (int) event.getY();
 		    	int index = this.gridListView.pointToPosition(x, y);
 		    	this.currentGrid = this.entities.get(index);
-		    	System.out.println("index..."+index);
-		    	Intent intent = new Intent();
-		    	intent.setClass(this, GameActivity.class);
+		    	
+		    	System.out.println("index..."+index+"this.currentGrid..."+this.currentGrid==null?"t":"f");
+		    	Intent intent2 = new Intent();
+		    	intent2.setClass(this, GameActivity.class);
 		    	Bundle bundle2 = new Bundle();
 		    	bundle2.putSerializable("currentGrid", currentGrid);
-		    //	intent.putExtras(bundle);
-		    	startActivity(intent);
+		        intent2.putExtras(bundle2);
+		    	startActivity(intent2);
 		    	break;
 		}
 		return true;

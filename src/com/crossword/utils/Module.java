@@ -53,7 +53,7 @@ public class Module {
 		// System.out.println(jsonData);
 		 grid =  jsonUtil.parseGridJson(jsonData);
 		//解析完，将Json数据加入数据库中
-		 dbManager.add(grid);
+		 dbManager.updateGridData(grid);
 	     return grid;
 	 }
 	 
@@ -78,6 +78,7 @@ public class Module {
 	 public void initModule(Grid grid){
 		 
 		 this.width = grid.getWidth(); 
+		 Log.v("initMoudle..grid.getwidth", ""+this.width);
 		 this.area = new String[this.height][this.width];
 	     this.correctionArea = new String[this.height][this.width];
 	     this.displayArea = new String[this.height][this.width];
@@ -179,14 +180,15 @@ public class Module {
 		
 		
 		//通过uniqueid查找数据库!!!!!要修改一下
-		public Grid queryGridByUniqueid(int vol,int lv){
+		public Grid queryGridByUniqueid(int vol,int lv,int uniqueid){
 			//无论如何先看数据库里面有符合uniqueid的项
+			Log.v("test..queryxiayibu...",Crossword.GRID_URL +"vol="+vol+"&lv="+lv);
 			this.grid = dbManager.queryGridByKey("uniqueid", uniqueid,this.jsonUtil);
 			//如果没有查到，则打开网络访问
 			if(this.grid == null){
 			   //通过URL解析Json
 				//this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL + uniqueid);
-				if((this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL +vol= +)).getFilename() == null){
+				if((this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL +"vol="+vol+"&lv="+lv)).getFilename() == null){
 					return null;//要提示获取失败
 				}
 			}
@@ -212,23 +214,33 @@ public class Module {
 		public LinkedList<Grid> getGrids(int len,int vol){
 			
 			LinkedList<Grid> entities = new LinkedList<Grid>();
-		//	Grid grid2 =new 
-			//这段应当加一个多线程从服务器上加载最新的vol的，目前先不考虑，只做先下载后读取所有的vol
-			//parseVolFromUrl(Crossword.VOL_REQUEST_URL);
-			//entities = dbManager.queryAllExistVol();
-			
-			for(int i = 0;i < len;i++)
-			{
-				Grid grid = new Grid();
-				grid.setIslocked(2-i);
-				System.out.println("testi..."+i);
-				grid.setLevel(i+1);
-				grid.setVol(vol);
-				
-				grid.setStar(2-i);
-				dbManager.add(grid);
-				entities.add(grid);
+			Log.v("test..queryentities1...",Crossword.GRID_URL);
+			entities = dbManager.queryGridByKey("volNumber",vol );
+			Log.v("test..queryentities2...",entities == null?"t":"w");
+			int l;
+			if(entities == null) l = 0;
+			else l = entities.size();
+			if(l<len)
+			{ 
+				Log.v("test..queryentities3...",""+l);
+				for(int i = l;i < len;i++)
+				{
+					Grid grid = new Grid();
+					grid.setIslocked(0);
+				//	System.out.println("testi..."+(i-l));
+					grid.setLevel(i+1-l);
+					grid.setVol(vol);					
+					grid.setStar(2-i+l);
+					dbManager.add(grid);
+					System.out.println("testi2..."+(i-l));
+				//	entities.add(grid);
+				}
 			}
+			/*for(Grid s :entities)
+			{
+				System.out.println("....test+s.getlevel..."+s.getLevel());
+			}*/
+			entities = dbManager.queryGridByKey("volNumber",vol );
 			for(Grid s :entities)
 			{
 				System.out.println("....test+s.getlevel..."+s.getLevel());

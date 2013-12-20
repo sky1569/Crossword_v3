@@ -145,7 +145,7 @@ public class JsonUtil {
 		    grid.setDegree(jsonObject.getInt("degree"));
 		    grid.setCategory(jsonObject.getString("category"));
 		    grid.setIslocked(jsonObject.getInt("islocked"));
-		 //   grid.setStar(jsonObject.getInt("star"));
+		    grid.setStar(jsonObject.getInt("star"));
 		    grid.setScore(jsonObject.getInt("score"));
 		    grid.setDate(jsonObject.getString("date"));
 		    grid.setGamename(jsonObject.getString("gamename"));

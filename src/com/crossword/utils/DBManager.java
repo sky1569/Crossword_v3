@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.crossword.Crossword;
-import com.crossword.data.Grid;
-import com.crossword.data.GridforSaved;
-import com.crossword.data.Vol;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import com.crossword.Crossword;
+import com.crossword.data.Grid;
+import com.crossword.data.GridforSaved;
+import com.crossword.data.Vol;
 
 public class DBManager {
 
@@ -28,12 +29,12 @@ public class DBManager {
 		//db = helper.getWritableDatabase();
 	}
 	
-	public void add(List<Grid> grids){
+	/*public void add(List<Grid> grids){
 		db.beginTransaction();
 		for(Grid g:grids){
 			
 		}
-	}
+	}*/
 	
 	
 	//将新的期信息加入到数据库中
@@ -90,7 +91,7 @@ public class DBManager {
 		cv.put("degree", grid.getDegree());
 		cv.put("category", grid.getCategory());
 		cv.put("islocked", grid.getIslocked());
-		//cv.put("star", grid.getStar());
+	    cv.put("star", grid.getStar());
 		cv.put("jsonData",grid.getJsonData());
 		cv.put("score", grid.getScore());
 		cv.put("date", grid.getDate());
@@ -132,7 +133,7 @@ public class DBManager {
 		cv.put("degree", grid.getDegree());
 		cv.put("category", grid.getCategory());
 		cv.put("islocked", grid.getIslocked());
-		//cv.put("star", grid.getStar());
+		cv.put("star", grid.getStar());
 		cv.put("jsonData",grid.getJsonData());
 		cv.put("score", grid.getScore());
 		cv.put("date", grid.getDate());
@@ -186,8 +187,36 @@ public class DBManager {
 		return g;
 	}
 	
-
 	
+	
+	public LinkedList<Grid> queryGridByKey(String key,Object value){
+		db = helper.getWritableDatabase();
+		Cursor c = queryCursorByKey(Crossword.GRID_TABLE,Crossword.columnsOfGridTable,key,value);
+		if(c.getCount() == 0){
+			return null;
+		}
+		
+		
+		LinkedList<Grid> entities = new LinkedList<Grid>();
+		while(c.moveToNext())
+		{
+			Grid g = new Grid();
+			g.setVol(c.getInt(c.getColumnIndex("volNumber")));
+		//	Log.v("entities.sizeg.getVol",""+c.getColumnIndex("volNumeber"));
+			g.setStar(c.getInt(c.getColumnIndex("star")));
+		//	Log.v("entities.sizeg.getStar",""+c.getColumnIndex("star"));
+			g.setLevel(c.getInt(c.getColumnIndex("level")));
+			//Log.v("entities.sizeg.getLevel()",""+g.getLevel());
+			
+			g.setIslocked(c.getInt(c.getColumnIndex("islocked")));
+		//	Log.v("entities.sizeg.getIslocked()",""+g.getIslocked());
+			
+			entities.add(g);
+		//	Log.v("entities.size",""+entities.size());
+		}
+			//Log.v("entities.size",""+entities.size());
+		return entities;
+	}
 	/**
 	 * 根据关键值查找Vol，一般通过期数
 	 */
@@ -246,7 +275,7 @@ public class DBManager {
 			g.setDegree(c.getInt(c.getColumnIndex("degree")));
 			g.setCategory(c.getString(c.getColumnIndex("category")));
 			g.setIslocked(c.getInt(c.getColumnIndex("islocked")));
-			//g.setStar(c.getInt(c.getColumnIndex("star")));
+			g.setStar(c.getInt(c.getColumnIndex("star")));
 			g.setJsonData(c.getString(c.getColumnIndex("jsonData")));
 			g.setScore(c.getInt(c.getColumnIndex("score")));
 			g.setDate(c.getString(c.getColumnIndex("date")));

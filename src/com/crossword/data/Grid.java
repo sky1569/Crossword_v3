@@ -28,7 +28,7 @@ import android.os.Parcelable;
  * 
  * @author alex
  */
-public class Grid implements Parcelable, Comparable<Grid> ,Serializable{
+public class Grid implements Comparable<Grid> ,Serializable{
 	private String	      fileName;
 	private Integer       uniqueid;
 	private Integer       vol;
@@ -107,17 +107,17 @@ public class Grid implements Parcelable, Comparable<Grid> ,Serializable{
 	}
 
 
-	@Override
-	public int describeContents() {
+//	@Override
+	//public int describeContents() {
 		// TODO Auto-generated method stub
-		return 0;
-	}
+//		return 0;
+//	}
 
 
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
+	//@Override
+	//public void writeToParcel(Parcel dest, int flags) {
 		// TODO Auto-generated method stub
 		
-	}
+//	}
    
 }

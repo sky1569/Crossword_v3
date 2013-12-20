@@ -67,16 +67,15 @@ public class Crossword extends Application {
 	public static final String VOL_TABLE = "vol_table";
 	public static final String GRIDITEM= " file VARCHAR ,uniqueid INTEGER," +
 			"volNumber INTEGER,level INTEGER,degree INTEGER,category VARCHAR,islocked INTGER," +
-			//"star INTGER," +
+			"star INTGER," +
 			"jsonData TEXT,score INTEGER," +
 			" date VARCHAR,gamename VARCHAR,author VARCHAR,width INTEGER,height INTEGER";
 	public static final String VOLITEM = "name VARCHAR,open_date VARCHAR,amount_of_levels INTEGER," +
 			                              "vol_no INTEGER,score INTEGER";
 	
 	public static final String[] columnsOfGridTable = {"file","uniqueid","volNumber","level","degree","category","islocked",
-			//"star",
-			"jsonData","score",
-			             "date","gamename","author","width","height"};
+			"star",
+			"jsonData","score", "date","gamename","author","width","height"};
 	public static final String[] columnsOfVolTable = {"name","open_date","amount_of_levels","vol_no","score"};
    // public static final String  BLOCK = "#";
    // public static final String  BLANK = " ";
