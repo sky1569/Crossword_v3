@@ -24,4 +24,15 @@
     <color name="home_normal_text_color">#ff272626</color>
     <color name="home_disable_text_color">#ff989898</color>
 
+    
+    <!-- 注册登录的颜色 -->
+    
+    <color name="register_or_login_text_color">#ffffffff</color>
+    <color name="tourist_login_text_color">#ff706e6e</color>
+    <color name="input_hint_text_color">#ff969696</color>
+    <color name="account_text_color">#ff404040</color>
+    <color name="telephone_text_color">#ff404040</color>
+    <color name="password_text_color">#ff404040</color>
+    <color name="login_now_text_color">#ff727071</color>
+    <color name="register_now_text_color">#ff727071</color>
 </resources>

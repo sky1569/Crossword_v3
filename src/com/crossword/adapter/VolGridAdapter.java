@@ -9,7 +9,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -58,7 +60,7 @@ public class VolGridAdapter extends BaseAdapter {
 		RelativeLayout volGridLayout = (RelativeLayout) view.findViewById(R.id.vol_gird_layout);
 		TextView volNumberText = (TextView)view.findViewById(R.id.vol_number_text);
 		TextView volScoreText = (TextView)view.findViewById(R.id.vol_score_text);
-		
+		volGridLayout.setLayoutParams(new GridView.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 	     if(position < volLength){//若position不超过volLength,则显示所有期的信息；否则显示下一期和正在直播的
 			Vol entity = entities.get(position);
 			String volName = entity.getVolName();

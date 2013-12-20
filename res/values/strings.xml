@@ -66,14 +66,31 @@ Les fonctionnalitées à venirs sont:\n
     <string name="title_activity_history">HistoryActivity</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="history_review">往期回顾</string>
+    <string name="title_history_review">往期回顾</string>
     <string name="no_current_socre">暂无积分</string>
-    <string name ="next_vol_text">下一期</string>
+    <string name="next_vol_text">下一期</string>
     <string name="button_history">往期回顾</string>
     <string name="button_live">直播互动</string>
     <string name="button_breakthough">闯关模式</string>
     <string name="button_rank">积分排名</string>
+<<<<<<< HEAD
+    <string name="title_activity_register">RegisterActivity</string>
+=======
     <string name="gridlist_review">第1期</string>
+>>>>>>> fbd930535c3f1c91b4c251eca226a53cc5d650ec
 
-
+    <!-- 登录或注册这块的字 -->
+    <string name="register">注  册</string>
+    <string name="submit">提  交</string>
+    <string name="login">登  录</string>
+    <string name="tourist_login">游客登录</string>
+    <string name="account_input_hint">请输入用户名</string>
+    <string name="telephone_input_hint">请输入手机号</string>
+    <string name="password_input_hint">请输入密码</string>
+    <string name="account">账户</string>
+    <string name="telephone">手机</string>
+    <string name="password">密码</string>
+    <string name="login_now"><u>已有帐号,马上登录</u></string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="register_now">现在注册</string>
 </resources>

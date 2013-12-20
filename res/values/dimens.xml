@@ -1,10 +1,36 @@
 <resources>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
+<<<<<<< HEAD
+    <dimen name="activity_horizontal_margin">16px</dimen>
+    <dimen name="activity_vertical_margin">16px</dimen>
+    <dimen name="vol_spacing_horizontal">10px</dimen>
+    <dimen name="vol_spacing_vertical">10px</dimen>
+    <dimen name="vol_number_textsize">10dip</dimen>
+=======
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="vol_spacing_horizontal">10dp</dimen>
     <dimen name="vol_spacing_vertical">10dp</dimen>
     <dimen name="vol_number_textsize">22dip</dimen>
+>>>>>>> fbd930535c3f1c91b4c251eca226a53cc5d650ec
     <dimen name="vol_score_textsize">8dip</dimen>
+    <dimen name = "title_padding_top">3px</dimen>
+    <dimen name = "title_padding_bottom">3px</dimen>
+    <dimen name = "title_padding_left">5px</dimen>
+    
+    <!-- 登录和注册的一些字体大小定义 -->
+    <dimen name="account_text_size">12dip</dimen>
+    <dimen name="telephone_text_size">12dip</dimen>
+    <dimen name="password_text_size">12dip</dimen>
+    <dimen name="input_hint_text_color">12dip</dimen>
+    <dimen name="register_or_login_text_size">18dip</dimen>
+    <dimen name = "tourist_login_text_size">18dip</dimen>
+    <dimen name="login_now_text_size">12dip</dimen>
+    <dimen name="register_now_text_size">12dip</dimen>
+    <dimen name ="title_text_size">22dip</dimen>
+    <!-- 登录和注册的一些距大小定义 -->
+    <dimen name="input_title_padding_left">9px</dimen>
+    <dimen name="input_hint_padding_left">10px</dimen>
+
 </resources>
