@@ -17,9 +17,7 @@
 
 package com.crossword.data;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 import android.os.Parcel;
@@ -30,7 +28,7 @@ import android.os.Parcelable;
  * 
  * @author alex
  */
-public class Grid implements Parcelable, Comparable<Grid> {
+public class Grid implements Parcelable, Comparable<Grid> ,Serializable{
 	private String	      fileName;
 	private Integer       uniqueid;
 	private Integer       vol;

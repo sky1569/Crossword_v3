@@ -73,7 +73,11 @@ Les fonctionnalitées à venirs sont:\n
     <string name="button_live">直播互动</string>
     <string name="button_breakthough">闯关模式</string>
     <string name="button_rank">积分排名</string>
+<<<<<<< HEAD
     <string name="title_activity_register">RegisterActivity</string>
+=======
+    <string name="gridlist_review">第1期</string>
+>>>>>>> fbd930535c3f1c91b4c251eca226a53cc5d650ec
 
     <!-- 登录或注册这块的字 -->
     <string name="register">注  册</string>

@@ -95,7 +95,7 @@ public class Module {
 		 this.entries = this.grid.getEntries();
 		 return this.grid.getEntries();
 	 }*/
-	
+	   
 	  public boolean isCorrect(Word correctWords,String currentWords,int x,int y)
 	    {	    	
 	    	int currentX=correctWords.getX();
@@ -178,15 +178,15 @@ public class Module {
 		
 		
 		
-		//通过uniqueid查找数据库
-		public Grid queryGridByUniqueid(int uniqueid){
+		//通过uniqueid查找数据库!!!!!要修改一下
+		public Grid queryGridByUniqueid(int vol,int lv){
 			//无论如何先看数据库里面有符合uniqueid的项
 			this.grid = dbManager.queryGridByKey("uniqueid", uniqueid,this.jsonUtil);
 			//如果没有查到，则打开网络访问
 			if(this.grid == null){
 			   //通过URL解析Json
 				//this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL + uniqueid);
-				if((this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL + uniqueid)).getFilename() == null){
+				if((this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL +vol= +)).getFilename() == null){
 					return null;//要提示获取失败
 				}
 			}
@@ -207,6 +207,34 @@ public class Module {
 			return entities;
 		}
 		
+		
+		
+		public LinkedList<Grid> getGrids(int len,int vol){
+			
+			LinkedList<Grid> entities = new LinkedList<Grid>();
+		//	Grid grid2 =new 
+			//这段应当加一个多线程从服务器上加载最新的vol的，目前先不考虑，只做先下载后读取所有的vol
+			//parseVolFromUrl(Crossword.VOL_REQUEST_URL);
+			//entities = dbManager.queryAllExistVol();
+			
+			for(int i = 0;i < len;i++)
+			{
+				Grid grid = new Grid();
+				grid.setIslocked(2-i);
+				System.out.println("testi..."+i);
+				grid.setLevel(i+1);
+				grid.setVol(vol);
+				
+				grid.setStar(2-i);
+				dbManager.add(grid);
+				entities.add(grid);
+			}
+			for(Grid s :entities)
+			{
+				System.out.println("....test+s.getlevel..."+s.getLevel());
+			}
+			return entities;
+		}
 		
 		//通过当前的grid查找当前的vol
 		public Vol queryVolByVolNumber(Grid grid){

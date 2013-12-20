@@ -167,7 +167,7 @@ public class DBManager {
 	/**
 	 * 
 	 */
-	
+	/**/
 	public Grid queryGridByKey(String key,Object value,JsonUtil jsonUtil){
 		db = helper.getWritableDatabase();
 		Cursor c = queryCursorByKey(Crossword.GRID_TABLE,Crossword.columnsOfGridTable,key,value);
@@ -187,7 +187,6 @@ public class DBManager {
 	}
 	
 
-	
 	
 	/**
 	 * 根据关键值查找Vol，一般通过期数
@@ -285,6 +284,19 @@ public class DBManager {
 		db.close();
 		return entities;
 	}
+	/*public LinkedList<Grid> queryGridOfVol(int volNumber)
+	{	
+		db = helper.getWritableDatabase();
+		LinkedList<Grid> entities = new LinkedList<Grid>();
+		Cursor c = queryCursorByKey(Crossword.GRID_TABLE,Crossword.columnsOfGridTable,"volNumber",volNumber);
+		while(c.moveToNext())
+		{
+			Grid entity =new Grid();
+			
+			
+		}
+		return entities;
+	}*/
 	
 	/**
 	 * 查询grid表的所有grid，返回一个指针

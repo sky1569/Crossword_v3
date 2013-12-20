@@ -37,6 +37,7 @@ public class HistoryActivity extends Activity implements OnTouchListener{
 		entities = module.getNewestVol();
 		volGridAdapter = new VolGridAdapter(this,entities);
 		volGridView.setAdapter(volGridAdapter);
+		volGridView.setOnTouchListener(this);
 	}
 
 	@Override
@@ -56,8 +57,9 @@ public class HistoryActivity extends Activity implements OnTouchListener{
 		    	int y = (int) event.getY();
 		    	int index = this.volGridView.pointToPosition(x, y);
 		    	this.currentVol = this.entities.get(index);
+		    	System.out.println("index..."+index);
 		    	Intent intent = new Intent();
-		    	intent.setClass(this, HomeActivity.class);
+		    	intent.setClass(this, GridListActivity.class);
 		    	Bundle bundle = new Bundle();
 		    	bundle.putSerializable("currentVol", currentVol);
 		    	intent.putExtras(bundle);

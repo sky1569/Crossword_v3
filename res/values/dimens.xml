@@ -1,11 +1,19 @@
 <resources>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
+<<<<<<< HEAD
     <dimen name="activity_horizontal_margin">16px</dimen>
     <dimen name="activity_vertical_margin">16px</dimen>
     <dimen name="vol_spacing_horizontal">10px</dimen>
     <dimen name="vol_spacing_vertical">10px</dimen>
     <dimen name="vol_number_textsize">10dip</dimen>
+=======
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="vol_spacing_horizontal">10dp</dimen>
+    <dimen name="vol_spacing_vertical">10dp</dimen>
+    <dimen name="vol_number_textsize">22dip</dimen>
+>>>>>>> fbd930535c3f1c91b4c251eca226a53cc5d650ec
     <dimen name="vol_score_textsize">8dip</dimen>
     <dimen name = "title_padding_top">3px</dimen>
     <dimen name = "title_padding_bottom">3px</dimen>

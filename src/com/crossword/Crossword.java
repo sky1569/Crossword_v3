@@ -25,7 +25,9 @@ import android.content.pm.ApplicationInfo;
 
 public class Crossword extends Application {
 
+
 	public static final String      GRID_URL = "http://10.105.223.24/CrossWordPuzzlePHP/playboard.php?";
+
 	//public static final String      VOL_LOCAL_PATH = "/sdcard/cor "
 	//public static final String	GRID_LOCAL_PATH = "/data/data/com.crossword/grid/%s";
 	//public static final String		GRID_LOCAL_PATH = "/sdcard/crossword/data/grid/%s";

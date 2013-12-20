@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="84dip"
+    android:layout_height="85dip" 
+    android:orientation="vertical" 
+    android:background="@drawable/nostar_bg"
+    android:id="@+id/gridList_layout">
+    <TextView
+        android:id="@+id/grid_number_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="20dip"
+        
+        android:textSize="@dimen/vol_number_textsize"
+        android:textColor="@color/text_black" />
+    <ImageView 
+        android:id="@+id/grid_lock_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/unlocked_icon"
+        android:paddingTop="62dip"
+        android:paddingLeft="10dip"/>
+
+</RelativeLayout>
