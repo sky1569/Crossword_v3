@@ -56,6 +56,7 @@ public class HistoryActivity extends Activity implements OnTouchListener{
 		    	int x = (int) event.getX();
 		    	int y = (int) event.getY();
 		    	int index = this.volGridView.pointToPosition(x, y);
+		    	if(index ==- 1)  break;
 		    	this.currentVol = this.entities.get(index);
 		    	System.out.println("index..."+index);
 		    	Intent intent = new Intent();

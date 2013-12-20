@@ -63,9 +63,12 @@ public class GameGridAdapter extends BaseAdapter {
 	{
 		final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(act);
 		this.module = module;
+		
 		this.context = (Context)act;
 		this.width = width;
 		this.height = height;
+		//Log.v("module",""+ this.width);
+	//	Log.v("module",""+ this.height);
         Display display = act.getWindowManager().getDefaultDisplay();
         this.displayHeight = display.getWidth() / this.width;
        
@@ -76,7 +79,7 @@ public class GameGridAdapter extends BaseAdapter {
         this.module.initentries();
         this.module.isComplete(act);
 
-        
+   //     Log.v("initentries", "Ok");
 	 
 	}
 	

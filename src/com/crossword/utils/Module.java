@@ -22,8 +22,8 @@ public class Module {
 	 private LinkedList<Word> entries  =  new LinkedList<Word>();
 	 private JsonUtil jsonUtil;
 	 private DBManager dbManager;
-	 private int width;
-	 private int height;
+	 private  int width;
+	 private  int height;
 
 	 private String[][]			area;			// Tableau repr茅sentant les lettres du joueur
 	 private String[][] 		displayArea;
@@ -76,9 +76,9 @@ public class Module {
 	 
 	//初始化Module中的width,height,area等
 	 public void initModule(Grid grid){
-		 
+		 this.height = grid.getHeight(); 
 		 this.width = grid.getWidth(); 
-		 Log.v("initMoudle..grid.getwidth", ""+this.width);
+		// Log.v("initMoudle..grid.getwidth", ""+this.width);
 		 this.area = new String[this.height][this.width];
 	     this.correctionArea = new String[this.height][this.width];
 	     this.displayArea = new String[this.height][this.width];
@@ -182,7 +182,7 @@ public class Module {
 		//通过uniqueid查找数据库!!!!!要修改一下
 		public Grid queryGridByUniqueid(int vol,int lv,int uniqueid){
 			//无论如何先看数据库里面有符合uniqueid的项
-			Log.v("test..queryxiayibu...",Crossword.GRID_URL +"vol="+vol+"&lv="+lv);
+		//	Log.v("test..queryxiayibu...",Crossword.GRID_URL +"vol="+vol+"&lv="+lv);
 			this.grid = dbManager.queryGridByKey("uniqueid", uniqueid,this.jsonUtil);
 			//如果没有查到，则打开网络访问
 			if(this.grid == null){
@@ -192,7 +192,7 @@ public class Module {
 					return null;//要提示获取失败
 				}
 			}
-			
+		//	Log.v("nima ",""+this.grid.getWidth());
 			
 			initModule(this.grid);
 			return this.grid;
@@ -214,9 +214,9 @@ public class Module {
 		public LinkedList<Grid> getGrids(int len,int vol){
 			
 			LinkedList<Grid> entities = new LinkedList<Grid>();
-			Log.v("test..queryentities1...",Crossword.GRID_URL);
+		///	Log.v("test..queryentities1...",Crossword.GRID_URL);
 			entities = dbManager.queryGridByKey("volNumber",vol );
-			Log.v("test..queryentities2...",entities == null?"t":"w");
+		//	Log.v("test..queryentities2...",entities == null?"t":"w");
 			int l;
 			if(entities == null) l = 0;
 			else l = entities.size();
@@ -241,10 +241,10 @@ public class Module {
 				System.out.println("....test+s.getlevel..."+s.getLevel());
 			}*/
 			entities = dbManager.queryGridByKey("volNumber",vol );
-			for(Grid s :entities)
-			{
-				System.out.println("....test+s.getlevel..."+s.getLevel());
-			}
+		//	for(Grid s :entities)
+		//	{
+		//		System.out.println("....test+s.getlevel..."+s.getLevel());
+		//	}
 			return entities;
 		}
 		
@@ -270,12 +270,15 @@ public class Module {
 		    	int x = entry.getX();
 		    	int y = entry.getY();
 		    	//System.out.println(tmp);
+		    	Log.v("initentriesforentry", "Ok?");
 		    	for (int i = 0 ; i < entry.getLength(); i++) 
 		    	{
+		    		//Log.v("entry.getLength()", "Ok?");
 		    		if (horizontal)
-		    		{
+		    		{//  Log.v("this.height...", ""+this.height);
 		    			if (y >= 0 && y < this.height && x+i >= 0 && x+i < this.width)
 		    			{
+		    				Log.v("this.height", ""+this.height);
 		    				this.area[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED)?Crossword.UNFILLED:String.valueOf(tmp.charAt(i));
 		    				this.displayArea[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED)?Crossword.UNFILLED:String.valueOf(tmp.charAt(i));
 		    				this.correctionArea[y][x+i] = String.valueOf(text.charAt(i));
@@ -293,11 +296,15 @@ public class Module {
 		    	}
 		    	
 		   }
+			Log.v("initentriesfor2", "Ok?");
 			for(int currentX=0; currentX<this.width;currentX++)
 		    	for(int currentY=0;currentY<this.height;currentY++)
 		    		{
+		    	    	//Log.v("this.height", ""+this.height);
+		    			//System.out.println(currentX);
 		    		   if(this.isBlock(currentX,currentY))
 		    			  continue;
+		    		   Log.v("initentriesfor2", "Ok");
 		    		   if(this.area[currentY][currentX].equals(Crossword.AREA_BLOCK))
 		    			   continue;
 

@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -63,13 +65,14 @@ public class GridListAdapter extends BaseAdapter {
 		View view = new View(this.context);
 	    view = inflater.inflate(R.layout.grid_item, null);
 		RelativeLayout gridListLayout = (RelativeLayout) view.findViewById(R.id.gridList_layout);
+		gridListLayout.setLayoutParams(new GridView.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		TextView gridNumberText = (TextView)view.findViewById(R.id.grid_number_text);
 	//	TextView volScoreText = (TextView)view.findViewById(R.id.vol_score_text);
 		ImageView lockedView=(ImageView)view.findViewById(R.id.grid_lock_img);
 	     if(position < gridListLength){//若position不超过volLength,则显示所有期的信息；否则显示下一期和正在直播的
 			Grid entity = entities.get(position);
 		    int gridLevel = entity.getLevel();
-			System.out.println("Level..."+gridLevel);
+		//	System.out.println("Level..."+gridLevel);
 		//	int score = entity.getScore();
 			gridNumberText.setText(""+gridLevel); 
 			if(entity.getIslocked() >0) lockedView.setImageResource(R.drawable.unlocked_icon);
@@ -89,18 +92,7 @@ public class GridListAdapter extends BaseAdapter {
 					gridListLayout.setBackgroundResource(R.drawable.nostar_bg);
 					break;
 				}
-			}//如果当前的积分是0，则计算
-		/*	if(score == 0){
-				gridListLayout.setBackgroundResource(R.drawable.vol_enable);
-				volScoreText.setText(this.context.getResources().getText(R.string.no_current_socre));
-			}else{
-				gridListLayout.setBackgroundResource(R.drawable.vol_active);
-				volScoreText.setText("积分:"+score);	
-			}*/
-	    /* //}else if(position == volLength){//最后一个显示下一期的信息
-	    	 gridListLayout.setBackgroundResource(R.drawable.vol_next);
-	    	 volScoreText.setText("12月10日");
-	    	 volNumberText.setText(this.context.getResources().getText(R.string.next_vol_text));*/
+			}
 	    
 			
 		

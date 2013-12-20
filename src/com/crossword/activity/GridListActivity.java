@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -66,6 +67,10 @@ public class GridListActivity extends Activity implements OnTouchListener{
 		    	int x = (int) event.getX();
 		    	int y = (int) event.getY();
 		    	int index = this.gridListView.pointToPosition(x, y);
+		    //	if(index >= this.entities.size()) 
+		    	//	break;
+		    	Log.v("ssssindex", ""+index);
+		    	if(index ==- 1)  break;
 		    	this.currentGrid = this.entities.get(index);
 		    	
 		    	System.out.println("index..."+index+"this.currentGrid..."+this.currentGrid==null?"t":"f");

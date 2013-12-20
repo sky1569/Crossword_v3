@@ -117,7 +117,6 @@ public final class R {
         public static final int icon_random=0x7f020020;
         public static final int icon_search=0x7f020021;
         public static final int icon_vertical=0x7f020022;
-<<<<<<< HEAD
         public static final int input=0x7f020023;
         public static final int key_bg=0x7f020024;
         public static final int key_button=0x7f020025;
@@ -129,85 +128,49 @@ public final class R {
         public static final int keyboard_return=0x7f02002b;
         public static final int keyboard_shift=0x7f02002c;
         public static final int keyboard_space=0x7f02002d;
-        public static final int login_button=0x7f02002e;
-=======
-        public static final int key_bg=0x7f020023;
-        public static final int key_button=0x7f020024;
-        public static final int keyboard_delete=0x7f020025;
-        public static final int keyboard_done=0x7f020026;
-        public static final int keyboard_draft=0x7f020027;
-        public static final int keyboard_normal=0x7f020028;
-        public static final int keyboard_overlay=0x7f020029;
-        public static final int keyboard_return=0x7f02002a;
-        public static final int keyboard_shift=0x7f02002b;
-        public static final int keyboard_space=0x7f02002c;
-        public static final int locked_icon=0x7f02002d;
-        public static final int locked_icon_2x=0x7f02002e;
->>>>>>> fbd930535c3f1c91b4c251eca226a53cc5d650ec
-        public static final int logo=0x7f02002f;
-        public static final int mainbutton=0x7f020030;
-        public static final int mainbutton_down=0x7f020031;
-        public static final int navigationbar_backbutton=0x7f020032;
-        public static final int navigationbar_backbutton2x=0x7f020033;
-<<<<<<< HEAD
-        public static final int percent_progress=0x7f020034;
-        public static final int progress_0=0x7f020035;
-        public static final int progress_1=0x7f020036;
-        public static final int progress_2=0x7f020037;
-        public static final int progress_3=0x7f020038;
-        public static final int progress_4=0x7f020039;
-        public static final int progress_5=0x7f02003a;
-        public static final int progress_6=0x7f02003b;
-        public static final int register_button=0x7f02003c;
-        public static final int set_button=0x7f02003d;
-        public static final int sym_keyboard_delete=0x7f02003e;
-        public static final int title_bottom_line=0x7f02003f;
-        public static final int title_bottom_line_tile=0x7f020040;
-        public static final int unlocked_icon=0x7f020041;
-        public static final int vol_active=0x7f020042;
-        public static final int vol_active_2x=0x7f020043;
-        public static final int vol_enable=0x7f020044;
-        public static final int vol_enable_2x=0x7f020045;
-        public static final int vol_next=0x7f020046;
-        public static final int vol_next_2x=0x7f020047;
+        public static final int locked_icon=0x7f02002e;
+        public static final int locked_icon_2x=0x7f02002f;
+        public static final int login_button=0x7f020030;
+        public static final int logo=0x7f020031;
+        public static final int mainbutton=0x7f020032;
+        public static final int mainbutton_down=0x7f020033;
+        public static final int navigationbar_backbutton=0x7f020034;
+        public static final int navigationbar_backbutton2x=0x7f020035;
+        public static final int nostar_bg=0x7f020036;
+        public static final int nostar_bg_2x=0x7f020037;
+        public static final int percent_progress=0x7f020038;
+        public static final int progress_0=0x7f020039;
+        public static final int progress_1=0x7f02003a;
+        public static final int progress_2=0x7f02003b;
+        public static final int progress_3=0x7f02003c;
+        public static final int progress_4=0x7f02003d;
+        public static final int progress_5=0x7f02003e;
+        public static final int progress_6=0x7f02003f;
+        public static final int register_button=0x7f020040;
+        public static final int reset_button=0x7f020041;
+        public static final int reset_button_2x=0x7f020042;
+        public static final int set_button=0x7f020043;
+        public static final int star1_bg=0x7f020044;
+        public static final int star1_bg_2x=0x7f020045;
+        public static final int stars2_bg=0x7f020046;
+        public static final int stars2_bg_2x=0x7f020047;
+        public static final int stars3_bg=0x7f020048;
+        public static final int stars3_bg_2x=0x7f020049;
+        public static final int sym_keyboard_delete=0x7f02004a;
+        public static final int title_bottom_line=0x7f02004b;
+        public static final int title_bottom_line_tile=0x7f02004c;
+        public static final int unlocked_icon=0x7f02004d;
+        public static final int unlocked_icon_2x=0x7f02004e;
+        public static final int vol_active=0x7f02004f;
+        public static final int vol_active_2x=0x7f020050;
+        public static final int vol_enable=0x7f020051;
+        public static final int vol_enable_2x=0x7f020052;
+        public static final int vol_next=0x7f020053;
+        public static final int vol_next_2x=0x7f020054;
     }
     public static final class id {
-        public static final int account_input_edittext=0x7f0b003e;
-        public static final int action_settings=0x7f0b0059;
-        public static final int author=0x7f0b000f;
-=======
-        public static final int nostar_bg=0x7f020034;
-        public static final int nostar_bg_2x=0x7f020035;
-        public static final int percent_progress=0x7f020036;
-        public static final int progress_0=0x7f020037;
-        public static final int progress_1=0x7f020038;
-        public static final int progress_2=0x7f020039;
-        public static final int progress_3=0x7f02003a;
-        public static final int progress_4=0x7f02003b;
-        public static final int progress_5=0x7f02003c;
-        public static final int progress_6=0x7f02003d;
-        public static final int reset_button=0x7f02003e;
-        public static final int reset_button_2x=0x7f02003f;
-        public static final int set_button=0x7f020040;
-        public static final int star1_bg=0x7f020041;
-        public static final int star1_bg_2x=0x7f020042;
-        public static final int stars2_bg=0x7f020043;
-        public static final int stars2_bg_2x=0x7f020044;
-        public static final int stars3_bg=0x7f020045;
-        public static final int stars3_bg_2x=0x7f020046;
-        public static final int sym_keyboard_delete=0x7f020047;
-        public static final int unlocked_icon=0x7f020048;
-        public static final int unlocked_icon_2x=0x7f020049;
-        public static final int vol_active=0x7f02004a;
-        public static final int vol_active_2x=0x7f02004b;
-        public static final int vol_enable=0x7f02004c;
-        public static final int vol_enable_2x=0x7f02004d;
-        public static final int vol_next=0x7f02004e;
-        public static final int vol_next_2x=0x7f02004f;
-    }
-    public static final class id {
-        public static final int action_settings=0x7f0b004e;
->>>>>>> fbd930535c3f1c91b4c251eca226a53cc5d650ec
+        public static final int account_input_edittext=0x7f0b003f;
+        public static final int action_settings=0x7f0b005a;
         public static final int backbutton=0x7f0b0007;
         public static final int backbutton_layout=0x7f0b0006;
         public static final int buttonA=0x7f0b0020;
@@ -242,34 +205,19 @@ public final class R {
         public static final int button_2=0x7f0b001b;
         public static final int button_3=0x7f0b001c;
         public static final int button_4=0x7f0b001d;
-<<<<<<< HEAD
-        public static final int button_category=0x7f0b0048;
-        public static final int button_last=0x7f0b0044;
-        public static final int button_list=0x7f0b0046;
-        public static final int button_search=0x7f0b004a;
-        public static final int date=0x7f0b0010;
-=======
-        public static final int button_category=0x7f0b0042;
-        public static final int button_last=0x7f0b003e;
-        public static final int button_list=0x7f0b0040;
-        public static final int button_search=0x7f0b0044;
->>>>>>> fbd930535c3f1c91b4c251eca226a53cc5d650ec
+        public static final int button_category=0x7f0b0049;
+        public static final int button_last=0x7f0b0045;
+        public static final int button_list=0x7f0b0047;
+        public static final int button_search=0x7f0b004b;
         public static final int description=0x7f0b000d;
         public static final int description_horizotal=0x7f0b0008;
         public static final int description_vertical=0x7f0b0009;
         public static final int feed_message=0x7f0b0004;
         public static final int feed_send=0x7f0b0005;
-<<<<<<< HEAD
-        public static final int frameLayout1=0x7f0b0043;
-        public static final int frameLayout2=0x7f0b0045;
-        public static final int frameLayout3=0x7f0b0047;
-        public static final int frameLayout4=0x7f0b0049;
-=======
-        public static final int frameLayout1=0x7f0b003d;
-        public static final int frameLayout2=0x7f0b003f;
-        public static final int frameLayout3=0x7f0b0041;
-        public static final int frameLayout4=0x7f0b0043;
->>>>>>> fbd930535c3f1c91b4c251eca226a53cc5d650ec
+        public static final int frameLayout1=0x7f0b0044;
+        public static final int frameLayout2=0x7f0b0046;
+        public static final int frameLayout3=0x7f0b0048;
+        public static final int frameLayout4=0x7f0b004a;
         public static final int grid=0x7f0b000a;
         public static final int gridList_layout=0x7f0b000e;
         public static final int grid_lock_img=0x7f0b0010;
@@ -286,51 +234,32 @@ public final class R {
         public static final int keyboard_overlay=0x7f0b000c;
         public static final int linearLayout1=0x7f0b0002;
         public static final int linearLayout2=0x7f0b001e;
-<<<<<<< HEAD
-        public static final int linearLayout3=0x7f0b0011;
-        public static final int login_back_button=0x7f0b003c;
-        public static final int login_now_text=0x7f0b0041;
-        public static final int login_password_input_edittext=0x7f0b003f;
-        public static final int login_submit_button=0x7f0b0040;
-        public static final int main_layout=0x7f0b0000;
-        public static final int menu_check=0x7f0b0053;
-        public static final int menu_feedback=0x7f0b0056;
-        public static final int menu_grid=0x7f0b0055;
-        public static final int menu_main_preferences=0x7f0b0057;
-        public static final int menu_refresh=0x7f0b0058;
-        public static final int menu_solve=0x7f0b0054;
-        public static final int name=0x7f0b000e;
-        public static final int percent=0x7f0b0012;
-        public static final int register_back_button=0x7f0b004b;
-        public static final int register_now_button=0x7f0b0042;
-        public static final int register_password_input_edittext=0x7f0b004e;
-        public static final int register_submit=0x7f0b004f;
-        public static final int scrollView1=0x7f0b0001;
-        public static final int telephone_input_edittext=0x7f0b004d;
-        public static final int textView1=0x7f0b0003;
-        public static final int title_login_text=0x7f0b003d;
-        public static final int title_register_text=0x7f0b004c;
-        public static final int vol_gird_layout=0x7f0b0050;
-        public static final int vol_grid=0x7f0b0018;
-        public static final int vol_number_text=0x7f0b0051;
-        public static final int vol_score_text=0x7f0b0052;
-=======
         public static final int linearLayout3=0x7f0b0030;
+        public static final int login_back_button=0x7f0b003d;
+        public static final int login_now_text=0x7f0b0042;
+        public static final int login_password_input_edittext=0x7f0b0040;
+        public static final int login_submit_button=0x7f0b0041;
         public static final int main_layout=0x7f0b0000;
-        public static final int menu_check=0x7f0b0048;
-        public static final int menu_feedback=0x7f0b004b;
-        public static final int menu_grid=0x7f0b004a;
-        public static final int menu_main_preferences=0x7f0b004c;
-        public static final int menu_refresh=0x7f0b004d;
-        public static final int menu_solve=0x7f0b0049;
+        public static final int menu_check=0x7f0b0054;
+        public static final int menu_feedback=0x7f0b0057;
+        public static final int menu_grid=0x7f0b0056;
+        public static final int menu_main_preferences=0x7f0b0058;
+        public static final int menu_refresh=0x7f0b0059;
+        public static final int menu_solve=0x7f0b0055;
+        public static final int register_back_button=0x7f0b004c;
+        public static final int register_now_button=0x7f0b0043;
+        public static final int register_password_input_edittext=0x7f0b004f;
+        public static final int register_submit=0x7f0b0050;
         public static final int scrollView1=0x7f0b0001;
         public static final int set_button=0x7f0b001f;
+        public static final int telephone_input_edittext=0x7f0b004e;
         public static final int textView1=0x7f0b0003;
-        public static final int vol_gird_layout=0x7f0b0045;
+        public static final int title_login_text=0x7f0b003e;
+        public static final int title_register_text=0x7f0b004d;
+        public static final int vol_gird_layout=0x7f0b0051;
         public static final int vol_grid=0x7f0b0018;
-        public static final int vol_number_text=0x7f0b0046;
-        public static final int vol_score_text=0x7f0b0047;
->>>>>>> fbd930535c3f1c91b4c251eca226a53cc5d650ec
+        public static final int vol_number_text=0x7f0b0052;
+        public static final int vol_score_text=0x7f0b0053;
     }
     public static final class layout {
         public static final int category=0x7f030000;
@@ -338,25 +267,13 @@ public final class R {
         public static final int game=0x7f030002;
         public static final int grid_item=0x7f030003;
         public static final int gridlist=0x7f030004;
-<<<<<<< HEAD
-        public static final int gridlist_item=0x7f030005;
-        public static final int gridlist_separator=0x7f030006;
-        public static final int gridview=0x7f030007;
-        public static final int history=0x7f030008;
-        public static final int home=0x7f030009;
-        public static final int keyboard=0x7f03000a;
-        public static final int login=0x7f03000b;
-        public static final int main=0x7f03000c;
-        public static final int register=0x7f03000d;
-        public static final int vol_item=0x7f03000e;
-=======
         public static final int history=0x7f030005;
         public static final int home=0x7f030006;
         public static final int keyboard=0x7f030007;
-        public static final int main=0x7f030008;
-        public static final int register=0x7f030009;
-        public static final int vol_item=0x7f03000a;
->>>>>>> fbd930535c3f1c91b4c251eca226a53cc5d650ec
+        public static final int login=0x7f030008;
+        public static final int main=0x7f030009;
+        public static final int register=0x7f03000a;
+        public static final int vol_item=0x7f03000b;
     }
     public static final class menu {
         public static final int crossword=0x7f0a0000;
@@ -367,8 +284,8 @@ public final class R {
         public static final int register=0x7f0a0005;
     }
     public static final class string {
-        public static final int account=0x7f08004c;
-        public static final int account_input_hint=0x7f080049;
+        public static final int account=0x7f08004d;
+        public static final int account_input_hint=0x7f08004a;
         public static final int action_settings=0x7f08003b;
         public static final int app_name=0x7f080001;
         public static final int author_format=0x7f080011;
@@ -398,13 +315,13 @@ public final class R {
         public static final int grid_list_is_empty=0x7f080029;
         public static final int grid_list_new=0x7f080028;
         public static final int grid_list_up_to_date=0x7f080027;
-        public static final int gridlist_review=0x7f080044;
+        public static final int gridlist_review=0x7f080045;
         public static final int hello=0x7f080000;
         public static final int hello_world=0x7f08003c;
         public static final int level_format=0x7f080012;
         public static final int list=0x7f08000e;
-        public static final int login=0x7f080047;
-        public static final int login_now=0x7f08004f;
+        public static final int login=0x7f080048;
+        public static final int login_now=0x7f080050;
         public static final int menu_information=0x7f080022;
         public static final int menu_refresh=0x7f080021;
         public static final int menu_settings=0x7f080020;
@@ -420,8 +337,8 @@ public final class R {
         public static final int one_month_ago=0x7f08001d;
         public static final int one_week_ago=0x7f08001c;
         public static final int one_year_ago=0x7f08001e;
-        public static final int password=0x7f08004e;
-        public static final int password_input_hint=0x7f08004b;
+        public static final int password=0x7f08004f;
+        public static final int password_input_hint=0x7f08004c;
         public static final int percent=0x7f080017;
         public static final int preferences_check_summary=0x7f080037;
         public static final int preferences_check_title=0x7f080038;
@@ -437,20 +354,20 @@ public final class R {
         public static final int random=0x7f08000d;
         /**  登录或注册这块的字 
          */
-        public static final int register=0x7f080045;
-        public static final int register_now=0x7f080051;
+        public static final int register=0x7f080046;
+        public static final int register_now=0x7f080052;
         public static final int save_dialog_content=0x7f080019;
         public static final int save_dialog_title=0x7f080018;
         public static final int search=0x7f080010;
-        public static final int submit=0x7f080046;
-        public static final int telephone=0x7f08004d;
-        public static final int telephone_input_hint=0x7f08004a;
+        public static final int submit=0x7f080047;
+        public static final int telephone=0x7f08004e;
+        public static final int telephone_input_hint=0x7f08004b;
         public static final int title_activity_history=0x7f08003a;
-        public static final int title_activity_login=0x7f080050;
+        public static final int title_activity_login=0x7f080051;
         public static final int title_activity_register=0x7f080044;
         public static final int title_history_review=0x7f08003d;
         public static final int today=0x7f08001a;
-        public static final int tourist_login=0x7f080048;
+        public static final int tourist_login=0x7f080049;
         public static final int yes=0x7f080008;
     }
     public static final class style {

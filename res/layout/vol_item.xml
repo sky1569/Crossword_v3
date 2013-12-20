@@ -12,11 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-<<<<<<< HEAD
+
         android:paddingTop="40px"
-=======
-        android:paddingTop="20dip"
->>>>>>> fbd930535c3f1c91b4c251eca226a53cc5d650ec
+
         android:text="第1期"
         android:textSize="@dimen/vol_number_textsize"
         android:textColor="@color/text_black" />
