@@ -23,7 +23,11 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" >
-               
+                <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.crossword.activity.GameActivity"
@@ -58,11 +62,7 @@
         <activity
             android:name="com.crossword.activity.HistoryActivity"
             android:label="@string/title_activity_history" >
-             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
         <activity
             android:name="com.crossword.activity.RegisterActivity"

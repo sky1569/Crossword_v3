@@ -105,7 +105,7 @@ public class DBManager {
 			db.endTransaction();
 			db.close();
 		}
-		
+		Log.v("Ìí¼Ó³É¹¦", ""+grid.getVol());
 		
 		//db.close();
 		/*try{

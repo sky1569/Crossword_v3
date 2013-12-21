@@ -75,7 +75,7 @@ public class GridListAdapter extends BaseAdapter {
 		//	System.out.println("Level..."+gridLevel);
 		//	int score = entity.getScore();
 			gridNumberText.setText(""+gridLevel); 
-			if(entity.getIslocked() >0) lockedView.setImageResource(R.drawable.unlocked_icon);
+			if(!entity.getIslocked()) lockedView.setImageResource(R.drawable.unlocked_icon);
 				else lockedView.setImageResource(R.drawable.locked_icon);
 			switch (entity.getStar())
 			{

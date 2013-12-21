@@ -40,7 +40,8 @@
         android:background="@drawable/button_selector"
         android:gravity="center"
         android:text="@string/button_live"
-        android:textColor="@color/home_normal_text_color" />
+        android:textColor="@color/home_disable_text_color" 
+        android:clickable="false"/>
 
     <Button
         android:id="@+id/button_3"

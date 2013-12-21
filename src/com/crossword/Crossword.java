@@ -27,7 +27,7 @@ public class Crossword extends Application {
 
 
 	public static final String      GRID_URL = "http://10.105.223.24/CrossWordPuzzlePHP/playboard.php?";
-
+    public static final String      BROADCAST_URL = "http://10.105.223.24/CrossWordPuzzlePHP/broadcast.php";
 	//public static final String      VOL_LOCAL_PATH = "/sdcard/cor "
 	//public static final String	GRID_LOCAL_PATH = "/data/data/com.crossword/grid/%s";
 	//public static final String		GRID_LOCAL_PATH = "/sdcard/crossword/data/grid/%s";
@@ -59,7 +59,8 @@ public class Crossword extends Application {
 	public static final int      HINT_PENALTY = 5;
 	public static final int      SCORE_PER_CHARACTER = 3;
 	public static final int      WORD_ERROR_PENALTY = 1 ;
-	
+	public static final int      GRIDLOCKED = 1;
+	public static final int      GRIDUNLOCKED = 0;
 	//定义数据库的一些项
 	public static final String DATABASE_NAME = "crossword.db";
 	public static final int DATABASE_VERSION = 1;

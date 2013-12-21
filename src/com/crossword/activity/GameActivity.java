@@ -110,14 +110,14 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	public void onPause()
 	{
 		module.scoring();
-		//module.save(this.gridAdapter,this.grid);
+		module.save(this.gridAdapter,this.grid);
 		super.onPause();
 	}
 	
 	@Override
 	public void onStop(){
 		module.scoring();
-		//module.save(this.gridAdapter,this.grid);
+		module.save(this.gridAdapter,this.grid);
 		super.onStop();
 	}
 	public void onCreate(Bundle savedInstanceState)

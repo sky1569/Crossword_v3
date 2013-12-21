@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.crossword.Crossword;
 import com.crossword.adapter.GameGridAdapter;
+import com.crossword.data.BroadMsg;
 import com.crossword.data.Grid;
 import com.crossword.data.Vol;
 import com.crossword.data.Word;
@@ -168,8 +169,10 @@ public class Module {
 		public void save(GameGridAdapter gridAdapter,Grid grid){
 			for(Word entry:grid.getEntries()){
 				String word = this.getWord(entry.getX(), entry.getY(),entry.getLength(),entry.getHoriz());
-				entry.setTmp(word);			                                                         
+				entry.setTmp(word);		
+				//entry.set
 			}
+			grid.setStar(this.star(score));
 			JSONObject jObj = jsonUtil.writeToJson(grid);
 			//用以保存数据的grid类，主要是保存在数据库中，增加了jsonData字段
 			grid.setJsonData(jObj.toString());
@@ -182,7 +185,7 @@ public class Module {
 		//通过uniqueid查找数据库!!!!!要修改一下
 		public Grid queryGridByUniqueid(int vol,int lv,int uniqueid){
 			//无论如何先看数据库里面有符合uniqueid的项
-		//	Log.v("test..queryxiayibu...",Crossword.GRID_URL +"vol="+vol+"&lv="+lv);
+			Log.v("test..queryxiayibu...",Crossword.GRID_URL +"vol="+vol+"&lv="+lv);
 			this.grid = dbManager.queryGridByKey("uniqueid", uniqueid,this.jsonUtil);
 			//如果没有查到，则打开网络访问
 			if(this.grid == null){
@@ -211,40 +214,70 @@ public class Module {
 		
 		
 		
-		public LinkedList<Grid> getGrids(int len,int vol){
+		public LinkedList<Grid> getGrids(Object obj){
 			
 			LinkedList<Grid> entities = new LinkedList<Grid>();
 		///	Log.v("test..queryentities1...",Crossword.GRID_URL);
-			entities = dbManager.queryGridByKey("volNumber",vol );
-		//	Log.v("test..queryentities2...",entities == null?"t":"w");
-			int l;
-			if(entities == null) l = 0;
-			else l = entities.size();
-			if(l<len)
+			if(obj instanceof Vol)
 			{ 
-				Log.v("test..queryentities3...",""+l);
-				for(int i = l;i < len;i++)
-				{
-					Grid grid = new Grid();
-					grid.setIslocked(0);
-				//	System.out.println("testi..."+(i-l));
-					grid.setLevel(i+1-l);
-					grid.setVol(vol);					
-					grid.setStar(2-i+l);
-					dbManager.add(grid);
-					System.out.println("testi2..."+(i-l));
-				//	entities.add(grid);
+		//		Vol vol = Vol(obj);
+				entities = dbManager.queryGridByKey("volNumber",((Vol) obj).getVolNumber() );
+			//	Log.v("test..queryentities2...",entities == null?"t":"w");
+				int l;
+				if(entities == null) l = 0;
+				else l = entities.size();
+				if(l < ((Vol) obj).getAmountOfLevels())
+				{ 
+					Log.v("test..queryentities3...",""+l);
+					for(int i = l;i < ((Vol) obj).getAmountOfLevels();i++)
+					{
+						Grid grid = new Grid();
+						if(i == 0) grid.setIslocked(Crossword.GRIDUNLOCKED);
+						else  grid.setIslocked(Crossword.GRIDLOCKED);
+					//	System.out.println("testi..."+(i-l));
+						grid.setLevel(i+1-l);
+						grid.setVol(((Vol) obj).getVolNumber() );			
+						Log.v("grid.setVol(((Vol) obj).getVolNumber() )", ""+((Vol) obj).getVolNumber()+".."+((Vol) obj).getVolName());
+						grid.setStar(0);
+						dbManager.add(grid);
+						System.out.println("testi2..."+(i-l));
+					//	entities.add(grid);
+					}
 				}
+				entities = dbManager.queryGridByKey("volNumber",((Vol) obj).getVolNumber() );
 			}
-			/*for(Grid s :entities)
+			if(obj instanceof BroadMsg)
 			{
-				System.out.println("....test+s.getlevel..."+s.getLevel());
-			}*/
-			entities = dbManager.queryGridByKey("volNumber",vol );
-		//	for(Grid s :entities)
-		//	{
-		//		System.out.println("....test+s.getlevel..."+s.getLevel());
-		//	}
+				entities = dbManager.queryGridByKey("volNumber",((BroadMsg) obj).getVolNumber() );
+				int l;
+				boolean flag=false;
+				if(entities == null) l = 0;
+				else l = entities.size();
+				if(l < ((BroadMsg) obj).getAmountOfLevels())
+				{ 
+					Log.v("test..queryentities3...",""+l);
+					for(int i = l;i < ((BroadMsg) obj).getAmountOfLevels();i++)
+					{
+						Grid grid = new Grid();
+					//	if(i == 0) grid.setIslocked(Crossword.GRIDUNLOCKED);
+						for(int j = 0;j <((BroadMsg) obj).getAmountOfLevels();j++)
+						  { 
+							flag=i == ((BroadMsg) obj).getUnlockNumber()[j] ?true:false;						  
+						  }
+						if(flag)
+							grid.setIslocked(Crossword.GRIDUNLOCKED);
+						else grid.setIslocked(Crossword.GRIDLOCKED);
+					//	System.out.println("testi..."+(i-l));
+						grid.setLevel(i+1-l);
+						grid.setVol(((BroadMsg) obj).getVolNumber() );					
+						grid.setStar(0);
+						dbManager.add(grid);
+						System.out.println("testi2..."+(i-l));
+					//	entities.add(grid);
+					}
+				}
+				entities = dbManager.queryGridByKey("volNumber",((BroadMsg) obj).getVolNumber() );
+			}
 			return entities;
 		}
 		
@@ -566,4 +599,10 @@ public class Module {
 			this.hintCount = 0;
 			this.score =0 ;
 			}
+		
+		public int star(int score)
+		{
+			int starCount = score > 9 ? 1:2;
+			return starCount;
+		}
 }

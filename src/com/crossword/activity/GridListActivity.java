@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.crossword.R;
 import com.crossword.adapter.GridListAdapter;
+import com.crossword.data.BroadMsg;
 import com.crossword.data.Grid;
 import com.crossword.data.Vol;
 import com.crossword.utils.DBManager;
@@ -29,24 +30,33 @@ public class GridListActivity extends Activity implements OnTouchListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gridlist);
+		module = new Module(this);
 		Intent intent = getIntent();
 		Bundle bundle = intent.getExtras();
-		Vol vol=(Vol)bundle.getSerializable("currentVol");
-		System.out.println("test..."+vol.getAmountOfLevels());
-		//Grid grid = new Grid();
-		//DBManager db = new DBManager(this); 
-		//GridView  gridListView = new GridView(this);
-		module = new Module(this);
-		
-		this.entities = module.getGrids(vol.getAmountOfLevels(),vol.getVolNumber());
-		
-		TextView gridListTitleText = (TextView)findViewById(R.id.gridlist_title_text);
-		System.out.println(vol.getVolName());
-		gridListTitleText.setText(vol.getVolName());
-		gridListView = (GridView) findViewById(R.id.gridlist_grid);
-		GridListAdapter gridListAdapter = new GridListAdapter(this,this.entities);
-		gridListView.setAdapter(gridListAdapter);
-		gridListView.setOnTouchListener(this);
+		try{
+			Vol vol=(Vol)bundle.getSerializable("currentVol");		
+			System.out.println("test..."+vol.getAmountOfLevels());			
+			this.entities = module.getGrids(vol);			
+			TextView gridListTitleText = (TextView)findViewById(R.id.gridlist_title_text);
+			System.out.println(vol.getVolName());
+			gridListTitleText.setText(vol.getVolName());
+			gridListView = (GridView) findViewById(R.id.gridlist_grid);
+			GridListAdapter gridListAdapter = new GridListAdapter(this,this.entities);
+			gridListView.setAdapter(gridListAdapter);
+			gridListView.setOnTouchListener(this);
+		}
+		catch(Exception e)
+		{
+			BroadMsg broad = (BroadMsg)bundle.getSerializable("currentBroad");
+			this.entities = module.getGrids(broad);
+			TextView gridListTitleText = (TextView)findViewById(R.id.gridlist_title_text);
+			gridListTitleText.setText("正在直播");
+			gridListView = (GridView) findViewById(R.id.gridlist_grid);
+			GridListAdapter gridListAdapter = new GridListAdapter(this,this.entities);
+			gridListView.setAdapter(gridListAdapter);
+			gridListView.setOnTouchListener(this);
+		}
+	
 		//从URL请求期数，并解析
 		//entities = module.getNewestVol();
 		//volGridAdapter = new VolGridAdapter(this,entities);
@@ -72,7 +82,8 @@ public class GridListActivity extends Activity implements OnTouchListener{
 		    	Log.v("ssssindex", ""+index);
 		    	if(index ==- 1)  break;
 		    	this.currentGrid = this.entities.get(index);
-		    	
+		    	if(this.currentGrid.getIslocked())
+		    		break;
 		    	System.out.println("index..."+index+"this.currentGrid..."+this.currentGrid==null?"t":"f");
 		    	Intent intent2 = new Intent();
 		    	intent2.setClass(this, GameActivity.class);

@@ -2,12 +2,7 @@ package com.crossword.utils;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import org.apache.http.HttpEntity;
@@ -26,8 +21,8 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.util.Log;
 
+import com.crossword.data.BroadMsg;
 import com.crossword.data.Grid;
-import com.crossword.data.GridforSaved;
 import com.crossword.data.Vol;
 import com.crossword.data.Word;
 
@@ -159,6 +154,33 @@ public class JsonUtil {
 			e.printStackTrace();
 		}
 		return grid;
+	}
+	
+	public BroadMsg parseBroad(String jsonData)
+	{
+		JSONObject jsonObject;
+		JSONArray  jsonArray;
+		BroadMsg broadMsg =new BroadMsg();
+		
+		try{
+			  jsonObject = new JSONObject(jsonData);
+			  broadMsg.setIsbroad(jsonObject.getString("broad"));
+			  broadMsg.setVolNumber(jsonObject.getInt("vol_number"));
+			  Log.v("zhibo volnumber", ""+broadMsg.getVolNumber());
+			  jsonArray = jsonObject.getJSONArray("unlock");
+			  int [] arr = new  int[jsonArray.length()];
+			  
+			  for(int index = 0;index < jsonArray.length();index ++)
+			     arr[index] = jsonArray.getInt(index);
+				  //  broadMsg.setUnlockNumber(jsonArray.getInt(index),index);
+			  broadMsg.setUnlockNumber(arr);
+			  
+		}
+		catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return broadMsg;
 	}
 	
 
