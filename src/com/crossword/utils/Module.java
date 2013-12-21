@@ -25,7 +25,7 @@ public class Module {
 	 private DBManager dbManager;
 	 private  int width;
 	 private  int height;
-
+	 private  int starCount;
 	 private String[][]			area;			// Tableau repr茅sentant les lettres du joueur
 	 private String[][] 		displayArea;
 	 private String[][] 		correctionArea; // Tableau repr茅sentant les lettres correctes
@@ -173,6 +173,7 @@ public class Module {
 				//entry.set
 			}
 			grid.setStar(this.star(score));
+		//	grid.setIslocked(0);
 			JSONObject jObj = jsonUtil.writeToJson(grid);
 			//用以保存数据的grid类，主要是保存在数据库中，增加了jsonData字段
 			grid.setJsonData(jObj.toString());
@@ -262,8 +263,12 @@ public class Module {
 					//	if(i == 0) grid.setIslocked(Crossword.GRIDUNLOCKED);
 						for(int j = 0;j <((BroadMsg) obj).getAmountOfLevels();j++)
 						  { 
-							flag=i == ((BroadMsg) obj).getUnlockNumber()[j] ?true:false;						  
+							Log.v(" ((BroadMsg) obj).getUnlockNumber()[j]", ""+ ((BroadMsg) obj).getUnlockNumber()[j]);
+							flag= (i+1-l) == ((BroadMsg) obj).getUnlockNumber()[j] ?true:false;			
+							if(flag) break;
+						  
 						  }
+						  Log.v("flag", ""+flag);
 						if(flag)
 							grid.setIslocked(Crossword.GRIDUNLOCKED);
 						else grid.setIslocked(Crossword.GRIDLOCKED);
@@ -598,11 +603,14 @@ public class Module {
 			this.errCount = 0;
 			this.hintCount = 0;
 			this.score =0 ;
+			this.starCount=0;
+			
 			}
 		
 		public int star(int score)
 		{
-			int starCount = score > 9 ? 1:2;
-			return starCount;
+			 if(score > 0) starCount = score > 9 ? 2:1;
+			 else starCount =0;
+			 return starCount;
 		}
 }

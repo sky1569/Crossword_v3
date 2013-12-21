@@ -40,6 +40,9 @@ public class Crossword extends Application {
 	public static final String 		MAIL_URL = "http://mail.alexislauper.com/";
 	//public static final String 		FEEDBACK_URL = "http://isshun.github.com/Crossword/Feedback";
 	
+	public static final int         GRIDLOCKED = 1;
+	public static final int         GRIDUNLOCKED = 0;
+	
 	
 	public static final int			REQUEST_PREFERENCES = 2;
 	public static final float 		KEYBOARD_OVERLAY_OFFSET = 90;
@@ -59,8 +62,7 @@ public class Crossword extends Application {
 	public static final int      HINT_PENALTY = 5;
 	public static final int      SCORE_PER_CHARACTER = 3;
 	public static final int      WORD_ERROR_PENALTY = 1 ;
-	public static final int      GRIDLOCKED = 1;
-	public static final int      GRIDUNLOCKED = 0;
+	
 	//定义数据库的一些项
 	public static final String DATABASE_NAME = "crossword.db";
 	public static final int DATABASE_VERSION = 1;

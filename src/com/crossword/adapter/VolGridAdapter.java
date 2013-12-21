@@ -3,6 +3,7 @@ package com.crossword.adapter;
 import java.util.LinkedList;
 
 import com.crossword.R;
+import com.crossword.activity.HomeActivity;
 import com.crossword.data.Vol;
 
 import android.content.Context;
@@ -61,7 +62,8 @@ public class VolGridAdapter extends BaseAdapter {
 		TextView volNumberText = (TextView)view.findViewById(R.id.vol_number_text);
 		TextView volScoreText = (TextView)view.findViewById(R.id.vol_score_text);
 		volGridLayout.setLayoutParams(new GridView.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-	     if(position < volLength){//若position不超过volLength,则显示所有期的信息；否则显示下一期和正在直播的
+	  
+		if(position < volLength){//若position不超过volLength,则显示所有期的信息；否则显示下一期和正在直播的
 			Vol entity = entities.get(position);
 			String volName = entity.getVolName();
 			System.out.println(volName);
@@ -75,13 +77,13 @@ public class VolGridAdapter extends BaseAdapter {
 				volGridLayout.setBackgroundResource(R.drawable.vol_active);
 				volScoreText.setText("积分:"+score);	
 			}
-	     }else if(position == volLength){//最后一个显示下一期的信息
+	     }else if(position == volLength){	    
 	    	 volGridLayout.setBackgroundResource(R.drawable.vol_next);
 	    	 volScoreText.setText("12月10日");
 	    	 volNumberText.setText(this.context.getResources().getText(R.string.next_vol_text));
 	     }
-			
-		
+	     	
+	   
 		
 			return view;
 	}

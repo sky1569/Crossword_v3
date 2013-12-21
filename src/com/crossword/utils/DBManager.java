@@ -142,8 +142,14 @@ public class DBManager {
 		cv.put("width", grid.getWidth());
 		cv.put("height", grid.getHeight());
 		
+		Log.v("genxin..", ""+grid.getLevel());
+		Log.v("genxin..", ""+grid.getUniqueid());
 		
-		db.update(Crossword.GRID_TABLE, cv, "level = ?", new String[]{grid.getLevel().toString()});
+		//db = helper.getWritableDatabase();
+		Cursor c = queryCursorByKey(Crossword.GRID_TABLE,Crossword.columnsOfGridTable,"uniqueid",grid.getUniqueid());
+		if(c.getCount() == 0)
+			db.execSQL("update grid set uniqueid="+grid.getUniqueid()+" where volNumber="+grid.getVol()+" and level="+grid.getLevel());
+		db.update(Crossword.GRID_TABLE, cv, "uniqueid = ?", new String[]{grid.getUniqueid().toString()});
 		db.close();
 	}
 	

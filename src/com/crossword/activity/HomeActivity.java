@@ -16,6 +16,7 @@ import com.crossword.utils.JsonUtil;
 
 public class HomeActivity extends Activity{
 	private BroadMsg broadMsg;
+	public static boolean ISBroad = false;
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -29,15 +30,25 @@ public class HomeActivity extends Activity{
 		JsonUtil js =new JsonUtil(this);
 		
 		String broadcastMsg = js.readJsonFromUrl(Crossword.BROADCAST_URL);
-		 broadMsg = js.parseBroad(broadcastMsg);
-		if(broadMsg.getIsbroad())
-			{
-				bnLive.setTextColor(getResources().getColor(R.color.home_normal_text_color));
-				bnLive.setClickable(true);
-			}
+		if(broadcastMsg != null) 
+			
+		{
+			broadMsg = js.parseBroad(broadcastMsg);
 		
+			if(broadMsg.getIsbroad())
+				{	
+					this.ISBroad = true ;//全部期判断用：
+					bnLive.setTextColor(getResources().getColor(R.color.home_normal_text_color));
+					bnLive.setClickable(true);
+				}
+		}
+		else {
+				this.ISBroad = false;
 		
+				bnLive.setTextColor(getResources().getColor(R.color .home_disable_text_color));
+				bnLive.setClickable(false);
 		
+		}
 		
 		bnHistory.setOnClickListener(new OnClickListener()
 		{
