@@ -171,9 +171,10 @@ public class Module {
 				String word = this.getWord(entry.getX(), entry.getY(),entry.getLength(),entry.getHoriz());
 				entry.setTmp(word);		
 				//entry.set
+				Log.v("测试写入json，gettem", entry.getTmp());
 			}
 			grid.setStar(this.star(score));
-		//	grid.setIslocked(0);
+			grid.setIslocked(Crossword.GRIDUNLOCKED);
 			JSONObject jObj = jsonUtil.writeToJson(grid);
 			//用以保存数据的grid类，主要是保存在数据库中，增加了jsonData字段
 			grid.setJsonData(jObj.toString());
@@ -197,7 +198,7 @@ public class Module {
 				}
 			}
 		//	Log.v("nima ",""+this.grid.getWidth());
-			
+		//	Log.v("初始化测试json",this.grid.getJsonData());
 			initModule(this.grid);
 			return this.grid;
 			
@@ -236,7 +237,7 @@ public class Module {
 						if(i == 0) grid.setIslocked(Crossword.GRIDUNLOCKED);
 						else  grid.setIslocked(Crossword.GRIDLOCKED);
 					//	System.out.println("testi..."+(i-l));
-						grid.setLevel(i+1-l);
+						grid.setLevel(i+1);
 						grid.setVol(((Vol) obj).getVolNumber() );			
 						Log.v("grid.setVol(((Vol) obj).getVolNumber() )", ""+((Vol) obj).getVolNumber()+".."+((Vol) obj).getVolName());
 						grid.setStar(0);
@@ -273,7 +274,7 @@ public class Module {
 							grid.setIslocked(Crossword.GRIDUNLOCKED);
 						else grid.setIslocked(Crossword.GRIDLOCKED);
 					//	System.out.println("testi..."+(i-l));
-						grid.setLevel(i+1-l);
+						grid.setLevel(i+1);
 						grid.setVol(((BroadMsg) obj).getVolNumber() );					
 						grid.setStar(0);
 						dbManager.add(grid);
@@ -613,4 +614,11 @@ public class Module {
 			 else starCount =0;
 			 return starCount;
 		}
+		
+		public void unlockNext()
+		{
+			//if(this.isComplete())
+				dbManager.unlockNext(this.grid.getVol(), this.grid.getLevel()+1);
+			    Log.v("test unlock", "unlock运行成功" );
+		} 
 }

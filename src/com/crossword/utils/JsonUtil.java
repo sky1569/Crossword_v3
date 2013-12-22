@@ -152,6 +152,7 @@ public class JsonUtil {
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Log.v("解析异常", "sdsd");
 		}
 		return grid;
 	}
@@ -222,7 +223,7 @@ public class JsonUtil {
 			jObj.put("degree", grid.getDegree());
 			jObj.put("category", grid.getCategory());
 			jObj.put("islocked", grid.getIslocked());
-			//jObj.put("star",grid.getStar());
+			jObj.put("star",grid.getStar());
 			//获取grid中的word信息
 			LinkedList<Word> entries = grid.getEntries();
 			for(Word entry:entries){
@@ -248,6 +249,7 @@ public class JsonUtil {
 			jObj.put("height", grid.getHeight());
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
+			Log.v("写入错误", ""+grid.getScore());
 			e.printStackTrace();
 		}
 		

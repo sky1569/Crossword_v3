@@ -142,9 +142,10 @@ public class DBManager {
 		cv.put("width", grid.getWidth());
 		cv.put("height", grid.getHeight());
 		
-		Log.v("genxin..", ""+grid.getLevel());
-		Log.v("genxin..", ""+grid.getUniqueid());
+		Log.v("更新.grid.getLevel().", ""+grid.getLevel());
+		Log.v("更新..grid.getUniqueid()..", ""+grid.getUniqueid());
 		
+		Log.v("更新..grid.getUniqueid()..", ""+grid.getJsonData());
 		//db = helper.getWritableDatabase();
 		Cursor c = queryCursorByKey(Crossword.GRID_TABLE,Crossword.columnsOfGridTable,"uniqueid",grid.getUniqueid());
 		if(c.getCount() == 0)
@@ -185,7 +186,9 @@ public class DBManager {
 		Grid g = new Grid();
 		if(c.moveToFirst()){
 			String jsonData = c.getString(c.getColumnIndex("jsonData"));
+			Log.v("test..取值问题jsonData",jsonData);
 			g = jsonUtil.parseGridJson(jsonData);
+			if(g==null) Log.v("解析出错", "hh");
 		}
 
 		c.close();
@@ -216,9 +219,14 @@ public class DBManager {
 			
 			g.setIslocked(c.getInt(c.getColumnIndex("islocked")));
 		//	Log.v("entities.sizeg.getIslocked()",""+g.getIslocked());
+			g.setUniqueid(c.getInt(c.getColumnIndex("uniqueid"))==0?null:c.getInt(c.getColumnIndex("uniqueid")));
+		
+			Log.v("uniqueid", ""+g.getUniqueid()+"..."+c.getInt(c.getColumnIndex("uniqueid")));
 			
+			if(c.getString(c.getColumnIndex("jsonData"))!=null)
+			g.setJsonData(c.getString(c.getColumnIndex("jsonData")));
 			entities.add(g);
-		//	Log.v("entities.size",""+entities.size());
+			Log.v("entities.size",""+entities.size());
 		}
 			//Log.v("entities.size",""+entities.size());
 		return entities;
@@ -226,6 +234,22 @@ public class DBManager {
 	/**
 	 * 根据关键值查找Vol，一般通过期数
 	 */
+	public boolean unlockNext(int vol,int lv)
+	{
+		db = helper.getWritableDatabase();
+		try{		
+			Log.v("test dbunlock vol lv", "vol.."+vol+"lv.."+lv );
+			db.execSQL("update grid set islocked="+Crossword.GRIDUNLOCKED+" where volNumber="+vol+" and level="+lv);
+		}
+		catch(Exception e)
+		{
+			   Log.v("test dbunlock", "unlock运行shibai" );
+			return false;
+		}
+		   Log.v("test dbunlock", "unlock运行成功" );		
+			db.close();
+			return true;
+	}
 	
 	public Vol queryVolByKey(String key,Object value){
 		

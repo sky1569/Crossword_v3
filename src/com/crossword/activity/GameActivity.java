@@ -45,6 +45,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -128,12 +129,13 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	    Intent intent2 = getIntent();
 		Bundle bundle2 = intent2.getExtras();
 		Grid currentGrid=(Grid)bundle2.getSerializable("currentGrid"); 
-		System.out.println("this.currentGrid..."+currentGrid==null?"t":"f");
+		System.out.println("this.currentGrid..."+currentGrid.getUniqueid());
 		module = new Module(this);
 	    //this.filename = "td.json";
 	  //  this.url = Crossword.GRID_URL + 10002;
 	  //  module.parseGrid(this, this.url);
 	    //通过uniqueid查找grid，如果没有就会从网页下载
+		
 	    this.grid = module.queryGridByUniqueid(currentGrid.getVol(),currentGrid.getLevel(),currentGrid.getUniqueid()==null?-1:currentGrid.getUniqueid());
 
 	    if (this.grid == null) {
@@ -339,8 +341,9 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		{
 		    		
 		   // module.save(this.gridAdapter,this.grid);
-		   
+			
 			    	this.module.scoring();
+			    	this.module.unlockNext();
 			//    	this.completeFlag = true ;
 			    	return;
 		    	

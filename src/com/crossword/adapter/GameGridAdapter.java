@@ -17,28 +17,12 @@
 
 package com.crossword.adapter;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import org.json.JSONObject;
-
-import com.crossword.Crossword;
-import com.crossword.R;
-import com.crossword.activity.GameActivity;
-import com.crossword.data.Grid;
-import com.crossword.data.GridforSaved;
-import com.crossword.data.Word;
-import com.crossword.utils.DBManager;
-import com.crossword.utils.JsonUtil;
-import com.crossword.utils.Module;
-
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -47,21 +31,24 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.crossword.Crossword;
+import com.crossword.R;
+import com.crossword.data.Word;
+import com.crossword.utils.Module;
+
 public class GameGridAdapter extends BaseAdapter {
 
 	private HashMap<Integer, TextView>	views = new HashMap<Integer, TextView>();
 	private Context						context;
-	//private String[][]					area;			// Tableau représentant les lettres du joueur
-	//private String[][] 					displayArea;
-	//private String[][] 					correctionArea; // Tableau représentant les lettres correctes
+
 	private int 						displayHeight;
 	private int 						width;
 	private int 						height;
-	private DBManager					dbManager;    
+ 
 	private Module						module;
 	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,Module module)
 	{
-		final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(act);
+	//	final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(act);
 		this.module = module;
 		
 		this.context = (Context)act;
@@ -77,7 +64,8 @@ public class GameGridAdapter extends BaseAdapter {
         //Crossword.correctionArea = new String[this.height][this.width];
         //Crossword.displayArea = new String[this.height][this.width];
         this.module.initentries();
-        this.module.isComplete(act);
+       this.module.isComplete(act);
+    	 
 
    //     Log.v("initentries", "Ok");
 	 
