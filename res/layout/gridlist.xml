@@ -12,7 +12,8 @@
     android:background="@color/title_background_color"
     android:orientation="horizontal">
     
-    <ImageButton android:id="@+id/gridlist_backbutton"
+    <ImageButton 
+        android:id="@+id/gridlist_backbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/navigationbar_backbutton"
@@ -21,7 +22,16 @@
         android:paddingBottom="3dip"
         android:paddingLeft="5dip"
         android:background="@null"/>
-
+	<ImageButton 
+        android:id="@+id/volrank_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/king_icon_1x"
+       
+   		android:paddingLeft="260dp"
+   		android:paddingTop="9dp"
+        android:background="@null"/>
+    
     <TextView
         android:id="@+id/gridlist_title_text"
         android:layout_width="wrap_content"
@@ -30,6 +40,7 @@
         android:layout_centerVertical="true"
         android:text="@string/gridlist_review"
         android:textColor="@color/text_black" />
+    
 
 </RelativeLayout>
 

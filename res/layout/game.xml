@@ -10,7 +10,7 @@
 
         <LinearLayout android:id="@+id/backbutton_layout"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:paddingLeft="5dip"
             android:paddingTop="3dip"
             android:paddingBottom="3dip"
@@ -29,7 +29,7 @@
         <TextView
             android:id="@+id/description_horizotal"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_weight="0"
             android:gravity="center_horizontal|left"
             android:paddingLeft="8dp"
@@ -43,7 +43,7 @@
         <TextView 
             android:id="@+id/description_vertical"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_weight="0"
             android:gravity="center_horizontal|left"
             android:layout_gravity="left"
@@ -56,20 +56,24 @@
             android:layout_marginTop="1dip"
             android:text="纵向:"
         />
-        
-"
+       <LinearLayout android:id="@+id/gridlayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            
+            android:gravity="center">
         <GridView
             android:id="@+id/grid"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="fill_parent"
+         
             android:horizontalSpacing="1dp"
             android:listSelector="@null"
             android:verticalSpacing="1dp"
-            android:stackFromBottom="true"
-            android:transcriptMode="alwaysScroll" >
+            android:layout_gravity="center"          
+            >            
         </GridView>
-
+       </LinearLayout>
         <com.crossword.keyboard.KeyboardView
             android:id="@+id/keyboard"
             android:layout_width="fill_parent"
