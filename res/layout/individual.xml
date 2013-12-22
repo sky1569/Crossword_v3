@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color">
+        
+        <ImageButton android:id="@+id/aaaaaa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/navigationbar_backbutton"
+            android:background="@null"
+            android:paddingLeft="@dimen/title_padding_left"
+            android:paddingTop="@dimen/title_padding_top"
+            android:paddingBottom="@dimen/title_padding_bottom"/>
+        
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/individual_center"
+            android:textSize="@dimen/title_text_size"
+            android:textColor="@color/text_black"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
+    
+    <ImageView android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:background="@drawable/title_bottom_line_tile"/>
+    
+    
+    <RelativeLayout android:layout_width="fill_parent"
+        android:layout_height="250dip"
+        android:background="@color/individual_background_color">
+        
+        <ImageView android:id="@+id/profile_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/photo_icon_2x"
+            android:paddingLeft="30px"
+            android:paddingTop="50px"/>
+        
+        <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="200px"
+        android:paddingTop="50px"
+        android:orientation="vertical">
+        
+        <TextView
+            android:id="@+id/individual_account_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="David"
+            android:textColor="@color/individual_account_text_color"
+            android:textSize="30dip" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No.22" 
+            android:textColor="@color/individual_rank_text_color"
+            android:textSize="18dip"
+            android:background="@drawable/rank_bar_1x"
+            android:layout_marginTop="15px"
+            android:gravity="center"/>
+        
+        
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已获积分:500" 
+            android:textColor="@color/individual_accumulate_point_text_color"
+            android:textSize="@dimen/individual_accumulate_point_text_size"
+            android:layout_marginTop="15px"
+            android:gravity="center"/>      
+   </LinearLayout>
+
+          <ImageButton
+              android:id="@+id/individual_setting_button"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentRight="true"
+              android:layout_alignParentTop="true"
+              android:layout_marginRight="20dip"
+              android:layout_marginTop="20dip"
+              android:background="@null"
+              android:src="@drawable/set_button_1x" />
+        
+    </RelativeLayout>
+    
+    
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bar_green_background"
+        android:gravity="center"
+        android:text="@string/rank_list"
+        android:textColor="@color/rank_list_text_color"
+        android:textSize="@dimen/rank_list_text_size"/>
+    
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bar_white_bg_2x"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+  <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rank_list"
+        android:textColor="@color/title_rank_text_color"
+        android:textSize="@dimen/title_rank_text_size"
+        android:paddingLeft="75px"/>
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/username"
+        android:textColor="@color/title_username_text_color"
+        android:textSize="@dimen/title_username_text_size"
+        android:layout_marginLeft="75dip"/>
+    
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/accumulate_point"
+        android:textColor="@color/title_accoumulate_point_text_color"
+        android:textSize="@dimen/title_accoumulate_point_text_size"
+        android:layout_marginLeft="75px"/>
+</LinearLayout>
+    
+    
+    <ListView android:id="@+id/rank_list"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent">"
+        
+        
+    </ListView>
+    
+    
+</LinearLayout>

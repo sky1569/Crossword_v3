@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-    android:src="@drawable/line_icon_1x"
+    android:src="@drawable/bar_green_bg_2x"
     android:tileMode="repeat" >
     
 

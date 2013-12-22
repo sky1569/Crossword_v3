@@ -11,7 +11,7 @@
     <dimen name="vol_score_textsize">8dip</dimen>
     <dimen name = "title_padding_top">3px</dimen>
     <dimen name = "title_padding_bottom">3px</dimen>
-    <dimen name = "title_padding_left">5px</dimen>
+    <dimen name = "title_padding_left">8px</dimen>
     
     <!-- 登录和注册的一些字体大小定义 -->
     <dimen name="account_text_size">12dip</dimen>
@@ -26,5 +26,16 @@
     <!-- 登录和注册的一些距大小定义 -->
     <dimen name="input_title_padding_left">9px</dimen>
     <dimen name="input_hint_padding_left">10px</dimen>
-
+    
+    
+    
+    <!-- 个人中心的一些字体大小 -->
+    <dimen name="individual_account_text_size">30dip</dimen>
+    <dimen name="individual_rank_text_size">18dip</dimen>
+    <dimen name="individual_accumulate_point_text_size">20dip</dimen>
+    <dimen name="rank_list_text_size">22dip</dimen>
+    <dimen name="title_username_text_size">20dip</dimen>
+    <dimen name="title_rank_text_size">20dip</dimen>
+    <dimen name="title_accoumulate_point_text_size">20dip</dimen>
+    <dimen name="individual_item_text_size">20dip</dimen>
 </resources>

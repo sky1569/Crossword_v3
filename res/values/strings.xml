@@ -93,4 +93,9 @@ Les fonctionnalitées à venirs sont:\n
     <string name="login_now"><u>已有帐号,马上登录</u></string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="register_now">现在注册</string>
+    <string name="individual_center">个人中心</string>
+    <string name="rank_list">排行榜</string>
+    <string name="rank">排行</string>
+    <string name="username">用户名</string>
+    <string name="accumulate_point">积分</string>
 </resources>

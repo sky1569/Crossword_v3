@@ -35,4 +35,17 @@
     <color name="password_text_color">#ff404040</color>
     <color name="login_now_text_color">#ff727071</color>
     <color name="register_now_text_color">#ff727071</color>
+    
+    <!-- 个人中心一些字体的颜色 -->
+    <color name="individual_account_text_color">#ff706e6e</color>
+    <color name="individual_rank_text_color">#ffffffff</color>
+    <color name="individual_accumulate_point_text_color">#ff706e6e</color>
+    <color name="rank_list_text_color">#ffffffff</color>
+    <color name="title_username_text_color">#ffdcac9e</color>
+    <color name="title_rank_text_color">#ffdcac9e</color>
+    <color name="title_accoumulate_point_text_color">#ffdcac9e</color>
+    <color name="individual_item_text_color">#ff272626</color>
+    <color name="individual_background_color">#fff8f4f1</color>
+    <color name="rank_list_background_color">#ffeaeaea</color>
+    
 </resources>
