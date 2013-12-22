@@ -43,7 +43,7 @@
             android:paddingLeft="@dimen/input_title_padding_left"
             android:textColor="@color/account_text_color"
             android:layout_gravity="center_vertical"/>
-        <EditText android:id="@+id/account_input_edittext"
+        <EditText android:id="@+id/register_account_input_edittext"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:textColorHint="@color/input_hint_text_color"
@@ -115,7 +115,7 @@
     </LinearLayout>
         
         
-        <Button android:id="@+id/register_submit"
+        <Button android:id="@+id/register_submit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/login_button"

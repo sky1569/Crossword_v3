@@ -44,7 +44,7 @@
             android:paddingLeft="@dimen/input_title_padding_left"
             android:textColor="@color/account_text_color"
             android:layout_gravity="center_vertical"/>
-        <EditText android:id="@+id/account_input_edittext"
+        <EditText android:id="@+id/login_account_input_edittext"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:textColorHint="@color/input_hint_text_color"
@@ -97,7 +97,7 @@
             android:layout_gravity="center_horizontal"/>
       
       
-      <TextView android:id="@+id/login_now_text"
+      <TextView android:id="@+id/tourist_login_text"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:textColor="@color/login_now_text_color"
