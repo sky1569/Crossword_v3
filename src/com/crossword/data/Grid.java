@@ -98,7 +98,7 @@ public class Grid implements Comparable<Grid> ,Serializable{
     public String      getJsonData(){return this.jsonData;}
     
     public void 	   setIslocked(Integer islocked){this.islocked = islocked;}
-    public boolean	   getIslocked(){return this.islocked == Crossword.GRIDLOCKED ? true:false;}  
+    public Integer 		   getIslocked(){return this.islocked;}  
     
     public void 	   setStar(Integer star) {this.star = star;}
     public Integer	   getStar(){return this.star;} 

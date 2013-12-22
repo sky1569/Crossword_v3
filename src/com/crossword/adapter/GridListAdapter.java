@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.crossword.Crossword;
 import com.crossword.R;
 import com.crossword.data.Grid;
 import com.crossword.data.Vol;
@@ -39,6 +40,7 @@ public class GridListAdapter extends BaseAdapter {
 		this.inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 		
 	}
+	
 	
 	@Override
 	public int getCount() {
@@ -75,7 +77,7 @@ public class GridListAdapter extends BaseAdapter {
 		//	System.out.println("Level..."+gridLevel);
 		//	int score = entity.getScore();
 			gridNumberText.setText(""+gridLevel); 
-			if(!entity.getIslocked()) lockedView.setImageResource(R.drawable.unlocked_icon);
+			if(entity.getIslocked()==Crossword.GRIDUNLOCKED) lockedView.setImageResource(R.drawable.unlocked_icon);
 				else lockedView.setImageResource(R.drawable.locked_icon);
 			switch (entity.getStar())
 			{
