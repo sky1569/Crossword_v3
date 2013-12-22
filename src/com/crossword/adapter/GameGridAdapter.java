@@ -44,9 +44,9 @@ public class GameGridAdapter extends BaseAdapter {
 	private int 						displayHeight;
 	private int 						width;
 	private int 						height;
- 
+    private int 						displayWidth;
 	private Module						module;
-	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,Module module)
+	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,Module module,int s)
 	{
 	//	final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(act);
 		this.module = module;
@@ -54,21 +54,14 @@ public class GameGridAdapter extends BaseAdapter {
 		this.context = (Context)act;
 		this.width = width;
 		this.height = height;
-		//Log.v("module",""+ this.width);
-	//	Log.v("module",""+ this.height);
+		//this.testwidth=10;
         Display display = act.getWindowManager().getDefaultDisplay();
-        this.displayHeight = display.getWidth() / this.width;
-       
-        // Fill area and areaCorrection
-       // Crossword.area = new String[this.height][this.width];
-        //Crossword.correctionArea = new String[this.height][this.width];
-        //Crossword.displayArea = new String[this.height][this.width];
+        this.displayHeight = s/this.height;
+       // this.displayWidth  =display.getWidth()/this.width;
+       // this.displayHeight = display.getWidth() /this.width;
         this.module.initentries();
-       this.module.isComplete(act);
-    	 
-
-   //     Log.v("initentries", "Ok");
-	 
+        this.module.isComplete(act);
+	    
 	}
 	
 	@Override
@@ -96,13 +89,11 @@ public class GameGridAdapter extends BaseAdapter {
 		int x = (int)(position % this.width);
 	
 		String data = (!this.module.getdisplayAreaValue(x, y).equals(Crossword.UNFILLED) ) ? this.module.getdisplayAreaValue(x, y) :Crossword.BLANK;
-		//	String correction = this.module.getcorrectionAreaValue(x, y);
-		
-		// Creation du composant
+	
 		if (v == null)
 		{
 			v = new TextView(context);
-			v.setLayoutParams(new GridView.LayoutParams(GridView.LayoutParams.FILL_PARENT, this.displayHeight));
+			v.setLayoutParams(new GridView.LayoutParams(GridView.LayoutParams.MATCH_PARENT, this.displayHeight));
 			v.setTextSize((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4 ? 30 : 20);
 			v.setGravity(Gravity.CENTER);
 

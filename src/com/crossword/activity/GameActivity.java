@@ -163,10 +163,10 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
         this.gridView.setOnTouchListener(this);
         this.gridView.setNumColumns(this.width);
         android.view.ViewGroup.LayoutParams gridParams = this.gridView.getLayoutParams();
-        gridParams.height = height - keyboardHeight - this.txtDescriptionHor.getLayoutParams().height;
+        gridParams.height = height - keyboardHeight - this.txtDescriptionHor.getLayoutParams().height*4;
         this.gridView.setLayoutParams(gridParams);
-        this.gridView.setVerticalScrollBarEnabled(false);
-		this.gridAdapter = new GameGridAdapter(this, this.entries, this.width, this.height,this.module);
+      //  this.gridView.setVerticalScrollBarEnabled(false);
+		this.gridAdapter = new GameGridAdapter(this, this.entries, this.width, this.height,this.module,gridParams.height);
 		this.gridView.setAdapter(this.gridAdapter);
 		//keyboardPopupWindow = new KeyboardPopupWindow(this);
         this.keyboardView = (KeyboardView)findViewById(R.id.keyboard);

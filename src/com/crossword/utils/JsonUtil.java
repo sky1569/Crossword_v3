@@ -38,6 +38,9 @@ public class JsonUtil {
 		this.context = context;
 	}
 	
+	public JsonUtil(){
+		
+	}
 	
 	public String readJsonDataFromFile(String filename){
 		String res = "";

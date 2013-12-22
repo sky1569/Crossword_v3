@@ -13,6 +13,7 @@ import com.crossword.Crossword;
 import com.crossword.R;
 import com.crossword.data.BroadMsg;
 import com.crossword.utils.JsonUtil;
+import com.crossword.utils.UserUtil;
 
 public class HomeActivity extends Activity{
 	private BroadMsg broadMsg;
@@ -26,7 +27,6 @@ public class HomeActivity extends Activity{
 		Button bnBreakthough = (Button)findViewById(R.id.button_3);
 		Button bnRank = (Button)findViewById(R.id.button_4);
 		ImageButton bnSetting = (ImageButton)findViewById(R.id.set_button);
-		
 		JsonUtil js =new JsonUtil(this);
 		
 		String broadcastMsg = js.readJsonFromUrl(Crossword.BROADCAST_URL);
@@ -69,12 +69,19 @@ public class HomeActivity extends Activity{
 			public void onClick(View source) {
 				// TODO Auto-generated method stub
 				
-				Intent intent = new Intent(HomeActivity.this,GridListActivity.class);
+				Intent intent = new Intent();
+				//根据登录状态判断该启动LoginActivity还是GridListActivity
+				if(UserUtil.loginStatus == true){
+					intent.setClass(HomeActivity.this, GridListActivity.class);
+				}else{
+					intent.setClass(HomeActivity.this, LoginActivity.class);
+				}
 	//	    	intent.setClass(this, GridListActivity.class);
 		    	Bundle bundle = new Bundle();
 		    	bundle.putSerializable("currentBroad", broadMsg);
 		    	intent.putExtras(bundle);
 		    	startActivity(intent);
+
 			}
 		});
 		bnBreakthough.setOnClickListener(new OnClickListener()

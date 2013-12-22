@@ -475,14 +475,18 @@ public class Module {
 		    }
 		
 		
-		 public void scoring(){
+		 public int scoring(){
 			this.isCor();
 			this.score=this.corCount-this.hintCount-this.errCount;	
 			this.grid.setScore(this.score);	
 			//Log.isLoggable("score", this.score);
 			
-			System.out.println("score..."+this.score);
-		    //return this.score;
+			//积分上传
+			UserUtil userUtil = new UserUtil();
+			String verify = userUtil.uploadScore(this.grid.getUniqueid(), this.grid.getScore());
+			Log.v("上传分数呢", verify);
+		
+		    return this.score;
 			
 		}
 		 
