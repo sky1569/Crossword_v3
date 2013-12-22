@@ -229,6 +229,8 @@ public class DBManager {
 			Log.v("entities.size",""+entities.size());
 		}
 			//Log.v("entities.size",""+entities.size());
+		c.close();
+		db.close();
 		return entities;
 	}
 	/**
