@@ -29,6 +29,7 @@ public class Crossword extends Application {
 	public static final String      GRID_URL = "http://10.105.223.24/CrossWordPuzzlePHP/playboard.php?";
 	public static final String      LOGIN_ROOT_URL = "http://10.105.223.24/CrossWordPuzzlePHP/login.php?";
 	public static final String      REGISTER_ROOT_URL = "http://10.105.223.24/CrossWordPuzzlePHP/regist.php?";
+	public static final String      UPLOAD_SCORE_ROOT_URL = "http://10.105.223.24/CrossWordPuzzlePHP/sendscore.php?";
     public static final String      BROADCAST_URL = "http://10.105.223.24/CrossWordPuzzlePHP/broadcast.php";
 	//public static final String      VOL_LOCAL_PATH = "/sdcard/cor "
 	//public static final String	GRID_LOCAL_PATH = "/data/data/com.crossword/grid/%s";

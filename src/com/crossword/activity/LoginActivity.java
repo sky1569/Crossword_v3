@@ -71,6 +71,8 @@ public class LoginActivity extends Activity {
 					Toast.makeText(LoginActivity.this, "不允许重复登录！", Toast.LENGTH_SHORT).show();
 				}else{
 					UserUtil.loginStatus = true;
+					//当前的用户是什么
+					UserUtil.currAccount = userUtil.getUsername();
 					Toast.makeText(LoginActivity.this, "登录成功！", Toast.LENGTH_SHORT).show();
 					Intent intent = new Intent(LoginActivity.this,GridListActivity.class);
 	                intent.putExtras(bundle);
