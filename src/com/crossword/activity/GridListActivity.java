@@ -32,38 +32,7 @@ public class GridListActivity extends Activity implements OnTouchListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		/*setContentView(R.layout.gridlist);
-		module = new Module(this);
-		this.intent = getIntent();
-		this.bundle = intent.getExtras();
-		try{
-			Vol vol=(Vol)bundle.getSerializable("currentVol");		
-			System.out.println("test..."+vol.getAmountOfLevels());			
-			this.entities = module.getGrids(vol);			
-			TextView gridListTitleText = (TextView)findViewById(R.id.gridlist_title_text);
-			System.out.println(vol.getVolName());
-			gridListTitleText.setText(vol.getVolName());
-			gridListView = (GridView) findViewById(R.id.gridlist_grid);
-			GridListAdapter gridListAdapter = new GridListAdapter(this,this.entities);
-			gridListView.setAdapter(gridListAdapter);
-			gridListView.setOnTouchListener(this);
-		}
-		catch(Exception e)
-		{
-			BroadMsg broad = (BroadMsg)this.bundle.getSerializable("currentBroad");
-			this.entities = module.getGrids(broad);
-			TextView gridListTitleText = (TextView)findViewById(R.id.gridlist_title_text);
-			gridListTitleText.setText("正在直播");
-			gridListView = (GridView) findViewById(R.id.gridlist_grid);
-			GridListAdapter gridListAdapter = new GridListAdapter(this,this.entities);
-			gridListView.setAdapter(gridListAdapter);
-			gridListView.setOnTouchListener(this);
-		}
-	*/
-		//从URL请求期数，并解析
-		//entities = module.getNewestVol();
-		//volGridAdapter = new VolGridAdapter(this,entities);
-		//volGridView.setAdapter(volGridAdapter);
+		
 	}
     public void onResume()
     {
@@ -84,18 +53,37 @@ public class GridListActivity extends Activity implements OnTouchListener{
 			GridListAdapter gridListAdapter = new GridListAdapter(this,this.entities);
 			gridListView.setAdapter(gridListAdapter);
 			gridListView.setOnTouchListener(this);
+			for(Grid g :entities)
+			{
+				g.setGameMode(Crossword.GAMEMODEVOL);
+			}
     	}
     	catch(Exception e)
     	{
-    		BroadMsg broad = (BroadMsg)bundle.getSerializable("currentBroad");
-			this.entities = module.getGrids(broad);
-			TextView gridListTitleText = (TextView)findViewById(R.id.gridlist_title_text);
-			System.out.println("resume"+broad.getVolNumber());
-			gridListTitleText.setText("正在直播");
-			gridListView = (GridView) findViewById(R.id.gridlist_grid);
-			GridListAdapter gridListAdapter = new GridListAdapter(this,this.entities);
-			gridListView.setAdapter(gridListAdapter);
-			gridListView.setOnTouchListener(this);	
+    			try{
+    				BroadMsg broad = (BroadMsg)bundle.getSerializable("currentBroad");
+					this.entities = module.getGrids(broad);
+					TextView gridListTitleText = (TextView)findViewById(R.id.gridlist_title_text);
+					System.out.println("resume"+broad.getVolNumber());
+					gridListTitleText.setText("正在直播");
+					gridListView = (GridView) findViewById(R.id.gridlist_grid);
+					GridListAdapter gridListAdapter = new GridListAdapter(this,this.entities);
+					gridListView.setAdapter(gridListAdapter);
+					gridListView.setOnTouchListener(this);	
+					for(Grid g :entities)
+					{
+						g.setGameMode(Crossword.GAMEMODELIVE);
+					}
+    			}
+    			catch(Exception e2)
+    			{
+    				//offline模式，数据库
+    				for(Grid g :entities)
+					{
+						g.setGameMode(Crossword.GAMEMODEBREAK);
+					}
+    			}
+    		
     	}
     	
     }
@@ -120,7 +108,7 @@ public class GridListActivity extends Activity implements OnTouchListener{
 		    	this.currentGrid = this.entities.get(index);
 		    	if(this.currentGrid.getIslocked()==Crossword.GRIDLOCKED)
 		    		break;
-		    	Log.v("ssssijsondata测试", ""+this.currentGrid.getJsonData());
+		    	Log.v("游戏模式测试", ""+this.currentGrid.getGameMode());
 		    	//System.out.println("index..."+index+"this.currentGrid..."+this.currentGrid==null?"t":"f");
 		    	Intent intent2 = new Intent();
 		    	intent2.setClass(this, GameActivity.class);

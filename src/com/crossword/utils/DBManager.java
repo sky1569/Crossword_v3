@@ -234,7 +234,7 @@ public class DBManager {
 	/**
 	 * 根据关键值查找Vol，一般通过期数
 	 */
-	public boolean unlockNext(int vol,int lv)
+	public boolean unlockNext(Object vol,int lv)
 	{
 		db = helper.getWritableDatabase();
 		try{		

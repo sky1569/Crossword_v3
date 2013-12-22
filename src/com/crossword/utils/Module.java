@@ -184,7 +184,7 @@ public class Module {
 		
 		
 		
-		//通过uniqueid查找数据库!!!!!要修改一下
+		
 		public Grid queryGridByUniqueid(int vol,int lv,int uniqueid){
 			//无论如何先看数据库里面有符合uniqueid的项
 			Log.v("test..queryxiayibu...",Crossword.GRID_URL +"vol="+vol+"&lv="+lv);
@@ -250,6 +250,7 @@ public class Module {
 			}
 			if(obj instanceof BroadMsg)
 			{
+				
 				entities = dbManager.queryGridByKey("volNumber",((BroadMsg) obj).getVolNumber() );
 				int l;
 				boolean flag=false;
@@ -261,6 +262,7 @@ public class Module {
 					for(int i = l;i < ((BroadMsg) obj).getAmountOfLevels();i++)
 					{
 						Grid grid = new Grid();
+						
 					//	if(i == 0) grid.setIslocked(Crossword.GRIDUNLOCKED);
 						for(int j = 0;j <((BroadMsg) obj).getAmountOfLevels();j++)
 						  { 
@@ -615,10 +617,8 @@ public class Module {
 			 return starCount;
 		}
 		
-		public void unlockNext()
+		public void unlock()
 		{
-			//if(this.isComplete())
-				dbManager.unlockNext(this.grid.getVol(), this.grid.getLevel()+1);
-			    Log.v("test unlock", "unlock运行成功" );
-		} 
+			dbManager.unlockNext(this.grid.getVol(), this.grid.getLevel()+1);
+		}
 }

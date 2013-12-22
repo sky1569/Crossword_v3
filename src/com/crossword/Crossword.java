@@ -28,12 +28,9 @@ public class Crossword extends Application {
 
 	public static final String      GRID_URL = "http://10.105.223.24/CrossWordPuzzlePHP/playboard.php?";
     public static final String      BROADCAST_URL = "http://10.105.223.24/CrossWordPuzzlePHP/broadcast.php";
-	//public static final String      VOL_LOCAL_PATH = "/sdcard/cor "
-	//public static final String	GRID_LOCAL_PATH = "/data/data/com.crossword/grid/%s";
-	//public static final String		GRID_LOCAL_PATH = "/sdcard/crossword/data/grid/%s";
+	
 	public static final String		GRID_DIRECTORY = "/data/data/crossword/data/grid";
-   // public static final String  GRID_LOCAL_PATH1 = "/sdcard/crossword/data/%s";
-	//public static final String 		GRIDLIST_URL = "http://isshun.github.com/Crossword/Grids.xml";
+  
 	public static final String		GRIDLIST_LOCAL_PATH = "/data/data/com.crossword/gridlist.xml";
 	public static final long 		GRIDLIST_LIFE_TIME = 86400000;
 	public static final String      VOL_REQUEST_URL = "http://10.105.223.24/CrossWordPuzzlePHP/overview.php";//获取全部期数的URL
@@ -42,8 +39,9 @@ public class Crossword extends Application {
 	
 	public static final int         GRIDLOCKED = 1;
 	public static final int         GRIDUNLOCKED = 0;
-	
-	
+	public static final int 		GAMEMODEVOL = 0;
+	public static final int   	 	GAMEMODELIVE =1;
+	public static final int         GAMEMODEBREAK =2;
 	public static final int			REQUEST_PREFERENCES = 2;
 	public static final float 		KEYBOARD_OVERLAY_OFFSET = 90;
 	public static final String	 	NAME = "Crossword";

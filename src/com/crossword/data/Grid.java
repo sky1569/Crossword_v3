@@ -47,12 +47,14 @@ public class Grid implements Comparable<Grid> ,Serializable{
 	private Integer          islocked;
 	private Integer			 star;
 	private String           jsonData;
-
+	private Integer			 gameMode;
 	
 	
 	public Grid() {
 	}
 	
+	public void 	   setGameMode(int value) {this.gameMode =value;}
+	public Integer	   getGameMode()	{return this.gameMode;}
 	
 	public void        setFilename(String fileName){this.fileName = fileName;}
 	public String      getFilename(){return this.fileName;}

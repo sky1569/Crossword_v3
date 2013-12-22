@@ -61,8 +61,8 @@ import android.widget.Toast;
 
 public class GameActivity extends CrosswordParentActivity implements OnTouchListener, KeyboardViewInterface {
 
-	public enum GRID_MODE {NORMAL, CHECK, SOLVE};
-	public GRID_MODE currentMode = GRID_MODE.NORMAL;
+	//public enum GRID_MODE {NORMAL, CHECK, SOLVE};
+	//public  int CurrentMode;
 	
 	private GridView 		gridView;
 	private KeyboardView 	keyboardView;
@@ -137,7 +137,7 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 	    //通过uniqueid查找grid，如果没有就会从网页下载
 		
 	    this.grid = module.queryGridByUniqueid(currentGrid.getVol(),currentGrid.getLevel(),currentGrid.getUniqueid()==null?-1:currentGrid.getUniqueid());
-
+           this.grid.setGameMode(currentGrid.getGameMode());
 	    if (this.grid == null) {
 	    	finish();
 	    	return;
@@ -343,7 +343,8 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		   // module.save(this.gridAdapter,this.grid);
 			
 			    	this.module.scoring();
-			    	this.module.unlockNext();
+			    	
+			    	this.unlockNext();
 			//    	this.completeFlag = true ;
 			    	return;
 		    	
@@ -452,5 +453,14 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		 
 	}
 
-	
+	public void unlockNext()
+	{
+		//if(this.isComplete())
+		if(this.grid.getGameMode() == Crossword.GAMEMODEVOL||this.grid.getGameMode() == Crossword.GAMEMODELIVE)
+			this.module.unlock();
+		else if(this.grid.getGameMode() == Crossword.GAMEMODEBREAK)
+		{
+			
+		}
+	} 
 }
