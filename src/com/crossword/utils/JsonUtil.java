@@ -181,7 +181,7 @@ public class JsonUtil {
 				rankedList.add(rank);
 			}
 			int myRank = jObj.getInt("rank");
-			Rank.myRank = myRank;
+			UserUtil.myRank = myRank;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -192,34 +192,7 @@ public class JsonUtil {
 	
 	
 
-/*	public BroadMsg parseBroad(String jsonData)
->>>>>>> 9a16a84efeadc4ddc9fe19285c7c18f94c0b5b7c
-	{
-		JSONObject jsonObject;
-		JSONArray  jsonArray;
-		BroadMsg broadMsg =new BroadMsg();
-		
-		try{
-			  jsonObject = new JSONObject(jsonData);
-			  broadMsg.setIsbroad(jsonObject.getString("broad"));
-			  broadMsg.setVolNumber(jsonObject.getInt("vol_number"));
-			  Log.v("zhibo volnumber", ""+broadMsg.getVolNumber());
-			  jsonArray = jsonObject.getJSONArray("unlock");
-			  int [] arr = new  int[jsonArray.length()];
-			  
-			  for(int index = 0;index < jsonArray.length();index ++)
-			     arr[index] = jsonArray.getInt(index);
-				  //  broadMsg.setUnlockNumber(jsonArray.getInt(index),index);
-			  broadMsg.setUnlockNumber(arr);
-			  
-		}
-		catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return broadMsg;
-	}
-	*/
+
 	public Vol parseBroad(String jsonData)
 	{
 		JSONObject jsonObject;

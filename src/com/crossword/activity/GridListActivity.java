@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.crossword.Crossword;
@@ -23,16 +25,18 @@ import com.crossword.utils.Module;
 
 public class GridListActivity extends Activity implements OnTouchListener{
 	private Module          module;
+	private ImageButton     volRankButton;          
 	private GridView        gridListView;
 	private LinkedList<Grid> entities; 
 	private Grid 			currentGrid;
 	private DBManager		db;
 	private Intent intent;
 	private Bundle bundle;
+	private Vol    vol;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 	}
     public void onResume()
     {
@@ -41,9 +45,15 @@ public class GridListActivity extends Activity implements OnTouchListener{
 		module = new Module(this);
 		this.intent = getIntent();
 		this.bundle = intent.getExtras();
+		
+		
+		volRankButton = (ImageButton)findViewById(R.id.vol_rank_button);
+		volRankButton.setOnClickListener(volRankOnClickListener);
+		
+		
     	try
     	{
-    		Vol vol=(Vol)this.bundle.getSerializable("currentVol");		
+    		vol=(Vol)this.bundle.getSerializable("currentVol");		
 			System.out.println("test..."+vol.getAmountOfLevels());		
 			//if(!vol.getIsbroad())
 			this.entities = module.getGrids(vol);	
@@ -119,5 +129,22 @@ public class GridListActivity extends Activity implements OnTouchListener{
 		}
 		return true;
 	}
+	
+	
+	
+	
+	private OnClickListener volRankOnClickListener = new OnClickListener(){
+
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			Intent intent = new Intent(GridListActivity.this,IndividualActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putSerializable("currVol", vol);
+			intent.putExtras(bundle);
+			startActivity(intent);
+		}
+		
+	};
 	
 }

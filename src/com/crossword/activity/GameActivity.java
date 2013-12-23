@@ -38,6 +38,7 @@ import com.crossword.data.Grid;
 import com.crossword.data.Vol;
 import com.crossword.data.Word;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -59,7 +60,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class GameActivity extends CrosswordParentActivity implements OnTouchListener, KeyboardViewInterface {
+public class GameActivity extends Activity implements OnTouchListener, KeyboardViewInterface {
 
 	//public enum GRID_MODE {NORMAL, CHECK, SOLVE};
 	//public  int CurrentMode;

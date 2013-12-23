@@ -18,9 +18,11 @@
 package com.crossword.activity;
 
 import com.crossword.R;
+
+import android.app.Activity;
 import android.os.Bundle;
 
-public class CategoryActivity extends CrosswordParentActivity {
+public class CategoryActivity extends Activity {
 	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);

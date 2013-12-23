@@ -52,25 +52,27 @@
         android:orientation="vertical">
         
         <TextView
-            android:id="@+id/individual_account_text_size"
+            android:id="@+id/individual_account_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="David"
             android:textColor="@color/individual_account_text_color"
-            android:textSize="30dip" />
+            android:textSize="@dimen/individual_account_text_size" />
         
         <TextView
+            android:id="@+id/individual_rank_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="No.22" 
             android:textColor="@color/individual_rank_text_color"
-            android:textSize="18dip"
+            android:textSize="@dimen/individual_rank_text_size"
             android:background="@drawable/rank_bar_1x"
             android:layout_marginTop="15px"
             android:gravity="center"/>
         
         
           <TextView
+            android:id="@+id/individual_accumulate_point_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="已获积分:500" 
@@ -95,7 +97,7 @@
     
     
     <TextView android:layout_width="fill_parent"
-        android:layout_height="70px"
+        android:layout_height="53px"
         android:background="@drawable/bar_green_background"
         android:gravity="center"
         android:text="@string/rank_list"
@@ -109,25 +111,29 @@
         android:background="@drawable/bar_white_bg_1x"
         android:orientation="horizontal"
         android:gravity="center_vertical">
-  <TextView android:layout_width="wrap_content"
+  <TextView android:id="@+id/title_rank_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/rank_list"
         android:textColor="@color/title_rank_text_color"
         android:textSize="@dimen/title_rank_text_size"
-        android:paddingLeft="45px"/>
-    <TextView android:layout_width="wrap_content"
+        android:paddingLeft="68px"/>
+    <TextView 
+        android:id="@+id/title_username_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/username"
         android:textColor="@color/title_username_text_color"
         android:textSize="@dimen/title_username_text_size"
-        android:layout_marginLeft="60px"/>
+        android:layout_marginLeft="74px"/>
     
-    <TextView android:layout_width="wrap_content"
+    <TextView android:id="@+id/title_accumulate_point_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/accumulate_point"
         android:textColor="@color/title_accoumulate_point_text_color"
         android:textSize="@dimen/title_accoumulate_point_text_size"
-        android:layout_marginLeft="55px"/>
+        android:layout_marginLeft="74px"/>
 </LinearLayout>
     
   

@@ -30,12 +30,17 @@
     
     
     <!-- 个人中心的一些字体大小 -->
-    <dimen name="individual_account_text_size">30dip</dimen>
-    <dimen name="individual_rank_text_size">18dip</dimen>
-    <dimen name="individual_accumulate_point_text_size">20dip</dimen>
-    <dimen name="rank_list_text_size">22dip</dimen>
-    <dimen name="title_username_text_size">20dip</dimen>
-    <dimen name="title_rank_text_size">20dip</dimen>
-    <dimen name="title_accoumulate_point_text_size">20dip</dimen>
-    <dimen name="individual_item_text_size">20dip</dimen>
+    <dimen name="individual_account_text_size">23dip</dimen>
+    <dimen name="individual_rank_text_size">14dip</dimen>
+    <dimen name="individual_accumulate_point_text_size">15dip</dimen>
+    <dimen name="rank_list_text_size">17dip</dimen>
+    <dimen name="title_username_text_size">15dip</dimen>
+    <dimen name="title_rank_text_size">15dip</dimen>
+    <dimen name="title_accoumulate_point_text_size">15dip</dimen>
+    <dimen name="individual_item_text_size">15dip</dimen>
+    
+    
+    <!-- 选择类别的一些字体大小 -->
+    <dimen name="category_text_size">17dip</dimen>
+    <dimen name="category_finished_text_size">12dip</dimen>
 </resources>

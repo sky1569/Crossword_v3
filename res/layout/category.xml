@@ -34,18 +34,145 @@
         android:layout_height="wrap_content"
         android:background="@drawable/title_bottom_line_tile"/>
     
-    <LinearLayout 
+    <RelativeLayout 
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:background="@color/background_gray">
         
-        
-        <RelativeLayout android:id="@+id/movie_category_layout"
-            android:layout_width="wrap_content">
+        <LinearLayout
+            android:id="@+id/movie_category_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15px"
+            android:background="@drawable/group_01"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="90px"
+                android:paddingTop="12px"
+                android:text="@string/movie"
+                android:textColor="@color/category_text_green"
+                android:textSize="@dimen/category_text_size" />
+
+            <TextView
+                android:id="@+id/category_movie_finished_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="90px"
+                android:layout_marginTop="9px"
+                android:text="@string/category_finished"
+                android:textColor="@color/category_text_black"
+                android:textSize="@dimen/category_finished_text_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/verses_category_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movie_category_layout"
+            android:layout_marginTop="23dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/group_02" 
+            android:orientation="vertical">
             
-        </RelativeLayout>
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="90px"
+                android:paddingTop="12px"
+                android:text="@string/verses"
+                android:textColor="@color/category_text_green"
+                android:textSize="@dimen/category_text_size" />
+
+            <TextView
+                android:id="@+id/category_verses_finished_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="90px"
+                android:layout_marginTop="9px"
+                android:text="@string/category_finished"
+                android:textColor="@color/category_text_black"
+                android:textSize="@dimen/category_finished_text_size" />
+            
+            
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pop_category_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/verses_category_layout"
+            android:layout_marginTop="23dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/group_03" 
+            android:orientation="vertical">
+            
+            
+         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="90px"
+                android:paddingTop="12px"
+                android:text="@string/pop"
+                android:textColor="@color/category_text_green"
+                android:textSize="@dimen/category_text_size" />
+
+            <TextView
+                android:id="@+id/category_pop_finished_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="90px"
+                android:layout_marginTop="9px"
+                android:text="@string/category_finished"
+                android:textColor="@color/category_text_black"
+                android:textSize="@dimen/category_finished_text_size" />
+            
+            
+            
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/random_category_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pop_category_layout"
+            android:layout_marginTop="23dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/group_04"
+            android:orientation="vertical" >
+            
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="90px"
+                android:paddingTop="12px"
+                android:text="@string/random"
+                android:textColor="@color/category_text_green"
+                android:textSize="@dimen/category_text_size" />
+
+            <TextView
+                android:id="@+id/category_random_finished_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="90px"
+                android:layout_marginTop="9px"
+                android:text="@string/category_finished"
+                android:textColor="@color/category_text_black"
+                android:textSize="@dimen/category_finished_text_size" />
+            
+            
+            
+        </LinearLayout>
         
-    </LinearLayout>
+    </RelativeLayout>
 
     
 </LinearLayout>

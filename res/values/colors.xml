@@ -47,4 +47,10 @@
     <color name="individual_item_text_color">#ff272626</color>
     <color name="individual_background_color">#fff8f4f1</color>
     <color name="rank_list_background_color">#ffeaeaea</color>
+    
+    
+    
+    <!-- 选择类别的一些字体颜色 -->
+    <color name = "category_text_green">#ff7fb873</color>
+    <color name = "category_text_black">#ffb6b6b6</color>
 </resources>

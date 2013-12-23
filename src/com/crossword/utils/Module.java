@@ -523,11 +523,12 @@ public class Module {
 			this.score=this.corCount-this.hintCount-this.errCount;	
 			this.grid.setScore(this.score);	
 			//Log.isLoggable("score", this.score);
-			
+			int volScore = currVol.getScore();
+			volScore += this.score;
+			dbManager.updateVolData(currVol);
 			//积分上传
 			UserUtil userUtil = new UserUtil();
 			String verify = userUtil.uploadScore(this.grid.getUniqueid(), this.grid.getScore());
-			Log.v("上传分数呢", verify);
 		
 		    return this.score;
 			

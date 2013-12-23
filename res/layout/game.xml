@@ -70,7 +70,7 @@
             android:horizontalSpacing="1dp"
             android:listSelector="@null"
             android:verticalSpacing="1dp"
-            android:layout_gravity="center"          
+            android:layout_gravity="center"     
             >            
         </GridView>
        </LinearLayout>
