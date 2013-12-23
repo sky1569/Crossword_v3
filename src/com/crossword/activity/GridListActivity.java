@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.crossword.Crossword;
 import com.crossword.R;
 import com.crossword.adapter.GridListAdapter;
-import com.crossword.data.BroadMsg;
 import com.crossword.data.Grid;
 import com.crossword.data.Vol;
 import com.crossword.utils.DBManager;

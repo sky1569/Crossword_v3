@@ -1,14 +1,8 @@
 package com.crossword.activity;
 
-import com.crossword.R;
-import com.crossword.R.layout;
-import com.crossword.R.menu;
-import com.crossword.data.BroadMsg;
-import com.crossword.utils.UserUtil;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.crossword.R;
+import com.crossword.utils.UserUtil;
 
 public class LoginActivity extends Activity {
 
