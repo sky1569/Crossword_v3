@@ -1,6 +1,9 @@
 package com.crossword.utils;
 
+import java.util.LinkedList;
+
 import com.crossword.Crossword;
+import com.crossword.data.Rank;
 
 public class UserUtil {
 	
@@ -8,6 +11,7 @@ public class UserUtil {
 	private String    password;
 	private String    username;
 	public  static   String   currAccount;	//当前登录的用户
+	public  static   int      myScore;
 	private JsonUtil  jsonUtil;
 	public static  boolean   loginStatus;//表示登录的状态
 	
@@ -63,4 +67,13 @@ public class UserUtil {
 		
 	}
 
+	
+	
+	
+	public LinkedList getRank(int volNumber){
+		
+		String rankUrl = Crossword.RANK_ROOT_URL + "user=" + currAccount + "&" + "vol" + volNumber;
+		String jsonData = jsonUtil.readJsonFromUrl(rankUrl);
+		return jsonUtil.parseRankJson(jsonData);
+	}
 }

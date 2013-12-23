@@ -34,13 +34,13 @@
     
     
     <RelativeLayout android:layout_width="fill_parent"
-        android:layout_height="250dip"
+        android:layout_height="180dip"
         android:background="@color/individual_background_color">
         
         <ImageView android:id="@+id/profile_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/photo_icon_2x"
+            android:src="@drawable/photo_icon"
             android:paddingLeft="30px"
             android:paddingTop="50px"/>
         
@@ -95,7 +95,7 @@
     
     
     <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70px"
         android:background="@drawable/bar_green_background"
         android:gravity="center"
         android:text="@string/rank_list"
@@ -106,7 +106,7 @@
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bar_white_bg_2x"
+        android:background="@drawable/bar_white_bg_1x"
         android:orientation="horizontal"
         android:gravity="center_vertical">
   <TextView android:layout_width="wrap_content"
@@ -114,26 +114,27 @@
         android:text="@string/rank_list"
         android:textColor="@color/title_rank_text_color"
         android:textSize="@dimen/title_rank_text_size"
-        android:paddingLeft="75px"/>
+        android:paddingLeft="45px"/>
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/username"
         android:textColor="@color/title_username_text_color"
         android:textSize="@dimen/title_username_text_size"
-        android:layout_marginLeft="75dip"/>
+        android:layout_marginLeft="60px"/>
     
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/accumulate_point"
         android:textColor="@color/title_accoumulate_point_text_color"
         android:textSize="@dimen/title_accoumulate_point_text_size"
-        android:layout_marginLeft="75px"/>
+        android:layout_marginLeft="55px"/>
 </LinearLayout>
     
-    
+  
     <ListView android:id="@+id/rank_list"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent">"
+        android:layout_height="match_parent"
+        android:background="@color/rank_list_background_color">
         
         
     </ListView>

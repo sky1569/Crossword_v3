@@ -2,6 +2,38 @@
 <LinearLayout android:id="@+id/main_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" android:background="#000000" xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
         
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color">
+        
+        
+        <ImageButton android:id="@+id/category_return_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/title_padding_left"
+            android:paddingTop="@dimen/title_padding_top"
+            android:paddingBottom="@dimen/title_padding_bottom"
+            android:src="@drawable/navigationbar_backbutton"
+            android:background="@null"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_category"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/title_text_size"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+    
+    <ImageView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/title_bottom_line_tile"/>
+    
+
+    
 </LinearLayout>

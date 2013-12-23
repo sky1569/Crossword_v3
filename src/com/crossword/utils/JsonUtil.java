@@ -23,6 +23,7 @@ import android.util.Log;
 
 import com.crossword.data.BroadMsg;
 import com.crossword.data.Grid;
+import com.crossword.data.Rank;
 import com.crossword.data.Vol;
 import com.crossword.data.Word;
 
@@ -159,6 +160,35 @@ public class JsonUtil {
 		}
 		return grid;
 	}
+	
+	
+	
+	
+	//获取排名信息
+	public LinkedList<Rank> parseRankJson(String jsonData){
+		LinkedList<Rank> rankedList = new LinkedList<Rank>();
+		try {
+			JSONObject jObj = new JSONObject(jsonData);
+			JSONArray  jArr = jObj.getJSONArray("top");
+			for(int i = 0;i<jArr.length();i++){
+				
+				JSONObject jObjj = jArr.getJSONObject(i);
+				Rank rank = new Rank();
+				rank.setUserId(jObjj.getString("ID"));
+				rank.setAccumulatePoint(jObjj.getInt("SCORE"));
+				rank.setRank(i+1);
+				rankedList.add(rank);
+			}
+			int myRank = jObj.getInt("rank");
+			Rank.myRank = myRank;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return rankedList;
+	}
+	
 	
 	public BroadMsg parseBroad(String jsonData)
 	{

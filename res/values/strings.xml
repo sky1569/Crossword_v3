@@ -98,4 +98,5 @@ Les fonctionnalitées à venirs sont:\n
     <string name="rank">排行</string>
     <string name="username">用户名</string>
     <string name="accumulate_point">积分</string>
+    <string name="choose_category">选择类别</string>
 </resources>

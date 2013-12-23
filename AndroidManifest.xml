@@ -73,6 +73,15 @@
             android:name="com.crossword.activity.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
+        
+        <activity 
+            android:name="com.crossword.activity.IndividualActivity"
+            
+            >
+            
+            
+        </activity>
+        
     </application>
 
 </manifest>
