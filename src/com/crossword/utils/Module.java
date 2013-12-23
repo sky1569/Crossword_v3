@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.crossword.Crossword;
 import com.crossword.adapter.GameGridAdapter;
-import com.crossword.data.BroadMsg;
 import com.crossword.data.Grid;
 import com.crossword.data.Vol;
 import com.crossword.data.Word;

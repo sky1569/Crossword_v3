@@ -21,7 +21,6 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.util.Log;
 
-import com.crossword.data.BroadMsg;
 import com.crossword.data.Grid;
 import com.crossword.data.Rank;
 import com.crossword.data.Vol;

@@ -23,6 +23,7 @@ import java.util.LinkedList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -46,7 +47,7 @@ public class GameGridAdapter extends BaseAdapter {
 	private int 						height;
     private int 						displayWidth;
 	private Module						module;
-	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,Module module,int s)
+	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,Module module)
 	{
 	//	final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(act);
 		this.module = module;
@@ -56,9 +57,9 @@ public class GameGridAdapter extends BaseAdapter {
 		this.height = height;
 		//this.testwidth=10;
         Display display = act.getWindowManager().getDefaultDisplay();
-        this.displayHeight = s/this.height;
+       // this.displayHeight = (display.getHeight()/this.height)<(display.getWidth()/this.width)?(display.getHeight()/this.height):(display.getWidth()/this.width);
        // this.displayWidth  =display.getWidth()/this.width;
-       // this.displayHeight = display.getWidth() /this.width;
+        this.displayHeight = display.getWidth() /this.width;
         this.module.initentries();
         this.module.isComplete(act);
 	    
@@ -84,16 +85,18 @@ public class GameGridAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
+		Log.v("positiontest", ""+position);
 		TextView v = this.views.get(position);
 		int y = (int)(position / this.width); 
 		int x = (int)(position % this.width);
-	
+	    
 		String data = (!this.module.getdisplayAreaValue(x, y).equals(Crossword.UNFILLED) ) ? this.module.getdisplayAreaValue(x, y) :Crossword.BLANK;
-	
+	    
 		if (v == null)
 		{
+			Log.v("positiontestif v==null", ""+position);
 			v = new TextView(context);
-			v.setLayoutParams(new GridView.LayoutParams(GridView.LayoutParams.MATCH_PARENT, this.displayHeight));
+			v.setLayoutParams(new GridView.LayoutParams(GridView.LayoutParams.FILL_PARENT, this.displayHeight));
 			v.setTextSize((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4 ? 30 : 20);
 			v.setGravity(Gravity.CENTER);
 
@@ -125,28 +128,26 @@ public class GameGridAdapter extends BaseAdapter {
 	
 	//重新绘制，把小格的背景变为初始状态
 	public void reDrawGridBackground(GridView v){
-		/*for(int i = 0;i < this.height;i++){
-			for(int j = 0;j < this.width;j++){
-				int index2 = i*this.width + j;
-
+	
+	//	for(int y = 0;y < this.height;y++){
+		for(int y=v.getFirstVisiblePosition()/this.width;y <this.height;y++  ){	
+		for(int x = 0;x < this.width;x++){
 				
-				String value =  this.module.getareaValue(j,i);
-				Log.v("test4", value);
-				System.out.println("test4..."+index2);
-			}
-			}*/
-		for(int y = 0;y < this.height;y++){
-			for(int x = 0;x < this.width;x++){
 				
-				int index = y*this.width + x;
-
+				//int index = y*this.width + x;
+				int index =y*this.width + x-v.getFirstVisiblePosition();
+				Log.v("testshifou shuaxin", ""+index);
 				
 				String value =  this.module.getAreaValue(x,y);
 				
-			//	Log.v("test", value);
-			//if(v.getChildAt(index)!=null)
+			  //  int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY());
+               // Log.v("positionUP", ""+position);
+           //     int firstVP =v.getFirstVisiblePosition();
+          //      Log.v("firstpositionUPredraw", ""+firstVP);
+			if(v.getChildAt(index)!=null)
 				v.getChildAt(index).setBackgroundResource(value .equals(( Crossword.BLOCK))?
                         R.color.block_color:R.color.empty_color);
+		//	v.setAdapter(v.getAdapter());
 			//	Log.v("test2", value);
 			//	System.out.println("test3..."+index);
 			//	else  Log.v("test5", "你家里人知道吗");

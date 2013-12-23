@@ -55,31 +55,47 @@
             android:textSize="@dimen/desc_text_size"
             android:layout_marginTop="1dip"
             android:text="纵向:"
+            android:layout_marginBottom="3dip"
         />
-       <LinearLayout android:id="@+id/gridlayout"
+      
+        
+        <FrameLayout 
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            
-            android:gravity="center">
-        <GridView
+            android:layout_marginLeft="2dp"
+          
+            android:layout_marginRight="1dp"
+            android:gravity="center"
+            android:layout_gravity="center">
+       
+     
+         <GridView
             android:id="@+id/grid"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-         
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+         	android:fastScrollEnabled="true"
             android:horizontalSpacing="1dp"
             android:listSelector="@null"
             android:verticalSpacing="1dp"
-            android:layout_gravity="center"          
+            android:gravity="center" 
+            android:stretchMode="columnWidth"   
+            android:scrollbarStyle="outsideOverlay"
+            
+            
             >            
         </GridView>
-       </LinearLayout>
+        
+     
+       </FrameLayout>
+  
         <com.crossword.keyboard.KeyboardView
             android:id="@+id/keyboard"
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:layout_weight="0"
-            android:layout_marginBottom="0dip" />
+            android:layout_marginBottom="0dip" 
+            android:paddingBottom="0dip"/>
     </LinearLayout>
 
     <TextView

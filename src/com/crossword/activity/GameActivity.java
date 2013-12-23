@@ -156,17 +156,24 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
        // this.completeFlag = false;
 	    Display display = getWindowManager().getDefaultDisplay();
         int height = display.getHeight();
+        int weight = display.getWidth();
         int keyboardHeight = (int)(height / 4.4);
         this.txtDescriptionHor = (TextView)findViewById(R.id.description_horizotal);
         this.txtDescriptionVer = (TextView)findViewById(R.id.description_vertical);
         this.gridView = (GridView)findViewById(R.id.grid);
         this.gridView.setOnTouchListener(this);
         this.gridView.setNumColumns(this.width);
+        
         android.view.ViewGroup.LayoutParams gridParams = this.gridView.getLayoutParams();
-        gridParams.height = height - keyboardHeight - this.txtDescriptionHor.getLayoutParams().height*4;
+       // gridParams.height = weight/this.width*(this.height+1);
+       gridParams.height = (height - keyboardHeight - this.txtDescriptionHor.getLayoutParams().height*3);
+      //  gridParams.height =weight/10*this.height;
+        gridParams.width = weight;
+        
         this.gridView.setLayoutParams(gridParams);
+     //   this.gridView.setStretchMode("columnWidth");
       //  this.gridView.setVerticalScrollBarEnabled(false);
-		this.gridAdapter = new GameGridAdapter(this, this.entries, this.width, this.height,this.module,gridParams.height);
+		this.gridAdapter = new GameGridAdapter(this, this.entries, this.width, this.height,this.module);
 		this.gridView.setAdapter(this.gridAdapter);
 		//keyboardPopupWindow = new KeyboardPopupWindow(this);
         this.keyboardView = (KeyboardView)findViewById(R.id.keyboard);
@@ -185,16 +192,25 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
         {
             case MotionEvent.ACTION_DOWN:
             {
-            	int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY());
-            	View child = this.gridView.getChildAt(position);
-                
+            	int firstVP =this.gridView.getFirstVisiblePosition();
+            	//int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY());
+            	int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY())-firstVP;
+            	 Log.v("positionDown", ""+position);
+            	 View child = this.gridView.getChildAt(position);
+            	 
+            	 
+                 Log.v("firstpositionDown", ""+firstVP);
+                 
             	// Si pas de mot sur cette case (= case noire), aucun traitement
+               //  View child = this.gridView.getChildAt(position);
+                 Log.v("tst",""+child.getTag());
             	if (child == null || child.getTag().equals(Crossword.AREA_BLOCK)) {
             		if (this.solidSelection == false) {
                         clearSelection();
+                        Log.v("ts2t",""+child.getTag());
                     	this.gridAdapter.notifyDataSetChanged();
             		}
-            			
+            		Log.v("ts3t",""+child.getTag());
             		this.downIsPlayable = false;
             		return true;
             	}
@@ -215,8 +231,14 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
             	// Si le joueur 脿 appuy茅 sur une case noire, aucun traitement 
             	if (this.downIsPlayable == false)
             		return true;
-            	
+            	 int firstVP =this.gridView.getFirstVisiblePosition();
+                 Log.v("firstpositionUP", ""+firstVP);
                 int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY());
+            // 	int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY())-firstVP;
+                Log.v("positionUP", ""+position);
+               
+              //  position = position -firstVP;
+            //    position = position +firstVP;
                 int x = position % this.width;
                 int y = position / this.width;
                 System.out.println("ACTION_DOWN, x:" + x + ", y:" + y + ", position: " + position);
@@ -233,9 +255,9 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
             	//
             	
             	currentWord = module.getCorrectWord(currentX,currentY,this.horizontal);
-            	Log.v("h", currentWord.getCap());
+               //	Log.v("h", currentWord.getCap());
         	    if (this.currentWord == null)
-        	    	break;
+        	    	return true;
         	    this.horizontal = this.currentWord.getHoriz();
         	  //在设置背景之前先重绘一遍
         		this.gridAdapter.reDrawGridBackground(this.gridView);
@@ -426,11 +448,12 @@ public class GameActivity extends CrosswordParentActivity implements OnTouchList
 		int x = word.getX();
 		int y = word.getY();
 		boolean horizontal = word.getHoriz();
-		int currIndex = currY*this.width + currX;
+		int currIndex = currY*this.width + currX-this.gridView.getFirstVisiblePosition();
 	
 		for(int l = 0;l<word.getLength();l++){
-			int index = y*this.width + x + l*(horizontal?1:this.width);
+			int index = y*this.width + x + l*(horizontal?1:this.width)-this.gridView.getFirstVisiblePosition();
 			View currentChild = this.gridView.getChildAt(index);
+			if(currentChild==null) continue;
 			if(!currentChild .equals( Crossword.BLOCK)){
 				//currentChild.setBackgroundResource(index == currIndex?R.drawable.area_current:R.drawable.area_selected);
 				currentChild.setBackgroundResource(index == currIndex?R.color.current_selected_color:R.color.selected_area_color);
