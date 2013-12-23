@@ -91,12 +91,7 @@ public class GridListActivity extends Activity implements OnTouchListener{
     	}
     	
     }
-	/*@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.history, menu);
-		return true;
-	}*/
+
 	public boolean onTouch(View v, MotionEvent event) {
 		// TODO Auto-generated method stub
 		switch(event.getAction()){

@@ -245,7 +245,7 @@ public class Module {
 					}
 					else {
 						 //  grid.setGameMode(Crossword.GAMEMODELIVE);
-						   if(i <= vol.getCurLevel()) 	grid.setIslocked(Crossword.GRIDUNLOCKED);	
+						   if(i < vol.getCurLevel()) 	grid.setIslocked(Crossword.GRIDUNLOCKED);	
 						   else                         grid.setIslocked(Crossword.GRIDLOCKED);
 					
 					}									
