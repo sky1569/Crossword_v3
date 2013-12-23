@@ -214,9 +214,52 @@ public class Module {
 			return entities;
 		}
 		
+		public LinkedList<Grid> getGrids(Vol vol)
+		{
+			LinkedList<Grid> entities = new LinkedList<Grid>();
+			Log.v("test..初始化查询地址.","..."+vol.getIsbroad()+"..."+vol.getVolNumber());
+			entities = dbManager.queryGridByKey("volNumber",vol.getVolNumber() );
+			Log.v("test..entities空...",entities == null?"t":"w");
+			int l;
+			if(entities == null) l = 0;
+			else l = entities.size();
+			if(l < (vol).getAmountOfLevels())
+			{ 
+				Log.v("test..queryentities3...",""+l);
+				for(int i = l;i < (vol).getAmountOfLevels();i++)
+				{
+					Grid grid = new Grid();
+					
+					grid.setLevel(i+1);
+					grid.setVol(vol.getVolNumber() );			
+					Log.v("grid.setVol(vol).getVolNumber() )", ""+vol.getVolNumber()+".."+vol.getVolName());
+					grid.setStar(0);
+					
+					
+					if(!vol.getIsbroad())
+					{
+						if(i == 0) grid.setIslocked(Crossword.GRIDUNLOCKED);
+						else  grid.setIslocked(Crossword.GRIDLOCKED);
+						//grid.setGameMode(Crossword.GAMEMODEVOL);
+						
+					}
+					else {
+						 //  grid.setGameMode(Crossword.GAMEMODELIVE);
+						   if(i <= vol.getCurLevel()) 	grid.setIslocked(Crossword.GRIDUNLOCKED);	
+						   else                         grid.setIslocked(Crossword.GRIDLOCKED);
+					
+					}									
+						
+					
+					dbManager.add(grid);
+				}
+					entities = dbManager.queryGridByKey("volNumber",vol.getVolNumber() );
+				
+			}
+			return entities;
+		}
 		
-		
-		public LinkedList<Grid> getGrids(Object obj){
+		/*public LinkedList<Grid> getGrids(Object obj){
 			
 			LinkedList<Grid> entities = new LinkedList<Grid>();
 		///	Log.v("test..queryentities1...",Crossword.GRID_URL);
@@ -288,7 +331,7 @@ public class Module {
 			}
 			return entities;
 		}
-		
+		*/
 		//通过当前的grid查找当前的vol
 		public Vol queryVolByVolNumber(Grid grid){
 			

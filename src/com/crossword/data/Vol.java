@@ -11,7 +11,9 @@ public class Vol implements Serializable{
 	private int    volNumber;
 	private int    score = 0;
 	private boolean isbroad ;
-	private int[]    unlockNumber;
+//	private int[]    unlockNumber;
+	private int 	curLevel;
+	
 	public void    setVolName(String name){this.name = name;}
 	public String  getVolName(){return this.name;}
 	
@@ -30,6 +32,9 @@ public class Vol implements Serializable{
 	public void setIsbroad ( String value)	{this.isbroad = value.equals("YES")? true : false;}
 	public boolean getIsbroad(){return this.isbroad;}
 	
-	public void setUnlockNumber (int[] value){this.unlockNumber = value; this.setAmountOfLevels(unlockNumber.length); }
-	public int[] getUnlockNumber () 	{return this.unlockNumber;}
+	public void  setCurLevel( int value) {this.curLevel =value;}
+	public int   getCurLevel(){ return this.curLevel;}
+	
+//	public void setUnlockNumber (int[] value){this.unlockNumber = value; this.setAmountOfLevels(unlockNumber.length); }
+	//public int[] getUnlockNumber () 	{return this.unlockNumber;}
 }
