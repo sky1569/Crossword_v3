@@ -32,8 +32,20 @@
     <ImageView 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/title_bottom_line_tile"/>
+        android:background="@drawable/title_bottom_line_tile"/>
     
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_gray">
+        
+        
+        <RelativeLayout android:id="@+id/movie_category_layout"
+            android:layout_width="wrap_content">
+            
+        </RelativeLayout>
+        
+    </LinearLayout>
 
     
 </LinearLayout>

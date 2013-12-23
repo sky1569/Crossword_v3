@@ -11,12 +11,12 @@ import android.widget.ImageButton;
 
 import com.crossword.Crossword;
 import com.crossword.R;
-import com.crossword.data.BroadMsg;
+import com.crossword.data.Vol;
 import com.crossword.utils.JsonUtil;
 import com.crossword.utils.UserUtil;
 
 public class HomeActivity extends Activity{
-	private BroadMsg broadMsg;
+	private Vol broadMsg;
 	public static boolean ISBroad = false;
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -78,7 +78,7 @@ public class HomeActivity extends Activity{
 				}
 	//	    	intent.setClass(this, GridListActivity.class);
 		    	Bundle bundle = new Bundle();
-		    	bundle.putSerializable("currentBroad", broadMsg);
+		    	bundle.putSerializable("currentVol", broadMsg);
 		    	intent.putExtras(bundle);
 		    	startActivity(intent);
 

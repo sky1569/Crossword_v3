@@ -161,6 +161,7 @@ public class JsonUtil {
 		return grid;
 	}
 	
+
 	
 	
 	
@@ -190,7 +191,9 @@ public class JsonUtil {
 	}
 	
 	
-	public BroadMsg parseBroad(String jsonData)
+
+/*	public BroadMsg parseBroad(String jsonData)
+>>>>>>> 9a16a84efeadc4ddc9fe19285c7c18f94c0b5b7c
 	{
 		JSONObject jsonObject;
 		JSONArray  jsonArray;
@@ -215,6 +218,32 @@ public class JsonUtil {
 			e.printStackTrace();
 		}
 		return broadMsg;
+	}
+	*/
+	public Vol parseBroad(String jsonData)
+	{
+		JSONObject jsonObject;
+		JSONArray  jsonArray;
+		Vol vol =new Vol();
+		
+		try
+		{
+			 jsonObject = new JSONObject(jsonData);
+			 vol.setIsbroad(jsonObject.getString("broad"));
+			// vol.setVolName(jsonObject.getString("name"));
+			 JSONObject jsonObj = jsonObject.getJSONObject("broad_vol");
+			 vol.setVolName(jsonObj.getString("name"));
+			 vol.setAmountOfLevels(jsonObj.getInt("amount_of_levels"));
+			 vol.setCurLevel(jsonObj.getInt("cur_level"));
+			 vol.setOpenDate(jsonObj.getString("open_date"));
+			 vol.setVolNumber(jsonObj.getInt("vol_no"));
+		}
+		catch(Exception e)
+		{
+			Log.v("∂¡»Î÷±≤©¥ÌŒÛ", "11");
+			e.printStackTrace();
+		}
+		return vol;
 	}
 	
 

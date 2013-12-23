@@ -44,23 +44,27 @@ public class GridListActivity extends Activity implements OnTouchListener{
     	try
     	{
     		Vol vol=(Vol)this.bundle.getSerializable("currentVol");		
-			System.out.println("test..."+vol.getAmountOfLevels());			
+			System.out.println("test..."+vol.getAmountOfLevels());		
+			//if(!vol.getIsbroad())
 			this.entities = module.getGrids(vol);	
 			TextView gridListTitleText = (TextView)findViewById(R.id.gridlist_title_text);
 			System.out.println("resume"+vol.getVolName());
-			gridListTitleText.setText(vol.getVolName());
+			if(vol.getIsbroad()) gridListTitleText.setText("ÕýÔÚÖ±²¥");
+			else gridListTitleText.setText(vol.getVolName());
 			gridListView = (GridView) findViewById(R.id.gridlist_grid);
 			GridListAdapter gridListAdapter = new GridListAdapter(this,this.entities);
 			gridListView.setAdapter(gridListAdapter);
 			gridListView.setOnTouchListener(this);
+			int gameMode = vol.getIsbroad()?Crossword.GAMEMODELIVE:Crossword.GAMEMODEVOL;
 			for(Grid g :entities)
 			{
-				g.setGameMode(Crossword.GAMEMODEVOL);
+				g.setGameMode(gameMode);
 			}
     	}
     	catch(Exception e)
     	{
-    			try{
+    		Log.v("resume error", ""+this.entities.size());
+/*   		try{
     				BroadMsg broad = (BroadMsg)bundle.getSerializable("currentBroad");
 					this.entities = module.getGrids(broad);
 					TextView gridListTitleText = (TextView)findViewById(R.id.gridlist_title_text);
@@ -83,16 +87,11 @@ public class GridListActivity extends Activity implements OnTouchListener{
 						g.setGameMode(Crossword.GAMEMODEBREAK);
 					}
     			}
-    		
+    		*/ 
     	}
     	
     }
-	/*@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.history, menu);
-		return true;
-	}*/
+
 	public boolean onTouch(View v, MotionEvent event) {
 		// TODO Auto-generated method stub
 		switch(event.getAction()){
