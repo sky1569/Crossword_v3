@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/king_icon_1x"
        
-   		android:paddingLeft="260dp"
+   		android:layout_alignParentRight="true"
+   		android:paddingRight="20dip"
    		android:paddingTop="9dp"
         android:background="@null"/>
     
