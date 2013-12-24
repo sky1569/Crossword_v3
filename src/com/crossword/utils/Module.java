@@ -540,10 +540,13 @@ public class Module {
 			this.grid.setScore(this.score);	
 			//Log.isLoggable("score", this.score);
 			currVol = this.queryVolByVolNumber(this.grid.getVol());
-			int volScore = currVol.getScore();
+			int volScore = 0;
+			if(currVol != null){
+			volScore = currVol.getScore();
 			volScore += this.score;
 			currVol.setScore(volScore);
 			dbManager.updateVolData(currVol);
+			}
 			//积分上传
 			UserUtil userUtil = new UserUtil();
 			userUtil.uploadGridScore(this.grid.getUniqueid(), this.grid.getScore());

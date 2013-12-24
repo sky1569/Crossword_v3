@@ -33,6 +33,14 @@ public class HistoryActivity extends Activity implements OnTouchListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+	}
+	
+	
+	
+	@Override
+	public void onResume(){
+		
 		setContentView(R.layout.history);
 		volGridView = (GridView) findViewById(R.id.vol_grid);
 		module = new Module(this);
@@ -53,7 +61,11 @@ public class HistoryActivity extends Activity implements OnTouchListener{
 		volGridAdapter = new VolGridAdapter(this,entities);
 		volGridView.setAdapter(volGridAdapter);
 		volGridView.setOnTouchListener(this);
+		super.onResume();
 	}
+	
+	
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
