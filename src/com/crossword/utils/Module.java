@@ -556,6 +556,15 @@ public class Module {
 			
 		}
 		 
+		 
+		 //获取某一期的积分
+		 public void updateVolScore(Vol vol){
+			 
+			 
+		 }
+		 
+		 
+		 
 		 //预留，用以获取离线积分
 		public int getOfflineScore(){
 			
