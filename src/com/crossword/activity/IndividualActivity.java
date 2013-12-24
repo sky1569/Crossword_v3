@@ -57,7 +57,7 @@ public class IndividualActivity extends Activity {
 		Intent intent = getIntent();
 		Bundle bundle = intent.getExtras();
 		Vol  vol = (Vol)bundle.getSerializable("currVol");
-		vol = module.queryVolByVolNumber(vol.getVolNumber());
+		
 		
 		
 		
@@ -82,6 +82,7 @@ public class IndividualActivity extends Activity {
 			rankedList = userUtil.getRank();
 			UserUtil.myScore = module.getOfflineScore();
 		}else{
+			vol = module.queryVolByVolNumber(vol.getVolNumber());
 			rankedList = userUtil.getRank(vol.getVolNumber());
 			UserUtil.myScore = vol.getScore();
 			
