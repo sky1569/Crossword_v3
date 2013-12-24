@@ -221,6 +221,7 @@ public class DBManager {
 		//	Log.v("entities.sizeg.getIslocked()",""+g.getIslocked());
 			g.setUniqueid(c.getInt(c.getColumnIndex("uniqueid"))==0?null:c.getInt(c.getColumnIndex("uniqueid")));
 		
+			g.setScore(c.getInt(c.getColumnIndex("score")));
 			Log.v("uniqueid", ""+g.getUniqueid()+"..."+c.getInt(c.getColumnIndex("uniqueid")));
 			
 			if(c.getString(c.getColumnIndex("jsonData"))!=null)

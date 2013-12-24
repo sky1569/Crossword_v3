@@ -228,6 +228,11 @@ public class Module {
 			entities = dbManager.queryAllExistVol();
 			Comparator comp = new MyComparator();
             Collections.sort(entities,comp);
+            //获取最新期时需要更新一下所有分数
+            for(Vol entity:entities){
+            	
+            	updateVolScore(entity);
+            }
 			return entities;
 		}
 		
@@ -542,14 +547,14 @@ public class Module {
 			this.score=this.corCount-this.hintCount-this.errCount;	
 			this.grid.setScore(this.score);	
 			//Log.isLoggable("score", this.score);
-			currVol = this.queryVolByVolNumber(this.grid.getVol());
+		/*	currVol = this.queryVolByVolNumber(this.grid.getVol());
 			int volScore = 0;
 			if(currVol != null){
 			volScore = currVol.getScore();
 			volScore += this.score;
 			currVol.setScore(volScore);
 			dbManager.updateVolData(currVol);
-			}
+			}*/
 			//积分上传
 			UserUtil userUtil = new UserUtil();
 			userUtil.uploadGridScore(this.grid.getUniqueid(), this.grid.getScore());
@@ -558,6 +563,28 @@ public class Module {
 		    return this.score;
 			
 		}
+		 
+		 
+		 //更新某一期的积分
+		 public void updateVolScore(Vol vol){
+			 
+			LinkedList<Grid> grids = getGrids(vol);
+			
+			if(grids == null){
+				Log.v("tnnd", ""+"竟然是空");
+				return;
+			}
+			
+			int volScore = 0;
+			for(Grid grid:grids){
+		        volScore +=  grid.getScore();
+		        vol.setScore(volScore);
+			}
+			dbManager.updateVolData(vol);
+			
+		 }
+		 
+		 
 		 
 		 //预留，用以获取离线积分
 		public int getOfflineScore(){

@@ -66,6 +66,7 @@ public class GridListActivity extends Activity implements OnTouchListener{
     	try
     	{
     		vol=(Vol)this.bundle.getSerializable("currentVol");		
+    		module.updateVolScore(vol);
 			System.out.println("test..."+vol.getAmountOfLevels());		
 			//if(!vol.getIsbroad())
 		    this.entities = module.getGrids(vol);	
