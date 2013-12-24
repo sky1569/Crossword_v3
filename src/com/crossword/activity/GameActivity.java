@@ -208,7 +208,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
             	int firstVP =this.gridView.getFirstVisiblePosition();
             	//int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY());
             	int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY())-firstVP;
-            	if(position ==- 1)  break;
+            	if(this.gridView.pointToPosition((int)event.getX(), (int)event.getY()) ==- 1)  break;
             	 Log.v("positionDown", ""+position);
             	 View child = this.gridView.getChildAt(position);
             	 
@@ -221,7 +221,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
             	if (child == null || child.getTag().equals(Crossword.AREA_BLOCK)) {
             		if (this.solidSelection == false) {
                         clearSelection();
-                        Log.v("ts2t",""+child.getTag());
+                      //  Log.v("ts2t",""+child.getTag());
                     	this.gridAdapter.notifyDataSetChanged();
             		}
             		Log.v("ts3t",""+child.getTag());
