@@ -66,14 +66,14 @@
             android:layout_marginTop="3dip">
         <FrameLayout 
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:paddingTop="20dip"
+            android:layout_marginTop="40dip"
             android:gravity="center"
             android:layout_gravity="center">
        
      
-         <GridView
+         <com.crossword.view.MyGridView
             android:id="@+id/grid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
             android:horizontalSpacing="1dp"
             android:listSelector="@null"
             android:verticalSpacing="1dp">            
-        </GridView>
+        </com.crossword.view.MyGridView>
         
      
        </FrameLayout>
