@@ -1,5 +1,7 @@
 package com.crossword.utils;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 import org.json.JSONObject;
@@ -224,6 +226,8 @@ public class Module {
 			//这段应当加一个多线程从服务器上加载最新的vol的，目前先不考虑，只做先下载后读取所有的vol
 			parseVolFromUrl(Crossword.VOL_REQUEST_URL);
 			entities = dbManager.queryAllExistVol();
+			Comparator comp = new MyComparator();
+            Collections.sort(entities,comp);
 			return entities;
 		}
 		
