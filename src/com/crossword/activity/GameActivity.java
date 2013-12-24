@@ -208,6 +208,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
             	int firstVP =this.gridView.getFirstVisiblePosition();
             	//int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY());
             	int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY())-firstVP;
+            	if(position ==- 1)  break;
             	 Log.v("positionDown", ""+position);
             	 View child = this.gridView.getChildAt(position);
             	 
@@ -216,7 +217,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
                  
             	// Si pas de mot sur cette case (= case noire), aucun traitement
                //  View child = this.gridView.getChildAt(position);
-                 Log.v("tst",""+child.getTag());
+               //  Log.v("tst",""+child.getTag());
             	if (child == null || child.getTag().equals(Crossword.AREA_BLOCK)) {
             		if (this.solidSelection == false) {
                         clearSelection();
