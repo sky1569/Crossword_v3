@@ -72,12 +72,8 @@ public class GridListAdapter extends BaseAdapter {
 	//	TextView volScoreText = (TextView)view.findViewById(R.id.vol_score_text);
 		ImageView lockedView=(ImageView)view.findViewById(R.id.grid_lock_img);
 	     if(position < gridListLength){//若position不超过volLength,则显示所有期的信息；否则显示下一期和正在直播的
-	    	 Grid entity =new Grid();
-	    	 for(int i =0 ;i < entities.size();i++)
-	    	 { 
-	    		 if(position == entities.get(i).getLevel()-1) 
-	    	     	entity = entities.get(i);
-	    	 }
+	    	 Grid entity = entities.get(position);
+	    	 
 		    int gridLevel = entity.getLevel();
 		//	System.out.println("Level..."+gridLevel);
 		//	int score = entity.getScore();

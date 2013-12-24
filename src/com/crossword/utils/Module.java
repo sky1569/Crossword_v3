@@ -269,8 +269,10 @@ public class Module {
 					
 					dbManager.add(grid);
 				}
-					entities = dbManager.queryGridByKey("volNumber",vol.getVolNumber() );
 				
+					entities = dbManager.queryGridByKey("volNumber",vol.getVolNumber() );
+					Comparator comp = new MyComparator();
+		            Collections.sort(entities,comp);
 			}
 			return entities;
 		}
