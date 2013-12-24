@@ -16,8 +16,10 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.GridView;
+import android.widget.ImageButton;
 
 public class HistoryActivity extends Activity implements OnTouchListener{
 
@@ -27,12 +29,25 @@ public class HistoryActivity extends Activity implements OnTouchListener{
 	private VolGridAdapter  volGridAdapter;
 	private Module          module;
 	private Vol             currentVol;
+	private ImageButton     returnButton;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.history);
 		volGridView = (GridView) findViewById(R.id.vol_grid);
 		module = new Module(this);
+		
+		returnButton = (ImageButton)findViewById(R.id.history_return_button);
+		returnButton.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				HistoryActivity.this.finish();
+			}
+			
+		});
+		
 		//从URL请求期数，并解析
 		entities = module.getNewestVol();
 		volGridAdapter = new VolGridAdapter(this,entities);

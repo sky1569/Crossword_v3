@@ -29,7 +29,12 @@ public class VolGridAdapter extends BaseAdapter {
 		this.context = context;
 		//列数是固定的3
 		this.columnNum = 3;
-		this.volLength = entities.size();
+		if(!HomeActivity.ISBroad){//如果不在直播
+		
+			this.volLength = entities.size() + 1;
+		}else{
+			this.volLength = HomeActivity.broadMsg.getCurLevel();
+		}
 		this.entities = entities;
 		this.inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 	}
@@ -37,7 +42,7 @@ public class VolGridAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return volLength+1;
+		return volLength;
 	}
 
 	@Override
@@ -77,7 +82,7 @@ public class VolGridAdapter extends BaseAdapter {
 				volGridLayout.setBackgroundResource(R.drawable.vol_active);
 				volScoreText.setText("积分:"+score);	
 			}
-	     }else if(position == volLength){	    
+	     }else if(position == volLength&&!HomeActivity.ISBroad){	    
 	    	 volGridLayout.setBackgroundResource(R.drawable.vol_next);
 	    	 volScoreText.setText("12月10日");
 	    	 volNumberText.setText(this.context.getResources().getText(R.string.next_vol_text));

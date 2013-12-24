@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:background="@color/background_color">
         
-        <ImageButton android:id="@+id/aaaaaa"
+        <ImageButton android:id="@+id/individual_return_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/navigationbar_backbutton"

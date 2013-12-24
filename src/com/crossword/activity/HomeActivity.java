@@ -5,45 +5,49 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.crossword.Crossword;
 import com.crossword.R;
 import com.crossword.data.Vol;
 import com.crossword.utils.JsonUtil;
+import com.crossword.utils.Module;
 import com.crossword.utils.UserUtil;
 
 public class HomeActivity extends Activity{
-	private Vol broadMsg;
+	public static  Vol broadMsg;
 	public static boolean ISBroad = false;
+	private Module module;
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home);
+		
+
+		module = new Module(this);
+		
 		Button bnHistory = (Button)findViewById(R.id.button_1);
 		Button bnLive = (Button)findViewById(R.id.button_2);
 		Button bnBreakthough = (Button)findViewById(R.id.button_3);
 		Button bnRank = (Button)findViewById(R.id.button_4);
 		ImageButton bnSetting = (ImageButton)findViewById(R.id.set_button);
-		JsonUtil js =new JsonUtil(this);
-		
-		String broadcastMsg = js.readJsonFromUrl(Crossword.BROADCAST_URL);
-		if(broadcastMsg != null) 
-			
-		{
-			broadMsg = js.parseBroad(broadcastMsg);
-		
+		//JsonUtil js =new JsonUtil(this);
+		broadMsg = module.parseBroadFromUrl(Crossword.BROADCAST_URL);
+
+	
 			if(broadMsg.getIsbroad())
 				{	
 					this.ISBroad = true ;//全部期判断用：
 					bnLive.setTextColor(getResources().getColor(R.color.home_normal_text_color));
 					bnLive.setClickable(true);
 				}
-		}
-		else {
+		
+		    else {
 				this.ISBroad = false;
 		
 				bnLive.setTextColor(getResources().getColor(R.color .home_disable_text_color));
@@ -72,12 +76,12 @@ public class HomeActivity extends Activity{
 				
 				Intent intent = new Intent();
 				//根据登录状态判断该启动LoginActivity还是GridListActivity
-				if(UserUtil.loginStatus == true){
+			/*	if(UserUtil.loginStatus == 1){
 					intent.setClass(HomeActivity.this, GridListActivity.class);
 				}else{
 					intent.setClass(HomeActivity.this, LoginActivity.class);
-				}
-	//	    	intent.setClass(this, GridListActivity.class);
+				}*/
+		    	intent.setClass(HomeActivity.this, GridListActivity.class);
 		    	Bundle bundle = new Bundle();
 		    	bundle.putSerializable("currentVol", broadMsg);
 		    	intent.putExtras(bundle);
@@ -92,7 +96,7 @@ public class HomeActivity extends Activity{
 			public void onClick(View source) {
 				// TODO Auto-generated method stub
 				
-				Intent intent = new Intent (HomeActivity.this,GameActivity.class);
+				Intent intent = new Intent (HomeActivity.this,CategoryActivity.class);
 				startActivity(intent);
 				
 			}
@@ -106,9 +110,7 @@ public class HomeActivity extends Activity{
 				
 				Intent intent = new Intent (HomeActivity.this,IndividualActivity.class);
 				intent.putExtra("volNumber", broadMsg.getVolNumber());
-				
 				startActivity(intent);
-				
 			}
 		});
 		
@@ -126,5 +128,32 @@ public class HomeActivity extends Activity{
 		});
 		
 	}
+	
+	
+	@Override
+	public boolean onKeyDown(int keyCode,KeyEvent event){
+		
+		if(keyCode == KeyEvent.KEYCODE_BACK){
+			UserUtil.loginStatus = -1;
+			HomeActivity.ISBroad = false;
+			android.os.Process.killProcess(android.os.Process.myPid());
+			//HomeActivity.this.finish();
+			return true;
+		}
+		
+		return true;
+	}
 
+	
+	@Override
+	public void onResume(){
+		
+		//判断登录的状态
+		if(UserUtil.loginStatus == 1){
+			Toast.makeText(this, UserUtil.currAccount+","+"您好!", Toast.LENGTH_SHORT).show();
+		}else if(UserUtil.loginStatus == 0){
+			Toast.makeText(this, "游客登录，无法进行直播！", Toast.LENGTH_SHORT).show();
+		}
+		super.onResume();
+	}
 }

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,9 +25,20 @@ public class RegisterActivity extends Activity {
 	private EditText  telephoneEdText;
 	private EditText  passwordEdText;
 	private Button    submitButton;
+	private ImageButton returnButton;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		returnButton = (ImageButton)findViewById(R.id.register_return_button);
+		returnButton.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				RegisterActivity.this.finish();
+			}
+			
+		});
 		setContentView(R.layout.register);
 		loginNowTextView = (TextView)findViewById(R.id.login_now_text);
 		accountEdText = (EditText)findViewById(R.id.register_account_input_edittext);

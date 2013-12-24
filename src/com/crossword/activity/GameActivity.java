@@ -52,11 +52,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -99,6 +101,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 	
 	private int 			width;
 	private int 			height;
+	private ImageButton     returnButton;
 	//private boolean         completeFlag ;
 
 	/*@Override
@@ -136,7 +139,16 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 	  //  this.url = Crossword.GRID_URL + 10002;
 	  //  module.parseGrid(this, this.url);
 	    //通过uniqueid查找grid，如果没有就会从网页下载
-		
+		returnButton = (ImageButton)findViewById(R.id.game_return_button);
+		returnButton.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				GameActivity.this.finish();
+			}
+			
+		});
 	    this.grid = module.queryGridByUniqueid(currentGrid.getVol(),currentGrid.getLevel(),currentGrid.getUniqueid()==null?-1:currentGrid.getUniqueid());
            this.grid.setGameMode(currentGrid.getGameMode());
 	    if (this.grid == null) {

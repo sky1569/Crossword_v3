@@ -227,10 +227,8 @@ public final class R {
         public static final int vol_next_2x=0x7f020070;
     }
     public static final class id {
-        public static final int aaaaaa=0x7f0b0029;
         public static final int accumulate_point_item_text=0x7f0b0063;
         public static final int action_settings=0x7f0b0074;
-        public static final int backbutton=0x7f0b0010;
         public static final int backbutton_layout=0x7f0b000f;
         public static final int buttonA=0x7f0b0033;
         public static final int buttonB=0x7f0b0034;
@@ -283,21 +281,23 @@ public final class R {
         public static final int frameLayout2=0x7f0b005a;
         public static final int frameLayout3=0x7f0b005c;
         public static final int frameLayout4=0x7f0b005e;
+        public static final int game_return_button=0x7f0b0010;
         public static final int grid=0x7f0b0013;
         public static final int gridList_layout=0x7f0b0017;
         public static final int grid_lock_img=0x7f0b0019;
         public static final int grid_number_text=0x7f0b0018;
-        public static final int gridlist_backbutton=0x7f0b001b;
         public static final int gridlist_grid=0x7f0b001e;
+        public static final int gridlist_return_button=0x7f0b001b;
         public static final int gridlist_title=0x7f0b001a;
         public static final int gridlist_title_text=0x7f0b001d;
-        public static final int history_backbutton=0x7f0b0020;
+        public static final int history_return_button=0x7f0b0020;
         public static final int history_title=0x7f0b001f;
         public static final int history_title_text=0x7f0b0021;
         public static final int home_logo=0x7f0b0023;
         public static final int individual_account_text=0x7f0b002b;
         public static final int individual_accumulate_point_text=0x7f0b002d;
         public static final int individual_rank_text=0x7f0b002c;
+        public static final int individual_return_button=0x7f0b0029;
         public static final int individual_setting_button=0x7f0b002e;
         public static final int keyboard=0x7f0b0014;
         public static final int keyboard_overlay=0x7f0b0015;
@@ -305,9 +305,9 @@ public final class R {
         public static final int linearLayout2=0x7f0b003b;
         public static final int linearLayout3=0x7f0b0044;
         public static final int login_account_input_edittext=0x7f0b0053;
-        public static final int login_back_button=0x7f0b0051;
         public static final int login_now_text=0x7f0b006a;
         public static final int login_password_input_edittext=0x7f0b0054;
+        public static final int login_return_button=0x7f0b0051;
         public static final int login_submit_button=0x7f0b0055;
         public static final int main_layout=0x7f0b0000;
         public static final int menu_check=0x7f0b006e;
@@ -323,9 +323,9 @@ public final class R {
         public static final int rank_item_text=0x7f0b0061;
         public static final int rank_list=0x7f0b0032;
         public static final int register_account_input_edittext=0x7f0b0066;
-        public static final int register_back_button=0x7f0b0064;
         public static final int register_now_button=0x7f0b0057;
         public static final int register_password_input_edittext=0x7f0b0068;
+        public static final int register_return_button=0x7f0b0064;
         public static final int register_submit_button=0x7f0b0069;
         public static final int scrollView1=0x7f0b000a;
         public static final int set_button=0x7f0b0028;

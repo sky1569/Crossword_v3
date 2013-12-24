@@ -30,6 +30,7 @@ public class Crossword extends Application {
 	public static final String      LOGIN_ROOT_URL = "http://10.105.223.24/CrossWordPuzzlePHP/login.php?";
 	public static final String      REGISTER_ROOT_URL = "http://10.105.223.24/CrossWordPuzzlePHP/regist.php?";
 	public static final String      UPLOAD_SCORE_ROOT_URL = "http://10.105.223.24/CrossWordPuzzlePHP/sendscore.php?";
+	public static final String      UPLOAD_OFFLINE_ROOT_SCORE = "http://10.105.223.24/CrossWordPuzzlePHP/offlinesendscore.php?";
 	public static final String      RANK_ROOT_URL = "http://10.105.223.24/CrossWordPuzzlePHP/rank.php?";
 	public static final String      OFFLINE_RANK_ROOT_URL = "http://10.105.223.24/CrossWordPuzzlePHP/offlinerank.php?";
     public static final String      BROADCAST_URL = "http://10.105.223.24/CrossWordPuzzlePHP/broadcast.php";

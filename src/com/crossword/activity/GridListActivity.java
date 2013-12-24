@@ -13,6 +13,7 @@ import android.view.View.OnTouchListener;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crossword.Crossword;
 import com.crossword.R;
@@ -21,6 +22,7 @@ import com.crossword.data.Grid;
 import com.crossword.data.Vol;
 import com.crossword.utils.DBManager;
 import com.crossword.utils.Module;
+import com.crossword.utils.UserUtil;
 
 public class GridListActivity extends Activity implements OnTouchListener{
 	private Module          module;
@@ -32,6 +34,7 @@ public class GridListActivity extends Activity implements OnTouchListener{
 	private Intent intent;
 	private Bundle bundle;
 	private Vol    vol;
+	private ImageButton returnButton;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,6 +48,16 @@ public class GridListActivity extends Activity implements OnTouchListener{
 		this.intent = getIntent();
 		this.bundle = intent.getExtras();
 		
+		returnButton  = (ImageButton)findViewById(R.id.gridlist_return_button);
+		returnButton.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				GridListActivity.this.finish();
+			}
+			
+		});
 		
 		volRankButton = (ImageButton)findViewById(R.id.vol_rank_button);
 		volRankButton.setOnClickListener(volRankOnClickListener);
@@ -58,7 +71,18 @@ public class GridListActivity extends Activity implements OnTouchListener{
 			this.entities = module.getGrids(vol);	
 			TextView gridListTitleText = (TextView)findViewById(R.id.gridlist_title_text);
 			System.out.println("resume"+vol.getVolName());
-			if(vol.getIsbroad()) gridListTitleText.setText("正在直播");
+			
+			//如果正在直播
+			if(vol.getIsbroad()){
+				//先判断登录
+				if(UserUtil.loginStatus != 1){//若未登录		
+					Intent intent = new Intent(GridListActivity.this, LoginActivity.class);
+					startActivity(intent);
+					GridListActivity.this.finish();
+				}
+				
+				gridListTitleText.setText("正在直播");
+			}
 			else gridListTitleText.setText(vol.getVolName());
 			gridListView = (GridView) findViewById(R.id.gridlist_grid);
 			GridListAdapter gridListAdapter = new GridListAdapter(this,this.entities);

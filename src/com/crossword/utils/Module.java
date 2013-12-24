@@ -42,6 +42,8 @@ public class Module {
     	 this.dbManager = new DBManager(context);
     	 this.jsonUtil = new JsonUtil(context);
      }
+     
+
 	 
 	 public Grid parseGridFromUrl(Context context,String url){
 		 Grid grid = new Grid();
@@ -73,6 +75,18 @@ public class Module {
 		 }
 		 return entities;
 	 }
+	 
+	 
+	 public Vol parseBroadFromUrl(String url){
+		 
+		 String jsonData = jsonUtil.readJsonFromUrl(url);
+		 Vol broadVol = jsonUtil.parseBroad(jsonData);
+		 dbManager.add(broadVol);
+		 return broadVol;
+		 
+	 }
+	 
+	 
 	 
 	//初始化Module中的width,height,area等
 	 public void initModule(Grid grid){
@@ -228,9 +242,8 @@ public class Module {
 				for(int i = l;i < (vol).getAmountOfLevels();i++)
 				{
 					Grid grid = new Grid();
-					
 					grid.setLevel(i+1);
-					grid.setVol(vol.getVolNumber() );			
+					grid.setVol(vol.getVolNumber());			
 					Log.v("grid.setVol(vol).getVolNumber() )", ""+vol.getVolNumber()+".."+vol.getVolName());
 					grid.setStar(0);
 					
@@ -331,10 +344,10 @@ public class Module {
 			return entities;
 		}
 		*/
-		//通过当前的grid查找当前的vol
-		public Vol queryVolByVolNumber(Grid grid){
+		//通过当前的volnumber查找当前的vol
+		public Vol queryVolByVolNumber(int volNumber){
 			
-			Vol vol = dbManager.queryVolByKey("vol_no", grid.getVol());
+			Vol vol = dbManager.queryVolByKey("vol_no", volNumber);
 			
 			return vol;
 		}
@@ -522,18 +535,28 @@ public class Module {
 			this.score=this.corCount-this.hintCount-this.errCount;	
 			this.grid.setScore(this.score);	
 			//Log.isLoggable("score", this.score);
+			currVol = this.queryVolByVolNumber(this.grid.getVol());
 			int volScore = currVol.getScore();
 			volScore += this.score;
+			currVol.setScore(volScore);
 			dbManager.updateVolData(currVol);
 			//积分上传
 			UserUtil userUtil = new UserUtil();
-			String verify = userUtil.uploadScore(this.grid.getUniqueid(), this.grid.getScore());
-		
+			userUtil.uploadGridScore(this.grid.getUniqueid(), this.grid.getScore());
+		   //上传离线积分
+			userUtil.uploadOfflineScore(300);
 		    return this.score;
 			
 		}
 		 
-		
+		 //预留，用以获取离线积分
+		public int getOfflineScore(){
+			
+			return 300;
+		}
+		 
+		 
+		 
 		
 		public boolean isCross(int x,int y){
 			boolean c = false;

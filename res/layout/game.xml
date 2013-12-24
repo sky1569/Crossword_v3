@@ -17,7 +17,7 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
             
-            <ImageButton android:id="@+id/backbutton"
+            <ImageButton android:id="@+id/game_return_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/navigationbar_backbutton"

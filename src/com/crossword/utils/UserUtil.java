@@ -15,7 +15,7 @@ public class UserUtil {
 	public  static    int      myRank;
 
 	private JsonUtil  jsonUtil;
-	public static  boolean   loginStatus;//表示登录的状态
+	public static  int   loginStatus = -1;//表示登录的状态,1表示已登录，0表示游客登录，-1表示未登录
 	
 	public UserUtil(){
 		
@@ -58,7 +58,7 @@ public class UserUtil {
 	}
 	
 	
-	public String uploadScore(int uniqueid,int score){
+	public String uploadGridScore(int uniqueid,int score){
 		
 		String uploadScoreUrl = Crossword.UPLOAD_SCORE_ROOT_URL + "user=" + currAccount +"&"
 				                                                + "score=" + score+"&" 
@@ -69,6 +69,14 @@ public class UserUtil {
 		
 	}
 
+	
+	public String uploadOfflineScore(int score){
+		String uploadOfflineScore = Crossword.UPLOAD_OFFLINE_ROOT_SCORE + "user=" + currAccount + "&"
+				                                                          +"score=" + score;
+		String verify = jsonUtil.readJsonFromUrl(uploadOfflineScore);
+		
+		return verify;
+	}
 	
 	
 	

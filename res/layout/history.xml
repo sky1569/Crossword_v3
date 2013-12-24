@@ -11,7 +11,7 @@
     android:background="@color/title_background_color"
     android:orientation="horizontal">
     
-    <ImageButton android:id="@+id/history_backbutton"
+    <ImageButton android:id="@+id/history_return_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/navigationbar_backbutton"
