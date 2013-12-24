@@ -245,10 +245,10 @@ public class Module {
 			int l;
 			if(entities == null) l = 0;
 			else l = entities.size();
-			if(l < (vol).getAmountOfLevels())
+			if(l < vol.getAmountOfLevels())
 			{ 
 				Log.v("test..queryentities3...",""+l);
-				for(int i = l;i < (vol).getAmountOfLevels();i++)
+				for(int i = l;i < vol.getAmountOfLevels();i++)
 				{
 					Grid grid = new Grid();
 					grid.setLevel(i+1);
@@ -276,9 +276,10 @@ public class Module {
 				}
 				
 					entities = dbManager.queryGridByKey("volNumber",vol.getVolNumber() );
-					Comparator comp = new MyComparator();
-		            Collections.sort(entities,comp);
+					
 			}
+			Comparator comp = new MyComparator();
+            Collections.sort(entities,comp);
 			return entities;
 		}
 		
