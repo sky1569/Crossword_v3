@@ -85,7 +85,7 @@ public class GameGridAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-		Log.v("positiontest", ""+position);
+		//Log.v("positiontest", ""+position);
 		TextView v = this.views.get(position);
 		int y = (int)(position / this.width); 
 		int x = (int)(position % this.width);
@@ -94,7 +94,7 @@ public class GameGridAdapter extends BaseAdapter {
 	    
 		if (v == null)
 		{
-			Log.v("positiontestif v==null", ""+position);
+			//Log.v("positiontestif v==null", ""+position);
 			v = new TextView(context);
 			v.setLayoutParams(new GridView.LayoutParams(GridView.LayoutParams.FILL_PARENT, this.displayHeight));
 			v.setTextSize((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4 ? 30 : 20);
@@ -136,21 +136,15 @@ public class GameGridAdapter extends BaseAdapter {
 				
 				//int index = y*this.width + x;
 				int index =y*this.width + x-v.getFirstVisiblePosition();
-				Log.v("testshifou shuaxin", ""+index);
+			
 				
 				String value =  this.module.getAreaValue(x,y);
 				
-			  //  int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY());
-               // Log.v("positionUP", ""+position);
-           //     int firstVP =v.getFirstVisiblePosition();
-          //      Log.v("firstpositionUPredraw", ""+firstVP);
+			
 			if(v.getChildAt(index)!=null)
 				v.getChildAt(index).setBackgroundResource(value .equals(( Crossword.BLOCK))?
                         R.color.block_color:R.color.empty_color);
-		//	v.setAdapter(v.getAdapter());
-			//	Log.v("test2", value);
-			//	System.out.println("test3..."+index);
-			//	else  Log.v("test5", "你家里人知道吗");
+		
 			}
 		}
 	}
