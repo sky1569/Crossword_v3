@@ -568,10 +568,17 @@ public class Module {
 		 //更新某一期的积分
 		 public void updateVolScore(Vol vol){
 			 
-			LinkedList<Grid> grids = dbManager.queryGridByKey("volNumber", vol.getVolNumber());
+			LinkedList<Grid> grids = getGrids(vol);
+			
+			if(grids == null){
+				Log.v("tnnd", ""+"竟然是空");
+				return;
+			}
+			
 			int volScore = 0;
 			for(Grid grid:grids){
-				volScore += grid.getScore();
+		        volScore +=  grid.getScore();
+		        vol.setScore(volScore);
 			}
 			dbManager.updateVolData(vol);
 			
