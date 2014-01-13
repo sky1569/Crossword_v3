@@ -49,10 +49,7 @@ public class Module {
 	 
 	 public Grid parseGridFromUrl(Context context,String url){
 		 Grid grid = new Grid();
-		 //jsonUtil = new JsonUtil(context);
-		 //dbManager = new DBManager(context);
-		// String jsonData = jsonUtil.readJsonDataFromFile(filename);
-		// String jsonData = jsonUtil.readJsonDataFromAssets(filename);
+		
 		 String jsonData = jsonUtil.readJsonFromUrl(url);
 		// System.out.println(jsonData);
 		 grid =  jsonUtil.parseGridJson(jsonData);
@@ -87,7 +84,117 @@ public class Module {
 		 return broadVol;
 		 
 	 }
-	 
+		//保存Grid信息，先写入JSON，再写入数据库
+		public void save(GameGridAdapter gridAdapter,Grid grid){
+			for(Word entry:grid.getEntries()){
+				String word = this.getWord(entry.getX(), entry.getY(),entry.getLength(),entry.getHoriz());
+				entry.setTmp(word);		
+				//entry.set
+				Log.v("测试写入json，gettem", entry.getTmp());
+			}
+			grid.setStar(this.star(score));
+			grid.setIslocked(Crossword.GRIDUNLOCKED);
+			JSONObject jObj = jsonUtil.writeToJson(grid);
+			//用以保存数据的grid类，主要是保存在数据库中，增加了jsonData字段
+			grid.setJsonData(jObj.toString());
+			dbManager.updateGridData(grid);	
+		}
+		
+		
+		
+		
+		
+		public Grid queryGridByUniqueid(int vol,int lv,int uniqueid){
+			//无论如何先看数据库里面有符合uniqueid的项
+			Log.v("test..queryxiayibu...",Crossword.GRID_URL +"vol="+vol+"&lv="+lv);
+			this.grid = dbManager.queryGridByKey("uniqueid", uniqueid,this.jsonUtil);
+			//如果没有查到，则打开网络访问
+			if(this.grid == null){
+			   //通过URL解析Json
+				//this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL + uniqueid);
+				if((this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL +"vol="+vol+"&lv="+lv)).getFilename() == null){
+					return null;//要提示获取失败
+				}
+			}
+		//	Log.v("nima ",""+this.grid.getWidth());
+		//	Log.v("初始化测试json",this.grid.getJsonData());
+			initModule(this.grid);
+			return this.grid;
+			
+		}
+		//先遍历VOLTABLE中的所有项，为了画往期回顾，再下载
+		public LinkedList<Vol> getNewestVol(){
+			
+			LinkedList<Vol> entities = new LinkedList<Vol>();
+			
+			//这段应当加一个多线程从服务器上加载最新的vol的，目前先不考虑，只做先下载后读取所有的vol
+			parseVolFromUrl(Crossword.VOL_REQUEST_URL);
+			entities = dbManager.queryAllExistVol();
+			Comparator comp = new MyComparator();
+         Collections.sort(entities,comp);
+         //获取最新期时需要更新一下所有分数
+         for(Vol entity:entities){
+         	
+         	updateVolScore(entity);
+         }
+			return entities;
+		}
+		
+		public LinkedList<Grid> getGrids(Vol vol)
+		{
+			LinkedList<Grid> entities = new LinkedList<Grid>();
+			Log.v("test..初始化查询地址.","..."+vol.getIsbroad()+"..."+vol.getVolNumber());
+			entities = dbManager.queryGridByKey("volNumber",vol.getVolNumber() );
+			Log.v("test..entities空...",entities == null?"t":"w");
+			int l;
+			if(entities == null) l = 0;
+			else l = entities.size();
+			if(l < vol.getAmountOfLevels())
+			{ 
+				Log.v("test..queryentities3...",""+l);
+				for(int i = l;i < vol.getAmountOfLevels();i++)
+				{
+					Grid grid = new Grid();
+					grid.setLevel(i+1);
+					grid.setVol(vol.getVolNumber());			
+					Log.v("grid.setVol(vol).getVolNumber() )", ""+vol.getVolNumber()+".."+vol.getVolName());
+					grid.setStar(0);
+					
+					
+					if(!vol.getIsbroad())
+					{
+						if(i == 0) grid.setIslocked(Crossword.GRIDUNLOCKED);
+						else  grid.setIslocked(Crossword.GRIDLOCKED);
+						//grid.setGameMode(Crossword.GAMEMODEVOL);
+						
+					}
+					else {
+						 //  grid.setGameMode(Crossword.GAMEMODELIVE);
+						   if(i < vol.getCurLevel()) 	grid.setIslocked(Crossword.GRIDUNLOCKED);	
+						   else                         grid.setIslocked(Crossword.GRIDLOCKED);
+					
+					}									
+						
+					
+					dbManager.add(grid);
+				}
+				
+					entities = dbManager.queryGridByKey("volNumber",vol.getVolNumber() );
+					
+			}
+			Comparator comp = new MyComparator();
+         Collections.sort(entities,comp);
+			return entities;
+		}
+		
+	
+		//通过当前的volnumber查找当前的vol
+		public Vol queryVolByVolNumber(int volNumber){
+			
+			Vol vol = dbManager.queryVolByKey("vol_no", volNumber);
+			
+			return vol;
+		}
 	 
 	 
 	//初始化Module中的width,height,area等
@@ -180,189 +287,7 @@ public class Module {
 		
 		
 	  
-		//保存Grid信息，先写入JSON，再写入数据库
-		public void save(GameGridAdapter gridAdapter,Grid grid){
-			for(Word entry:grid.getEntries()){
-				String word = this.getWord(entry.getX(), entry.getY(),entry.getLength(),entry.getHoriz());
-				entry.setTmp(word);		
-				//entry.set
-				Log.v("测试写入json，gettem", entry.getTmp());
-			}
-			grid.setStar(this.star(score));
-			grid.setIslocked(Crossword.GRIDUNLOCKED);
-			JSONObject jObj = jsonUtil.writeToJson(grid);
-			//用以保存数据的grid类，主要是保存在数据库中，增加了jsonData字段
-			grid.setJsonData(jObj.toString());
-			dbManager.updateGridData(grid);	
-		}
-		
-		
-		
-		
-		
-		public Grid queryGridByUniqueid(int vol,int lv,int uniqueid){
-			//无论如何先看数据库里面有符合uniqueid的项
-			Log.v("test..queryxiayibu...",Crossword.GRID_URL +"vol="+vol+"&lv="+lv);
-			this.grid = dbManager.queryGridByKey("uniqueid", uniqueid,this.jsonUtil);
-			//如果没有查到，则打开网络访问
-			if(this.grid == null){
-			   //通过URL解析Json
-				//this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL + uniqueid);
-				if((this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL +"vol="+vol+"&lv="+lv)).getFilename() == null){
-					return null;//要提示获取失败
-				}
-			}
-		//	Log.v("nima ",""+this.grid.getWidth());
-		//	Log.v("初始化测试json",this.grid.getJsonData());
-			initModule(this.grid);
-			return this.grid;
-			
-		}
-		//先遍历VOLTABLE中的所有项，为了画往期回顾，再下载
-		public LinkedList<Vol> getNewestVol(){
-			
-			LinkedList<Vol> entities = new LinkedList<Vol>();
-			
-			//这段应当加一个多线程从服务器上加载最新的vol的，目前先不考虑，只做先下载后读取所有的vol
-			parseVolFromUrl(Crossword.VOL_REQUEST_URL);
-			entities = dbManager.queryAllExistVol();
-			Comparator comp = new MyComparator();
-            Collections.sort(entities,comp);
-            //获取最新期时需要更新一下所有分数
-            for(Vol entity:entities){
-            	
-            	updateVolScore(entity);
-            }
-			return entities;
-		}
-		
-		public LinkedList<Grid> getGrids(Vol vol)
-		{
-			LinkedList<Grid> entities = new LinkedList<Grid>();
-			Log.v("test..初始化查询地址.","..."+vol.getIsbroad()+"..."+vol.getVolNumber());
-			entities = dbManager.queryGridByKey("volNumber",vol.getVolNumber() );
-			Log.v("test..entities空...",entities == null?"t":"w");
-			int l;
-			if(entities == null) l = 0;
-			else l = entities.size();
-			if(l < vol.getAmountOfLevels())
-			{ 
-				Log.v("test..queryentities3...",""+l);
-				for(int i = l;i < vol.getAmountOfLevels();i++)
-				{
-					Grid grid = new Grid();
-					grid.setLevel(i+1);
-					grid.setVol(vol.getVolNumber());			
-					Log.v("grid.setVol(vol).getVolNumber() )", ""+vol.getVolNumber()+".."+vol.getVolName());
-					grid.setStar(0);
-					
-					
-					if(!vol.getIsbroad())
-					{
-						if(i == 0) grid.setIslocked(Crossword.GRIDUNLOCKED);
-						else  grid.setIslocked(Crossword.GRIDLOCKED);
-						//grid.setGameMode(Crossword.GAMEMODEVOL);
-						
-					}
-					else {
-						 //  grid.setGameMode(Crossword.GAMEMODELIVE);
-						   if(i < vol.getCurLevel()) 	grid.setIslocked(Crossword.GRIDUNLOCKED);	
-						   else                         grid.setIslocked(Crossword.GRIDLOCKED);
-					
-					}									
-						
-					
-					dbManager.add(grid);
-				}
-				
-					entities = dbManager.queryGridByKey("volNumber",vol.getVolNumber() );
-					
-			}
-			Comparator comp = new MyComparator();
-            Collections.sort(entities,comp);
-			return entities;
-		}
-		
-		/*public LinkedList<Grid> getGrids(Object obj){
-			
-			LinkedList<Grid> entities = new LinkedList<Grid>();
-		///	Log.v("test..queryentities1...",Crossword.GRID_URL);
-			if(obj instanceof Vol)
-			{ 
-		//		Vol vol = Vol(obj);
-				entities = dbManager.queryGridByKey("volNumber",((Vol) obj).getVolNumber() );
-			//	Log.v("test..queryentities2...",entities == null?"t":"w");
-				int l;
-				if(entities == null) l = 0;
-				else l = entities.size();
-				if(l < ((Vol) obj).getAmountOfLevels())
-				{ 
-					Log.v("test..queryentities3...",""+l);
-					for(int i = l;i < ((Vol) obj).getAmountOfLevels();i++)
-					{
-						Grid grid = new Grid();
-						if(i == 0) grid.setIslocked(Crossword.GRIDUNLOCKED);
-						else  grid.setIslocked(Crossword.GRIDLOCKED);
-					//	System.out.println("testi..."+(i-l));
-						grid.setLevel(i+1);
-						grid.setVol(((Vol) obj).getVolNumber() );			
-						Log.v("grid.setVol(((Vol) obj).getVolNumber() )", ""+((Vol) obj).getVolNumber()+".."+((Vol) obj).getVolName());
-						grid.setStar(0);
-						dbManager.add(grid);
-						System.out.println("testi2..."+(i-l));
-					//	entities.add(grid);
-					}
-				}
-				entities = dbManager.queryGridByKey("volNumber",((Vol) obj).getVolNumber() );
-			}
-			if(obj instanceof BroadMsg)
-			{
-				
-				entities = dbManager.queryGridByKey("volNumber",((BroadMsg) obj).getVolNumber() );
-				int l;
-				boolean flag=false;
-				if(entities == null) l = 0;
-				else l = entities.size();
-				if(l < ((BroadMsg) obj).getAmountOfLevels())
-				{ 
-					Log.v("test..queryentities3...",""+l);
-					for(int i = l;i < ((BroadMsg) obj).getAmountOfLevels();i++)
-					{
-						Grid grid = new Grid();
-						
-					//	if(i == 0) grid.setIslocked(Crossword.GRIDUNLOCKED);
-						for(int j = 0;j <((BroadMsg) obj).getAmountOfLevels();j++)
-						  { 
-							Log.v(" ((BroadMsg) obj).getUnlockNumber()[j]", ""+ ((BroadMsg) obj).getUnlockNumber()[j]);
-							flag= (i+1-l) == ((BroadMsg) obj).getUnlockNumber()[j] ?true:false;			
-							if(flag) break;
-						  
-						  }
-						  Log.v("flag", ""+flag);
-						if(flag)
-							grid.setIslocked(Crossword.GRIDUNLOCKED);
-						else grid.setIslocked(Crossword.GRIDLOCKED);
-					//	System.out.println("testi..."+(i-l));
-						grid.setLevel(i+1);
-						grid.setVol(((BroadMsg) obj).getVolNumber() );					
-						grid.setStar(0);
-						dbManager.add(grid);
-						System.out.println("testi2..."+(i-l));
-					//	entities.add(grid);
-					}
-				}
-				entities = dbManager.queryGridByKey("volNumber",((BroadMsg) obj).getVolNumber() );
-			}
-			return entities;
-		}
-		*/
-		//通过当前的volnumber查找当前的vol
-		public Vol queryVolByVolNumber(int volNumber){
-			
-			Vol vol = dbManager.queryVolByKey("vol_no", volNumber);
-			
-			return vol;
-		}
+	
 		
 		
 		
@@ -546,15 +471,7 @@ public class Module {
 			this.isCor();
 			this.score=this.corCount-this.hintCount-this.errCount;	
 			this.grid.setScore(this.score);	
-			//Log.isLoggable("score", this.score);
-		/*	currVol = this.queryVolByVolNumber(this.grid.getVol());
-			int volScore = 0;
-			if(currVol != null){
-			volScore = currVol.getScore();
-			volScore += this.score;
-			currVol.setScore(volScore);
-			dbManager.updateVolData(currVol);
-			}*/
+	
 			//积分上传
 			UserUtil userUtil = new UserUtil();
 			userUtil.uploadGridScore(this.grid.getUniqueid(), this.grid.getScore());
