@@ -66,7 +66,7 @@ public class RankAdapter extends BaseAdapter{
 		alignCenterToTitle(titleUsernameText,usernameText);
 		alignCenterToTitle(titleAccumulatePointText,accumulatePointText);*/
 		if(position == 0){
-			crownImageView.setImageResource(R.drawable.king_icon_1x);
+			crownImageView.setImageResource(R.drawable.king_icon_2x);
 		}
 		Rank rank = rankedList.get(position);
 		rankText.setText(""+rank.getRank());

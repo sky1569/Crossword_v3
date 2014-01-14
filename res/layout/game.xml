@@ -40,6 +40,9 @@
             android:textSize="@dimen/desc_text_size"
             android:text="横向:"
             />
+        <ImageView android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/title_bottom_line_tile"/>
         <TextView 
             android:id="@+id/description_vertical"
             android:layout_width="fill_parent"
@@ -53,23 +56,22 @@
             android:textColor="@color/desc_text_color"
             android:background="@color/desc_background_color"
             android:textSize="@dimen/desc_text_size"
-            android:layout_marginTop="1dip"
             android:text="纵向:"
         />
-        <ImageView android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/title_bottom_line_tile"/>
+
       
         <ScrollView    android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="3dip">
+            android:layout_marginTop="1dip"
+           >
         <FrameLayout 
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:layout_gravity="center_horizontal|top">
+            android:layout_gravity="center_horizontal|top"
+            >
        
      
          <com.crossword.view.MyGridView
@@ -79,7 +81,12 @@
          	android:fastScrollEnabled="true"
             android:horizontalSpacing="1dp"
             android:listSelector="@null"
-            android:verticalSpacing="1dp">            
+            android:verticalSpacing="1dp"
+            android:background="@color/background_gray" 
+            android:paddingBottom="1dip"
+            android:paddingTop="1dip"
+            >            
+             
         </com.crossword.view.MyGridView>
         
      

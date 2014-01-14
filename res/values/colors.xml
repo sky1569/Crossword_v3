@@ -2,6 +2,7 @@
 <resources>
 
     <color name="normal">#000</color>
+    <color name="pure_white">#ffffffff</color>
     <color name="draft">#999</color>
     <color name="wrong">#F00</color>
     <color name="right">#0F0</color>
@@ -16,7 +17,7 @@
     <color name="key_button_text_color">#ff6e6c6d</color>
 
     <color name="title_background_color">#ffffffff</color>
-    <color name="background_gray">#ffeaeaea</color>
+    <color name="background_gray">#ffdcdcdc</color>
     <color name="text_white">#ffdadada</color>
     <color name="text_black">#ff212121</color>
 

@@ -84,8 +84,8 @@ public class HomeActivity extends Activity{
 			public void onClick(View source) {
 				// TODO Auto-generated method stub
 				
-				Intent intent = new Intent (HomeActivity.this,GameActivity.class);
-				startActivity(intent);
+				//Intent intent = new Intent (HomeActivity.this,GameActivity.class);
+				//startActivity(intent);
 				
 			}
 		});
@@ -152,7 +152,7 @@ public class HomeActivity extends Activity{
 			});
 		//判断登录的状态
 		if(UserUtil.loginStatus == 1){
-			Toast.makeText(this, UserUtil.currAccount+","+"您好!", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(this, UserUtil.currAccount+","+"您好!", Toast.LENGTH_SHORT).show();
 		}else if(UserUtil.loginStatus == 0){
 			Toast.makeText(this, "游客登录，无法进行直播！", Toast.LENGTH_SHORT).show();
 		}

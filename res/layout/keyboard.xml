@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+     android:background="@drawable/key_bg" >
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1" 
-        android:background="@drawable/key_bg"
         >
 
         <Button
@@ -83,9 +83,7 @@
         android:id="@+id/linearLayout2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp" >
+        android:layout_weight="1" >
 
         <Button
             android:id="@+id/buttonJ"
@@ -222,11 +220,13 @@
         <ImageButton
             android:id="@+id/buttonDELETE"
             style="@style/KeyboardButtonNormal"
+            android:background="@drawable/reset_button"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:contentDescription="DEL"
             />
+        <!--  style="@style/KeyboardButtonNormal" -->
     </LinearLayout>
 
 </LinearLayout>
