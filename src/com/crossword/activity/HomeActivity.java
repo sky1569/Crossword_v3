@@ -2,7 +2,10 @@ package com.crossword.activity;
 
 //import android.R;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -110,8 +113,12 @@ public class HomeActivity extends Activity{
 	
 	@Override
 	public void onResume(){
-			broadMsg = module.parseBroadFromUrl(Crossword.BROADCAST_URL);
-
+			try{
+				broadMsg = module.parseBroadFromUrl(Crossword.BROADCAST_URL);
+			   }
+			catch (Exception e) {
+				this.ConTest();// TODO: handle exception
+			}
 			Button bnLive = (Button)findViewById(R.id.button_2);
 			
 			if(broadMsg.getIsbroad())
@@ -157,5 +164,19 @@ public class HomeActivity extends Activity{
 			Toast.makeText(this, "游客登录，无法进行直播！", Toast.LENGTH_SHORT).show();
 		}
 		super.onResume();
+	}
+	
+	public void ConTest()
+	{
+		ConnectivityManager cwjManager=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE); 
+		NetworkInfo info = cwjManager.getActiveNetworkInfo(); 
+		if (info != null && info.isAvailable()){ 
+		//do nothing 
+		} 
+		else
+		{
+		
+				Toast.makeText(this,"无网络连接", Toast.LENGTH_SHORT).show();
+		}
 	}
 }
