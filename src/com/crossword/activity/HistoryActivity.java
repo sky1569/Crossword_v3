@@ -20,6 +20,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class HistoryActivity extends Activity implements OnTouchListener{
 
@@ -58,6 +59,10 @@ public class HistoryActivity extends Activity implements OnTouchListener{
 		
 		//从URL请求期数，并解析
 		entities = module.getNewestVol();
+		if(entities == null){
+			Toast.makeText(this, "获取数据失败", Toast.LENGTH_SHORT).show();
+			HistoryActivity.this.finish();
+		}
 		volGridAdapter = new VolGridAdapter(this,entities);
 		volGridView.setAdapter(volGridAdapter);
 		volGridView.setOnTouchListener(this);

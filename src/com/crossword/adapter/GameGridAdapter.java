@@ -104,11 +104,13 @@ public class GameGridAdapter extends BaseAdapter {
 				//v.setBackgroundResource(R.drawable.area_empty);
 				//设置textview的背景颜色为empty_color
 				v.setBackgroundResource(R.color.empty_color);
+				//v.setBackgroundResource(R.drawable.empty_area_background);
 				v.setTag(Crossword.AREA_WRITABLE);
 			} else {
 				//v.setBackgroundResource(R.drawable.area_block1);
 				//设置textview的背景颜色是block_color
 				v.setBackgroundResource(R.color.block_color);
+				//v.setBackgroundResource(R.drawable.block_area_background);
 				v.setTag(Crossword.AREA_BLOCK);
 			}
 			
@@ -144,6 +146,8 @@ public class GameGridAdapter extends BaseAdapter {
 			if(v.getChildAt(index)!=null)
 				v.getChildAt(index).setBackgroundResource(value .equals(( Crossword.BLOCK))?
                         R.color.block_color:R.color.empty_color);
+				//v.getChildAt(index).setBackgroundResource(value .equals(( Crossword.BLOCK))?
+                  //      R.drawable.block_area_background:R.drawable.empty_area_background);
 		
 			}
 		}

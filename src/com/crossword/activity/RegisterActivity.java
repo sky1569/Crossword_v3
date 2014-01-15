@@ -29,6 +29,7 @@ public class RegisterActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.register);
 		returnButton = (ImageButton)findViewById(R.id.register_return_button);
 		returnButton.setOnClickListener(new OnClickListener(){
 
@@ -39,7 +40,7 @@ public class RegisterActivity extends Activity {
 			}
 			
 		});
-		setContentView(R.layout.register);
+		
 		loginNowTextView = (TextView)findViewById(R.id.login_now_text);
 		accountEdText = (EditText)findViewById(R.id.register_account_input_edittext);
 		telephoneEdText = (EditText)findViewById(R.id.telephone_input_edittext);
@@ -80,8 +81,10 @@ public class RegisterActivity extends Activity {
 				return;
 			}else if(registerUserUtil.getUsername().length() != 11){
 				Toast.makeText(RegisterActivity.this, "手机号码不符合要求！", Toast.LENGTH_SHORT).show();
+				return;
 			}else if(registerUserUtil.getPassword().length() < 6){
 				Toast.makeText(RegisterActivity.this, "密码输入过短！", Toast.LENGTH_SHORT).show();
+				return;
 			}
 			
 			
@@ -97,6 +100,8 @@ public class RegisterActivity extends Activity {
 				RegisterActivity.this.finish();
 			}else if(verify.equalsIgnoreCase("Username exists!")){//用户名已存在
 				Toast.makeText(RegisterActivity.this, "用户名已存在！", Toast.LENGTH_SHORT).show();
+			}else if(verify.equalsIgnoreCase("Error!")){
+				Toast.makeText(RegisterActivity.this, "Erorr！", Toast.LENGTH_SHORT).show();
 			}
 		}
 		

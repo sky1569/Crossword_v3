@@ -11,6 +11,7 @@ import com.crossword.utils.UserUtil;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -95,7 +96,8 @@ public class IndividualActivity extends Activity {
  		TextView titleAccumulatePointText = (TextView)findViewById(R.id.title_accumulate_point_text);
  		rankAdapter.setTitleTextView(titleRankText, titleUsernameText, titleAccumulatePointText);
 		rankList.setAdapter(rankAdapter);
-
+		rankList.setCacheColorHint(Color.TRANSPARENT);
+        rankList.setDivider(null);
 		
 		individualAccountText.setText(UserUtil.currAccount);
 		individualRankText.setText("No."+UserUtil.myRank);

@@ -105,6 +105,6 @@ Les fonctionnalitées à venirs sont:\n
      <string name="movie">电影知识</string>
      <string name="verses">诗词歌赋</string>
      <string name="pop">流行歌曲</string>
-     <string name="random">随即模式</string>
+     <string name="random">随机模式</string>
      <string name ="category_finished">已完成：20/100</string>
 </resources>

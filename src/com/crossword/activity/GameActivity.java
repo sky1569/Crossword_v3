@@ -471,6 +471,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 			if(!currentChild .equals( Crossword.BLOCK)){
 				//currentChild.setBackgroundResource(index == currIndex?R.drawable.area_current:R.drawable.area_selected);
 				currentChild.setBackgroundResource(index == currIndex?R.color.current_selected_color:R.color.selected_area_color);
+				//currentChild.setBackgroundResource(index == currIndex?R.drawable.current_selected_area_background:R.drawable.selected_area_background);
 				selectedArea.add(currentChild);
 			}
 		}

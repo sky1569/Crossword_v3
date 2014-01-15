@@ -34,21 +34,22 @@
     
     
     <RelativeLayout android:layout_width="fill_parent"
-        android:layout_height="180dip"
+        android:layout_height="207px"
         android:background="@color/individual_background_color">
         
         <ImageView android:id="@+id/profile_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/photo_icon"
-            android:paddingLeft="30px"
-            android:paddingTop="50px"/>
+            android:layout_marginLeft="@dimen/profile_image_padding_left"
+            android:layout_marginTop="@dimen/profile_image_padding_top"
+            />
         
         <LinearLayout 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="200px"
-        android:paddingTop="50px"
+        android:layout_marginLeft="@dimen/individual_info_padding_left"
+        android:layout_marginTop="@dimen/individual_info_padding_top"
         android:orientation="vertical">
         
         <TextView
@@ -67,7 +68,7 @@
             android:textColor="@color/individual_rank_text_color"
             android:textSize="@dimen/individual_rank_text_size"
             android:background="@drawable/rank_bar_1x"
-            android:layout_marginTop="15px"
+            android:layout_marginTop="@dimen/individual_rank_margin_top"
             android:gravity="center"/>
         
         
@@ -78,7 +79,7 @@
             android:text="已获积分:500" 
             android:textColor="@color/individual_accumulate_point_text_color"
             android:textSize="@dimen/individual_accumulate_point_text_size"
-            android:layout_marginTop="15px"
+            android:layout_marginTop="@dimen/individual_accumulate_margin_top"
             android:gravity="center"/>      
    </LinearLayout>
 
@@ -95,19 +96,18 @@
         
     </RelativeLayout>
     
-    
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="53px"
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/rank_list_title_height"
         android:background="@drawable/bar_green_background"
         android:gravity="center"
         android:text="@string/rank_list"
         android:textColor="@color/rank_list_text_color"
-        android:textSize="@dimen/rank_list_text_size"/>
-    
+        android:textSize="@dimen/rank_list_text_size" />
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/rank_list_item_title_height"
         android:background="@drawable/bar_white_bg_1x"
         android:orientation="horizontal"
         android:gravity="center_vertical">
@@ -132,7 +132,7 @@
         android:layout_height="wrap_content"
         android:text="@string/accumulate_point"
         android:textColor="@color/title_accoumulate_point_text_color"
-        android:textSize="@dimen/title_accoumulate_point_text_size"
+        android:textSize="@dimen/title_accumulate_point_text_size"
         android:layout_marginLeft="74px"/>
 </LinearLayout>
     

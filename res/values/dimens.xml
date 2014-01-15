@@ -13,6 +13,15 @@
     <dimen name = "title_padding_bottom">3px</dimen>
     <dimen name = "title_padding_left">8px</dimen>
     
+    <!-- Home界面的一些边距和大小 -->
+    <dimen name="home_logo_margin_top">67px</dimen>
+    <dimen name="home_logo_margin_bottom">67px</dimen>
+    <dimen name="home_button_margin">38px</dimen>
+    <dimen name="home_logo_size">195px</dimen>
+    <dimen name="home_main_button_width">303px</dimen>
+    <dimen name="home_main_button_height">63px</dimen>
+    
+    
     <!-- 登录和注册的一些字体大小定义 -->
     <dimen name="account_text_size">12dip</dimen>
     <dimen name="telephone_text_size">12dip</dimen>
@@ -29,18 +38,38 @@
     
     
     
-    <!-- 个人中心的一些字体大小 -->
+    <!-- 个人中心的一些字体及边距大小 -->
     <dimen name="individual_account_text_size">23dip</dimen>
     <dimen name="individual_rank_text_size">14dip</dimen>
     <dimen name="individual_accumulate_point_text_size">15dip</dimen>
     <dimen name="rank_list_text_size">17dip</dimen>
     <dimen name="title_username_text_size">15dip</dimen>
     <dimen name="title_rank_text_size">15dip</dimen>
-    <dimen name="title_accoumulate_point_text_size">15dip</dimen>
+    <dimen name="title_accumulate_point_text_size">15dip</dimen>
     <dimen name="individual_item_text_size">15dip</dimen>
     
+    <dimen name="individual_info_padding_left">150px</dimen>
+    <dimen name="individual_info_padding_top">42px</dimen>
+    <dimen name="profile_image_padding_left">23px</dimen>
+    <dimen name="profile_image_padding_top">42px</dimen>
+    <dimen name="individual_rank_margin_top">12px</dimen>
+    <dimen name="individual_accumulate_margin_top">12px</dimen>
+    <dimen name="rank_list_title_margin_top">13px</dimen>
+    <dimen name="rank_list_title_height">58px</dimen>
+    <dimen name="rank_list_item_title_height">58px</dimen>
+    <dimen name="rank_list_item_height">46px</dimen>
+    <dimen name="rank_padding_left">68px</dimen>
+    <dimen name="account_margin_left">94px</dimen>
+    <dimen name="accumulate_margin_left">94px</dimen>
+    
+    <dimen name="crown_image_width">45px</dimen>
+    <dimen name="crown_image_height">36px</dimen>
     
     <!-- 选择类别的一些字体大小 -->
     <dimen name="category_text_size">17dip</dimen>
     <dimen name="category_finished_text_size">12dip</dimen>
+    
+    
+    <!-- 键盘按钮的大小 -->
+    <dimen name="keyboard_button_size">58px</dimen>
 </resources>
