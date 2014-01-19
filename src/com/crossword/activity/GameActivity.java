@@ -8,6 +8,8 @@ import java.util.LinkedList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
@@ -30,6 +32,7 @@ import com.crossword.data.Word;
 import com.crossword.keyboard.KeyboardView;
 import com.crossword.keyboard.KeyboardViewInterface;
 import com.crossword.logic.BoardLogic;
+import com.crossword.logic.TimerTask;
 import com.crossword.utils.Module;
 import com.crossword.view.KeyboardPopupWindow;
 
@@ -74,14 +77,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 	private int 			height;
 	private ImageButton     returnButton;
 	private BoardLogic 	boardLogic;
-	//private boolean         completeFlag ;
-
-	/*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.crossword, menu);
-        return true;
-    }*/
+            Handler handler;
 
 	@Override
 	public void onPause()
@@ -135,7 +131,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 	    	finish();
 	    	return;
 	    }
-	    boardLogic.initModule(this.grid);
+	    this.boardLogic.initModule(this.grid);
 	    Log.v("initMoudle..this.entries", ""+ this.entries.size());
 	    this.width = this.grid.getWidth();
 	    this.height = this.grid.getHeight();
@@ -171,6 +167,37 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
         this.keyboardView.setLayoutParams(KeyboardParams);
 
         this.keyboardOverlay = (TextView)findViewById(R.id.keyboard_overlay);
+        handler = new Handler()
+        {
+        	public void handleMessage(Message msg)
+        	{
+        		if(msg.what == 0x123)
+        		{
+        			//boardLogic.oncell();
+        			try{
+        				String s=msg.obj.toString().split(Crossword.UNFILLED)[0];
+        				Log.v("sss", s);
+        				Log.v("weizhi", msg.obj.toString().split(Crossword.UNFILLED)[0]+"....."+msg.obj.toString().split(Crossword.UNFILLED)[1]);
+        				int x = Integer.parseInt(msg.obj.toString().split(Crossword.UNFILLED)[0]);
+        				int y = Integer.parseInt(msg.obj.toString().split(Crossword.UNFILLED)[1]);
+        				Log.v("weizhi", msg.obj.toString()+x+"..."+y);
+        				boardLogic.setArea(x, y, Crossword.UNFILLED);
+        				Log.v("weizhi", boardLogic.getArea(x, y));
+    				    boardLogic.setDisValue(x, y, Crossword.UNFILLED);
+        			}
+        			catch (Exception e) 
+        			{
+						
+        				Log.v("weizhi", msg.obj.toString());
+        				// TODO: handle exception
+					}
+        			
+    				gridAdapter.notifyDataSetChanged();
+        		
+        		}
+        	}
+        };
+      
 	}
 
 	@Override
@@ -184,11 +211,11 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
             	//int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY());
             	int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY())-firstVP;
             	if(this.gridView.pointToPosition((int)event.getX(), (int)event.getY()) ==- 1)  break;
-            	 Log.v("positionDown", ""+position);
+            	// Log.v("positionDown", ""+position);
             	 View child = this.gridView.getChildAt(position);
             	 
             	 
-                 Log.v("firstpositionDown", ""+firstVP);
+                // Log.v("firstpositionDown", ""+firstVP);
                  
             	// Si pas de mot sur cette case (= case noire), aucun traitement
                //  View child = this.gridView.getChildAt(position);
@@ -319,6 +346,10 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 		// Si la case est noire => retour
 		if (this.boardLogic.isBlock(x, y))
 			return;
+		if (this.boardLogic.getArea(x, y).equals(Crossword.UNFILLEDABLE))
+			{
+				return;
+			}
 		//String areaValue=this.module.getAreaValue(x, y);
 	/*
 		this.module.setValue(x, y, value);
@@ -331,20 +362,24 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 		//this.module.setValue(x, y, value);
 		this.boardLogic.setDisValue(x, y,value);
 		this.gridAdapter.notifyDataSetChanged();
-		//if(!module.isComplete(this)) 
-		//if(!this.completeFlag)
-		this.boardLogic.toChinese(x,y,this.currentWord,value);
+			
 		
-		   if (value.equals(Crossword.UNFILLED)) 
+		if (value.equals(Crossword.UNFILLED)) 
 				
-			{
-			   this.boardLogic.replay();
-				//this.gridAdapter.reDrawGridBackground(this.gridView);
-				return;
-			}
-	
+		{
+			 this.boardLogic.replay();
+			
+			 return;
+		}
 		
-		if(this.boardLogic.isComplete(this)) 
+	    this.boardLogic.toChinese(x,y,this.currentWord,value);
+		if(this.boardLogic.getArea(x, y).equals(Crossword.UNFILLEDABLE))
+			{
+				String p = x+Crossword.UNFILLED+y;
+				new Thread(new TimerTask(p,handler)).start();
+			}
+		
+	    if(this.boardLogic.isComplete(this)) 
 		{
 		    		
 		   // module.save(this.gridAdapter,this.grid);

@@ -20,7 +20,6 @@ import com.crossword.Crossword;
 import com.crossword.R;
 import com.crossword.data.Word;
 import com.crossword.logic.BoardLogic;
-import com.crossword.utils.Module;
 
 public class GameGridAdapter extends BaseAdapter {
 
@@ -76,7 +75,7 @@ public class GameGridAdapter extends BaseAdapter {
 		int x = (int)(position % this.width);
 	    
 		String data = (!this.boardLogic.getdisplayAreaValue(x, y).equals(Crossword.UNFILLED) ) ? this.boardLogic.getdisplayAreaValue(x, y) :Crossword.BLANK;
-	    
+	    String status =(this.boardLogic.getArea(x, y));
 		if (v == null)
 		{
 			//Log.v("positiontestif v==null", ""+position);
@@ -88,9 +87,12 @@ public class GameGridAdapter extends BaseAdapter {
 			if (!data .equals( Crossword.BLOCK)) {
 				//v.setBackgroundResource(R.drawable.area_empty);
 				//设置textview的背景颜色为empty_color
-				v.setBackgroundResource(R.color.empty_color);
-				//v.setBackgroundResource(R.drawable.empty_area_background);
-				v.setTag(Crossword.AREA_WRITABLE);
+			
+				
+					v.setBackgroundResource(R.color.empty_color);
+					//v.setBackgroundResource(R.drawable.empty_area_background);
+					v.setTag(Crossword.AREA_WRITABLE);
+				
 			} else {
 				//v.setBackgroundResource(R.drawable.area_block1);
 				//设置textview的背景颜色是block_color
@@ -104,9 +106,25 @@ public class GameGridAdapter extends BaseAdapter {
 
 		if(!data .equals( Crossword.BLOCK))
 		{         //   System.out.println(""+this.width);
-					v.setTextColor(context.getResources().getColor(R.color.normal));//test
-					v.setText(data.toUpperCase());
-			
+					
+					
+			if(status.equals(Crossword.WRONGFILLED))
+			{
+				v.setTextColor(context.getResources().getColor(R.color.normal));
+				v.setText(data.toUpperCase());
+			}
+			else    if(status.equals(Crossword.UNFILLEDABLE))
+					{
+						v.setTextColor(context.getResources().getColor(R.color.wrong));
+						v.setText(data.toUpperCase());
+						//v.setTag(Crossword.AREA_BLOCK);
+					}
+					else 
+					{
+						v.setTextColor(context.getResources().getColor(R.color.right));//test
+					    v.setText(data.toUpperCase());
+					}
+					
 		}
 		return v;
 	}

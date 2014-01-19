@@ -73,6 +73,11 @@ public class Module {
 	 public Vol parseBroadFromUrl(String url){
 		 
 		 String jsonData = jsonUtil.readJsonFromUrl(url);
+		// if(jsonData.equals("wrong"))
+		 //{
+		//	 return null;
+		 //}
+			Log.v("jsonData", "sss");
 		 Vol broadVol = jsonUtil.parseBroad(jsonData);
 		 dbManager.add(broadVol);
 		 return broadVol;
@@ -110,7 +115,7 @@ public class Module {
 			parseVolFromUrl(Crossword.VOL_REQUEST_URL);
 			entities = dbManager.queryAllExistVol();
 			Comparator comp = new MyComparator();
-         Collections.sort(entities,comp);
+            Collections.sort(entities,comp);
          //获取最新期时需要更新一下所有分数
          for(Vol entity:entities){
          	
@@ -162,7 +167,7 @@ public class Module {
 					
 			}
 			Comparator comp = new MyComparator();
-         Collections.sort(entities,comp);
+            Collections.sort(entities,comp);
 			return entities;
 		}
 		

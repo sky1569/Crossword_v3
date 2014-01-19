@@ -101,7 +101,18 @@ public class BoardLogic {
    					
    		
    		}
-   		 this.setArea(x, y, Crossword.WRONGFILLED);
+   		// Log.v("testgetArea",""+this.getArea(x, y).equals(Crossword.WRONGFILLED));
+   		 if(this.getArea(x, y).equals(Crossword.WRONGFILLED)) 
+   		 
+   		 {
+   			 this.setArea(x,y,Crossword.UNFILLEDABLE);
+   			 
+   			 
+   			// this.offcell();
+   		 }
+   		 
+   		else this.setArea(x, y, Crossword.WRONGFILLED);
+   		 
    		 return false;
    	 }
    	  
@@ -198,7 +209,7 @@ public class BoardLogic {
    			}
    	  public void toChinese(int currentX,int currentY,Word currentWord,String value)	//°´´Ê·­×ª
    	  {
-   		  Log.v("testto chinese",""+value+"  "+this.isCellCorrect(value, currentX, currentY) );
+   		  //Log.v("testto chinese",""+value+"  "+this.isCellCorrect(value, currentX, currentY) );
    		  if(this.isCellCorrect(value, currentX, currentY))
    		  { 
    			  Log.v("testto chinese2",""+this.isWordComplete(currentX, currentY, currentWord.getHoriz()));
@@ -252,7 +263,7 @@ public class BoardLogic {
    		 return this.area[y][x];
    	 }
    	  public void setDisValue(int x, int y, String value) {
-   			if (!this.area[y][x].equals(Crossword.BLOCK)&&!this.area[y][x].equals(Crossword.CORRECTFILLED))
+   			if (!this.area[y][x].equals(Crossword.BLOCK)&&!this.area[y][x].equals(Crossword.CORRECTFILLED)&&!this.area[y][x].equals(Crossword.UNFILLEDABLE))
    			
    				{
    					this.displayArea[y][x] = value;
@@ -502,4 +513,8 @@ public class BoardLogic {
 			{
 				dbManager.unlockNext(this.grid.getVol(), this.grid.getLevel()+1);
 			}
+		 
+		 
+		 
+		
    	}
