@@ -17,9 +17,9 @@ public class TimerTask implements Runnable
   {
 	  try {
 			  Thread.sleep(5000);//线程暂停10秒，单位毫秒
-			  Log.v("testtime5", "5");
+			//  Log.v("testtime5", "5");
 			  Thread.sleep(5000);//线程暂停10秒，单位毫秒
-			  Log.v("testtime5", "10");
+			//  Log.v("testtime5", "10");
 			  Message message=new Message();
 			  message.what = 0x123;
 			  message.obj =this.position ;

@@ -110,7 +110,7 @@ public class GameGridAdapter extends BaseAdapter {
 					
 			if(status.equals(Crossword.WRONGFILLED))
 			{
-				v.setTextColor(context.getResources().getColor(R.color.normal));
+				v.setTextColor(context.getResources().getColor(R.color.wrong));
 				v.setText(data.toUpperCase());
 			}
 			else    if(status.equals(Crossword.UNFILLEDABLE))
@@ -121,7 +121,7 @@ public class GameGridAdapter extends BaseAdapter {
 					}
 					else 
 					{
-						v.setTextColor(context.getResources().getColor(R.color.right));//test
+						v.setTextColor(context.getResources().getColor(R.color.normal));//test
 					    v.setText(data.toUpperCase());
 					}
 					

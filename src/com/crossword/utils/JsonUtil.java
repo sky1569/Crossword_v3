@@ -88,7 +88,7 @@ public class JsonUtil {
 		BufferedReader bufferedReader = null;
 		StringBuilder sb  = new StringBuilder();
 		String s = "";
-		Log.v("hh1", "sd");
+		//Log.v("hh1", "sd");
 		try{
 			HttpClient client = new DefaultHttpClient();
 			HttpResponse response = client.execute(new HttpGet(url));
@@ -105,7 +105,7 @@ public class JsonUtil {
 		}catch(Exception e){
 			
 			
-			Log.v("hh2", "sd");
+		//	Log.v("hh2", "sd");
 			e.printStackTrace();
 			//return s = "wrong";
 		}
@@ -114,7 +114,7 @@ public class JsonUtil {
 		if(str != null && str.startsWith("\ufeff")){
 			str = str.substring(1);
 		}
-		Log.v("sb", str);
+		//Log.v("sb", str);
 		return str;
 	}
 	//读取json文件，转换成String变量再解析

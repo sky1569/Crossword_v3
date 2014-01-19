@@ -37,7 +37,7 @@ public class HomeActivity extends Activity{
 		Button bnHistory = (Button)findViewById(R.id.button_1);
 		
 		Button bnBreakthough = (Button)findViewById(R.id.button_3);
-		
+		Button bnRank = (Button)findViewById(R.id.button_4);
 		ImageButton bnSetting = (ImageButton)findViewById(R.id.set_button);
 		//JsonUtil js =new JsonUtil(this);
 		
@@ -67,7 +67,18 @@ public class HomeActivity extends Activity{
 				
 			}
 		});
-	
+		bnRank.setOnClickListener(new OnClickListener()
+		{
+			
+			@Override
+			public void onClick(View source) {
+				// TODO Auto-generated method stub
+				
+				Intent intent = new Intent (HomeActivity.this,IndividualActivity.class);
+				intent.putExtra("volNumber", broadMsg.getVolNumber());
+				startActivity(intent);
+			}
+		});
 		
 		bnSetting.setOnClickListener(new OnClickListener()
 		{
@@ -103,7 +114,7 @@ public class HomeActivity extends Activity{
 	@Override
 	public void onResume(){
 		Button bnLive = (Button)findViewById(R.id.button_2);
-		Button bnRank = (Button)findViewById(R.id.button_4);
+		
 		bnLive.setOnClickListener(new OnClickListener()
 		{
 			
@@ -126,19 +137,8 @@ public class HomeActivity extends Activity{
 
 			}
 		});
-		bnRank.setOnClickListener(new OnClickListener()
-		{
-			
-			@Override
-			public void onClick(View source) {
-				// TODO Auto-generated method stub
-				
-				Intent intent = new Intent (HomeActivity.this,IndividualActivity.class);
-				intent.putExtra("volNumber", broadMsg.getVolNumber());
-				startActivity(intent);
-			}
-		});
-		if(!this.ConTest())
+		
+	/*	if(!this.ConTest())
 		{
 			bnLive.setTextColor(getResources().getColor(R.color .home_disable_text_color));
 			bnLive.setClickable(false);
@@ -146,7 +146,7 @@ public class HomeActivity extends Activity{
 			bnRank.setClickable(false);
 		}
 		else
-		{
+		{*/
 			try{
 				//if(module.parseBroadFromUrl(Crossword.BROADCAST_URL)!=null)
 					broadMsg = module.parseBroadFromUrl(Crossword.BROADCAST_URL);
@@ -185,10 +185,10 @@ public class HomeActivity extends Activity{
 					Toast.makeText(this, "游客登录，无法进行直播！", Toast.LENGTH_SHORT).show();
 				}
 		
-		}
+		
 		super.onResume();
 	}
-	
+	/*
 	public boolean ConTest()
 	{
 		ConnectivityManager cwjManager=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE); 
@@ -208,5 +208,5 @@ public class HomeActivity extends Activity{
 				Toast.makeText(this,"无网络连接", Toast.LENGTH_SHORT).show();
 				return false;
 		}
-	}
+	}*/
 }
