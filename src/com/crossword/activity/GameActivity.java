@@ -144,6 +144,20 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
         int keyboardHeight = (int)(height / 4.4);
         this.txtDescriptionHor = (TextView)findViewById(R.id.description_horizotal);
         this.txtDescriptionVer = (TextView)findViewById(R.id.description_vertical);
+        
+        this.txtDescriptionHor.setClickable(true);
+        this.txtDescriptionHor.setFocusable(true);
+        this.txtDescriptionHor.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				txtDescriptionHor.setTextColor(getResources().getColor(R.color.wrong));
+				
+			}
+		});
+        
+        
         this.gridView = (GridView)findViewById(R.id.grid);
         this.gridView.setOnTouchListener(this);
         this.gridView.setNumColumns(this.width);
