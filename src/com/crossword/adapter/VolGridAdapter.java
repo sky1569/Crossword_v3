@@ -31,9 +31,10 @@ public class VolGridAdapter extends BaseAdapter {
 		this.columnNum = 3;
 		if(!HomeActivity.ISBroad){//如果不在直播
 		
-			this.volLength = entities.size() + 1;
+			//this.volLength = entities.size() + 1;
+			this.volLength =entities.size();
 		}else{
-			this.volLength = HomeActivity.broadMsg.getCurLevel();
+			this.volLength = HomeActivity.broadMsg.getCurLevel();//这是不对的！curlevel是直播期当前关数，不是往期个数
 		}
 		this.entities = entities;
 		this.inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
@@ -71,7 +72,7 @@ public class VolGridAdapter extends BaseAdapter {
 		if(position < volLength){//若position不超过volLength,则显示所有期的信息；否则显示下一期和正在直播的
 			Vol entity = entities.get(position);
 			String volName = entity.getVolName();
-			System.out.println(volName);
+			System.out.println(volName+position);
 			int score = entity.getScore();
 			volNumberText.setText(volName);
 			//如果当前的积分是0，则计算

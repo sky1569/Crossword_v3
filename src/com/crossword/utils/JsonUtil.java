@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.util.Log;
 
+import com.crossword.Crossword;
 import com.crossword.data.Grid;
 import com.crossword.data.Rank;
 import com.crossword.data.Vol;
@@ -96,18 +97,21 @@ public class JsonUtil {
 			HttpConnectionParams.setConnectionTimeout(httpParams, 3000);
 			HttpConnectionParams.setSoTimeout(httpParams, 5000);
 			HttpEntity entity = response.getEntity();
-			if(entity != null){
+			if(entity != null)
+			{
 				bufferedReader = new BufferedReader(new InputStreamReader(entity.getContent(),"UTF-8"));
 				while((s = bufferedReader.readLine()) != null){
 					sb.append(s);
-				}
+				}				
 			}
+				
 		}catch(Exception e){
 			
 			
 		//	Log.v("hh2", "sd");
 			e.printStackTrace();
 			//return s = "wrong";
+			return null;
 		}
 		String str = sb.toString();
 		
@@ -230,6 +234,7 @@ public class JsonUtil {
 		
 		LinkedList<Vol> entities = new LinkedList<Vol>();
 		try {
+			 Log.v(" parseVolJson", "÷¥––¡ÀparseVolJson");
 			JSONArray  jArr = new JSONArray(jsonData);
 			for(int i = 0;i < jArr.length();i++){
 				JSONObject jObj = jArr.getJSONObject(i);

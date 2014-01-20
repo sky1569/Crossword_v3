@@ -53,6 +53,7 @@ public class Crossword extends Application {
 	public static final String	 	NAME = "Crossword";
 	public static final int 		NOTIFICATION_DOWNLOAD_ID = 1;
 	public static boolean 			DEBUG;
+	
 	//public static String[][]		area;			// Tableau représentant les lettres du joueur
 	//public static String[][] 		displayArea;
 	//public static String[][] 		correctionArea; // Tableau représentant les lettres correctes
@@ -62,7 +63,7 @@ public class Crossword extends Application {
 	public static final String      UNFILLEDABLE="*";
 	public static final String		WRONGFILLED = "=";
 	public static final String      CORRECTFILLED ="+" ;
-	
+	public static final String      UNCONNECT = "unconnct";
 	public static final int 		AREA_BLOCK = -1;
 	public static final int 		AREA_WRITABLE = 0;
 	//public static final String		WRONGFILLED = "+";

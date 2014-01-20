@@ -59,8 +59,13 @@ public class Module {
 		 String jsonData = jsonUtil.readJsonFromUrl(url);
 		 //如果jsonData为空，说明没有下载成功
 		 if(jsonData == null){
+			 Log.v(" parseVolFromUrl", "执行了 parseVolFromUrl");
+			 
 			 return null;
 		 }
+		// if(jsonData.equals(Crossword.UNCONNECT))
+		 
+		 
 		 entities = jsonUtil.parseVolJson(jsonData);
 		 //将解析到的Vol数据插入到数据库中VOLTABLE中
 		 for(Vol entity:entities){
@@ -185,7 +190,7 @@ public class Module {
 				Log.v("tnnd", ""+"竟然是空");
 				return;
 			}
-			
+			Log.v("tnnd", ""+"执行了updateVolScore");
 			int volScore = 0;
 			for(Grid grid:grids){
 		        volScore +=  grid.getScore();
