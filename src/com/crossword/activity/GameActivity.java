@@ -361,9 +361,17 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 		if (this.boardLogic.isBlock(x, y))
 			return;
 		if (this.boardLogic.getArea(x, y).equals(Crossword.UNFILLEDABLE))
-			{
-				return;
-			}
+		{
+			return;
+		}
+		if (value.equals(Crossword.UNFILLED)) 
+			
+		{
+			 this.boardLogic.replay();
+			
+			 return;
+		}
+		
 		//String areaValue=this.module.getAreaValue(x, y);
 	/*
 		this.module.setValue(x, y, value);
@@ -378,13 +386,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 		this.gridAdapter.notifyDataSetChanged();
 			
 		
-		if (value.equals(Crossword.UNFILLED)) 
-				
-		{
-			 this.boardLogic.replay();
-			
-			 return;
-		}
+		
 		
 	    this.boardLogic.toChinese(x,y,this.currentWord,value);
 		if(this.boardLogic.getArea(x, y).equals(Crossword.UNFILLEDABLE))
