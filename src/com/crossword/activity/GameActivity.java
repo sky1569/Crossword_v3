@@ -79,16 +79,18 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 	private BoardLogic 	boardLogic;
             Handler handler;
 
-	@Override
-	public void onPause()
+		/*@Override
+public void onPause()
 	{
+		Log.v("ss", "ss");
 		this.boardLogic.scoring();
 		this.boardLogic.save(this.gridAdapter,this.grid);
 		super.onPause();
-	}
+	}*/
 	
 	@Override
 	public void onStop(){
+		Log.v("dd", "dd");
 		this.boardLogic.scoring();
 		this.boardLogic.save(this.gridAdapter,this.grid);
 		super.onStop();
@@ -153,6 +155,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				txtDescriptionHor.setTextColor(getResources().getColor(R.color.wrong));
+			    boardLogic.isHint();
 				
 			}
 		});
@@ -368,7 +371,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 			
 		{
 			 this.boardLogic.replay();
-			
+			 this.gridAdapter.notifyDataSetChanged();
 			 return;
 		}
 		
@@ -401,7 +404,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 		   // module.save(this.gridAdapter,this.grid);
 			
 			this.boardLogic.scoring();
-			    	
+			   // Log.v("fenshu",)	
 			    	this.unlockNext();
 			//    	this.completeFlag = true ;
 			    	return;
