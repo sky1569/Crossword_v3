@@ -39,6 +39,7 @@ import com.crossword.data.Vol;
 import com.crossword.data.Word;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -54,7 +55,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.GridView;
@@ -66,7 +69,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 
 	//public enum GRID_MODE {NORMAL, CHECK, SOLVE};
 	//public  int CurrentMode;
-	
+	private FrameLayout     girdFrameLayout;
 	private GridView 		gridView;
 	private KeyboardView 	keyboardView;
 	private GameGridAdapter gridAdapter;
@@ -135,10 +138,13 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 		Grid currentGrid=(Grid)bundle2.getSerializable("currentGrid"); 
 		System.out.println("this.currentGrid..."+currentGrid.getUniqueid());
 		module = new Module(this);
+		
 	    //this.filename = "td.json";
 	  //  this.url = Crossword.GRID_URL + 10002;
 	  //  module.parseGrid(this, this.url);
 	    //通过uniqueid查找grid，如果没有就会从网页下载
+		//获取girdFrameLayout
+		girdFrameLayout = (FrameLayout)findViewById(R.id.girdFrameLayout);
 		returnButton = (ImageButton)findViewById(R.id.game_return_button);
 		returnButton.setOnClickListener(new OnClickListener(){
 
@@ -182,12 +188,16 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
        gridParams.height = (height - keyboardHeight - this.txtDescriptionHor.getLayoutParams().height*3);
       //  gridParams.height =weight/10*this.height;
         gridParams.width = weight;
-        
         this.gridView.setLayoutParams(gridParams);
      //   this.gridView.setStretchMode("columnWidth");
       //  this.gridView.setVerticalScrollBarEnabled(false);
 		this.gridAdapter = new GameGridAdapter(this, this.entries, this.width, this.height,this.module);
 		this.gridView.setAdapter(this.gridAdapter);
+		
+		
+		//画标尺
+		this.gridAdapter.drawRuler(this.girdFrameLayout);
+		
 		//keyboardPopupWindow = new KeyboardPopupWindow(this);
         this.keyboardView = (KeyboardView)findViewById(R.id.keyboard);
         this.keyboardView.setDelegate(this);
@@ -209,19 +219,20 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
             	//int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY());
             	int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY())-firstVP;
             	if(this.gridView.pointToPosition((int)event.getX(), (int)event.getY()) ==- 1)  break;
-            	 Log.v("positionDown", ""+position);
-            	 View child = this.gridView.getChildAt(position);
+            	View child = this.gridView.getChildAt(position);
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            	
+                //点击格子时弹起软键盘
+               InputMethodManager inputMethodManager = (InputMethodManager)
+            		   getSystemService(Context.INPUT_METHOD_SERVICE);
+               inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+               
+                
             	 
             	 
-                 Log.v("firstpositionDown", ""+firstVP);
-                 
-            	// Si pas de mot sur cette case (= case noire), aucun traitement
-               //  View child = this.gridView.getChildAt(position);
-               //  Log.v("tst",""+child.getTag());
             	if (child == null || child.getTag().equals(Crossword.AREA_BLOCK)) {
             		if (this.solidSelection == false) {
                         clearSelection();
-                      //  Log.v("ts2t",""+child.getTag());
                     	this.gridAdapter.notifyDataSetChanged();
             		}
             		Log.v("ts3t",""+child.getTag());

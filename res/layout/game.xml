@@ -60,7 +60,7 @@
         />
 
       
-        <ScrollView    android:layout_width="fill_parent"
+        <ScrollView    android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginTop="1dip"
@@ -69,8 +69,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal|top"
+            android:id="@+id/girdFrameLayout"
+            
             >
        
      
@@ -84,7 +84,9 @@
             android:verticalSpacing="1dp"
             android:background="@color/background_gray" 
             android:paddingBottom="1dip"
-            android:paddingTop="1dip"
+            android:paddingTop="20dip"
+            android:paddingLeft="23dip"
+           android:paddingRight="23dip"
             >            
              
         </com.crossword.view.MyGridView>
