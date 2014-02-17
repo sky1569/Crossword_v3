@@ -63,6 +63,7 @@ public class HistoryActivity extends Activity implements OnTouchListener{
 			Toast.makeText(this, "获取数据失败", Toast.LENGTH_SHORT).show();
 			HistoryActivity.this.finish();
 		}
+		
 		volGridAdapter = new VolGridAdapter(this,entities);
 		volGridView.setAdapter(volGridAdapter);
 		volGridView.setOnTouchListener(this);

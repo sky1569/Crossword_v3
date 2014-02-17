@@ -1,19 +1,4 @@
-/*
- * Copyright 2011 Alexis Lauper <alexis.lauper@gmail.com>
- * 
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of 
- * the License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+
 
 package com.crossword.adapter;
 
@@ -23,8 +8,11 @@ import java.util.LinkedList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
+<<<<<<< HEAD
 import android.graphics.Color;
 import android.util.Log;
+=======
+>>>>>>> 079ce297851afa773ada4c4c910f5be800ab0893
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -40,7 +28,7 @@ import android.widget.TextView;
 import com.crossword.Crossword;
 import com.crossword.R;
 import com.crossword.data.Word;
-import com.crossword.utils.Module;
+import com.crossword.logic.BoardLogic;
 
 public class GameGridAdapter extends BaseAdapter {
 
@@ -51,11 +39,11 @@ public class GameGridAdapter extends BaseAdapter {
 	private int 						width;
 	private int 						height;
     private int 						displayWidth;
-	private Module						module;
-	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,Module module)
+	private BoardLogic 					boardLogic;
+	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,BoardLogic boardLogic)//,Module module)
 	{
 	//	final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(act);
-		this.module = module;
+		this.boardLogic = boardLogic;
 		
 		this.context = (Context)act;
 		this.width = width;
@@ -64,11 +52,17 @@ public class GameGridAdapter extends BaseAdapter {
         Display display = act.getWindowManager().getDefaultDisplay();
        // this.displayHeight = (display.getHeight()/this.height)<(display.getWidth()/this.width)?(display.getHeight()/this.height):(display.getWidth()/this.width);
        // this.displayWidth  =display.getWidth()/this.width;
+<<<<<<< HEAD
         //this.displayHeight = display.getWidth() /this.width;
         this.displayWidth = (int)(GRID_WIDTH/this.width);
         this.displayHeight = this.displayWidth;
         this.module.initentries();
         this.module.isComplete(act);
+=======
+        this.displayHeight = display.getWidth() /this.width;
+        this.boardLogic.initentries();
+        this.boardLogic.isComplete(act);
+>>>>>>> 079ce297851afa773ada4c4c910f5be800ab0893
 	    
 	}
 	
@@ -97,8 +91,8 @@ public class GameGridAdapter extends BaseAdapter {
 		int y = (int)(position / this.width); 
 		int x = (int)(position % this.width);
 	    
-		String data = (!this.module.getdisplayAreaValue(x, y).equals(Crossword.UNFILLED) ) ? this.module.getdisplayAreaValue(x, y) :Crossword.BLANK;
-	    
+		String data = (!this.boardLogic.getdisplayAreaValue(x, y).equals(Crossword.UNFILLED) ) ? this.boardLogic.getdisplayAreaValue(x, y) :Crossword.BLANK;
+	    String status =(this.boardLogic.getArea(x, y));
 		if (v == null)
 		{
 			//Log.v("positiontestif v==null", ""+position);
@@ -112,9 +106,12 @@ public class GameGridAdapter extends BaseAdapter {
             if (!data .equals( Crossword.BLOCK)) {
 				//v.setBackgroundResource(R.drawable.area_empty);
 				//设置textview的背景颜色为empty_color
-				v.setBackgroundResource(R.color.empty_color);
-				//v.setBackgroundResource(R.drawable.empty_area_background);
-				v.setTag(Crossword.AREA_WRITABLE);
+			
+				
+					v.setBackgroundResource(R.color.empty_color);
+					//v.setBackgroundResource(R.drawable.empty_area_background);
+					v.setTag(Crossword.AREA_WRITABLE);
+				
 			} else {
 				//v.setBackgroundResource(R.drawable.area_block1);
 				//设置textview的背景颜色是block_color
@@ -128,9 +125,25 @@ public class GameGridAdapter extends BaseAdapter {
 
 		if(!data .equals( Crossword.BLOCK))
 		{         //   System.out.println(""+this.width);
-					v.setTextColor(context.getResources().getColor(R.color.normal));//test
-					v.setText(data.toUpperCase());
-			
+					
+					
+			if(status.equals(Crossword.WRONGFILLED))
+			{
+				v.setTextColor(context.getResources().getColor(R.color.wrong));
+				v.setText(data.toUpperCase());
+			}
+			else    if(status.equals(Crossword.UNFILLEDABLE))
+					{
+						v.setTextColor(context.getResources().getColor(R.color.wrong));
+						v.setText(data.toUpperCase());
+						//v.setTag(Crossword.AREA_BLOCK);
+					}
+					else 
+					{
+						v.setTextColor(context.getResources().getColor(R.color.normal));//test
+					    v.setText(data.toUpperCase());
+					}
+					
 		}
 		return v;
 	}
@@ -184,7 +197,7 @@ public class GameGridAdapter extends BaseAdapter {
 				int index =y*this.width + x-v.getFirstVisiblePosition();
 			
 				
-				String value =  this.module.getAreaValue(x,y);
+				String value =  this.boardLogic.getdisplayAreaValue(x,y);
 				
 			
 			if(v.getChildAt(index)!=null)

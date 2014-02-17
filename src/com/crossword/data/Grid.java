@@ -38,7 +38,7 @@ public class Grid implements Comparable<Grid> ,Serializable{
 	private Integer       degree;
 	private String        category;
 	private LinkedList<Word> entries;   
-	private Integer          score;
+	private Integer          score = 0;
 	private String           date;
 	private String           gamename;
 	private String           author;

@@ -53,15 +53,24 @@ public class Crossword extends Application {
 	public static final String	 	NAME = "Crossword";
 	public static final int 		NOTIFICATION_DOWNLOAD_ID = 1;
 	public static boolean 			DEBUG;
+	
 	//public static String[][]		area;			// Tableau repr茅sentant les lettres du joueur
 	//public static String[][] 		displayArea;
 	//public static String[][] 		correctionArea; // Tableau repr茅sentant les lettres correctes
 	public static final String      UNFILLED = "-";
 	public static final String      BLANK=" ";
 	public static final String      BLOCK="#";
+	public static final String      UNFILLEDABLE="*";
+	public static final String		WRONGFILLED = "=";
+	public static final String      CORRECTFILLED ="+" ;
+	public static final String      UNCONNECT = "unconnct";
 	public static final int 		AREA_BLOCK = -1;
 	public static final int 		AREA_WRITABLE = 0;
+	//public static final String		WRONGFILLED = "+";
 	public static final String      COMPLETETIP="通关了，你这么厉害，你家里人知道么";
+	
+	
+			
 	//得分常量
 	public static final int      HINT_PENALTY = 5;
 	public static final int      SCORE_PER_CHARACTER = 3;

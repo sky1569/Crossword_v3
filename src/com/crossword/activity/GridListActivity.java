@@ -69,7 +69,8 @@ public class GridListActivity extends Activity implements OnTouchListener{
     		module.updateVolScore(vol);
 			System.out.println("test..."+vol.getAmountOfLevels());		
 			//if(!vol.getIsbroad())
-			this.entities = module.getGrids(vol);	
+		    this.entities = module.getGrids(vol);	
+		//	this.entities=db.queryGridByKey("volNumber",vol.getVolNumber() );
 			TextView gridListTitleText = (TextView)findViewById(R.id.gridlist_title_text);
 			System.out.println("resume"+vol.getVolName());
 			

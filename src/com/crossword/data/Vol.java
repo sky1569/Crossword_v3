@@ -10,7 +10,7 @@ public class Vol implements Serializable{
 	private int    amountOfLevels;
 	private int    volNumber;
 	private int    score = 0;
-	private boolean isbroad ;
+	private boolean isbroad =false;
 //	private int[]    unlockNumber;
 	private int 	curLevel;
 	

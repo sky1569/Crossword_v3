@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.util.Log;
 
+import com.crossword.Crossword;
 import com.crossword.data.Grid;
 import com.crossword.data.Rank;
 import com.crossword.data.Vol;
@@ -88,6 +89,7 @@ public class JsonUtil {
 		BufferedReader bufferedReader = null;
 		StringBuilder sb  = new StringBuilder();
 		String s = "";
+		//Log.v("hh1", "sd");
 		try{
 			HttpClient client = new DefaultHttpClient();
 			HttpResponse response = client.execute(new HttpGet(url));
@@ -95,19 +97,28 @@ public class JsonUtil {
 			HttpConnectionParams.setConnectionTimeout(httpParams, 3000);
 			HttpConnectionParams.setSoTimeout(httpParams, 5000);
 			HttpEntity entity = response.getEntity();
-			if(entity != null){
+			if(entity != null)
+			{
 				bufferedReader = new BufferedReader(new InputStreamReader(entity.getContent(),"UTF-8"));
 				while((s = bufferedReader.readLine()) != null){
 					sb.append(s);
-				}
+				}				
 			}
+				
 		}catch(Exception e){
+			
+			
+		//	Log.v("hh2", "sd");
 			e.printStackTrace();
+			//return s = "wrong";
+			return null;
 		}
 		String str = sb.toString();
+		
 		if(str != null && str.startsWith("\ufeff")){
 			str = str.substring(1);
 		}
+		//Log.v("sb", str);
 		return str;
 	}
 	//读取json文件，转换成String变量再解析
@@ -223,6 +234,7 @@ public class JsonUtil {
 		
 		LinkedList<Vol> entities = new LinkedList<Vol>();
 		try {
+			 Log.v(" parseVolJson", "执行了parseVolJson");
 			JSONArray  jArr = new JSONArray(jsonData);
 			for(int i = 0;i < jArr.length();i++){
 				JSONObject jObj = jArr.getJSONObject(i);
