@@ -30,6 +30,7 @@ public class Word {
 	*/
 	
 	private String              desc;
+	private String              desc2;
 	private String              tmp;
 	private boolean             horiz;
 	private Integer             x;
@@ -38,9 +39,13 @@ public class Word {
 	private String              chi;
 	private String              cap;
 	private String              mask;
+/*	private Integer []			xs;
+	private Integer []			ys;
+	private String	[] 			chis;
+	private String	[] 			caps;
+	private String	[] 			tmps;
 	
-	
-	
+	*/
 	public void     setDesc(String desc){this.desc = desc;}
 	public String   getDesc(){return this.desc;}
 	
@@ -72,4 +77,6 @@ public class Word {
 	
 	public String   getAns(int l){return this.chi.substring(l,l+1);}
 	
+	/*public void    setX(int x,int i){this.xs[i] = x;}
+	public int 	   getX(int i){return this.xs[i];}*/
 }

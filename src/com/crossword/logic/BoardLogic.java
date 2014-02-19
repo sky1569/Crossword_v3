@@ -159,7 +159,31 @@ public class BoardLogic {
    		  }
    	  }
 
-   		
+   		public void initentries2()
+   		{
+   			for(Word entry: this.entries)
+   			{
+   				
+   				//String text =entry.getCap();
+   				for(int i = 0 ; i < entry.getLength() ; i++)
+   				{
+   					int x = entry.getX(i);
+   					int y = entry.getY(i);
+   					String tmp = entry.getTmp(i);
+   					String text = entry.getCap(i);
+   					String chi = entry.getChi(i);
+   					this.displayArea[y][x] = String.valueOf(tmp);
+   					this.correction[y][x] = this.correction[y][x] + String.valueOf(text) +String.valueOf(chi);
+   					if(!String.valueOf(tmp).equals(Crossword.UNFILLED))
+   					{
+   						if(this.correction[y][x].contains(this.displayArea[y][x]))
+   							this.area[y][x] = Crossword.CORRECTFILLED;
+		    					else this.area[y][x] = Crossword.WRONGFILLED;
+   					}
+   					else this.area[y][x] = Crossword.UNFILLED;	
+   				}
+   			}
+   		}
    		
    	 
    		public void initentries()
