@@ -30,11 +30,11 @@ public class BoardLogic {
 	 private  int width;
 	 private  int height;
 	 private  int starCount;
-	 private String[][]			area;			// Tableau repr茅sentant les lettres du joueur
-	 private String[][] 		displayArea;
+	 private String[][]			area;			// cell状态矩阵
+	 private String[][] 		displayArea;    //cell显示矩阵
 	// private String[][][] 		correctionAreaCap; // Tableau repr茅sentant les lettres correctes
 	// private String[][]			correctionAreaChi;
-	 private String[][]		    correction;
+	 private String[][]		    correction;    //cell答案矩阵
      private Context            context;
      private int 				score;
      private int				filled;
@@ -184,7 +184,7 @@ public class BoardLogic {
    		    		
    		    				
    		    				this.displayArea[y][x+i] =String.valueOf(tmp.charAt(i));
-   		    				this.correction[y][x+i] =this.correction[y][x+i]+ String.valueOf(text.charAt(i))+String.valueOf(entry.getAns(i))+"M";
+   		    				this.correction[y][x+i] =this.correction[y][x+i]+ String.valueOf(text.charAt(i))+String.valueOf(entry.getAns(i))+"A";//A测试答案
    		    				if(!String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED))
    		    					{
    		    						if(this.correction[y][x+i].contains(this.displayArea[y][x+i]))
@@ -200,7 +200,7 @@ public class BoardLogic {
    		    			
    		    			{
    		    				this.displayArea[y+i][x] =String.valueOf(tmp.charAt(i));
-   		    				this.correction[y+i][x] = this.correction[y+i][x]+String.valueOf(text.charAt(i))+String.valueOf(entry.getAns(i))+"M";
+   		    				this.correction[y+i][x] = this.correction[y+i][x]+String.valueOf(text.charAt(i))+String.valueOf(entry.getAns(i))+"A";
    		    				if(!String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED))
 		    					{
 		    						if(this.correction[y+i][x].contains(this.displayArea[y+i][x]))
@@ -552,8 +552,8 @@ public class BoardLogic {
 				//entry.set
 				Log.v("测试写入json，gettem", entry.getTmp());
 			}
-			grid.setStar(this.star(score));
-			grid.setIslocked(Crossword.GRIDUNLOCKED);
+		//	grid.setStar(this.star(score));
+		//	grid.setIslocked(Crossword.GRIDUNLOCKED);
 			JSONObject jObj = jsonUtil.writeToJson(grid);
 			//用以保存数据的grid类，主要是保存在数据库中，增加了jsonData字段
 			grid.setJsonData(jObj.toString());

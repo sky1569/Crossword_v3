@@ -79,14 +79,14 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 	private BoardLogic 	boardLogic;
             Handler handler;
 
-		/*@Override
+		@Override
 public void onPause()
 	{
 		Log.v("ss", "ss");
-		this.boardLogic.scoring();
+		//this.boardLogic.scoring();
 		this.boardLogic.save(this.gridAdapter,this.grid);
 		super.onPause();
-	}*/
+	}
 	
 	@Override
 	public void onStop(){
