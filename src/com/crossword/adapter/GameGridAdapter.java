@@ -8,11 +8,9 @@ import java.util.LinkedList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
-<<<<<<< HEAD
 import android.graphics.Color;
+import android.text.InputFilter;
 import android.util.Log;
-=======
->>>>>>> 079ce297851afa773ada4c4c910f5be800ab0893
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -20,15 +18,16 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.crossword.Crossword;
 import com.crossword.R;
 import com.crossword.data.Word;
 import com.crossword.logic.BoardLogic;
+
 
 public class GameGridAdapter extends BaseAdapter {
 
@@ -52,17 +51,15 @@ public class GameGridAdapter extends BaseAdapter {
         Display display = act.getWindowManager().getDefaultDisplay();
        // this.displayHeight = (display.getHeight()/this.height)<(display.getWidth()/this.width)?(display.getHeight()/this.height):(display.getWidth()/this.width);
        // this.displayWidth  =display.getWidth()/this.width;
-<<<<<<< HEAD
+
         //this.displayHeight = display.getWidth() /this.width;
         this.displayWidth = (int)(GRID_WIDTH/this.width);
         this.displayHeight = this.displayWidth;
-        this.module.initentries();
-        this.module.isComplete(act);
-=======
-        this.displayHeight = display.getWidth() /this.width;
+ 
+      //  this.displayHeight = display.getWidth() /this.width;
         this.boardLogic.initentries();
         this.boardLogic.isComplete(act);
->>>>>>> 079ce297851afa773ada4c4c910f5be800ab0893
+
 	    
 	}
 	
@@ -87,7 +84,9 @@ public class GameGridAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
 		//Log.v("positiontest", ""+position);
+		//TextView v = this.views.get(position);
 		TextView v = this.views.get(position);
+		
 		int y = (int)(position / this.width); 
 		int x = (int)(position % this.width);
 	    
@@ -97,6 +96,9 @@ public class GameGridAdapter extends BaseAdapter {
 		{
 			//Log.v("positiontestif v==null", ""+position);
 			v = new TextView(context);
+			v.setText("");
+			//v.setFilters(new InputFilter[]{new InputFilter.LengthFilter(1)});
+			//v.setCursorVisible(false);
 			//v.setLayoutParams(new GridView.LayoutParams(GridView.LayoutParams.FILL_PARENT, this.displayHeight));
 			
 			v.setLayoutParams(new GridView.LayoutParams(this.displayWidth, this.displayHeight));
@@ -195,7 +197,6 @@ public class GameGridAdapter extends BaseAdapter {
 				
 				//int index = y*this.width + x;
 				int index =y*this.width + x-v.getFirstVisiblePosition();
-			
 				
 				String value =  this.boardLogic.getdisplayAreaValue(x,y);
 				
