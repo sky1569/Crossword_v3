@@ -1,8 +1,6 @@
 package com.crossword.view;
 
 import com.crossword.Crossword;
-import com.crossword.view.InputTextView.MyInputConnection;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
