@@ -34,11 +34,9 @@ public class VolGridAdapter extends BaseAdapter {
 			//this.volLength = entities.size() + 1;
 			this.volLength =entities.size();
 		}else{
-<<<<<<< HEAD
+
 			this.volLength = HomeActivity.broadMsg.getAmountOfLevels();//这是不对的！curlevel是直播期当前关数，不是往期个数
-=======
-			this.volLength = HomeActivity.broadMsg.getAmountOfLevels();
->>>>>>> 5447bde5c3bbd75807726526de16506fdaad4219
+
 		}
 		this.entities = entities;
 		this.inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
