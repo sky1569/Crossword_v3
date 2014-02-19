@@ -93,6 +93,14 @@ public class Crossword extends Application {
 			"star",
 			"jsonData","score", "date","gamename","author","width","height"};
 	public static final String[] columnsOfVolTable = {"name","open_date","amount_of_levels","vol_no","score"};
+	
+	
+	//×ÖÄ¸±í
+	public static final String[] ALPHABET = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N",
+		                                      "O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+	
+	
+	
    // public static final String  BLOCK = "#";
    // public static final String  BLANK = " ";
     private static Context context;

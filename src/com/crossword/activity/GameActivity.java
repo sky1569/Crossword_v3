@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,13 +17,17 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
+import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crossword.Crossword;
 import com.crossword.R;
@@ -35,13 +40,14 @@ import com.crossword.logic.BoardLogic;
 import com.crossword.logic.TimerTask;
 import com.crossword.utils.Module;
 import com.crossword.view.KeyboardPopupWindow;
+import com.crossword.view.MyGridView;
 
 public class GameActivity extends Activity implements OnTouchListener, KeyboardViewInterface {
 
 	//public enum GRID_MODE {NORMAL, CHECK, SOLVE};
 	//public  int CurrentMode;
-	
-	private GridView 		gridView;
+	private FrameLayout     girdFrameLayout;
+	private MyGridView 		gridView;
 	private KeyboardView 	keyboardView;
 	private GameGridAdapter gridAdapter;
 	private TextView 		txtDescription;
@@ -77,7 +83,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 	private int 			height;
 	private ImageButton     returnButton;
 	private BoardLogic 	boardLogic;
-            Handler handler;
+    //Handler handler;
 
 		@Override
 public void onPause()
@@ -104,12 +110,15 @@ public void onPause()
 		Bundle bundle2 = intent2.getExtras();
 		Grid currentGrid=(Grid)bundle2.getSerializable("currentGrid"); 
 		System.out.println("this.currentGrid..."+currentGrid.getUniqueid());
+
 		this.module = new Module(this);
 		this.boardLogic = new BoardLogic(this);
 	    //this.filename = "td.json";
 	  //  this.url = Crossword.GRID_URL + 10002;
 	  //  module.parseGrid(this, this.url);
 	    //通过uniqueid查找grid，如果没有就会从网页下载
+		//获取girdFrameLayout
+		girdFrameLayout = (FrameLayout)findViewById(R.id.girdFrameLayout);
 		returnButton = (ImageButton)findViewById(R.id.game_return_button);
 		returnButton.setOnClickListener(new OnClickListener(){
 
@@ -161,21 +170,25 @@ public void onPause()
 		});
         
         
-        this.gridView = (GridView)findViewById(R.id.grid);
+        this.gridView = (MyGridView)findViewById(R.id.grid);
         this.gridView.setOnTouchListener(this);
         this.gridView.setNumColumns(this.width);
+        this.gridView.setHandler(handler);
+
         
-        android.view.ViewGroup.LayoutParams gridParams = this.gridView.getLayoutParams();
-       // gridParams.height = weight/this.width*(this.height+1);
+       android.view.ViewGroup.LayoutParams gridParams = this.gridView.getLayoutParams();
+      
        gridParams.height = (height - keyboardHeight - this.txtDescriptionHor.getLayoutParams().height*3);
-      //  gridParams.height =weight/10*this.height;
+
         gridParams.width = weight;
-        
         this.gridView.setLayoutParams(gridParams);
-     //   this.gridView.setStretchMode("columnWidth");
-      //  this.gridView.setVerticalScrollBarEnabled(false);
 		this.gridAdapter = new GameGridAdapter(this, this.entries, this.width, this.height,this.boardLogic);
 		this.gridView.setAdapter(this.gridAdapter);
+		
+		
+		//画标尺
+		this.gridAdapter.drawRuler(this.girdFrameLayout);
+		
 		//keyboardPopupWindow = new KeyboardPopupWindow(this);
         this.keyboardView = (KeyboardView)findViewById(R.id.keyboard);
         this.keyboardView.setDelegate(this);
@@ -184,36 +197,7 @@ public void onPause()
         this.keyboardView.setLayoutParams(KeyboardParams);
 
         this.keyboardOverlay = (TextView)findViewById(R.id.keyboard_overlay);
-        handler = new Handler()
-        {
-        	public void handleMessage(Message msg)
-        	{
-        		if(msg.what == 0x123)
-        		{
-        			//boardLogic.oncell();
-        			try{
-        				String s=msg.obj.toString().split(Crossword.UNFILLED)[0];
-        				Log.v("sss", s);
-        				Log.v("weizhi", msg.obj.toString().split(Crossword.UNFILLED)[0]+"....."+msg.obj.toString().split(Crossword.UNFILLED)[1]);
-        				int x = Integer.parseInt(msg.obj.toString().split(Crossword.UNFILLED)[0]);
-        				int y = Integer.parseInt(msg.obj.toString().split(Crossword.UNFILLED)[1]);
-        				Log.v("weizhi", msg.obj.toString()+x+"..."+y);
-        				boardLogic.setArea(x, y, Crossword.UNFILLED);
-        				Log.v("weizhi", boardLogic.getArea(x, y));
-    				    boardLogic.setDisValue(x, y, Crossword.UNFILLED);
-        			}
-        			catch (Exception e) 
-        			{
-						
-        				Log.v("weizhi", msg.obj.toString());
-        				// TODO: handle exception
-					}
-        			
-    				gridAdapter.notifyDataSetChanged();
-        		
-        		}
-        	}
-        };
+
       
 	}
 
@@ -228,22 +212,29 @@ public void onPause()
             	//int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY());
             	int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY())-firstVP;
             	if(this.gridView.pointToPosition((int)event.getX(), (int)event.getY()) ==- 1)  break;
-            	// Log.v("positionDown", ""+position);
-            	 View child = this.gridView.getChildAt(position);
-            	 
-            	 
-                // Log.v("firstpositionDown", ""+firstVP);
-                 
-            	// Si pas de mot sur cette case (= case noire), aucun traitement
-               //  View child = this.gridView.getChildAt(position);
-               //  Log.v("tst",""+child.getTag());
+
+            	TextView child = (TextView) this.gridView.getChildAt(position);
+                
+               // getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            	InputMethodManager inputMethodManager = (InputMethodManager)
+	            		   getSystemService(Context.INPUT_METHOD_SERVICE);
+                
+                if(child.getTag().equals(Crossword.AREA_BLOCK)){//点击灰色格子的时候隐藏键盘
+                	inputMethodManager.hideSoftInputFromWindow(gridView.getWindowToken(), 0);
+                
+                }else{//其他情况打开键盘
+               	
+                	inputMethodManager.showSoftInput(v, 0);
+                }
+	       
+	         
+
+
             	if (child == null || child.getTag().equals(Crossword.AREA_BLOCK)) {
             		if (this.solidSelection == false) {
                         clearSelection();
-                      //  Log.v("ts2t",""+child.getTag());
                     	this.gridAdapter.notifyDataSetChanged();
             		}
-            		Log.v("ts3t",""+child.getTag());
             		this.downIsPlayable = false;
             		return true;
             	}
@@ -253,7 +244,6 @@ public void onPause()
             	this.downPos = position;
                 this.downX = this.downPos % this.width;
                 this.downY = this.downPos / this.width;
-                System.out.println("ACTION_DOWN, x:" + this.downX + ", y:" + this.downY + ", position: " + this.downPos);
                 clearSelection();
             	this.gridAdapter.notifyDataSetChanged();
         		break;
@@ -265,12 +255,10 @@ public void onPause()
             	if (this.downIsPlayable == false)
             		return true;
             	 int firstVP =this.gridView.getFirstVisiblePosition();
-                 Log.v("firstpositionUP", ""+firstVP);
                 int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY());
            
                 int x = position % this.width;
                 int y = position / this.width;
-                System.out.println("ACTION_DOWN, x:" + x + ", y:" + y + ", position: " + position);
                 //判断输入方向
                 if(x < 0 || x >= this.width || y < 0 || y>= this.height)
                 	return false;
@@ -375,16 +363,8 @@ public void onPause()
 			 return;
 		}
 		
-		//String areaValue=this.module.getAreaValue(x, y);
-	/*
-		this.module.setValue(x, y, value);
-		this.module.setDisValue(x, y,value);
-		this.gridAdapter.notifyDataSetChanged();
-		
-		module.toChinese(x,y,this.currentWord);
-		*/
-		
-		//this.module.setValue(x, y, value);
+
+	
 		this.boardLogic.setDisValue(x, y,value);
 		this.gridAdapter.notifyDataSetChanged();
 			
@@ -411,26 +391,6 @@ public void onPause()
 		    	
 			
 		}
-	//	else module.toChinese(x,y,this.currentWord);
-		 /* 
-		  * if (value.equals(Crossword.UNFILLED)) //删除键功能不要删！！！！
-		
-		
-		{
-			  if(areaValue.equals(Crossword.UNFILLED))
-			{
-				x = (this.horizontal ? x - 1 : x);
-				y = (this.horizontal ? y: y - 1);
-			}
-		}
-			
-			*/
-		
-		
-		//module.toChinese(x,y,this.currentWord);
-  
-	
-		
 
 		if(!value.equals(Crossword.UNFILLED))
 		{
@@ -452,7 +412,7 @@ public void onPause()
 		currentWord = this.boardLogic.getCorrectWord(currentX,currentY,this.horizontal);
 		  
           
-          this.horizontal = this.currentWord.getHoriz();
+        this.horizontal = this.currentWord.getHoriz();
         //在设置背景之前先重绘一遍
         this.gridAdapter.reDrawGridBackground(this.gridView);
         if(this.isCross){
@@ -526,4 +486,136 @@ public void onPause()
 			
 		}
 	} 
+	
+	
+	
+	//负责消息的接收与处理
+    Handler handler = new Handler()
+    {
+    	public void handleMessage(Message msg)
+    	{
+    		
+    		switch(msg.what){
+    		//定时消息的处理
+    		case 0x123:
+    			try{
+    				String s=msg.obj.toString().split(Crossword.UNFILLED)[0];
+    				Log.v("sss", s);
+    				Log.v("weizhi", msg.obj.toString().split(Crossword.UNFILLED)[0]+"....."+msg.obj.toString().split(Crossword.UNFILLED)[1]);
+    				int x = Integer.parseInt(msg.obj.toString().split(Crossword.UNFILLED)[0]);
+    				int y = Integer.parseInt(msg.obj.toString().split(Crossword.UNFILLED)[1]);
+    				Log.v("weizhi", msg.obj.toString()+x+"..."+y);
+    				boardLogic.setArea(x, y, Crossword.UNFILLED);
+    				Log.v("weizhi", boardLogic.getArea(x, y));
+				    boardLogic.setDisValue(x, y, Crossword.UNFILLED);
+    			}
+    			catch (Exception e) 
+    			{
+					
+    				Log.v("weizhi", msg.obj.toString());
+    				// TODO: handle exception
+				}
+    			
+				gridAdapter.notifyDataSetChanged();
+    			break;
+    			
+    			
+    		//负责输入提交后的消息处理	
+    		case 0x222:
+    			
+    			String value = gridView.getSoftInputText();
+    			value = value.toUpperCase();
+    			
+    			if (currentWord == null)
+    				return;
+
+    			// Case actuelle
+    			int x = currentX;
+    			int y = currentY;
+    	        
+    			// Si la case est noire => retour
+    			if (boardLogic.isBlock(x, y))
+    				return;
+    			if (boardLogic.getArea(x, y).equals(Crossword.UNFILLEDABLE))
+    			{
+    				return;
+    			}
+    			if (value.equals(Crossword.UNFILLED)) 
+    				
+    			{
+    				 boardLogic.replay();
+    				 gridAdapter.notifyDataSetChanged();
+    				 return;
+    			}
+    			
+
+    			boardLogic.setDisValue(x, y,value);
+    			gridAdapter.notifyDataSetChanged();
+    				
+    			
+    			
+    			
+    		    boardLogic.toChinese(x,y,currentWord,value);
+    			if(boardLogic.getArea(x, y).equals(Crossword.UNFILLEDABLE))
+    				{
+    					String p = x+Crossword.UNFILLED+y;
+    					new Thread(new TimerTask(p,handler)).start();
+    				}
+    			
+    		    if(boardLogic.isComplete(GameActivity.this)) 
+    			{
+
+    				boardLogic.scoring();
+    				    	unlockNext();
+    				    	return;
+    			    	
+    				
+    			}
+
+    			if(!value.equals(Crossword.UNFILLED))
+    			{
+    				x = (horizontal ? x + 1 : x);
+    				y = (horizontal ? y: y + 1);
+    			}
+    			
+    			// Si la case suivante est disponible, met la case en jaune, remet l'ancienne en bleu, et set la nouvelle position
+    			if (x >= 0 && x < width
+    					&& y >= 0 && y < height
+    					&& boardLogic.isBlock(x,y) == false) {
+    				currentX = x;
+    				currentY = y;
+    			}
+    			
+    			
+    			isCross = boardLogic.isCross(currentX, currentY);
+    	       
+    			currentWord =boardLogic.getCorrectWord(currentX,currentY,horizontal);
+    			  
+    	          
+    	       horizontal = currentWord.getHoriz();
+    	        //在设置背景之前先重绘一遍
+    	       gridAdapter.reDrawGridBackground(gridView);
+    	        if(isCross){
+    	        	
+    	        	currentWordHor = boardLogic.getCorrectWord(currentX, currentY, true);
+    	        	currentWordVer = boardLogic.getCorrectWord(currentX, currentY, false);
+    	        	
+    	        	setWordBackground(currentWordHor, currentX, currentY);
+    	        	setWordBackground(currentWordVer, currentX, currentY);
+    	        }else{
+    	        	setWordBackground(currentWord, currentX, currentY);
+    	        }
+    	        
+    	        
+    	        setDescription(currentWordHor, currentWordVer, currentWord);
+    			break;
+    			
+    			
+    		}
+    		
+    	}
+    };
+	
+	
+	
 }

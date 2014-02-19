@@ -12,7 +12,6 @@ import android.util.Log;
 
 import com.crossword.Crossword;
 import com.crossword.data.Grid;
-import com.crossword.data.GridforSaved;
 import com.crossword.data.Vol;
 
 public class DBManager {
@@ -284,7 +283,7 @@ public class DBManager {
 	 * 删除grid
 	 * @param grid
 	 */
-	public void deleteOldGrid(GridforSaved grid){
+	public void deleteOldGrid(Grid grid){
 		
 	}
 
@@ -296,11 +295,11 @@ public class DBManager {
 	 * 查询grid表的所有grid，并返回其列表
 	 * @return
 	 */
-	/**/public List<GridforSaved> query(){
-		ArrayList<GridforSaved> grids = new ArrayList<GridforSaved>();
+	/**/public List<Grid> query(){
+		ArrayList<Grid> grids = new ArrayList<Grid>();
 		Cursor c = queryTheCursor(Crossword.GRID_TABLE);
 		while(c.moveToNext()){
-			GridforSaved g = new GridforSaved();
+			Grid g = new Grid();
 			g.setFilename(c.getString(c.getColumnIndex("file")));
 			g.setUniqueid(c.getInt(c.getColumnIndex("uniqueid")));
 			g.setVol(c.getInt(c.getColumnIndex("volNumber")));
