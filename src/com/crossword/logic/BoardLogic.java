@@ -65,7 +65,7 @@ public class BoardLogic {
    	     this.displayArea = new String[this.height][this.width];
    	   //  this.correctionAreaChi = new String[this.height][this.width];
    	     this.correction = new String[this.height][this.width];
-   	     this.entries = grid.getEntries();
+   	     this.entries = grid.getEntities();
    	     for(int i = 0;i < this.width;i++)
    	    	 for(int j = 0;j < this.height;j++)
    	    	 {
@@ -77,6 +77,10 @@ public class BoardLogic {
    		
   	    this.resetScore();
   	    this.score =this.grid.getScore();
+  	    
+  	    
+  	    
+  	    
    	 }
    	 
    	
@@ -546,7 +550,7 @@ public class BoardLogic {
 		}
 		public void save(GameGridAdapter gridAdapter,Grid grid)
 		{
-			for(Word entry:grid.getEntries()){
+			for(Word entry:grid.getEntities()){
 				String word = this.getWord(entry.getX(), entry.getY(),entry.getLength(),entry.getHoriz());
 				entry.setTmp(word);		
 				//entry.set
