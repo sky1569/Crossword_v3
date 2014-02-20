@@ -19,11 +19,12 @@ import com.crossword.utils.DBManager;
 import com.crossword.utils.JsonUtil;
 import com.crossword.utils.Module;
 import com.crossword.utils.UserUtil;
+import com.crossword.data.Character;
 
 public class BoardLogic {
 	 private Grid   grid;                   //从json中解析出grid的所有信息，包括关卡的信息以及所有的Word
 	 private Vol    currVol;                    //当前期
-	 private LinkedList<Word> entries  =  new LinkedList<Word>();
+	 private LinkedList<Word> entities  =  new LinkedList<Word>();
 	 private JsonUtil jsonUtil;
 	 private DBManager dbManager;
 	 //private Module module;
@@ -65,7 +66,7 @@ public class BoardLogic {
    	     this.displayArea = new String[this.height][this.width];
    	   //  this.correctionAreaChi = new String[this.height][this.width];
    	     this.correction = new String[this.height][this.width];
-   	     this.entries = grid.getEntities();
+   	     this.entities = grid.getEntities();
    	     for(int i = 0;i < this.width;i++)
    	    	 for(int j = 0;j < this.height;j++)
    	    	 {
@@ -84,6 +85,10 @@ public class BoardLogic {
    	 }
    	 
    	
+   	 
+   	 
+   	 
+   	 
    	  
    	 public boolean isCellCorrect(String value,int x,int y)
    	 {
@@ -112,39 +117,7 @@ public class BoardLogic {
    				else this.setArea(x, y, Crossword.WRONGFILLED);
   		}
   		 return false;
-   		 /*if(value.getBytes().length!=value.length())
-   		{
-   			
-   			if(value.equals(this.correctionAreaChi[y][x]))
-   			{
-   			    this.setArea(x, y, Crossword.CORRECTFILLED);
-   				return true;
-   			}
-   		}
-   		else
-   		{
-   			
-   			if(value.equals(this.correctionAreaCap[0][y][x])|value.equals(this.correctionAreaCap[1][y][x]))
-   			{
-   				this.setArea(x, y, Crossword.CORRECTFILLED);
-   			    return true;
-   			}
-   					
    		
-   		}
-   		// Log.v("testgetArea",""+this.getArea(x, y).equals(Crossword.WRONGFILLED));
-   		 if(this.getArea(x, y).equals(Crossword.WRONGFILLED)) 
-   		 
-   		 {
-   			 this.setArea(x,y,Crossword.UNFILLEDABLE);
-   			 
-   			 
-   			// this.offcell();
-   		 }
-   		 
-   		else this.setArea(x, y, Crossword.WRONGFILLED);
-   		 
-   		 return false;*/
    	 }
    	  
    	 public void replay() //记得调用重绘,暂时没用上
@@ -166,10 +139,10 @@ public class BoardLogic {
    		
    		
    	 
-   		public void initentries()
+   		public void initEntities()
    		{
    			
-   			for (Word entry: this.entries)
+   			for (Word entry: this.entities)
    		    {
    		    	String tmp = entry.getTmp();
    		    	String text = entry.getCap();
@@ -214,23 +187,7 @@ public class BoardLogic {
 		    				else this.area[y+i][x] = Crossword.UNFILLED;
    		    			}
    		    		}
-   		    		/*for(int m = 0; m < this.width;m++)
-   		    		   for(int n = 0;n < this.height;n++)
-   		    		   {
-   		    			 // this.toChinese(m, n, this.getdisplayAreaValue(m, n));
-   		    			   String value = this.getdisplayAreaValue(m, n);
-   		    			   if(value.equals(Crossword.BLOCK)) continue;
-   		    			   else if (value.equals(Crossword.UNFILLED)) continue; 
-   		    			   		else this.isCellCorrect(value, m, n);
-   		    			   /* if(this.displayArea[n][m].equals(Crossword.BLOCK))
-   		    				   continue;
-   		    			   if(this.displayArea[n][m].equals(Crossword.UNFILLED))
-   		    				   {
-   		    				   	this.area[n][m] = Crossword.UNFILLED;
-   		    				   	//continue;
-   		    				   }
-   		    			   else if()
-   		    		   }*/
+   		    		
    		    		
    		    		
    		    	}
@@ -379,6 +336,40 @@ public class BoardLogic {
    		}
    		
    		
+   		
+   		
+   		//通过坐标将对应的字取出来
+   		public Character getCharacterByPosition(int x,int y){
+   			
+   			for(Word w:entities){
+   				
+   				for(Character c:w.getEntities()){
+   					if(c.getX() ==x && c.getY() == y){
+   						return c;
+   					}
+   				}
+   			}
+   			
+   			return null;
+   		}
+   		
+   		
+   		
+   		//通过索引值将词取出来
+   		public Word getWordByIndex(int index){
+   			for(Word w:entities){
+   				
+   				if(w.getIndex() == index){
+   					return w;
+   				}
+   			}
+   			
+   			return null;
+   		}
+   		
+   		
+   		
+
    		public String getWord(int x, int y, int length, boolean isHorizontal) {
    	    	StringBuffer word = new StringBuffer();
    	    	for (int i = 0; i < length; i++) {
@@ -413,7 +404,7 @@ public class BoardLogic {
    		    {
    		        Word horizontalWord = null;
    		        Word verticalWord = null;
-   			    for (Word entry: this.entries) {
+   			    for (Word entry: this.entities) {
    			    	if (x >= entry.getX() && x <= entry.getXMax())
    			    		if (y >= entry.getY() && y <= entry.getYMax()) {
    		        	    	if (entry.getHoriz())
@@ -469,45 +460,7 @@ public class BoardLogic {
 		}
 		
 		
-		//统分不对！！！
-		/*public void isCor()
-		{   
-			this.corCount = 0;
-			//if(this.isWordComplete(x, y)){}
-			for (Word entry: this.entries)
-		    {
-		    	String tmp = entry.getTmp();
-		    	String text = entry.getCap();
-		    	boolean horizontal = entry.getHoriz();
-		    	int x = entry.getX();
-		    	int y = entry.getY();
-		    	//System.out.println(tmp);
-		    	for (int i = 0 ; i < entry.getLength(); i++) 
-		    	{
-		    		if (horizontal)
-		    		{
-		    			if (y >= 0 && y < this.height && x+i >= 0 && x+i < this.width)
-		    			{
-		    				//this.area[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED)?Crossword.UNFILLED:String.valueOf(tmp.charAt(i));
-		    				//this.displayArea[y][x+i] = String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED)?Crossword.UNFILLED:String.valueOf(tmp.charAt(i));
-		    				//this.correctionArea[y][x+i] = String.valueOf(text.charAt(i));
-		    				if(this.isChinese(x+i, y)) this.corCount = this.corCount+Crossword.SCORE_PER_CHARACTER;
-		    			}
-		    		}
-		    		else
-		    		{
-		    			if (y+i >= 0 && y+i < this.height && x >= 0 && x < this.width)
-		    			{
-		    				if(this.isChinese(x, y+i)) this.corCount = this.corCount+Crossword.SCORE_PER_CHARACTER;
-		    				//this.area[y+i][x] =  String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED)?Crossword.UNFILLED:String.valueOf(tmp.charAt(i));
-		    				//this.displayArea[y+i][x] = String.valueOf(tmp.charAt(i)).equals(Crossword.UNFILLED)?Crossword.UNFILLED:String.valueOf(tmp.charAt(i));
-		    				//this.correctionArea[y+i][x] = String.valueOf(text.charAt(i));
-		    			}
-		    		}
-		    	}
-		    	
-		    }//this.corCount = Crossword.SCORE_PER_CHARACTER*l+this.corCount;
-		 }*/
+
 		public void isCor()
 		{
 			this.corCount++;

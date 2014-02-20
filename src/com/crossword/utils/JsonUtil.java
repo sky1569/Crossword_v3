@@ -143,7 +143,7 @@ public class JsonUtil {
 		    	//entity.setX(jObj.getInt("x"));
 		    	//entity.setY(jObj.getInt("y"));
 		    	entity.setLength(jObj.getInt("len"));
-		    	entity.setWordSign(jObj.getInt("sign"));
+		    	entity.setIndex(jObj.getInt("sign"));
 		    	//解析每个word中的所有Word并组成链表
 		    	JSONArray jsonCharacterArray = jObj.getJSONArray("info");
 		    	
@@ -156,7 +156,7 @@ public class JsonUtil {
 		    		character.setX(jCharacterObj.getInt("x"));
 		    		character.setY(jCharacterObj.getInt("y"));
 		    		character.setTemp(jCharacterObj.getString("temp"));
-		    		character.updateIndexList(entity.getWordSign());
+		    		character.updateIndexList(entity.getIndex());
 		    		
 		    		for(Word w:entities){//遍历已有的所有词，判断当前解析的字是否已经存在，并在isInWord更新字的索引
 		    			

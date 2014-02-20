@@ -42,7 +42,7 @@ public class Word {
 	private String              cap;
 	private String              mask;
 	private LinkedList<Character> entities = new LinkedList<Character>();
-	private int                 sign;//词的标志
+	private int                 index;//词的标志
 	
 	
 	//设置和获取一级提示
@@ -93,9 +93,9 @@ public class Word {
 	
 	
 	//设置词的标志
-	public void setWordSign(int sign){this.sign = sign;}
+	public void setIndex(int sign){this.index = sign;}
 	
 	//获取词的标志
-	public int getWordSign(){return this.sign;}
+	public int getIndex(){return this.index;}
 	
 }
