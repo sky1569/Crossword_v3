@@ -37,7 +37,7 @@ public class Grid implements Comparable<Grid> ,Serializable{
 	private Integer       level;
 	private Integer       degree;
 	private String        category;
-	private LinkedList<Word> entries;   
+	private LinkedList<Word> entities;   
 	private Integer          score = 0;
 	private String           date;
 	private String           gamename;
@@ -74,8 +74,8 @@ public class Grid implements Comparable<Grid> ,Serializable{
     public void        setCategory(String category){this.category = category;}
     public String      getCategory(){return this.category;}
     
-    public void        setEntries(LinkedList<Word> entries){this.entries = entries;}
-    public LinkedList<Word>  getEntries(){return this.entries;}
+    public void        setEntities(LinkedList<Word> entities){this.entities = entities;}
+    public LinkedList<Word>  getEntities(){return this.entities;}
     
     public void        setScore(Integer score){this.score = score;}
     public Integer     getScore(){return this.score;}

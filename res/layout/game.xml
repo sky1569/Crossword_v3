@@ -4,7 +4,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/background_color"
+        android:background="@color/background_gray"
         android:orientation="vertical" >
 
 
@@ -15,7 +15,8 @@
             android:paddingTop="3dip"
             android:paddingBottom="3dip"
             android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/background_color">
             
             <ImageButton android:id="@+id/game_return_button"
                 android:layout_width="wrap_content"
@@ -59,9 +60,11 @@
             android:text="纵向:"
         />
 
-      
+    <ImageView android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/title_bottom_line_tile"/>
         <ScrollView    android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:layout_marginTop="1dip"
            >
@@ -82,7 +85,7 @@
             android:horizontalSpacing="1dp"
             android:listSelector="@null"
             android:verticalSpacing="1dp"
-            android:background="@color/background_gray" 
+           
             android:paddingBottom="1dip"
             android:paddingTop="20dip"
             android:paddingLeft="23dip"
@@ -94,13 +97,7 @@
      
        </FrameLayout>
   </ScrollView>
-        <com.crossword.keyboard.KeyboardView
-            android:id="@+id/keyboard"
-            android:layout_width="fill_parent"
-            android:layout_height="100dp"
-            android:layout_weight="0"
-            android:layout_marginBottom="0dip" 
-            android:paddingBottom="0dip"/>
+
     </LinearLayout>
 
     <TextView

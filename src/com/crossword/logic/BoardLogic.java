@@ -12,18 +12,20 @@ import android.widget.Toast;
 
 import com.crossword.Crossword;
 import com.crossword.adapter.GameGridAdapter;
+import com.crossword.data.Character;
 import com.crossword.data.Grid;
 import com.crossword.data.Vol;
 import com.crossword.data.Word;
 import com.crossword.utils.DBManager;
 import com.crossword.utils.JsonUtil;
-import com.crossword.utils.Module;
 import com.crossword.utils.UserUtil;
 
 public class BoardLogic {
 	 private Grid   grid;                   //从json中解析出grid的所有信息，包括关卡的信息以及所有的Word
 	 private Vol    currVol;                    //当前期
 	 private LinkedList<Word> entries  =  new LinkedList<Word>();
+	// private LinkedList<Character> cEntries = new LinkedList<Character>();
+	 private LinkedList<Character> cEntities = new LinkedList<Character>();
 	 private JsonUtil jsonUtil;
 	 private DBManager dbManager;
 	 //private Module module;
@@ -65,7 +67,7 @@ public class BoardLogic {
    	     this.displayArea = new String[this.height][this.width];
    	   //  this.correctionAreaChi = new String[this.height][this.width];
    	     this.correction = new String[this.height][this.width];
-   	     this.entries = grid.getEntries();
+   	     this.entries = grid.getEntities();
    	     for(int i = 0;i < this.width;i++)
    	    	 for(int j = 0;j < this.height;j++)
    	    	 {
@@ -77,6 +79,10 @@ public class BoardLogic {
    		
   	    this.resetScore();
   	    this.score =this.grid.getScore();
+  	    
+  	    
+  	    
+  	    
    	 }
    	 
    	
@@ -159,32 +165,31 @@ public class BoardLogic {
    		  }
    	  }
 
-   		/*public void initentries2()
+   		public void initentries2()
    		{
    			for(Word entry: this.entries)
    			{
-   				
-   				//String text =entry.getCap();
-   				for(int i = 0 ; i < entry.getLength() ; i++)
+   				this.cEntities = entry.getEntities();
+   				for(Character c:this.cEntities)
    				{
-   					int x = entry.getX(i);
-   					int y = entry.getY(i);
-   					String tmp = entry.getTmp(i);
-   					String text = entry.getCap(i);
-   					String chi = entry.getChi(i);
-   					this.displayArea[y][x] = String.valueOf(tmp);
-   					this.correction[y][x] = this.correction[y][x] + String.valueOf(text) +String.valueOf(chi);
-   					if(!String.valueOf(tmp).equals(Crossword.UNFILLED))
+   					int x = c.getX();
+   					int y = c.getY();
+   					this.displayArea[y][x] = c.getTemp();
+   					this.correction[y][x] = this.correction[y][x]+c.getCap()+c.getChi();
+   					if(!c.getTemp().equals(Crossword.UNFILLED))
    					{
    						if(this.correction[y][x].contains(this.displayArea[y][x]))
    							this.area[y][x] = Crossword.CORRECTFILLED;
 		    					else this.area[y][x] = Crossword.WRONGFILLED;
    					}
-   					else this.area[y][x] = Crossword.UNFILLED;	
+   					else this.area[y][x] = Crossword.UNFILLED;
+   					
    				}
+   				//String text =entry.getCap();
+   				
    			}
    		}
-   		*/
+   		
    	 
    		public void initentries()
    		{
@@ -577,7 +582,7 @@ public class BoardLogic {
 		}
 		public void save(GameGridAdapter gridAdapter,Grid grid)
 		{
-			for(Word entry:grid.getEntries()){
+			for(Word entry:grid.getEntities()){
 				String word = this.getWord(entry.getX(), entry.getY(),entry.getLength(),entry.getHoriz());
 				entry.setTmp(word);		
 				//entry.set

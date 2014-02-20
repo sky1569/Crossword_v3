@@ -57,7 +57,7 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 	private TextView 		keyboardOverlay;
     private KeyboardPopupWindow keyboardPopupWindow;
 	private Grid			grid;
-	private LinkedList<Word> entries;		// Liste des mots
+	private LinkedList<Word> entities;		// Liste des mots
 	private ArrayList<View>	selectedArea = new ArrayList<View>(); // Liste des cases selectionnées
 
 	private boolean			downIsPlayable;	// false si le joueur à appuyé sur une case noire 
@@ -137,13 +137,13 @@ public void onPause()
 	    	return;
 	    }
 
-	    this.entries= this.grid.getEntries();
-	    if (this.entries == null) {
+	    this.entities= this.grid.getEntities();
+	    if (this.entities == null) {
 	    	finish();
 	    	return;
 	    }
 	    this.boardLogic.initModule(this.grid);
-	    Log.v("initMoudle..this.entries", ""+ this.entries.size());
+	    Log.v("initMoudle..this.entities", ""+ this.entities.size());
 	    this.width = this.grid.getWidth();
 	    this.height = this.grid.getHeight();
         this.lastX = -1;
@@ -182,7 +182,7 @@ public void onPause()
 
         gridParams.width = weight;
         this.gridView.setLayoutParams(gridParams);
-		this.gridAdapter = new GameGridAdapter(this, this.entries, this.width, this.height,this.boardLogic);
+		this.gridAdapter = new GameGridAdapter(this, this.entities, this.width, this.height,this.boardLogic);
 		this.gridView.setAdapter(this.gridAdapter);
 		
 		
@@ -190,13 +190,13 @@ public void onPause()
 		this.gridAdapter.drawRuler(this.girdFrameLayout);
 		
 		//keyboardPopupWindow = new KeyboardPopupWindow(this);
-        this.keyboardView = (KeyboardView)findViewById(R.id.keyboard);
-        this.keyboardView.setDelegate(this);
-        android.view.ViewGroup.LayoutParams KeyboardParams = this.keyboardView.getLayoutParams();
-        KeyboardParams.height = keyboardHeight;
-        this.keyboardView.setLayoutParams(KeyboardParams);
+        //this.keyboardView = (KeyboardView)findViewById(R.id.keyboard);
+       // this.keyboardView.setDelegate(this);
+      //  android.view.ViewGroup.LayoutParams KeyboardParams = this.keyboardView.getLayoutParams();
+       // KeyboardParams.height = keyboardHeight;
+       // this.keyboardView.setLayoutParams(KeyboardParams);
 
-        this.keyboardOverlay = (TextView)findViewById(R.id.keyboard_overlay);
+       // this.keyboardOverlay = (TextView)findViewById(R.id.keyboard_overlay);
 
       
 	}

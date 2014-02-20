@@ -26,7 +26,7 @@ import com.crossword.data.Grid;
 import com.crossword.data.Rank;
 import com.crossword.data.Vol;
 import com.crossword.data.Word;
-
+import com.crossword.data.Character;
 
 public class JsonUtil {
 
@@ -125,28 +125,56 @@ public class JsonUtil {
 	public Grid parseGridJson(String jsonData){
 		
 		Grid grid = new Grid();
-		LinkedList<Word> entries = new LinkedList<Word>();
+		LinkedList<Word> entities = new LinkedList<Word>();
 		JSONObject jsonObject;
-		JSONArray  jsonArray;
+		JSONArray  jsonWordArray;
 		try {
 		    jsonObject = new JSONObject(jsonData);
-		    jsonArray = jsonObject.getJSONArray("words");
-		    for(int i = 0;i < jsonArray.length();i++){
+		    //解析JSON数据中包含的所有的Word信息
+		    jsonWordArray = jsonObject.getJSONArray("words");
+		    for(int i = 0;i < jsonWordArray.length();i++){
 				
-		    	Word entry = new Word();
-		    	JSONObject jObj = jsonArray.getJSONObject(i);
-		    	entry.setDesc(jObj.getString("desc"));
-		    	entry.setTmp(jObj.getString("tmp"));
-		    	entry.setHoriz(jObj.getInt("horiz") == 1?true:false);
-		    	entry.setX(jObj.getInt("x"));
-		    	entry.setY(jObj.getInt("y"));
-		    	entry.setLength(jObj.getInt("len"));
-		    	entry.setCap(jObj.getString("cap"));
-		    	entry.setChi(jObj.getString("chi"));
-		    	entry.setMask(jObj.getString("mask"));
-		    	entries.add(entry);	
+		    	Word entity = new Word();
+		    	JSONObject jObj = jsonWordArray.getJSONObject(i);
+		    	entity.setDesc(jObj.getString("desc"));
+		    	entity.setDesc2(jObj.getString("desc2"));
+		    	//entity.setTmp(jObj.getString("tmp"));
+		    	//entity.setHoriz(jObj.getInt("horiz") == 1?true:false);
+		    	//entity.setX(jObj.getInt("x"));
+		    	//entity.setY(jObj.getInt("y"));
+		    	entity.setLength(jObj.getInt("len"));
+		    	entity.setWordSign(jObj.getInt("sign"));
+		    	//解析每个word中的所有Word并组成链表
+		    	JSONArray jsonCharacterArray = jObj.getJSONArray("info");
+		    	
+		    	LinkedList<Character> characterEntities = new LinkedList<Character>();
+		    	for(int j = 0;j <jsonCharacterArray.length();j++){
+		    		Character character = new Character();
+		    		JSONObject jCharacterObj = jsonCharacterArray.getJSONObject(j);
+		    		character.setCap(jCharacterObj.getString("cap"));
+		    		character.setChi(jCharacterObj.getString("chi"));
+		    		character.setX(jCharacterObj.getInt("x"));
+		    		character.setY(jCharacterObj.getInt("y"));
+		    		character.setTemp(jCharacterObj.getString("temp"));
+		    		character.updateIndexList(entity.getWordSign());
+		    		
+		    		for(Word w:entities){//遍历已有的所有词，判断当前解析的字是否已经存在，并在isInWord更新字的索引
+		    			
+		    			if(character.isInWord(w)){	    				
+		    				continue;
+		    			}else{//如果不是，就把当前解析的字加入字组中
+		    				characterEntities.add(character);
+		    			}
+		    		}
+		    		
+		    	}
+		    	entity.setEntities(characterEntities);
+		    	//entity.setCap(jObj.getString("cap"));
+		    	//entity.setChi(jObj.getString("chi"));
+		    	//entity.setMask(jObj.getString("mask"));
+		    	entities.add(entity);	
 			}
-		    grid.setEntries(entries);
+		    grid.setEntities(entities);
 		    grid.setFilename(jsonObject.getString("file"));
 		    grid.setUniqueid(jsonObject.getInt("uniqueid"));
 		    grid.setVol(jsonObject.getInt("volNumber"));
@@ -223,7 +251,7 @@ public class JsonUtil {
 		}
 		catch(Exception e)
 		{
-			Log.v("读入直博错误", "11");
+			Log.v("读入直播错误", "11");
 			e.printStackTrace();
 		}
 		return vol;
@@ -271,19 +299,19 @@ public class JsonUtil {
 			jObj.put("islocked", grid.getIslocked());
 			jObj.put("star",grid.getStar());
 			//获取grid中的word信息
-			LinkedList<Word> entries = grid.getEntries();
-			for(Word entry:entries){
+			LinkedList<Word> entities = grid.getEntities();
+			for(Word entity:entities){
 			   
 				JSONObject jObjj = new JSONObject();
-				jObjj.put("desc", entry.getDesc());
-				jObjj.put("tmp", entry.getTmp());
-				jObjj.put("horiz", entry.getHoriz() == true?1:0);
-				jObjj.put("x", entry.getX());
-				jObjj.put("y", entry.getY());
-				jObjj.put("len", entry.getLength());
-				jObjj.put("chi", entry.getChi());
-				jObjj.put("cap", entry.getCap());
-				jObjj.put("mask", entry.getMask());
+				jObjj.put("desc", entity.getDesc());
+				jObjj.put("tmp", entity.getTmp());
+				jObjj.put("horiz", entity.getHoriz() == true?1:0);
+				jObjj.put("x", entity.getX());
+				jObjj.put("y", entity.getY());
+				jObjj.put("len", entity.getLength());
+				jObjj.put("chi", entity.getChi());
+				jObjj.put("cap", entity.getCap());
+				jObjj.put("mask", entity.getMask());
 				jArry.put(jObjj);
 			}
 			jObj.put("words", jArry);
