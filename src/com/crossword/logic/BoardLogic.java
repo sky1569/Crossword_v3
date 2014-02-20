@@ -159,7 +159,7 @@ public class BoardLogic {
    		  }
    	  }
 
-   		public void initentries2()
+   		/*public void initentries2()
    		{
    			for(Word entry: this.entries)
    			{
@@ -184,7 +184,7 @@ public class BoardLogic {
    				}
    			}
    		}
-   		
+   		*/
    	 
    		public void initentries()
    		{
@@ -413,6 +413,13 @@ public class BoardLogic {
    	    	}
    	    	return word.toString();
    		}
+   		
+   		public  String gewWordStatus(int num)
+   		{
+   			StringBuffer wordStatus = new StringBuffer();
+   			
+   			return wordStatus.toString();
+   		}
    		public String getWordStatus(int x, int y, int length, boolean isHorizontal)
    		{
    			StringBuffer wordStatus = new StringBuffer();
@@ -453,7 +460,7 @@ public class BoardLogic {
    		    }
    		
    		
-   		 public int scoring(){
+   		 	public int scoring(){
    			//this.isCor();
    			this.score=this.score+this.corCount-this.hintCount-this.errCount;	
    			//this.score = 20;
