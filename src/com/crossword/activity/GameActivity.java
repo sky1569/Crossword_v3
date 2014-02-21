@@ -41,6 +41,7 @@ import com.crossword.logic.TimerTask;
 import com.crossword.utils.Module;
 import com.crossword.view.KeyboardPopupWindow;
 import com.crossword.view.MyGridView;
+import com.crossword.data.Character;
 
 public class GameActivity extends Activity implements OnTouchListener, KeyboardViewInterface {
 
@@ -370,8 +371,8 @@ public void onPause()
 			
 		
 		
-		
-	    this.boardLogic.toChinese(x,y,this.currentWord,value);
+		this.boardLogic.toChinese2(x,y, value);
+	   // this.boardLogic.toChinese(x,y,this.currentWord,value);
 		if(this.boardLogic.getArea(x, y).equals(Crossword.UNFILLEDABLE))
 			{
 				String p = x+Crossword.UNFILLED+y;
@@ -462,6 +463,20 @@ public void onPause()
 		}
 	}
 	
+	/*public void setWordBackground(int currX,int currY)
+	{
+		Character c = boardLogic.getCharacterByPosition(currX, currY);
+	//	Word word;
+		Word word =new Word();
+		for(int i :c.getIndexList())
+			
+			
+			zuixde i
+			 word = boardLogic.getWordByIndex(i);
+		for word
+		
+		 
+	}*/
 	
 	
 	//…Ë÷√√Ë ˆ–≈œ¢

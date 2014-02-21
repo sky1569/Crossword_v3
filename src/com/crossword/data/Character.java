@@ -77,7 +77,7 @@ public class Character {
 		}
         for(Character c:entities){
         	if(c.getX() == this.getX() && c.getY() == this.getY()){
-        		c.updateIndexList(word.getWordSign());
+        		c.updateIndexList(word.getIndex());
         		return true;
         	}
         }
@@ -98,6 +98,10 @@ public class Character {
 		
 		return this.indexList;
 	}
+	
+	
+
+	
 
 
 }

@@ -57,7 +57,7 @@ public class GameGridAdapter extends BaseAdapter {
         this.displayHeight = this.displayWidth;
  
       //  this.displayHeight = display.getWidth() /this.width;
-        this.boardLogic.initentries();
+        this.boardLogic.initEntities2();
         this.boardLogic.isComplete(act);
 
 	    
