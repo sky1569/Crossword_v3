@@ -341,21 +341,19 @@ public class BoardLogic {
    		//通过坐标将对应的字取出来
    		public Character getCharacterByPosition(int x,int y){
    			
-   			for(Word w:entities){
-   				
-   				for(Character c:w.getEntities()){
-   					if(c.getX() ==x && c.getY() == y){
-   						return c;
-   					}
-   				}
-   			}
+              for(Character c:this.grid.getCharacters()){
+            	  
+            	  if(c.getX() == x && c.getY() == y){
+            		  return c;
+            	  }
+              }
    			
    			return null;
    		}
    		
    		
    		
-   		//通过索引值将词取出来
+   		//通过索引值取出描述
    		public Word getWordByIndex(int index){
    			for(Word w:entities){
    				

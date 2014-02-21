@@ -27,6 +27,10 @@ public class IndividualActivity extends Activity {
 	private TextView    individualAccountText;
 	private TextView    individualRankText;
 	private TextView    individualAccumulatePointText;
+	
+	private TextView titleRankText ;
+	private TextView titleUsernameText ;
+    private TextView titleAccumulatePointText;
 	private Module      module;
 	private ImageButton returnButton;
 	@Override
@@ -91,10 +95,12 @@ public class IndividualActivity extends Activity {
 		
 		
  		rankAdapter = new RankAdapter(this,rankedList);
- 		TextView titleRankText = (TextView)findViewById(R.id.title_rank_text);
- 		TextView titleUsernameText = (TextView)findViewById(R.id.title_username_text);
- 		TextView titleAccumulatePointText = (TextView)findViewById(R.id.title_accumulate_point_text);
+ 		titleRankText = (TextView)findViewById(R.id.title_rank_text);
+ 		titleUsernameText = (TextView)findViewById(R.id.title_username_text);
+ 		titleAccumulatePointText = (TextView)findViewById(R.id.title_accumulate_point_text);
  		rankAdapter.setTitleTextView(titleRankText, titleUsernameText, titleAccumulatePointText);
+
+ 		
 		rankList.setAdapter(rankAdapter);
 		rankList.setCacheColorHint(Color.TRANSPARENT);
         rankList.setDivider(null);
@@ -109,9 +115,10 @@ public class IndividualActivity extends Activity {
 
 	
 	
+	//动态设置文字的位置
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus){
 		super.onWindowFocusChanged(hasFocus);
-
+        
 	}
 }
