@@ -9,8 +9,10 @@ public class Character {
 	private String       chi;
 	private int          x;
 	private int          y;
+	private int          i;//标志这个字在哪个词中
+	private int          j;//标志这个字在对应词中的第几个位置
 	private String       temp;
-	private ArrayList<Integer> indexList = new ArrayList<Integer>();//字的索引列表
+	private ArrayList<ArrayList<Integer>> indexList = new ArrayList<ArrayList<Integer>>();//字的索引列表
 	
 	//设置拼音
 	public void setCap(String cap){
@@ -45,6 +47,24 @@ public class Character {
 	}
 	
 	
+	public void setI(int i){
+		this.i = i;
+	}
+	
+	public int getI(){
+		return this.i;
+	}
+	
+	public void setJ(int j){
+		this.j = j;
+	}
+	
+	public int getJ(){
+		return this.j;
+	}
+	
+	
+	
 	
     //设置横坐标
 	
@@ -68,19 +88,15 @@ public class Character {
 	}
 
 	//获取某个字是否在某个词中
-	public boolean isInWord(Word word){
+	public boolean isExistInCharacters(LinkedList<Character> characters){
 		
-		ArrayList<Integer> indexs = new ArrayList<Integer>();
-		LinkedList<Character> entities  = word.getEntities();
-		if(entities.isEmpty()){//判断该词的字组是否为空
+		if(characters.isEmpty())//判断该词的字组是否为空
 			return false;
-		}
-        for(Character c:entities){
-        	if(c.getX() == this.getX() && c.getY() == this.getY()){
-        		c.updateIndexList(word.getIndex());
+		
+        for(Character c:characters)
+        	if(c.getX() == this.getX() && c.getY() == this.getY())
         		return true;
-        	}
-        }
+        
         
         return false;
 	}
@@ -88,13 +104,14 @@ public class Character {
 	
 
 	//更新字的索引列表
-	public void updateIndexList(int index){
-		
-		this.indexList.add(index);
+	public void updateIndexList(int i,int j){
+		ArrayList<Integer> indexs = new ArrayList<Integer>();
+		indexs.add(i,j);
+		this.indexList.add(indexs);
 	}
 	
 	//获取字的索引列表
-	public ArrayList<Integer> getIndexList(){
+	public ArrayList<ArrayList<Integer>> getIndexList(){
 		
 		return this.indexList;
 	}

@@ -22,6 +22,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.crossword.Crossword;
+import com.crossword.data.Description;
 import com.crossword.data.Grid;
 import com.crossword.data.Rank;
 import com.crossword.data.Vol;
@@ -126,14 +127,37 @@ public class JsonUtil {
 		
 		Grid grid = new Grid();
 		LinkedList<Word> entities = new LinkedList<Word>();
+		LinkedList<Character> characters = new LinkedList<Character>();
+		LinkedList<Description> descriptions = new LinkedList<Description>();
 		JSONObject jsonObject;
 		JSONArray  jsonWordArray;
+		JSONArray  jsonCharacterArray;
+		JSONArray  jsonDescriptionArray;
 		try {
 		    jsonObject = new JSONObject(jsonData);
 		    //解析JSON数据中包含的所有的Word信息
-		    jsonWordArray = jsonObject.getJSONArray("words");
-		    for(int i = 0;i < jsonWordArray.length();i++){
+		    //解析JSON数据中包含的所有的Character信息
+		    //jsonWordArray = jsonObject.getJSONArray("words");
+		    jsonCharacterArray = jsonObject.getJSONArray("words");
+		    for(int i = 0;i < jsonCharacterArray.length();i++){
 				
+		    	Character character = new Character();
+		    	JSONObject jObj = jsonCharacterArray.getJSONObject(i);
+		    	character.setCap(jObj.getString("cap"));
+		    	character.setChi(jObj.getString("chi"));
+		    	character.setX(jObj.getInt("x"));
+		    	character.setY(jObj.getInt("y"));
+		    	character.setTemp(jObj.getString("temp"));
+		    	character.setI(jObj.getInt("i"));
+		    	character.setJ(jObj.getInt("j"));
+		    	
+		    	if(!character.isExistInCharacters(characters)){//如果之前解析的字组中没有出现该字的话，就插入
+		    		                                           //否则就更新之前的indexList
+		    		characters.add(character);
+		    	}
+		    	
+		    	
+		    	/*
 		    	Word entity = new Word();
 		    	JSONObject jObj = jsonWordArray.getJSONObject(i);
 		    	entity.setDesc(jObj.getString("desc"));
@@ -172,9 +196,22 @@ public class JsonUtil {
 		    	//entity.setCap(jObj.getString("cap"));
 		    	//entity.setChi(jObj.getString("chi"));
 		    	//entity.setMask(jObj.getString("mask"));
-		    	entities.add(entity);	
+		    	entities.add(entity);	*/	
 			}
+		    
+		    
+		    jsonDescriptionArray = jsonObject.getJSONArray("descriptions");
+		    for(int j  = 0; j < jsonDescriptionArray.length();j++){
+		    	
+		    	Description description = new Description();
+		    	JSONObject jDescriptionObj = jsonDescriptionArray.getJSONObject(j);
+		    	description.setDesc1(jDescriptionObj.getString("desc1"));//解析一级提示
+		    	description.setDesc2(jDescriptionObj.getString("desc2"));//解析二级提示
+		    	description.setTo(jDescriptionObj.getInt("to"));
+		    	descriptions.add(description);
+		    }
 		    grid.setEntities(entities);
+		    grid.setDescriptions(descriptions);
 		    grid.setFilename(jsonObject.getString("file"));
 		    grid.setUniqueid(jsonObject.getInt("uniqueid"));
 		    grid.setVol(jsonObject.getInt("volNumber"));
