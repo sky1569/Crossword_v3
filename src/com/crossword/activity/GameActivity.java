@@ -142,7 +142,9 @@ public void onPause()
 
 	  //  this.entities= this.grid.getEntities();
 	    this.entities = this.grid.getCharacters();
+	    
 	    if (this.entities == null) {
+	    	 Log.v("this.entities", "null");
 	    	finish();
 	    	return;
 	    }
