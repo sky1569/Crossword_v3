@@ -615,6 +615,14 @@ public class BoardLogic {
 				c.setTemp(ctemp);
 				Log.v("测试写入json，gettem", c.getTemp());
 			}
+			
+			
+				grid.setStar(this.star(score));
+				grid.setIslocked(Crossword.GRIDUNLOCKED);
+				JSONObject jObj = jsonUtil.writeToJson(grid);
+				//用以保存数据的grid类，主要是保存在数据库中，增加了jsonData字段
+				grid.setJsonData(jObj.toString());
+				dbManager.updateGridData(grid);	
 		}
 		 public void unlock()
 			{
