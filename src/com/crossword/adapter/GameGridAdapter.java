@@ -27,7 +27,7 @@ import com.crossword.Crossword;
 import com.crossword.R;
 import com.crossword.data.Word;
 import com.crossword.logic.BoardLogic;
-
+import com.crossword.data.Character;
 
 public class GameGridAdapter extends BaseAdapter {
 
@@ -39,7 +39,8 @@ public class GameGridAdapter extends BaseAdapter {
 	private int 						height;
     private int 						displayWidth;
 	private BoardLogic 					boardLogic;
-	public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,BoardLogic boardLogic)//,Module module)
+	//public GameGridAdapter(Activity act, LinkedList<Word> entries, int width, int height,BoardLogic boardLogic)//,Module module)
+	public	GameGridAdapter(Activity act, LinkedList<Character> entries, int width, int height,BoardLogic boardLogic)
 	{
 	//	final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(act);
 		this.boardLogic = boardLogic;
