@@ -45,7 +45,6 @@ public class Module {
 		 Grid grid = new Grid();
 		
 		 String jsonData = jsonUtil.readJsonFromUrl(url);
-		 System.out.println(jsonData);
 		 grid =  jsonUtil.parseGridJson(jsonData);
 		//解析完，将Json数据加入数据库中
 		 dbManager.updateGridData(grid);

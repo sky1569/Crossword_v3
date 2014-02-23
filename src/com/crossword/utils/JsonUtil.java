@@ -156,7 +156,7 @@ public class JsonUtil {
 		    		characters.add(character);
 		    	}
 		    	
-		    	
+		    
 		    	/*
 		    	Word entity = new Word();
 		    	JSONObject jObj = jsonWordArray.getJSONObject(i);
@@ -210,7 +210,8 @@ public class JsonUtil {
 		    	description.setTo(jDescriptionObj.getInt("to"));
 		    	descriptions.add(description);
 		    }
-		    grid.setEntities(entities);
+		   // grid.setEntities(entities);
+		    grid.setCharacters(characters);
 		    grid.setDescriptions(descriptions);
 		    grid.setFilename(jsonObject.getString("file"));
 		    grid.setUniqueid(jsonObject.getInt("uniqueid"));
