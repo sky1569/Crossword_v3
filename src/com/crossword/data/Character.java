@@ -116,6 +116,18 @@ public class Character {
 		return this.indexList;
 	}
 	
+	public int getListLength()
+	
+	{
+		 int l = 0;
+		 ArrayList<Integer> current = this.indexList.get(l);
+	     while(null!=current){
+	      l++;
+	    //  current = current.next;
+	      current = this.indexList.get(l);
+	     }
+		return l;
+	}
 	
 
 	

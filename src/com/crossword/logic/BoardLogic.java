@@ -1,9 +1,11 @@
 package com.crossword.logic;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import org.json.JSONObject;
 
+import android.R.integer;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -12,19 +14,23 @@ import android.widget.Toast;
 
 import com.crossword.Crossword;
 import com.crossword.adapter.GameGridAdapter;
+import com.crossword.data.Character;
 import com.crossword.data.Grid;
 import com.crossword.data.Vol;
 import com.crossword.data.Word;
 import com.crossword.utils.DBManager;
 import com.crossword.utils.JsonUtil;
-import com.crossword.utils.Module;
 import com.crossword.utils.UserUtil;
 import com.crossword.data.Character;
 
 public class BoardLogic {
 	 private Grid   grid;                   //从json中解析出grid的所有信息，包括关卡的信息以及所有的Word
 	 private Vol    currVol;                    //当前期
+
+	 private LinkedList<Character> cEntities = new LinkedList<Character>();
+
 	 private LinkedList<Word> entities  =  new LinkedList<Word>();
+	// private ArrayList<Integer> cIndexList = new ArrayList<Integer>();
 	 private JsonUtil jsonUtil;
 	 private DBManager dbManager;
 	 //private Module module;
@@ -66,7 +72,8 @@ public class BoardLogic {
    	     this.displayArea = new String[this.height][this.width];
    	   //  this.correctionAreaChi = new String[this.height][this.width];
    	     this.correction = new String[this.height][this.width];
-   	     this.entities = grid.getEntities();
+   	   //  this.entities = grid.getEntities();
+   	     this.cEntities = grid.getCharacters();
    	     for(int i = 0;i < this.width;i++)
    	    	 for(int j = 0;j < this.height;j++)
    	    	 {
@@ -136,9 +143,30 @@ public class BoardLogic {
    		  }
    	  }
 
+   		public void initEntities2()
+   		{
+   			
+   				for(Character c:this.cEntities)
+   				{
+   					int x = c.getX();
+   					int y = c.getY();
+   					this.displayArea[y][x] = c.getTemp();
+   					this.correction[y][x] = this.correction[y][x]+c.getCap()+c.getChi();
+   					if(!c.getTemp().equals(Crossword.UNFILLED))
+   					{
+   						if(this.correction[y][x].contains(this.displayArea[y][x]))
+   							this.area[y][x] = Crossword.CORRECTFILLED;
+		    					else this.area[y][x] = Crossword.WRONGFILLED;
+   					}
+   					else this.area[y][x] = Crossword.UNFILLED;
+   					
+   				}
+   				//String text =entry.getCap();
+   				
+   		}
    		
    		
-   	 
+   	 /*
    		public void initEntities()
    		{
    			
@@ -196,19 +224,30 @@ public class BoardLogic {
    		   }
    	
    		}
-   			
- 	  public void toChinese(int currentX,int currentY,String value)//按字翻转
+   		*/	
+ 	  public void toChinese2(int currentX,int currentY,String value)//按字翻转
    			{
-   		  		
+   		  	
    		  		if(this.isCellCorrect(value, currentX, currentY))
    				{
-//   					this.setDisValue(currentX, currentY, this.correctionAreaChi[currentY][currentX]);
+//   				
+   		  			Character c = this.getCharacterByPosition(currentX, currentY);
+   		  			if(c!= null)
+   		  			{
+   		  				for(ArrayList<Integer> arr :c.getIndexList())
+   		  					
+   		  					if(this.isWordComplete(this.getWordStatus(arr.get(0))))
+   		  					{
+   		  						this.setCharacterByIndex(arr.get(0));
+   		  					}
+   		  		
+   		  			}
    				}
-   			   	
+   			   
    		  	 
    			}
    	  
-   	  public void toChinese(int currentX,int currentY,Word currentWord,String value)	//按词翻转
+   /*	  public void toChinese(int currentX,int currentY,Word currentWord,String value)	//按词翻转
    	  {
    		  //Log.v("testto chinese",""+value+"  "+this.isCellCorrect(value, currentX, currentY) );
    		  if(this.isCellCorrect(value, currentX, currentY))
@@ -253,7 +292,7 @@ public class BoardLogic {
    		  }
    	  }		
    	  
-
+*/
    	
    	 public void setArea(int x ,int y ,String value)
    	 {
@@ -324,7 +363,7 @@ public class BoardLogic {
    		}
    		
    		//以下计分功能
-   		public boolean isWordComplete(int x ,int y,boolean h)
+   		/*public boolean isWordComplete(int x ,int y,boolean h)
    		{
    			
    			Word corw = this.getCorrectWord(x, y, h);
@@ -333,13 +372,18 @@ public class BoardLogic {
    			if(curw.contains(Crossword.UNFILLED)||curw.contains(Crossword.WRONGFILLED)||curw.contains(Crossword.UNFILLEDABLE))   return false;	
    			
    			return true;
+   		}*/
+   		public boolean isWordComplete(String curw)
+   		{
+   			if(curw.contains(Crossword.UNFILLED)||curw.contains(Crossword.WRONGFILLED)||curw.contains(Crossword.UNFILLEDABLE))   return false;	
+   			
+   			return true;
    		}
    		
    		
    		
-   		
    		//通过坐标将对应的字取出来
-   		public Character getCharacterByPosition(int x,int y){
+   	/*	public Character getCharacterByPosition(int x,int y){
    			
               for(Character c:this.grid.getCharacters()){
             	  
@@ -365,10 +409,35 @@ public class BoardLogic {
    			return null;
    		}
    		
+   		*/
    		
+        public Character getCharacterByPosition(int x,int y)
+        {
+        	
+        	for(Character c : this.cEntities)
+        		if(c.getX() == x && c.getY() == y )
+        		     			return  c ;
+        	return null;
+        		
+        }
+        public Character getCharacterByIndex(int i,int j )
+        {
+        	for(Character c : this.cEntities)
+        		for(int l = 0; l < c.getListLength() ;l++ )
+        		if(c.getIndexList().get(l).get(0) == i && c.getIndexList().get(l).get(1) == j )
+        		     			return  c ;
+        	return null; 
+        }
+        public void setCharacterByIndex(int i)
+        {
+        	for(Character c:this.cEntities)
+        		for(ArrayList<Integer> arr :c.getIndexList() )
+   					if(arr.get(0) == i)
+   						this.setDisValue(c.getX(),c.getY(),c.getChi());
+        }
    		
-
-   		public String getWord(int x, int y, int length, boolean isHorizontal) {
+       
+   	/*	public String getWord(int x, int y, int length, boolean isHorizontal) {
    	    	StringBuffer word = new StringBuffer();
    	    	for (int i = 0; i < length; i++) {
    	    		if (isHorizontal) {
@@ -381,8 +450,10 @@ public class BoardLogic {
    	    		}
    	    	}
    	    	return word.toString();
-   		}
-   		public String getWordStatus(int x, int y, int length, boolean isHorizontal)
+   		}*/
+   		
+   	
+   	/*	public String getWordStatus(int x, int y, int length, boolean isHorizontal)
    		{
    			StringBuffer wordStatus = new StringBuffer();
    			for (int i = 0; i < length; i++) {
@@ -395,6 +466,18 @@ public class BoardLogic {
    	    				wordStatus.append(this.area[y+i][x]);
    	    		}
    	    	}
+   			return wordStatus.toString();
+   		}*/
+   		   		
+   		public String getWordStatus(int i)
+   		{
+   			StringBuffer wordStatus = new StringBuffer();
+   			for(Character c:this.cEntities)
+   			{
+   				for(ArrayList<Integer> arr :c.getIndexList() )
+   					if(arr.get(0) == i)
+   						wordStatus.append(this.area[c.getY()][c.getX()]);
+   			}
    			return wordStatus.toString();
    		}
    		
@@ -422,7 +505,7 @@ public class BoardLogic {
    		    }
    		
    		
-   		 public int scoring(){
+   		 	public int scoring(){
    			//this.isCor();
    			this.score=this.score+this.corCount-this.hintCount-this.errCount;	
    			//this.score = 20;
@@ -440,7 +523,7 @@ public class BoardLogic {
 		 
 		 
 		
-		public boolean isCross(int x,int y){
+		/*public boolean isCross(int x,int y){
 			boolean c = false;
 			String lD,rD,tD,bD;
 			
@@ -455,9 +538,17 @@ public class BoardLogic {
 	        	c = true;
 	        }
 			return c;
+		}*/
+		/*public boolean isCross(int x,int y)
+		{
+			boolean c =false;
+			for(ArrayList<integer> c : this.cEntities)
+			{
+				if(c.get(0))
+			}
 		}
 		
-		
+		*/
 
 		public void isCor()
 		{
@@ -499,7 +590,7 @@ public class BoardLogic {
 			 else starCount =0;
 			 return starCount;
 		}
-		public void save(GameGridAdapter gridAdapter,Grid grid)
+		/*public void save(GameGridAdapter gridAdapter,Grid grid)
 		{
 			for(Word entry:grid.getEntities()){
 				String word = this.getWord(entry.getX(), entry.getY(),entry.getLength(),entry.getHoriz());
@@ -514,6 +605,16 @@ public class BoardLogic {
 			grid.setJsonData(jObj.toString());
 			dbManager.updateGridData(grid);	
 			
+		}*/
+		
+		public void save2(GameGridAdapter gridAdapter,Grid grid)
+		{
+			for(Character c :grid.getCharacters())
+			{
+				String ctemp = this.getCharacterByPosition(c.getX(), c.getY()).toString();
+				c.setTemp(ctemp);
+				Log.v("测试写入json，gettem", c.getTemp());
+			}
 		}
 		 public void unlock()
 			{

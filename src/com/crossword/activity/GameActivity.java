@@ -17,23 +17,21 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
-import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.crossword.Crossword;
 import com.crossword.R;
 import com.crossword.adapter.GameGridAdapter;
+import com.crossword.data.Character;
 import com.crossword.data.Grid;
 import com.crossword.data.Word;
+import com.crossword.data.Description;
 import com.crossword.keyboard.KeyboardView;
 import com.crossword.keyboard.KeyboardViewInterface;
 import com.crossword.logic.BoardLogic;
@@ -42,7 +40,8 @@ import com.crossword.utils.Module;
 import com.crossword.view.KeyboardPopupWindow;
 import com.crossword.view.MyGridView;
 
-public class GameActivity extends Activity implements OnTouchListener, KeyboardViewInterface {
+
+public class GameActivity extends Activity implements OnTouchListener {
 
 	//public enum GRID_MODE {NORMAL, CHECK, SOLVE};
 	//public  int CurrentMode;
@@ -57,7 +56,8 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
 	private TextView 		keyboardOverlay;
     private KeyboardPopupWindow keyboardPopupWindow;
 	private Grid			grid;
-	private LinkedList<Word> entities;		// Liste des mots
+	//private LinkedList<Word> entities;		// Liste des mots
+	private LinkedList<Character> entities;
 	private ArrayList<View>	selectedArea = new ArrayList<View>(); // Liste des cases selectionn茅es
 
 	private boolean			downIsPlayable;	// false si le joueur 脿 appuy茅 sur une case noire 
@@ -66,12 +66,15 @@ public class GameActivity extends Activity implements OnTouchListener, KeyboardV
     private int 			downY;			// Colonne ou le joueur 脿 appuy茅
     private int				lastX;          //上一次按下的位置X
     private int             lastY;          //上一次按下的位置Y
+    private int             clickIndex = 0;
 	private int 			currentPos;		// Position actuelle du curseur
 	private int 			currentX;		// Colonne actuelle du curseur
 	private int 			currentY;		// Ligne actuelle du curseur
-	private Word			currentWord;	// Mot actuellement selectionn茅
-	private Word            currentWordHor;
-	private Word            currentWordVer;
+	//private Word			currentWord;	// Mot actuellement selectionn茅
+	//private Word            currentWordHor;
+	//private Word            currentWordVer;
+	private Character 		currentC;
+	private Description     des;
 	private boolean 		horizontal;		// Sens de la selection
     private boolean 		isCross;        //判断是否是交叉点
 	private String 			filename;		// Nom de la grille
@@ -90,7 +93,7 @@ public void onPause()
 	{
 		Log.v("ss", "ss");
 		//this.boardLogic.scoring();
-		this.boardLogic.save(this.gridAdapter,this.grid);
+		this.boardLogic.save2(this.gridAdapter,this.grid);
 		super.onPause();
 	}
 	
@@ -98,7 +101,7 @@ public void onPause()
 	public void onStop(){
 		Log.v("dd", "dd");
 		this.boardLogic.scoring();
-		this.boardLogic.save(this.gridAdapter,this.grid);
+		this.boardLogic.save2(this.gridAdapter,this.grid);
 		super.onStop();
 	}
 	public void onCreate(Bundle savedInstanceState)
@@ -137,7 +140,8 @@ public void onPause()
 	    	return;
 	    }
 
-	    this.entities= this.grid.getEntities();
+	  //  this.entities= this.grid.getEntities();
+	    this.entities = this.grid.getCharacters();
 	    if (this.entities == null) {
 	    	finish();
 	    	return;
@@ -183,22 +187,14 @@ public void onPause()
         gridParams.width = weight;
         this.gridView.setLayoutParams(gridParams);
 		this.gridAdapter = new GameGridAdapter(this, this.entities, this.width, this.height,this.boardLogic);
-		this.gridView.setAdapter(this.gridAdapter);
+		
+        this.gridView.setAdapter(this.gridAdapter);
 		
 		
 		//画标尺
 		this.gridAdapter.drawRuler(this.girdFrameLayout);
 		
-		//keyboardPopupWindow = new KeyboardPopupWindow(this);
-        //this.keyboardView = (KeyboardView)findViewById(R.id.keyboard);
-       // this.keyboardView.setDelegate(this);
-      //  android.view.ViewGroup.LayoutParams KeyboardParams = this.keyboardView.getLayoutParams();
-       // KeyboardParams.height = keyboardHeight;
-       // this.keyboardView.setLayoutParams(KeyboardParams);
-
-       // this.keyboardOverlay = (TextView)findViewById(R.id.keyboard_overlay);
-
-      
+	
 	}
 
 	@Override
@@ -248,8 +244,43 @@ public void onPause()
             	this.gridAdapter.notifyDataSetChanged();
         		break;
             }
-
-            case MotionEvent.ACTION_UP:
+            case  MotionEvent.ACTION_UP:
+            	{
+            		if (this.downIsPlayable == false)
+            	         		return true;
+            		int firstVP =this.gridView.getFirstVisiblePosition();
+            		int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY());
+           
+            		int x = position % this.width;
+            		int y = position / this.width;
+            		if(x < 0 || x >= this.width || y < 0 || y>= this.height)
+                    	return false;
+            		
+            		
+            		
+            	    
+            		
+                	 currentC = this.boardLogic.getCharacterByPosition(this.currentX, this.currentY);
+                	if(this.lastX == x && this.lastY == y && clickIndex < currentC.getListLength() ) clickIndex = clickIndex + 1;
+            		else clickIndex = 0 ;
+                	this.lastX = x;//获取上一次的横向位置
+                    this.lastY = y;//获取上一次的纵向位置
+                    this.currentX = x;
+                	this.currentY = y;
+                	this.setWordBackground(currentC,clickIndex,x, y);
+               
+            		this.gridAdapter.reDrawGridBackground(this.gridView);
+            		this.gridAdapter.notifyDataSetChanged();
+            	
+            	//	
+            			
+            		
+           // 		this.setDescription(currentWordHor, currentWordVer, currentWord);
+            		this.setDescription(currentC, clickIndex, 1);
+            	    this.gridAdapter.notifyDataSetChanged();
+            	    break;
+                }
+           /* case MotionEvent.ACTION_UP:
             {
             	// Si le joueur 脿 appuy茅 sur une case noire, aucun traitement 
             	if (this.downIsPlayable == false)
@@ -294,7 +325,7 @@ public void onPause()
                 this.setDescription(currentWordHor, currentWordVer, currentWord);
         	    this.gridAdapter.notifyDataSetChanged();
         	    break;
-            }
+            }*/
         }
         // if you return false, these actions will not be recorded
         return true;
@@ -306,7 +337,7 @@ public void onPause()
     		selected.setBackgroundResource(R.drawable.area_empty);
     	selectedArea.clear();
 	}
-
+/*
 	@Override
 	public void onKeyDown(String value, int location[], int width) {
 		System.out.println("onKeyDown: " + value + ", insert in: " + currentX + "x" + currentY);
@@ -328,12 +359,7 @@ public void onPause()
 	@Override
 	public void onKeyUp(String value) {
 		System.out.println("onKeyUp: " + value + ", insert in: " + currentX + "x" + currentY);
-		/*if(value.equals("replay"))
-			{
-				this.module.replay();
-				this.gridAdapter.notifyDataSetChanged();
-				return;
-			}*/
+		
 		// Efface l'overlay du clavier
 		if (value.equals(Crossword.UNFILLED) == false) {
 			this.keyboardOverlay.setAnimation(AnimationUtils.loadAnimation(this, R.anim.keyboard_overlay_fade_out));
@@ -370,8 +396,8 @@ public void onPause()
 			
 		
 		
-		
-	    this.boardLogic.toChinese(x,y,this.currentWord,value);
+		this.boardLogic.toChinese2(x,y, value);
+	  // this.boardLogic.toChinese(x,y,this.currentWord,value);
 		if(this.boardLogic.getArea(x, y).equals(Crossword.UNFILLEDABLE))
 			{
 				String p = x+Crossword.UNFILLED+y;
@@ -381,12 +407,12 @@ public void onPause()
 	    if(this.boardLogic.isComplete(this)) 
 		{
 		    		
-		   // module.save(this.gridAdapter,this.grid);
+
 			
 			this.boardLogic.scoring();
-			   // Log.v("fenshu",)	
+			 
 			    	this.unlockNext();
-			//    	this.completeFlag = true ;
+	
 			    	return;
 		    	
 			
@@ -398,7 +424,7 @@ public void onPause()
 			y = (this.horizontal ? y: y + 1);
 		}
 		
-		// Si la case suivante est disponible, met la case en jaune, remet l'ancienne en bleu, et set la nouvelle position
+		
 		if (x >= 0 && x < this.width
 				&& y >= 0 && y < this.height
 				&& this.boardLogic.isBlock(x,y) == false) {
@@ -407,7 +433,7 @@ public void onPause()
 		}
 		
 		
-		this.isCross = this.boardLogic.isCross(currentX, currentY);
+		//this.isCross = this.boardLogic.isCross(currentX, currentY);
        
 		currentWord = this.boardLogic.getCorrectWord(currentX,currentY,this.horizontal);
 		  
@@ -434,13 +460,13 @@ public void onPause()
 	
 	
 	
-	
+*/
 	
 
 	
 	
   
-	
+	/*
 	//设置横向或纵向词对应的小格背景
 	public void setWordBackground(Word word,int currX,int currY){
 		
@@ -461,11 +487,36 @@ public void onPause()
 			}
 		}
 	}
-	
+	*/
+   public void setWordBackground(Character currentC,int clickIndex ,int currX, int currY)
+   {
+	   int currIndex = currY*this.width + currX-this.gridView.getFirstVisiblePosition();
+	   for(Character cc :this.entities)
+	   {
+   		for(ArrayList<Integer> arr : cc.getIndexList())
+   			{
+   				if(arr.get(0) == currentC.getIndexList().get(clickIndex).get(0))
+   				{
+   					//this.setWordBackground(clickIndex,x, y);
+   					int index = cc.getY()*this.width +cc.getX() - this.gridView.getFirstVisiblePosition();
+   					View currentChild = this.gridView.getChildAt(index);
+   					if(currentChild==null) continue;
+   					if(!currentChild .equals( Crossword.BLOCK))
+   					{
+   						//currentChild.setBackgroundResource(index == currIndex?R.drawable.area_current:R.drawable.area_selected);
+   						currentChild.setBackgroundResource(index == currIndex?R.color.current_selected_color:R.color.selected_area_color);
+   						//currentChild.setBackgroundResource(index == currIndex?R.drawable.current_selected_area_background:R.drawable.selected_area_background);
+   						selectedArea.add(currentChild);
+   					}
+   				}
+   			}
+	   }
+	}
+   
 	
 	
 	//设置描述信息
-	public void setDescription(Word currentWordHor,Word currentWordVer,Word currentWord){//设置提示信息
+	/*public void setDescription(Word currentWordHor,Word currentWordVer,Word currentWord){//设置提示信息
 		  String descriptionHor = isCross?"横向:"+this.currentWordHor.getDesc():
               (this.horizontal?"横向:"+currentWord.getDesc():"横向:");
           String descriptionVer = isCross?"纵向:"+this.currentWordVer.getDesc():
@@ -474,8 +525,15 @@ public void onPause()
           this.txtDescriptionHor.setText(descriptionHor);
           this.txtDescriptionVer.setText(descriptionVer);
 		 
+	}*/
+	public void setDescription(Character c ,int clickIndex,int desIndex)
+	{
+		 if(des.getTo() == c.getIndexList().get(clickIndex).get(0))
+		 {
+			 if(desIndex == 1) this.txtDescriptionHor.setText(des.getDesc1());
+			 if(desIndex == 2) this.txtDescriptionHor.setText(des.getDesc2());
+		 }
 	}
-
 	public void unlockNext()
 	{
 		//if(this.isComplete())
@@ -526,9 +584,10 @@ public void onPause()
     			String value = gridView.getSoftInputText();
     			value = value.toUpperCase();
     			
-    			if (currentWord == null)
+    		//	if (currentWord == null)
+    		//		return;
+    			if(currentC == null)
     				return;
-
     			// Case actuelle
     			int x = currentX;
     			int y = currentY;
@@ -554,8 +613,8 @@ public void onPause()
     				
     			
     			
-    			
-    		    boardLogic.toChinese(x,y,currentWord,value);
+    			boardLogic.toChinese2(x, y, value);
+    		    //boardLogic.toChinese(x,y,currentWord,value);
     			if(boardLogic.getArea(x, y).equals(Crossword.UNFILLEDABLE))
     				{
     					String p = x+Crossword.UNFILLED+y;
@@ -574,42 +633,36 @@ public void onPause()
 
     			if(!value.equals(Crossword.UNFILLED))
     			{
-    				x = (horizontal ? x + 1 : x);
-    				y = (horizontal ? y: y + 1);
-    			}
+    				Character cNext =  boardLogic.getCharacterByIndex(currentC.getIndexList().get(clickIndex).get(0), currentC.getIndexList().get(clickIndex).get(1)+1);
+    				 if(cNext == null)
+    					 return ;
+    				
+    			
     			
     			// Si la case suivante est disponible, met la case en jaune, remet l'ancienne en bleu, et set la nouvelle position
-    			if (x >= 0 && x < width
-    					&& y >= 0 && y < height
-    					&& boardLogic.isBlock(x,y) == false) {
-    				currentX = x;
-    				currentY = y;
+    			if (cNext.getX() >= 0 && cNext.getX() < width
+    					&& cNext.getY() >= 0 && cNext.getY() < height
+    					&& boardLogic.isBlock(cNext.getX(),cNext.getY()) == false) {
+    				currentX = cNext.getX();
+    				currentY = cNext.getY();
+    			}
     			}
     			
-    			
-    			isCross = boardLogic.isCross(currentX, currentY);
-    	       
-    			currentWord =boardLogic.getCorrectWord(currentX,currentY,horizontal);
-    			  
-    	          
-    	       horizontal = currentWord.getHoriz();
-    	        //在设置背景之前先重绘一遍
-    	       gridAdapter.reDrawGridBackground(gridView);
-    	        if(isCross){
-    	        	
-    	        	currentWordHor = boardLogic.getCorrectWord(currentX, currentY, true);
-    	        	currentWordVer = boardLogic.getCorrectWord(currentX, currentY, false);
-    	        	
-    	        	setWordBackground(currentWordHor, currentX, currentY);
-    	        	setWordBackground(currentWordVer, currentX, currentY);
-    	        }else{
-    	        	setWordBackground(currentWord, currentX, currentY);
-    	        }
-    	        
-    	        
-    	        setDescription(currentWordHor, currentWordVer, currentWord);
-    			break;
-    			
+    		
+    			currentC = boardLogic.getCharacterByPosition(currentX, currentY);
+    			gridAdapter.reDrawGridBackground(gridView);
+    			setWordBackground(currentC,clickIndex,x, y);
+                
+        		gridAdapter.reDrawGridBackground(gridView);
+        		gridAdapter.notifyDataSetChanged();
+        	
+        	//	
+        			
+        		
+       // 		this.setDescription(currentWordHor, currentWordVer, currentWord);
+        		setDescription(currentC, clickIndex, 1);
+        		gridAdapter.notifyDataSetChanged();
+        	    break;
     			
     		}
     		

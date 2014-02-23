@@ -31,8 +31,10 @@ public class Word {
 	private boolean	horizontal = true;
 	*/
 	
+
 	private String              desc;//一级提示
 	private String              desc2;//二级提示
+
 	private String              tmp;
 	private boolean             horiz;
 	private Integer             x;
@@ -41,11 +43,14 @@ public class Word {
 	private String              chi;
 	private String              cap;
 	private String              mask;
+
+
 	private LinkedList<Character> entities = new LinkedList<Character>();
 	private int                 index;//词的标志
 	
 	
 	//设置和获取一级提示
+
 	public void     setDesc(String desc){this.desc = desc;}
 	public String   getDesc(){return this.desc;}
 	
@@ -81,6 +86,7 @@ public class Word {
 	
 	public String   getAns(int l){return this.chi.substring(l,l+1);}
 	
+
 	//设置词中的字组，把重复的字踢掉
 	public void setEntities(LinkedList<Character> entities)
 	{
@@ -98,4 +104,5 @@ public class Word {
 	//获取词的标志
 	public int getIndex(){return this.index;}
 	
+
 }
