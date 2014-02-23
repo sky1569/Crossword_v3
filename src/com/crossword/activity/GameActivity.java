@@ -133,9 +133,10 @@ public void onPause()
 			
 		});
 	    this.grid =this.module.queryGridByUniqueid(currentGrid.getVol(),currentGrid.getLevel(),currentGrid.getUniqueid()==null?-1:currentGrid.getUniqueid());
-         
+	    
 	    this.grid.setGameMode(currentGrid.getGameMode());
 	    if (this.grid == null) {
+	    	Log.v("this.grid", "null");
 	    	finish();
 	    	return;
 	    }
@@ -144,7 +145,7 @@ public void onPause()
 	    this.entities = this.grid.getCharacters();
 	    
 	    if (this.entities == null) {
-	    	 Log.v("this.entities", "null");
+	    	 Log.v("this.entities2", "null");
 	    	finish();
 	    	return;
 	    }
