@@ -200,12 +200,12 @@ public class JsonUtil {
 			}
 		    
 		    
-		    jsonDescriptionArray = jsonObject.getJSONArray("descriptions");
+		    jsonDescriptionArray = jsonObject.getJSONArray("description");
 		    for(int j  = 0; j < jsonDescriptionArray.length();j++){
 		    	
 		    	Description description = new Description();
 		    	JSONObject jDescriptionObj = jsonDescriptionArray.getJSONObject(j);
-		    	description.setDesc1(jDescriptionObj.getString("desc1"));//解析一级提示
+		    	description.setDesc1(jDescriptionObj.getString("desc"));//解析一级提示
 		    	description.setDesc2(jDescriptionObj.getString("desc2"));//解析二级提示
 		    	description.setTo(jDescriptionObj.getInt("to"));
 		    	descriptions.add(description);
@@ -301,6 +301,7 @@ public class JsonUtil {
 		try {
 			 Log.v(" parseVolJson", "执行了parseVolJson");
 			JSONArray  jArr = new JSONArray(jsonData);
+			System.out.println("本期"+jArr.length()+"关");
 			for(int i = 0;i < jArr.length();i++){
 				JSONObject jObj = jArr.getJSONObject(i);
 				Vol vol = new Vol();

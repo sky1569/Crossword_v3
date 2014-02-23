@@ -139,7 +139,7 @@ public class HomeActivity extends Activity{
 
 			}
 		});
-		
+		/*
 		if(!this.ConTest())
 		{
 			bnLive.setTextColor(getResources().getColor(R.color .home_disable_text_color));
@@ -187,7 +187,7 @@ public class HomeActivity extends Activity{
 					Toast.makeText(this, "游客登录，无法进行直播！", Toast.LENGTH_SHORT).show();
 				}
 		
-		}
+		}*/
 		super.onResume();
 	}
 	

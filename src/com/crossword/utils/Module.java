@@ -45,7 +45,7 @@ public class Module {
 		 Grid grid = new Grid();
 		
 		 String jsonData = jsonUtil.readJsonFromUrl(url);
-		// System.out.println(jsonData);
+		 System.out.println(jsonData);
 		 grid =  jsonUtil.parseGridJson(jsonData);
 		//解析完，将Json数据加入数据库中
 		 dbManager.updateGridData(grid);
@@ -59,12 +59,11 @@ public class Module {
 		 String jsonData = jsonUtil.readJsonFromUrl(url);
 		 //如果jsonData为空，说明没有下载成功
 		 if(jsonData == null){
-			 Log.v(" parseVolFromUrl", "执行了 parseVolFromUrl");
+			 Log.v(" parseVolFromUrl", jsonData);
 			 
 			 return null;
 		 }
 		// if(jsonData.equals(Crossword.UNCONNECT))
-		 
 		 
 		 entities = jsonUtil.parseVolJson(jsonData);
 		 //将解析到的Vol数据插入到数据库中VOLTABLE中
@@ -90,13 +89,13 @@ public class Module {
 		
 		public Grid queryGridByUniqueid(int vol,int lv,int uniqueid){
 			//无论如何先看数据库里面有符合uniqueid的项
-			Log.v("test..queryxiayibu...",Crossword.GRID_URL +"vol="+vol+"&lv="+lv);
+			Log.v("test..queryxiayibu...",Crossword.GRID_ROOT_URL +"vol="+vol+"&lv="+lv);
 			this.grid = dbManager.queryGridByKey("uniqueid", uniqueid,this.jsonUtil);
 			//如果没有查到，则打开网络访问
 			if(this.grid == null){
 			   //通过URL解析Json
 				//this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL + uniqueid);
-				if((this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL +"vol="+vol+"&lv="+lv)).getFilename() == null){
+				if((this.grid = parseGridFromUrl(this.context,Crossword.GRID_ROOT_URL +"vol="+vol+"&lv="+lv)).getFilename() == null){
 					return null;//要提示获取失败
 				}
 			}
@@ -115,6 +114,7 @@ public class Module {
 			parseVolFromUrl(Crossword.VOL_REQUEST_URL);
 			entities = dbManager.queryAllExistVol();
 			Comparator comp = new MyComparator();
+			
          Collections.sort(entities,comp);
          //获取最新期时需要更新一下所有分数
          for(Vol entity:entities){
@@ -123,6 +123,7 @@ public class Module {
          }
 			return entities;
 		}
+
 		
 		public LinkedList<Grid> getGrids(Vol vol)
 		{
@@ -176,7 +177,6 @@ public class Module {
 		public Vol queryVolByVolNumber(int volNumber){
 			
 			Vol vol = dbManager.queryVolByKey("vol_no", volNumber);
-			
 			return vol;
 		}
 		
@@ -187,10 +187,8 @@ public class Module {
 			LinkedList<Grid> grids = getGrids(vol);
 			
 			if(grids == null){
-				Log.v("tnnd", ""+"竟然是空");
 				return;
 			}
-			Log.v("tnnd", ""+"执行了updateVolScore");
 			int volScore = 0;
 			for(Grid grid:grids){
 		        volScore +=  grid.getScore();

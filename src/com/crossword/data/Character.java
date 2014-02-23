@@ -12,7 +12,7 @@ public class Character {
 	private int          i;//标志这个字在哪个词中
 	private int          j;//标志这个字在对应词中的第几个位置
 	private String       temp;
-	private ArrayList<ArrayList<Integer>> indexList = new ArrayList<ArrayList<Integer>>();//字的索引列表
+	private ArrayList<ArrayList<Integer>> indexList = new ArrayList<ArrayList<Integer>>();//字的索引列表 
 	
 	//设置拼音
 	public void setCap(String cap){
@@ -25,7 +25,7 @@ public class Character {
 	}
 	
 	
-	//设置中午呢
+	//设置中文
 	public void setChi(String chi){
 		this.chi = chi;
 	}

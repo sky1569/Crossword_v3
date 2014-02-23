@@ -27,6 +27,7 @@ public class Crossword extends Application {
 
 
 	public static final String      GRID_URL = "http://10.105.223.24/CrossWordPuzzlePHP/playboard.php?";
+	public static final String      GRID_ROOT_URL = "http://10.105.223.24/CrossWordPuzzlePHP/playboard_new.php?";
 	public static final String      LOGIN_ROOT_URL = "http://10.105.223.24/CrossWordPuzzlePHP/login.php?";
 	public static final String      REGISTER_ROOT_URL = "http://10.105.223.24/CrossWordPuzzlePHP/regist.php?";
 	public static final String      UPLOAD_SCORE_ROOT_URL = "http://10.105.223.24/CrossWordPuzzlePHP/sendscore.php?";
@@ -36,10 +37,10 @@ public class Crossword extends Application {
     public static final String      BROADCAST_URL = "http://10.105.223.24/CrossWordPuzzlePHP/broadcast.php";
 	
 	public static final String		GRID_DIRECTORY = "/data/data/crossword/data/grid";
-  
+
 	public static final String		GRIDLIST_LOCAL_PATH = "/data/data/com.crossword/gridlist.xml";
 	public static final long 		GRIDLIST_LIFE_TIME = 86400000;
-	public static final String      VOL_REQUEST_URL = "http://10.105.223.24/CrossWordPuzzlePHP/overview.php";//获取全部期数的URL
+	public static final String      VOL_REQUEST_URL = "http://10.105.223.24/CrossWordPuzzlePHP/overview_new.php";//获取全部期数的URL
 	public static final String 		MAIL_URL = "http://mail.alexislauper.com/";
 	//public static final String 		FEEDBACK_URL = "http://isshun.github.com/Crossword/Feedback";
 	
