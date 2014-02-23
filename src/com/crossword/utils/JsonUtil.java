@@ -326,7 +326,7 @@ public class JsonUtil {
 	public JSONObject writeToJson(Grid grid){
 		
 		JSONObject jObj = new JSONObject();
-		JSONArray  jArry = new JSONArray();
+		JSONArray  jCharacterArray = new JSONArray();
 		try {
 			jObj.put("file", grid.getFilename());
 			jObj.put("uniqueid", grid.getUniqueid());
@@ -337,11 +337,12 @@ public class JsonUtil {
 			jObj.put("islocked", grid.getIslocked());
 			jObj.put("star",grid.getStar());
 			//获取grid中的word信息
-			LinkedList<Word> entities = grid.getEntities();
-			for(Word entity:entities){
+			//LinkedList<Word> entities = grid.getEntities();
+			LinkedList<Character> characters = grid.getCharacters();
+			for(Character entity:characters){
 			   
 				JSONObject jObjj = new JSONObject();
-				jObjj.put("desc", entity.getDesc());
+				/*jObjj.put("desc", entity.getDesc());
 				jObjj.put("tmp", entity.getTmp());
 				jObjj.put("horiz", entity.getHoriz() == true?1:0);
 				jObjj.put("x", entity.getX());
@@ -349,10 +350,29 @@ public class JsonUtil {
 				jObjj.put("len", entity.getLength());
 				jObjj.put("chi", entity.getChi());
 				jObjj.put("cap", entity.getCap());
-				jObjj.put("mask", entity.getMask());
-				jArry.put(jObjj);
+				jObjj.put("mask", entity.getMask());*/
+				jObjj.put("cap", entity.getCap());
+				jObjj.put("chi", entity.getChi());
+				jObjj.put("x", entity.getX());
+				jObjj.put("y", entity.getY());
+				jObjj.put("temp", entity.getTemp());
+				jObjj.put("i", entity.getI());
+				jObjj.put("j", entity.getJ());
+				jCharacterArray.put(jObjj);
 			}
-			jObj.put("words", jArry);
+			jObj.put("words", jCharacterArray);
+		
+			JSONArray jDescriptionArray = new JSONArray();
+			LinkedList<Description> descriptions = grid.getDescriptions();
+			for(Description description:descriptions){
+				
+				JSONObject jObjj = new JSONObject();
+				jObjj.put("desc", description.getDesc1());
+				jObjj.put("desc2", description.getDesc2());
+				jObjj.put("to", description.getTo());
+				jDescriptionArray.put(jObjj);
+			}
+			jObj.put("description", jDescriptionArray);
 			jObj.put("score", grid.getScore());
 			jObj.put("date", grid.getDate());
 			jObj.put("gamename", grid.getGamename());
