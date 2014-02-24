@@ -77,8 +77,8 @@ public class BoardLogic {
    	     for(int i = 0;i < this.width;i++)
    	    	 for(int j = 0;j < this.height;j++)
    	    	 {
-   	    		 this.area[j][i]=Crossword.BLOCK;
-   	    		 this.displayArea[j][i]=Crossword.BLOCK;
+   	    		 this.area[j][i] = Crossword.BLOCK;
+   	    		 this.displayArea[j][i] = Crossword.BLOCK;
    	    	
    	    	 }
    		 		
@@ -413,17 +413,23 @@ public class BoardLogic {
    		
         public Character getCharacterByPosition(int x,int y)
         {
-        	
+        	if(this.cEntities == null )
+        		Log.v("cen", "null");
         	for(Character c : this.cEntities)
-        		if(c.getX() == x && c.getY() == y )
-        		     			return  c ;
+        		{
+        			if(c.getX() == x && c.getY() == y )
+        				{
+        					Log.v("c.position", ""+c.getX()+"..."+c.getY()); 
+        					return  c ; 	
+        				}
+        			}    			
         	return null;
         		
         }
         public Character getCharacterByIndex(int i,int j )
         {
         	for(Character c : this.cEntities)
-        		for(int l = 0; l < c.getListLength() ;l++ )
+        		for(int l = 0; l < c.getIndexList().size() ;l++ )
         		if(c.getIndexList().get(l).get(0) == i && c.getIndexList().get(l).get(1) == j )
         		     			return  c ;
         	return null; 
@@ -611,7 +617,7 @@ public class BoardLogic {
 		{
 			for(Character c :grid.getCharacters())
 			{
-				String ctemp = this.getCharacterByPosition(c.getX(), c.getY()).toString();
+				String ctemp = this.getdisplayAreaValue(c.getX(), c.getY()).toString();
 				c.setTemp(ctemp);
 				Log.v("²âÊÔÐ´Èëjson£¬gettem", c.getTemp());
 			}
