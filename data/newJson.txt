@@ -27,6 +27,6 @@
 "date":"2013-12-01",
 "gamename":"Ìî×ÖÓÎÏ·", 
 "author":"xueming",
-"width":7,
-"height":4
+"width":10,
+"height":10
 }

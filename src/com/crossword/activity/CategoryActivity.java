@@ -72,10 +72,37 @@ public class CategoryActivity extends Activity {
 			// TODO Auto-generated method stub
 
 			//Ô¤Áô
+			
+			String category = "";
+			Intent intent = new Intent(CategoryActivity.this,GridListActivity.class);
 			if(event.getAction() == MotionEvent.ACTION_DOWN){
+				
+				switch(v.getId()){
+				   case R.id.movie_category_layout:
+					   category = getResources().getString(R.string.movie);
+					   break;
+				   case R.id.verses_category_layout:
+					   category = getResources().getString(R.string.verses);
+					   break;
+				   case R.id.pop_category_layout:
+					   category = getResources().getString(R.string.pop);
+					   break;
+				   case R.id.random_category_layout:
+					   category = getResources().getString(R.string.random);
+					   break;
+				
+				}
+				
+				
+				
+				
+			}
+			
+			
+			/*if(event.getAction() == MotionEvent.ACTION_DOWN){
 			Intent intent = new Intent(CategoryActivity.this,HistoryActivity.class);
 			startActivity(intent);
-			}
+			}*/
 			return true;
 		}
    	
