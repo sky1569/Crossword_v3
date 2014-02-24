@@ -94,6 +94,7 @@ public class Character {
 			return false;
 		
         for(Character c:characters)
+
         	if(c.getX() == this.getX() && c.getY() == this.getY())
         	{
         		c.updateIndexList(this.getI(), this.getJ());
@@ -108,6 +109,7 @@ public class Character {
 	//更新字的索引列表
 	public void updateIndexList(int i,int j){
 		ArrayList<Integer> indexs = new ArrayList<Integer>();
+
         indexs.add(i);
         indexs.add(j);
 		this.indexList.add(indexs);

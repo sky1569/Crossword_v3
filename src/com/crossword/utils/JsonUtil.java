@@ -155,7 +155,6 @@ public class JsonUtil {
 		    		                                           //否则就更新之前的indexList
 		    		characters.add(character);
 		    	}
-		    	
 		    
 		    	/*
 		    	Word entity = new Word();

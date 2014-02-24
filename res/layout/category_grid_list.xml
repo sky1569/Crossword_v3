@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+<RelativeLayout android:id="@+id/_category_gridlist_title"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/title_background_color"
+    android:orientation="horizontal">
+    
+    <ImageButton 
+        android:id="@+id/category_gridlist_return_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/navigationbar_backbutton"
+        android:layout_gravity="left"
+        android:paddingTop="3dip"
+        android:paddingBottom="3dip"
+        android:paddingLeft="5dip"
+        android:background="@null"/>
+
+    
+    <TextView
+        android:id="@+id/category_gridlist_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/gridlist_review"
+        android:textColor="@color/text_black" />
+    
+
+</RelativeLayout>
+
+
+
+<FrameLayout android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<GridView android:id="@+id/category_gridlist_grid"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:horizontalSpacing="@dimen/vol_spacing_horizontal"
+    android:verticalSpacing="@dimen/vol_spacing_vertical"
+    android:gravity="center_horizontal"
+    android:background="@color/background_gray"
+    android:numColumns="3"
+    android:paddingTop="10dip">
+    
+   
+    
+</GridView>
+</FrameLayout>
+
+</LinearLayout>
