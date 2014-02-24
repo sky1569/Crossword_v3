@@ -5,6 +5,7 @@ package com.crossword.activity;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import android.R.array;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -58,6 +59,7 @@ public class GameActivity extends Activity implements OnTouchListener {
 	private Grid			grid;
 	//private LinkedList<Word> entities;		// Liste des mots
 	private LinkedList<Character> entities;
+	private ArrayList<Integer>	index;
 	private ArrayList<View>	selectedArea = new ArrayList<View>(); // Liste des cases selectionn茅es
 
 	private boolean			downIsPlayable;	// false si le joueur 脿 appuy茅 sur une case noire 
@@ -268,8 +270,10 @@ public void onPause()
             		
                 	 currentC = this.boardLogic.getCharacterByPosition(this.currentX, this.currentY);
                 	 if(currentC == null) Log.v("currentC is","null");
-                	if(this.lastX == x && this.lastY == y && clickIndex-1 < currentC.getIndexList().size() ) clickIndex = clickIndex + 1;
+                	if(this.lastX == x && this.lastY == y && clickIndex < currentC.getIndexList().size() ) clickIndex = clickIndex + 1;
             		else clickIndex = 1 ;
+                	//int index =currentC.getIndexList().get(clickIndex).get(0);
+                	index =currentC.getIndexList().get(clickIndex-1);
                 	this.lastX = x;//获取上一次的横向位置
                     this.lastY = y;//获取上一次的纵向位置
                     this.currentX = x;
@@ -277,14 +281,14 @@ public void onPause()
                 	
                
             		this.gridAdapter.reDrawGridBackground(this.gridView);
-            		this.setWordBackground(currentC,clickIndex,x, y);
+            		this.setWordBackground(currentC,index.get(0),x, y);
             		this.gridAdapter.notifyDataSetChanged();
             	
             	//	
             			
             		
            // 		this.setDescription(currentWordHor, currentWordVer, currentWord);
-            		this.setDescription(currentC, clickIndex, 1);
+            		this.setDescription(currentC,index.get(0), 1);
             	   // this.gridAdapter.notifyDataSetChanged();
             	    break;
                 }
@@ -503,9 +507,13 @@ public void onPause()
 	   {
 		   if(cc.getIndexList() != null) 
 			   Log.v("cc.getIndexList()","!= null"+cc.getIndexList());
+		   if(cc.getIndexList() == null)
+			   Log.v("cc.getIndexList()","== null"+cc.getIndexList());
+		   for(int i=0 ; i <currentC.getIndexList().size();i++)
+			   Log.v("currentC.getIndexList()", ""+currentC.getIndexList());
    		for(ArrayList<Integer> arr : cc.getIndexList())
    			{
-   				if(arr.get(0) == currentC.getIndexList().get(clickIndex-1).get(0))
+   				if(arr.get(0) == clickIndex)
    				{
    					//this.setWordBackground(clickIndex,x, y);
    					int index = cc.getY()*this.width +cc.getX() - this.gridView.getFirstVisiblePosition();
@@ -542,16 +550,18 @@ public void onPause()
 	
 		if(c.getIndexList()!=null)
 			Log.v(" c.getIndexList().get(clickIndex)", "!null"+c.getIndexList().size());
+			Log.v("this.grid.getDescriptions()", ""+this.grid.getDescriptions().size());
 		for(Description des : this.grid.getDescriptions())
 		{
-			Log.v(" c.getIndexList().get(clickIndex).get(0)", ""+ c.getIndexList().get(clickIndex-1).get(0));
-			if(des.getTo() == c.getIndexList().get(clickIndex-1).get(0))
+			
+			Log.v(" c.getIndexList().get(clickIndex).get(0)", ""+ clickIndex+"..des.to"+des.getTo());
+			if(des.getTo() == clickIndex)
 				{
 					if(desIndex == 1) this.txtDescriptionHor.setText("当前成语一级提示："+des.getDesc1());
 					Log.v("当前成语一级提示：", ""+ des.getDesc1());
 					if(desIndex == 2) this.txtDescriptionHor.setText("当前成语二级提示："+des.getDesc2());
 				}
-			break;
+		//	break;
 		}
 	}
 	public void unlockNext()
@@ -653,34 +663,40 @@ public void onPause()
 
     			if(!value.equals(Crossword.UNFILLED))
     			{
-    				Character cNext =  boardLogic.getCharacterByIndex(currentC.getIndexList().get(clickIndex - 1).get(0), currentC.getIndexList().get(clickIndex - 1).get(1)+1);
-    				 if(cNext == null)
-    					 return ;
+    				
+    				Character cNext =  boardLogic.getCharacterByIndex(index.get(0),index.get(1)+1);
+    				if(cNext == null)
+   					 return ;
+    				for(ArrayList< Integer> arr :cNext.getIndexList())
+    					if(arr.get(0) == index.get(0))
+    						index =arr;
+    			
     				
     			
     			
     			// Si la case suivante est disponible, met la case en jaune, remet l'ancienne en bleu, et set la nouvelle position
     			if (cNext.getX() >= 0 && cNext.getX() < width
     					&& cNext.getY() >= 0 && cNext.getY() < height
-    					&& boardLogic.isBlock(cNext.getX(),cNext.getY()) == false) {
-    				currentX = cNext.getX();
-    				currentY = cNext.getY();
-    			}
+    					&& boardLogic.isBlock(cNext.getX(),cNext.getY()) == false)
+    				{
+    					currentX = cNext.getX();
+    					currentY = cNext.getY();
+    				}
     			}
     			
     		
     			currentC = boardLogic.getCharacterByPosition(currentX, currentY);
     			gridAdapter.reDrawGridBackground(gridView);
-    			setWordBackground(currentC,clickIndex,x, y);
+    			setWordBackground(currentC,index.get(0),currentX, currentY);
                 
-        		gridAdapter.reDrawGridBackground(gridView);
+        		//gridAdapter.reDrawGridBackground(gridView);
         		gridAdapter.notifyDataSetChanged();
         	
         	//	
         			
         		
        // 		this.setDescription(currentWordHor, currentWordVer, currentWord);
-        		setDescription(currentC, clickIndex, 1);
+        		setDescription(currentC, index.get(0), 1);
         		gridAdapter.notifyDataSetChanged();
         	    break;
     			
