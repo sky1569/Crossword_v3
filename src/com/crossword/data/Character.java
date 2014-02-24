@@ -38,7 +38,7 @@ public class Character {
     //设置横坐标
 	
 	public void setX(int x){
-		this.x = x;
+		this.x = x ;
 	}
 	
 	//获取横坐标
@@ -69,7 +69,7 @@ public class Character {
     //设置横坐标
 	
 	public void setY(int y){
-		this.y = y;
+		this.y = y ;
 	}
 	
 	//获取横坐标
@@ -95,8 +95,10 @@ public class Character {
 		
         for(Character c:characters)
         	if(c.getX() == this.getX() && c.getY() == this.getY())
+        	{
+        		c.updateIndexList(this.getI(), this.getJ());
         		return true;
-        
+        	}
         
         return false;
 	}
@@ -106,7 +108,8 @@ public class Character {
 	//更新字的索引列表
 	public void updateIndexList(int i,int j){
 		ArrayList<Integer> indexs = new ArrayList<Integer>();
-		indexs.add(i,j);
+        indexs.add(i);
+        indexs.add(j);
 		this.indexList.add(indexs);
 	}
 	
@@ -116,18 +119,7 @@ public class Character {
 		return this.indexList;
 	}
 	
-	public int getListLength()
-	
-	{
-		 int l = 0;
-		 ArrayList<Integer> current = this.indexList.get(l);
-	     while(null!=current){
-	      l++;
-	    //  current = current.next;
-	      current = this.indexList.get(l);
-	     }
-		return l;
-	}
+
 	
 
 	

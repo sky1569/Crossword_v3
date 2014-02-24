@@ -150,7 +150,7 @@ public class JsonUtil {
 		    	character.setTemp(jObj.getString("temp"));
 		    	character.setI(jObj.getInt("i"));
 		    	character.setJ(jObj.getInt("j"));
-		    	
+		    	character.updateIndexList(character.getI(), character.getJ());
 		    	if(!character.isExistInCharacters(characters)){//如果之前解析的字组中没有出现该字的话，就插入
 		    		                                           //否则就更新之前的indexList
 		    		characters.add(character);

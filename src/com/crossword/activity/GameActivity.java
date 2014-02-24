@@ -66,7 +66,7 @@ public class GameActivity extends Activity implements OnTouchListener {
     private int 			downY;			// Colonne ou le joueur 脿 appuy茅
     private int				lastX;          //上一次按下的位置X
     private int             lastY;          //上一次按下的位置Y
-    private int             clickIndex = 0;
+    private int             clickIndex = 1;
 	private int 			currentPos;		// Position actuelle du curseur
 	private int 			currentX;		// Colonne actuelle du curseur
 	private int 			currentY;		// Ligne actuelle du curseur
@@ -74,7 +74,7 @@ public class GameActivity extends Activity implements OnTouchListener {
 	//private Word            currentWordHor;
 	//private Word            currentWordVer;
 	private Character 		currentC;
-	private Description     des;
+	//private Description     des;
 	private boolean 		horizontal;		// Sens de la selection
     private boolean 		isCross;        //判断是否是交叉点
 	private String 			filename;		// Nom de la grille
@@ -256,6 +256,9 @@ public void onPause()
            
             		int x = position % this.width;
             		int y = position / this.width;
+            		 this.currentX = x;
+                 	this.currentY = y;
+            		Log.v("position", ""+x+"..."+y);
             		if(x < 0 || x >= this.width || y < 0 || y>= this.height)
                     	return false;
             		
@@ -264,15 +267,17 @@ public void onPause()
             	    
             		
                 	 currentC = this.boardLogic.getCharacterByPosition(this.currentX, this.currentY);
-                	if(this.lastX == x && this.lastY == y && clickIndex < currentC.getListLength() ) clickIndex = clickIndex + 1;
-            		else clickIndex = 0 ;
+                	 if(currentC == null) Log.v("currentC is","null");
+                	if(this.lastX == x && this.lastY == y && clickIndex-1 < currentC.getIndexList().size() ) clickIndex = clickIndex + 1;
+            		else clickIndex = 1 ;
                 	this.lastX = x;//获取上一次的横向位置
                     this.lastY = y;//获取上一次的纵向位置
                     this.currentX = x;
                 	this.currentY = y;
-                	this.setWordBackground(currentC,clickIndex,x, y);
+                	
                
             		this.gridAdapter.reDrawGridBackground(this.gridView);
+            		this.setWordBackground(currentC,clickIndex,x, y);
             		this.gridAdapter.notifyDataSetChanged();
             	
             	//	
@@ -280,7 +285,7 @@ public void onPause()
             		
            // 		this.setDescription(currentWordHor, currentWordVer, currentWord);
             		this.setDescription(currentC, clickIndex, 1);
-            	    this.gridAdapter.notifyDataSetChanged();
+            	   // this.gridAdapter.notifyDataSetChanged();
             	    break;
                 }
            /* case MotionEvent.ACTION_UP:
@@ -496,9 +501,11 @@ public void onPause()
 	   int currIndex = currY*this.width + currX-this.gridView.getFirstVisiblePosition();
 	   for(Character cc :this.entities)
 	   {
+		   if(cc.getIndexList() != null) 
+			   Log.v("cc.getIndexList()","!= null"+cc.getIndexList());
    		for(ArrayList<Integer> arr : cc.getIndexList())
    			{
-   				if(arr.get(0) == currentC.getIndexList().get(clickIndex).get(0))
+   				if(arr.get(0) == currentC.getIndexList().get(clickIndex-1).get(0))
    				{
    					//this.setWordBackground(clickIndex,x, y);
    					int index = cc.getY()*this.width +cc.getX() - this.gridView.getFirstVisiblePosition();
@@ -531,11 +538,21 @@ public void onPause()
 	}*/
 	public void setDescription(Character c ,int clickIndex,int desIndex)
 	{
-		 if(des.getTo() == c.getIndexList().get(clickIndex).get(0))
-		 {
-			 if(desIndex == 1) this.txtDescriptionHor.setText(des.getDesc1());
-			 if(desIndex == 2) this.txtDescriptionHor.setText(des.getDesc2());
-		 }
+		Log.v("setD c",""+c.getChi()+"..."+clickIndex);
+	
+		if(c.getIndexList()!=null)
+			Log.v(" c.getIndexList().get(clickIndex)", "!null"+c.getIndexList().size());
+		for(Description des : this.grid.getDescriptions())
+		{
+			Log.v(" c.getIndexList().get(clickIndex).get(0)", ""+ c.getIndexList().get(clickIndex-1).get(0));
+			if(des.getTo() == c.getIndexList().get(clickIndex-1).get(0))
+				{
+					if(desIndex == 1) this.txtDescriptionHor.setText("当前成语一级提示："+des.getDesc1());
+					Log.v("当前成语一级提示：", ""+ des.getDesc1());
+					if(desIndex == 2) this.txtDescriptionHor.setText("当前成语二级提示："+des.getDesc2());
+				}
+			break;
+		}
 	}
 	public void unlockNext()
 	{
@@ -636,7 +653,7 @@ public void onPause()
 
     			if(!value.equals(Crossword.UNFILLED))
     			{
-    				Character cNext =  boardLogic.getCharacterByIndex(currentC.getIndexList().get(clickIndex).get(0), currentC.getIndexList().get(clickIndex).get(1)+1);
+    				Character cNext =  boardLogic.getCharacterByIndex(currentC.getIndexList().get(clickIndex - 1).get(0), currentC.getIndexList().get(clickIndex - 1).get(1)+1);
     				 if(cNext == null)
     					 return ;
     				
