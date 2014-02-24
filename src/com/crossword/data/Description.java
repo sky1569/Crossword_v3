@@ -5,7 +5,7 @@ public class Description {
 	private String desc1;//一级提示
 	private String desc2;//二级提示
 	private int    to;//标记该描述属于第几个词
-	
+	private int    status = 1;//标记该描述打开几级描述
 	
 	public void setDesc1(String desc1){this.desc1 = desc1;}
 	public String getDesc1(){return this.desc1;}
@@ -15,6 +15,14 @@ public class Description {
 	
 	public void setTo(int to){this.to = to;}
 	public int getTo(){return this.to;}
-
 	
+	public void setDescSta(int i)
+	{
+		this.status = i;
+	}
+	
+	public int getDescSta()
+	{
+		return this.status;
+	}
 	}

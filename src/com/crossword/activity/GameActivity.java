@@ -70,8 +70,8 @@ public class GameActivity extends Activity implements OnTouchListener {
     private int             lastY;          //上一次按下的位置Y
     private int             clickIndex = 1;
 	private int 			currentPos;		// Position actuelle du curseur
-	private int 			currentX;		// Colonne actuelle du curseur
-	private int 			currentY;		// Ligne actuelle du curseur
+	private int 			currentX = -1;		// Colonne actuelle du curseur
+	private int 			currentY = -1;		// Ligne actuelle du curseur
 	//private Word			currentWord;	// Mot actuellement selectionn茅
 	//private Word            currentWordHor;
 	//private Word            currentWordVer;
@@ -165,18 +165,33 @@ public void onPause()
         this.txtDescriptionHor = (TextView)findViewById(R.id.description_horizotal);
         this.txtDescriptionVer = (TextView)findViewById(R.id.description_vertical);
         
-        this.txtDescriptionHor.setClickable(true);
-        this.txtDescriptionHor.setFocusable(true);
-        this.txtDescriptionHor.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				txtDescriptionHor.setTextColor(getResources().getColor(R.color.wrong));
-			    boardLogic.isHint();
-				
-			}
-		});
+        this.txtDescriptionVer.setClickable(true);
+        this.txtDescriptionVer.setFocusable(true);
+      	this.txtDescriptionVer.setOnClickListener(new OnClickListener() {
+  			
+  			@Override
+  			public void onClick(View v) {
+  				// TODO Auto-generated method stub
+  				
+  				
+  				if(currentX != -1 && currentY != -1 && boardLogic.isBlock(currentX, currentY)==false);
+  				{
+  					for(Description des : grid.getDescriptions())
+  					{
+  						if(des.getTo() == index.get(0))
+  						{
+  							des.setDescSta(2);
+  							//setDescription(c, keyboardHeight)
+  							txtDescriptionVer.setText("二级提示："+des.getDesc2());
+  							
+  						}
+  					}
+  					boardLogic.isHint();
+  				}
+  			    
+  				
+  			}
+  		});
         
         
         this.gridView = (MyGridView)findViewById(R.id.grid);
@@ -278,7 +293,7 @@ public void onPause()
                     this.lastY = y;//获取上一次的纵向位置
                     this.currentX = x;
                 	this.currentY = y;
-                	
+              
                
             		this.gridAdapter.reDrawGridBackground(this.gridView);
             		this.setWordBackground(currentC,index.get(0),x, y);
@@ -288,7 +303,7 @@ public void onPause()
             			
             		
            // 		this.setDescription(currentWordHor, currentWordVer, currentWord);
-            		this.setDescription(currentC,index.get(0), 1);
+            		this.setDescription(currentC,index.get(0));
             	   // this.gridAdapter.notifyDataSetChanged();
             	    break;
                 }
@@ -544,7 +559,7 @@ public void onPause()
           this.txtDescriptionVer.setText(descriptionVer);
 		 
 	}*/
-	public void setDescription(Character c ,int clickIndex,int desIndex)
+	public void setDescription(Character c ,int clickIndex)
 	{
 		Log.v("setD c",""+c.getChi()+"..."+clickIndex);
 	
@@ -557,9 +572,18 @@ public void onPause()
 			Log.v(" c.getIndexList().get(clickIndex).get(0)", ""+ clickIndex+"..des.to"+des.getTo());
 			if(des.getTo() == clickIndex)
 				{
-					if(desIndex == 1) this.txtDescriptionHor.setText("当前成语一级提示："+des.getDesc1());
+					if(des.getDescSta() == 1) 
+					{
+						this.txtDescriptionHor.setText("一级提示："+des.getDesc1());
+						this.txtDescriptionVer.setText("点击显示二级提示");
+					}
 					Log.v("当前成语一级提示：", ""+ des.getDesc1());
-					if(desIndex == 2) this.txtDescriptionHor.setText("当前成语二级提示："+des.getDesc2());
+					if(des.getDescSta() == 2)
+					{ 
+						this.txtDescriptionHor.setText("一级提示："+des.getDesc1());
+						this.txtDescriptionVer.setText("二级提示："+des.getDesc2());
+					}
+					
 				}
 		//	break;
 		}
@@ -633,6 +657,11 @@ public void onPause()
     				
     			{
     				 boardLogic.replay();
+    				 for(Description des :grid.getDescriptions())
+    				 {
+    					 des.setDescSta(1);
+    				 }
+    				 setDescription(currentC, 1);
     				 gridAdapter.notifyDataSetChanged();
     				 return;
     			}
@@ -696,7 +725,7 @@ public void onPause()
         			
         		
        // 		this.setDescription(currentWordHor, currentWordVer, currentWord);
-        		setDescription(currentC, index.get(0), 1);
+        		setDescription(currentC, index.get(0));
         		gridAdapter.notifyDataSetChanged();
         	    break;
     			

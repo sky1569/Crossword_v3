@@ -138,7 +138,7 @@ public class BoardLogic {
    					  this.area[j][i] = Crossword.UNFILLED;
    					  this.displayArea[j][i] = Crossword.UNFILLED;
    			  }
-   		  
+   		//  this.resetDesc();
    		  this.resetScore();
    		  }
    	  }
@@ -644,7 +644,7 @@ public class BoardLogic {
 			{
 				dbManager.unlockNext(this.grid.getVol(), this.grid.getLevel()+1);
 			}
-		 
+		
 		 
 		 
 		
