@@ -44,7 +44,10 @@
             android:name="com.crossword.activity.GridListActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop" />
-        
+         <activity
+            android:name="com.crossword.activity.CategoryGridListActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop" />
          
         <activity
             android:name="com.crossword.activity.FeedbackActivity"

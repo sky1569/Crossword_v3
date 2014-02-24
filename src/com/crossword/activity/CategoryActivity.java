@@ -74,8 +74,11 @@ public class CategoryActivity extends Activity {
 			//Ô¤Áô
 			
 			String category = "";
-			Intent intent = new Intent(CategoryActivity.this,GridListActivity.class);
-			if(event.getAction() == MotionEvent.ACTION_DOWN){
+			Intent intent = new Intent(CategoryActivity.this,CategoryGridListActivity.class);
+			
+
+			
+			if(event.getAction() == MotionEvent.ACTION_UP){
 				
 				switch(v.getId()){
 				   case R.id.movie_category_layout:
@@ -91,12 +94,16 @@ public class CategoryActivity extends Activity {
 					   category = getResources().getString(R.string.random);
 					   break;
 				
-				}
+				}		
 				
-				
-				
+				intent.putExtra("category", category);
+				startActivity(intent);
 				
 			}
+			
+			
+	
+			
 			
 			
 			/*if(event.getAction() == MotionEvent.ACTION_DOWN){
