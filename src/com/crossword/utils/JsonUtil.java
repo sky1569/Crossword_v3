@@ -3,6 +3,7 @@ package com.crossword.utils;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import org.apache.http.HttpEntity;
@@ -340,7 +341,9 @@ public class JsonUtil {
 			//LinkedList<Word> entities = grid.getEntities();
 			LinkedList<Character> characters = grid.getCharacters();
 			for(Character entity:characters){
-			   
+			   //可能一个字在多个词中重复出现，因此对于重复的词需要重复写入JSON文件
+				ArrayList<ArrayList<Integer>> indexList = entity.getIndexList();
+				for(int i = 0;i < indexList.size();i++){
 				JSONObject jObjj = new JSONObject();
 				/*jObjj.put("desc", entity.getDesc());
 				jObjj.put("tmp", entity.getTmp());
@@ -356,9 +359,12 @@ public class JsonUtil {
 				jObjj.put("x", entity.getX());
 				jObjj.put("y", entity.getY());
 				jObjj.put("temp", entity.getTemp());
-				jObjj.put("i", entity.getI());
-				jObjj.put("j", entity.getJ());
+				
+				
+				jObjj.put("i", indexList.get(0));
+				jObjj.put("j", indexList.get(1));
 				jCharacterArray.put(jObjj);
+			}
 			}
 			jObj.put("words", jCharacterArray);
 		
