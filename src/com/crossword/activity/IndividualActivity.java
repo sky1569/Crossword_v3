@@ -31,8 +31,11 @@ public class IndividualActivity extends Activity {
 	private TextView titleRankText ;
 	private TextView titleUsernameText ;
     private TextView titleAccumulatePointText;
+    
+    private ImageButton  enrollButton ;
 	private Module      module;
 	private ImageButton returnButton;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -40,6 +43,8 @@ public class IndividualActivity extends Activity {
 		module = new Module(this);
 		
 		returnButton  = (ImageButton)findViewById(R.id.individual_return_button);
+		enrollButton = (ImageButton)findViewById(R.id.enroll_button);
+		enrollButton.setClickable(false);
 		returnButton.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -86,6 +91,11 @@ public class IndividualActivity extends Activity {
 		if(vol == null){//离线模式
 			rankedList = userUtil.getRank();
 			UserUtil.myScore = module.getOfflineScore();
+			if(UserUtil.myRank <= 10){
+				
+				UserUtil.enrollAble = true;
+				enrollButton.setClickable(true);
+			}
 		}else{
 			vol = module.queryVolByVolNumber(vol.getVolNumber());
 			rankedList = userUtil.getRank(vol.getVolNumber());
@@ -111,14 +121,26 @@ public class IndividualActivity extends Activity {
 		
 		
 		
+		
+		enrollButton.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
 
 	
+	
+
 	
 	//动态设置文字的位置
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus){
 		super.onWindowFocusChanged(hasFocus);
-        
+
 	}
 }

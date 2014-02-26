@@ -2,6 +2,7 @@ package com.crossword.activity;
 
 //import android.R;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.crossword.Crossword;
 import com.crossword.R;
 import com.crossword.data.Vol;
+import com.crossword.utils.ActivityUtil;
 import com.crossword.utils.JsonUtil;
 import com.crossword.utils.Module;
 import com.crossword.utils.UserUtil;
@@ -50,8 +52,9 @@ public class HomeActivity extends Activity{
 			public void onClick(View source) {
 				// TODO Auto-generated method stub
 				
-				Intent intent = new Intent (HomeActivity.this,HistoryActivity.class);
-				startActivity(intent);
+				//Intent intent = new Intent (HomeActivity.this,HistoryActivity.class);
+				//startActivity(intent);
+		        ActivityUtil.startActivity(HomeActivity.this, HistoryActivity.class);
 				
 			}
 		});
@@ -63,8 +66,9 @@ public class HomeActivity extends Activity{
 			public void onClick(View source) {
 				// TODO Auto-generated method stub
 				
-				Intent intent = new Intent (HomeActivity.this,CategoryActivity.class);
-				startActivity(intent);
+				//Intent intent = new Intent (HomeActivity.this,CategoryActivity.class);
+				//startActivity(intent);
+				ActivityUtil.startActivity(HomeActivity.this, CategoryActivity.class);
 				
 			}
 		});
@@ -112,9 +116,13 @@ public class HomeActivity extends Activity{
 				public void onClick(View source) {
 					// TODO Auto-generated method stub
 					
-					Intent intent = new Intent (HomeActivity.this,IndividualActivity.class);
+				    /*Intent intent = new Intent (HomeActivity.this,IndividualActivity.class);
 					intent.putExtra("volNumber", broadMsg.getVolNumber());
-					startActivity(intent);
+					startActivity(intent);*/
+					Bundle bundle = new Bundle();
+					bundle.putInt("volNumber",  broadMsg.getVolNumber());
+					ActivityUtil.holdOnActivity(IndividualActivity.class, bundle);
+					ActivityUtil.startActivity(HomeActivity.this, IndividualActivity.class,bundle);
 				}
 			});
 		bnLive.setOnClickListener(new OnClickListener()
@@ -131,15 +139,17 @@ public class HomeActivity extends Activity{
 				}else{
 					intent.setClass(HomeActivity.this, LoginActivity.class);
 				}*/
-		    	intent.setClass(HomeActivity.this, GridListActivity.class);
+		    	//intent.setClass(HomeActivity.this, GridListActivity.class);
 		    	Bundle bundle = new Bundle();
 		    	bundle.putSerializable("currentVol", broadMsg);
-		    	intent.putExtras(bundle);
-		    	startActivity(intent);
+		    	ActivityUtil.holdOnActivity(GridListActivity.class, bundle);
+		    	ActivityUtil.startActivity(HomeActivity.this, GridListActivity.class,bundle);
+		    	//intent.putExtras(bundle);
+		    	//startActivity(intent);
 
-			}
+			} 
 		});
-		/*
+		
 		if(!this.ConTest())
 		{
 			bnLive.setTextColor(getResources().getColor(R.color .home_disable_text_color));
@@ -187,7 +197,7 @@ public class HomeActivity extends Activity{
 					Toast.makeText(this, "游客登录，无法进行直播！", Toast.LENGTH_SHORT).show();
 				}
 		
-		}*/
+		}
 		super.onResume();
 	}
 	

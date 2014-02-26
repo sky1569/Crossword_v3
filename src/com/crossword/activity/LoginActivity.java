@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crossword.R;
+import com.crossword.utils.ActivityUtil;
 import com.crossword.utils.UserUtil;
 
 public class LoginActivity extends Activity {
@@ -90,6 +91,7 @@ public class LoginActivity extends Activity {
 					//当前的用户是什么
 					UserUtil.currAccount = userUtil.getAccount();
 					Toast.makeText(LoginActivity.this, "登录成功！", Toast.LENGTH_SHORT).show();
+					ActivityUtil.startHoldOnActivity(LoginActivity.this);
 					LoginActivity.this.finish();
 					//Intent intent = new Intent(LoginActivity.this,GridListActivity.class);
 	               // intent.putExtras(bundle);
@@ -183,6 +185,8 @@ public class LoginActivity extends Activity {
 		return false;
 	}
 	
+	
+
 	
 	
 	

@@ -138,7 +138,7 @@ public class BoardLogic {
    					  this.area[j][i] = Crossword.UNFILLED;
    					  this.displayArea[j][i] = Crossword.UNFILLED;
    			  }
-   		  
+   		//  this.resetDesc();
    		  this.resetScore();
    		  }
    	  }
@@ -238,6 +238,7 @@ public class BoardLogic {
    		  					
    		  					if(this.isWordComplete(this.getWordStatus(arr.get(0))))
    		  					{
+   		  						Log.v("isWordComplete", "isWordComplete执行了");
    		  						this.setCharacterByIndex(arr.get(0));
    		  					}
    		  		
@@ -310,6 +311,7 @@ public class BoardLogic {
    			if (!this.area[y][x].equals(Crossword.BLOCK)&&!this.area[y][x].equals(Crossword.CORRECTFILLED)&&!this.area[y][x].equals(Crossword.UNFILLEDABLE))
    			
    				{
+   					Log.v("setDisValue", "setDisValue执行了");
    					this.displayArea[y][x] = value;
    			//	System.out.println(this.displayArea[y][x]);
    				}
@@ -375,6 +377,8 @@ public class BoardLogic {
    		}*/
    		public boolean isWordComplete(String curw)
    		{
+   			Log.v("isWordComplete", "isWordComplete执行了");
+   			//Log.v("isWordComplete", "");
    			if(curw.contains(Crossword.UNFILLED)||curw.contains(Crossword.WRONGFILLED)||curw.contains(Crossword.UNFILLEDABLE))   return false;	
    			
    			return true;
@@ -436,10 +440,16 @@ public class BoardLogic {
         }
         public void setCharacterByIndex(int i)
         {
+        	Log.v("setCharacterByIndex", "setCharacterByIndex执行了");
         	for(Character c:this.cEntities)
         		for(ArrayList<Integer> arr :c.getIndexList() )
-   					if(arr.get(0) == i)
-   						this.setDisValue(c.getX(),c.getY(),c.getChi());
+   					{
+        				Log.v("if(arr.get(0) == i)", ""+arr.get(0)+"===="+i);
+        				if(arr.get(0) == i)
+        					//this.setDisValue(c.getX(),c.getY(),c.getChi());
+        					this.displayArea[c.getY()][c.getX()] = c.getChi();
+        			}
+   						
         }
    		
        
@@ -634,7 +644,7 @@ public class BoardLogic {
 			{
 				dbManager.unlockNext(this.grid.getVol(), this.grid.getLevel()+1);
 			}
-		 
+		
 		 
 		 
 		

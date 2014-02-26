@@ -257,6 +257,7 @@ public class JsonUtil {
 				rankedList.add(rank);
 			}
 			int myRank = jObj.getInt("rank");
+			
 			UserUtil.myRank = myRank;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -361,8 +362,8 @@ public class JsonUtil {
 				jObjj.put("temp", entity.getTemp());
 				
 				
-				jObjj.put("i", indexList.get(0));
-				jObjj.put("j", indexList.get(1));
+				jObjj.put("i", indexList.get(i).get(0));
+				jObjj.put("j", indexList.get(i).get(1));
 				jCharacterArray.put(jObjj);
 			}
 			}

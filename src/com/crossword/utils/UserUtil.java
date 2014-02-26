@@ -13,6 +13,7 @@ public class UserUtil {
 	public  static   String   currAccount;	//当前登录的用户
 	public static    int      myScore;
 	public  static    int      myRank;
+	public  static   boolean   enrollAble;
 
 	private JsonUtil  jsonUtil;
 	public static  int   loginStatus = -1;//表示登录的状态,1表示已登录，0表示游客登录，-1表示未登录
@@ -80,6 +81,7 @@ public class UserUtil {
 	
 	
 	
+	
 	public LinkedList<Rank> getRank(int volNumber){
 		
 		String rankUrl = Crossword.RANK_ROOT_URL + "user=" + currAccount + "&" + "vol=" + volNumber;
@@ -94,6 +96,8 @@ public class UserUtil {
 		return jsonUtil.parseRankJson(jsonData);
 	}
 	
+	
+
 	
 	
 	

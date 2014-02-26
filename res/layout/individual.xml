@@ -4,29 +4,37 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
     
-    <RelativeLayout 
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color">
-        
-        <ImageButton android:id="@+id/individual_return_button"
+        android:background="@color/background_color" >
+
+        <ImageButton
+            android:id="@+id/individual_return_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/navigationbar_backbutton"
             android:background="@null"
+            android:paddingBottom="@dimen/title_padding_bottom"
             android:paddingLeft="@dimen/title_padding_left"
             android:paddingTop="@dimen/title_padding_top"
-            android:paddingBottom="@dimen/title_padding_bottom"/>
-        
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/individual_center"
-            android:textSize="@dimen/title_text_size"
-            android:textColor="@color/text_black"
-            android:layout_centerInParent="true"
-            />
-    </RelativeLayout>
+            android:src="@drawable/navigationbar_backbutton" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/individual_center"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/title_text_size" />
+
+        <ImageButton
+            android:id="@+id/enroll_button"
+            android:layout_width="62dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/enroll_button" 
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
     
     <ImageView android:layout_width="fill_parent"
        android:layout_height="wrap_content"
@@ -105,35 +113,42 @@
         android:textColor="@color/rank_list_text_color"
         android:textSize="@dimen/rank_list_text_size" />
     
-    <LinearLayout 
+<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/rank_list_item_title_height"
         android:background="@drawable/bar_white_bg_1x"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+ 
+  <TextView android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:layout_weight="7"/>
   <TextView android:id="@+id/title_rank_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/rank_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="@string/rank"
         android:textColor="@color/title_rank_text_color"
         android:textSize="@dimen/title_rank_text_size"
-        android:paddingLeft="68px"/>
+        android:layout_weight="7"
+        android:gravity="center"/>
     <TextView 
         android:id="@+id/title_username_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:text="@string/username"
         android:textColor="@color/title_username_text_color"
         android:textSize="@dimen/title_username_text_size"
-        android:layout_marginLeft="74px"/>
+        android:layout_weight="4"
+        android:gravity= "center"/>
     
     <TextView android:id="@+id/title_accumulate_point_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:text="@string/accumulate_point"
         android:textColor="@color/title_accoumulate_point_text_color"
         android:textSize="@dimen/title_accumulate_point_text_size"
-        android:layout_marginLeft="74px"/>
+       android:layout_weight="6"
+       android:gravity="center"/>
 </LinearLayout>
     
   
