@@ -475,7 +475,7 @@ public void onPause()
     				
     			
     			
-    			boardLogic.toChinese2(x, y, value);
+    			boardLogic.toChinese2(x, y, value,GameActivity.this);
     		    //boardLogic.toChinese(x,y,currentWord,value);
     			if(boardLogic.getArea(x, y).equals(Crossword.UNFILLEDABLE))
     				{

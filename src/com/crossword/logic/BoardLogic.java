@@ -22,7 +22,7 @@ import com.crossword.utils.DBManager;
 import com.crossword.utils.JsonUtil;
 import com.crossword.utils.UserUtil;
 import com.crossword.data.Character;
-
+import com.crossword.data.Explanation;;
 public class BoardLogic {
 	 private Grid   grid;                   //从json中解析出grid的所有信息，包括关卡的信息以及所有的Word
 	 private Vol    currVol;                    //当前期
@@ -225,7 +225,7 @@ public class BoardLogic {
    	
    		}
    		*/	
- 	  public void toChinese2(int currentX,int currentY,String value)//按字翻转
+ 	  public void toChinese2(int currentX,int currentY,String value,Activity act)//按字翻转
    			{
    		  	
    		  		if(this.isCellCorrect(value, currentX, currentY))
@@ -240,6 +240,10 @@ public class BoardLogic {
    		  					{
    		  						Log.v("isWordComplete", "isWordComplete执行了");
    		  						this.setCharacterByIndex(arr.get(0));
+   		  						this.setExplanationByIndex(arr.get(0),act);
+   		  						
+   		  						
+   		  						
    		  					}
    		  		
    		  			}
@@ -248,6 +252,23 @@ public class BoardLogic {
    		  	 
    			}
    	  
+ 	  public void setExplanationByIndex(int index,Activity act)
+ 	  {
+ 		  		
+ 		  	String s = "";
+ 		  //	LinkedList<Explanation> ex = this.grid.getExplanations();
+ 		  for(Explanation ex : this.grid.getExplanations())
+ 		  {
+ 			  if(ex.getTo() == index)
+ 			  {
+ 				  s = ex.getExp();
+ 				  break;
+ 			  }
+ 		  }
+ 		  Toast toast=Toast.makeText(act, s, Toast.LENGTH_SHORT);
+		  toast.setGravity(Gravity.CENTER, 0, 0);
+	      toast.show();
+ 	  }
    /*	  public void toChinese(int currentX,int currentY,Word currentWord,String value)	//按词翻转
    	  {
    		  //Log.v("testto chinese",""+value+"  "+this.isCellCorrect(value, currentX, currentY) );
