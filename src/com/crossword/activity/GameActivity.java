@@ -439,7 +439,7 @@ public void onPause()
     		case 0x222:
     			
     			String value = gridView.getSoftInputText();
-    			value = value.toUpperCase();
+    			value = value.toUpperCase().substring(0, 1);//防止输入多个字符，若输入多个字符，只取第一个
     			
     		//	if (currentWord == null)
     		//		return;

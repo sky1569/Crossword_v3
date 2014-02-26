@@ -24,6 +24,7 @@ import android.util.Log;
 
 import com.crossword.Crossword;
 import com.crossword.data.Description;
+import com.crossword.data.Explanation;
 import com.crossword.data.Grid;
 import com.crossword.data.Rank;
 import com.crossword.data.Vol;
@@ -62,29 +63,7 @@ public class JsonUtil {
 
 	}
 	
-/*	
-	public String readJsonDataFromAssets(String filename){
-		
-				String res = "";
-				try{
-				//FileInputStream in = this.context.openFileInput(filename);
-				InputStream in =  this.context.getAssets().open(filename);
-	
-				ByteArrayBuffer bb = new ByteArrayBuffer(in.available());
-				int current = 0;
-				while((current = in.read())!=-1){
-					bb.append(current);
-				}
-			    res = EncodingUtils.getString(bb.toByteArray(), "UTF-8");
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-				return res;
 
-
-	}
-	
-	*/
 	
 	public String readJsonFromUrl(String url){
 		
@@ -130,10 +109,12 @@ public class JsonUtil {
 		LinkedList<Word> entities = new LinkedList<Word>();
 		LinkedList<Character> characters = new LinkedList<Character>();
 		LinkedList<Description> descriptions = new LinkedList<Description>();
+		LinkedList<Explanation> explanations = new LinkedList<Explanation>();
 		JSONObject jsonObject;
 		JSONArray  jsonWordArray;
 		JSONArray  jsonCharacterArray;
 		JSONArray  jsonDescriptionArray;
+		JSONArray  jsonExplanationArray;
 		try {
 		    jsonObject = new JSONObject(jsonData);
 		    //解析JSON数据中包含的所有的Word信息
@@ -157,46 +138,7 @@ public class JsonUtil {
 		    		characters.add(character);
 		    	}
 		    
-		    	/*
-		    	Word entity = new Word();
-		    	JSONObject jObj = jsonWordArray.getJSONObject(i);
-		    	entity.setDesc(jObj.getString("desc"));
-		    	entity.setDesc2(jObj.getString("desc2"));
-		    	//entity.setTmp(jObj.getString("tmp"));
-		    	//entity.setHoriz(jObj.getInt("horiz") == 1?true:false);
-		    	//entity.setX(jObj.getInt("x"));
-		    	//entity.setY(jObj.getInt("y"));
-		    	entity.setLength(jObj.getInt("len"));
-		    	entity.setIndex(jObj.getInt("sign"));
-		    	//解析每个word中的所有Word并组成链表
-		    	JSONArray jsonCharacterArray = jObj.getJSONArray("info");
-		    	
-		    	LinkedList<Character> characterEntities = new LinkedList<Character>();
-		    	for(int j = 0;j <jsonCharacterArray.length();j++){
-		    		Character character = new Character();
-		    		JSONObject jCharacterObj = jsonCharacterArray.getJSONObject(j);
-		    		character.setCap(jCharacterObj.getString("cap"));
-		    		character.setChi(jCharacterObj.getString("chi"));
-		    		character.setX(jCharacterObj.getInt("x"));
-		    		character.setY(jCharacterObj.getInt("y"));
-		    		character.setTemp(jCharacterObj.getString("temp"));
-		    		character.updateIndexList(entity.getIndex());
-		    		
-		    		for(Word w:entities){//遍历已有的所有词，判断当前解析的字是否已经存在，并在isInWord更新字的索引
-		    			
-		    			if(character.isInWord(w)){	    				
-		    				continue;
-		    			}else{//如果不是，就把当前解析的字加入字组中
-		    				characterEntities.add(character);
-		    			}
-		    		}
-		    		
-		    	}
-		    	entity.setEntities(characterEntities);
-		    	//entity.setCap(jObj.getString("cap"));
-		    	//entity.setChi(jObj.getString("chi"));
-		    	//entity.setMask(jObj.getString("mask"));
-		    	entities.add(entity);	*/	
+
 			}
 		    
 		    
@@ -210,8 +152,20 @@ public class JsonUtil {
 		    	description.setTo(jDescriptionObj.getInt("to"));
 		    	descriptions.add(description);
 		    }
+		    
+		    
+		    jsonExplanationArray = jsonObject.getJSONArray("explanations");
+		    for(int k = 0;k < jsonExplanationArray.length();k++){
+		    	
+		    	Explanation explanation = new Explanation();
+		    	JSONObject jExplanationObject = jsonExplanationArray.getJSONObject(k);
+		    	explanation.setExp(jExplanationObject.getString("exp"));
+		    	explanation.setTo(jExplanationObject.getInt("to"));
+		    	explanations.add(explanation);
+		    }
 		   // grid.setEntities(entities);
 		    grid.setCharacters(characters);
+		    grid.setExplanations(explanations);
 		    grid.setDescriptions(descriptions);
 		    grid.setFilename(jsonObject.getString("file"));
 		    grid.setUniqueid(jsonObject.getInt("uniqueid"));
@@ -346,15 +300,6 @@ public class JsonUtil {
 				ArrayList<ArrayList<Integer>> indexList = entity.getIndexList();
 				for(int i = 0;i < indexList.size();i++){
 				JSONObject jObjj = new JSONObject();
-				/*jObjj.put("desc", entity.getDesc());
-				jObjj.put("tmp", entity.getTmp());
-				jObjj.put("horiz", entity.getHoriz() == true?1:0);
-				jObjj.put("x", entity.getX());
-				jObjj.put("y", entity.getY());
-				jObjj.put("len", entity.getLength());
-				jObjj.put("chi", entity.getChi());
-				jObjj.put("cap", entity.getCap());
-				jObjj.put("mask", entity.getMask());*/
 				jObjj.put("cap", entity.getCap());
 				jObjj.put("chi", entity.getChi());
 				jObjj.put("x", entity.getX());
@@ -379,7 +324,18 @@ public class JsonUtil {
 				jObjj.put("to", description.getTo());
 				jDescriptionArray.put(jObjj);
 			}
+			
+			JSONArray jExplanationArray =  new JSONArray();
+			LinkedList<Explanation> explanations = grid.getExplanations();
+			for(Explanation explanation:explanations){
+				
+				JSONObject jObjj = new JSONObject();
+				jObjj.put("exp",explanation.getExp());
+				jObjj.put("to", explanation.getTo());
+				jExplanationArray.put(jObjj);
+			}
 			jObj.put("description", jDescriptionArray);
+			jObj.put("explanations", jExplanationArray);
 			jObj.put("score", grid.getScore());
 			jObj.put("date", grid.getDate());
 			jObj.put("gamename", grid.getGamename());
