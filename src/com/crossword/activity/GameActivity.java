@@ -278,7 +278,8 @@ public void onPause()
             		Log.v("position", ""+x+"..."+y);
             		if(x < 0 || x >= this.width || y < 0 || y>= this.height)
                     	return false;
-            		
+            		if(this.boardLogic.isBlock(x, y))
+            			return false;
             		
             		
             	    
