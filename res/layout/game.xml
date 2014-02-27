@@ -65,7 +65,7 @@
     android:background="@drawable/title_bottom_line_tile"/>
         <ScrollView    android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            
+            android:layout_weight="1"
             android:layout_marginTop="1dip"
            >
         <FrameLayout 
@@ -79,7 +79,7 @@
          <com.crossword.view.MyGridView
             android:id="@+id/grid"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
          	android:fastScrollEnabled="true"
             android:horizontalSpacing="1dp"
             android:listSelector="@null"
