@@ -64,15 +64,13 @@
     android:layout_height="wrap_content"
     android:background="@drawable/title_bottom_line_tile"/>
         <ScrollView    android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+         
             android:layout_marginTop="1dip"
-            android:scrollbars="vertical"
            >
         <FrameLayout 
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
             android:id="@+id/girdFrameLayout"
             
             >
@@ -86,7 +84,7 @@
             android:horizontalSpacing="1dp"
             android:listSelector="@null"
             android:verticalSpacing="1dp"
-           
+           android:numColumns="auto_fit"
             android:paddingBottom="1dip"
             android:paddingTop="20dip"
             android:paddingLeft="23dip"
