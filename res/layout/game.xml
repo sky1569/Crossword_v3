@@ -39,7 +39,7 @@
             android:textColor="@color/desc_text_color"
             android:background="@color/desc_background_color"
             android:textSize="@dimen/desc_text_size"
-            android:text="一级提示"
+            android:text="一级提示："
             />
         <ImageView android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
             android:textColor="@color/desc_text_color"
             android:background="@color/desc_background_color"
             android:textSize="@dimen/desc_text_size"
-            android:text="点击提示二级提示"
+            android:text="点击显示二级提示"
         />
 
     <ImageView android:layout_width="fill_parent"

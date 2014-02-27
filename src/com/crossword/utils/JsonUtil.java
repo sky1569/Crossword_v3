@@ -142,7 +142,7 @@ public class JsonUtil {
 			}
 		    
 		    
-		    jsonDescriptionArray = jsonObject.getJSONArray("description");
+		    jsonDescriptionArray = jsonObject.getJSONArray("descriptions");
 		    for(int j  = 0; j < jsonDescriptionArray.length();j++){
 		    	
 		    	Description description = new Description();
@@ -334,7 +334,7 @@ public class JsonUtil {
 				jObjj.put("to", explanation.getTo());
 				jExplanationArray.put(jObjj);
 			}
-			jObj.put("description", jDescriptionArray);
+			jObj.put("descriptions", jDescriptionArray);
 			jObj.put("explanations", jExplanationArray);
 			jObj.put("score", grid.getScore());
 			jObj.put("date", grid.getDate());

@@ -173,9 +173,16 @@ public void onPause()
   			public void onClick(View v) {
   				// TODO Auto-generated method stub
   				
-  				
-  				if(currentX != -1 && currentY != -1 && boardLogic.isBlock(currentX, currentY)==false);
+  				Log.v("currentX != -1 && currentY != -1", ""+currentX+currentY);
+  			
+  				boolean flag1 = currentX != -1 && currentY != -1 && boardLogic.isBlock(currentX, currentY)==false;
+  				boolean flag2 =	currentX != -1;
+  				boolean flag3 =	currentX != -1 && currentY != -1;
+  				boolean flag4 =	currentY != -1 && boardLogic.isBlock(currentX, currentY)==false;
+  				Log.v("if", ""+flag1+".."+flag2+".."+flag3+".."+flag4 );
+  				if(currentX != -1 && currentY != -1 && boardLogic.isBlock(currentX, currentY)==false)
   				{
+  					Log.v("how", ""+flag1+".."+flag2+".."+flag3+".."+flag4 );
   					for(Description des : grid.getDescriptions())
   					{
   						if(des.getTo() == index.get(0))
@@ -188,7 +195,8 @@ public void onPause()
   					}
   					boardLogic.isHint();
   				}
-  			    
+  				//else
+  					
   				
   			}
   		});
@@ -237,7 +245,8 @@ public void onPause()
                 
                 if(child.getTag().equals(Crossword.AREA_BLOCK)){//点击灰色格子的时候隐藏键盘
                 	inputMethodManager.hideSoftInputFromWindow(gridView.getWindowToken(), 0);
-                
+                	//this.setDescription(c, position)
+                	txtDescriptionHor.setText("一级提示：");
                 }else{//其他情况打开键盘
                	
                 	inputMethodManager.showSoftInput(v, 0);
@@ -267,24 +276,27 @@ public void onPause()
             case  MotionEvent.ACTION_UP:
             	{
             		if (this.downIsPlayable == false)
-            	         		return true;
+            		{
+            			currentC = null;
+            			this.currentX = -1;
+            			this.currentY = -1;
+            			setDescription(currentC, 0);
+            			return true;
+            		}
             		int firstVP =this.gridView.getFirstVisiblePosition();
             		int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY());
            
             		int x = position % this.width;
             		int y = position / this.width;
-            		 this.currentX = x;
-                 	this.currentY = y;
+            		 
             		Log.v("position", ""+x+"..."+y);
             		if(x < 0 || x >= this.width || y < 0 || y>= this.height)
                     	return false;
-            		if(this.boardLogic.isBlock(x, y))
+            		if(this.boardLogic.isBlock(x, y) )
             			return false;
+            		          	    
             		
-            		
-            	    
-            		
-                	 currentC = this.boardLogic.getCharacterByPosition(this.currentX, this.currentY);
+                	 currentC = this.boardLogic.getCharacterByPosition(x, y);
                 	 if(currentC == null) Log.v("currentC is","null");
                 	if(this.lastX == x && this.lastY == y && clickIndex < currentC.getIndexList().size() ) clickIndex = clickIndex + 1;
             		else clickIndex = 1 ;
@@ -297,7 +309,7 @@ public void onPause()
               
                
             		this.gridAdapter.reDrawGridBackground(this.gridView);
-            		this.setWordBackground(currentC,index.get(0),x, y);
+            		this.setWordBackground(currentC,index.get(0),this.currentX, this.currentY);
             		this.gridAdapter.notifyDataSetChanged();
             	
             	//	
@@ -365,16 +377,15 @@ public void onPause()
 
 	public void setDescription(Character c ,int clickIndex)
 	{
-		Log.v("setD c",""+c.getChi()+"..."+clickIndex);
-	
-		if(c.getIndexList()!=null)
-			Log.v(" c.getIndexList().get(clickIndex)", "!null"+c.getIndexList().size());
-			Log.v("this.grid.getDescriptions()", ""+this.grid.getDescriptions().size());
-		for(Description des : this.grid.getDescriptions())
+		//Log.v("setD c",""+c.getChi()+"..."+clickIndex);
+		if(c != null)
 		{
 			
-			Log.v(" c.getIndexList().get(clickIndex).get(0)", ""+ clickIndex+"..des.to"+des.getTo());
-			if(des.getTo() == clickIndex)
+			for(Description des : this.grid.getDescriptions())
+			{
+			
+				Log.v(" c.getIndexList().get(clickIndex).get(0)", ""+ clickIndex+"..des.to"+des.getTo());
+				if(des.getTo() == clickIndex)
 				{
 					if(des.getDescSta() == 1) 
 					{
@@ -390,6 +401,12 @@ public void onPause()
 					
 				}
 		//	break;
+			}
+		}
+		else 
+		{
+			this.txtDescriptionHor.setText("一级提示：");
+			this.txtDescriptionVer.setText("点击显示二级提示");
 		}
 	}
 	public void unlockNext()
