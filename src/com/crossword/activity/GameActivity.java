@@ -504,7 +504,7 @@ public void onPause()
     		    if(boardLogic.isComplete(GameActivity.this)) 
     			{
 
-    				boardLogic.scoring();
+    				//boardLogic.scoring();
     				    	unlockNext();
     				    	return;
     			    	
