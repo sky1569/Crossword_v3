@@ -24,6 +24,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.crossword.Crossword;
@@ -47,6 +48,7 @@ public class GameActivity extends Activity implements OnTouchListener {
 	//public enum GRID_MODE {NORMAL, CHECK, SOLVE};
 	//public  int CurrentMode;
 	private FrameLayout     girdFrameLayout;
+	private ScrollView      gridScrollView;
 	private MyGridView 		gridView;
 	private KeyboardView 	keyboardView;
 	private GameGridAdapter gridAdapter;
@@ -89,6 +91,7 @@ public class GameActivity extends Activity implements OnTouchListener {
 	private ImageButton     returnButton;
 	private BoardLogic 	boardLogic;
     //Handler handler;
+	private View gridFrameLayout;
 
 		@Override
 public void onPause()
@@ -124,6 +127,7 @@ public void onPause()
 	    //通过uniqueid查找grid，如果没有就会从网页下载
 		//获取girdFrameLayout
 		girdFrameLayout = (FrameLayout)findViewById(R.id.girdFrameLayout);
+		gridScrollView = (ScrollView)findViewById(R.id.gridScrollView);
 		returnButton = (ImageButton)findViewById(R.id.game_return_button);
 		returnButton.setOnClickListener(new OnClickListener(){
 
@@ -234,13 +238,13 @@ public void onPause()
                // getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
             	InputMethodManager inputMethodManager = (InputMethodManager)
 	            		   getSystemService(Context.INPUT_METHOD_SERVICE);
-                
+              
                 if(child.getTag().equals(Crossword.AREA_BLOCK)){//点击灰色格子的时候隐藏键盘
                 	inputMethodManager.hideSoftInputFromWindow(gridView.getWindowToken(), 0);
                 
                 }else{//其他情况打开键盘
                	
-                	inputMethodManager.showSoftInput(v, 0);
+                	inputMethodManager.showSoftInput(gridFrameLayout, 0);
                 }
 	       
 	         
