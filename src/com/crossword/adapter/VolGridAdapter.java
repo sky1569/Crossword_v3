@@ -29,10 +29,7 @@ public class VolGridAdapter extends BaseAdapter {
 		this.context = context;
 		//列数是固定的3
 		this.columnNum = 3;
-		this.volLength =entities.size();
-		this.entities = entities;
-		this.inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-		/*if(!HomeActivity.ISBroad){//如果不在直播
+		if(!HomeActivity.ISBroad){//如果不在直播
 		
 			//this.volLength = entities.size() + 1;
 			this.volLength =entities.size();
@@ -40,18 +37,17 @@ public class VolGridAdapter extends BaseAdapter {
 
 			//this.volLength = HomeActivity.broadMsg.getAmountOfLevels();//这是不对的！curlevel是直播期当前关数，不是往期个数
            this.volLength = entities.size() ;
-		}*/
-		
+		}
+		this.entities = entities;
+		this.inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 	}
 	
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		if(!HomeActivity.ISBroad)
-			return this.volLength + 1;
-		else
-			return this.volLength ;
+		return volLength;
 	}
+
 	@Override
 	public Object getItem(int arg0) {
 		// TODO Auto-generated method stub
@@ -75,11 +71,9 @@ public class VolGridAdapter extends BaseAdapter {
 		TextView volScoreText = (TextView)view.findViewById(R.id.vol_score_text);
 		volGridLayout.setLayoutParams(new GridView.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 	  
-		if(position < volLength)
-		{//若position不超过volLength,则显示所有期的信息；否则显示下一期和正在直播的
+		if(position < volLength){//若position不超过volLength,则显示所有期的信息；否则显示下一期和正在直播的
 			Vol entity = entities.get(position);
 			String volName = entity.getVolName();
-			if(entity.getVolNumber() == HomeActivity.NumBroad) volName = "正在直播";
 			System.out.println(volName+position);
 			int score = entity.getScore();
 			volNumberText.setText(volName);
@@ -91,9 +85,7 @@ public class VolGridAdapter extends BaseAdapter {
 				volGridLayout.setBackgroundResource(R.drawable.vol_active);
 				volScoreText.setText("积分:"+score);	
 			}
-	     }
-		//else if()
-		else if(position == volLength && !HomeActivity.ISBroad){	    
+	     }else if(position == volLength&&!HomeActivity.ISBroad){	    
 	    	 volGridLayout.setBackgroundResource(R.drawable.vol_next);
 	    	 volScoreText.setText("12月10日");
 	    	 volNumberText.setText(this.context.getResources().getText(R.string.next_vol_text));

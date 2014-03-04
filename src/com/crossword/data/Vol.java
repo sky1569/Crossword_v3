@@ -29,7 +29,7 @@ public class Vol implements Serializable{
 	public void    setScore(int score){this.score = score;}
 	public Integer getScore(){return this.score;}
 	
-	public void	setIsbroad ( String value)	{this.isbroad = value.equals("YES")? true : false;}
+	public void setIsbroad ( String value)	{this.isbroad = value.equals("YES")? true : false;}
 	public boolean getIsbroad(){return this.isbroad;}
 	
 	public void  setCurLevel( int value) {this.curLevel =value;}
