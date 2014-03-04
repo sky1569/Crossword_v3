@@ -109,7 +109,7 @@ public void onPause()
 	public void onCreate(Bundle savedInstanceState)
 	{
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.game);
+	    setContentView(R.layout.gamenew);
 	   
 	    Intent intent2 = getIntent();
 		Bundle bundle2 = intent2.getExtras();
