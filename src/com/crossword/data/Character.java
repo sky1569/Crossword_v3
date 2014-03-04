@@ -98,6 +98,9 @@ public class Character {
         	if(c.getX() == this.getX() && c.getY() == this.getY())
         	{
         		c.updateIndexList(this.getI(), this.getJ());
+        		StringBuffer capBuffer = new StringBuffer(c.getCap());
+        		capBuffer.append(this.getCap());
+        		c.setCap(capBuffer.toString());
         		return true;
         	}
         

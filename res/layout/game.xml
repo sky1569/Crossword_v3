@@ -67,14 +67,15 @@
     android:layout_height="wrap_content"
     android:background="@drawable/title_bottom_line_tile"/>
         <ScrollView    android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_marginTop="1dip"
+            android:layout_weight="1"
             android:id="@+id/gridScrollView"
             
            >
         <FrameLayout 
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:id="@+id/girdFrameLayout"
             
             >
