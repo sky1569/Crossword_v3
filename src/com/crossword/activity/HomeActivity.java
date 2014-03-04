@@ -28,7 +28,7 @@ public class HomeActivity extends Activity{
 	public static  Vol broadMsg;
 	public static boolean ISBroad = false;
 	private Module module;
-	
+	public static int NumBroad;
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -172,6 +172,7 @@ public class HomeActivity extends Activity{
 			if(broadMsg.getIsbroad())
 			{	
 				this.ISBroad = true ;//全部期判断用：
+				this.NumBroad = broadMsg.getVolNumber();
 				bnLive.setTextColor(getResources().getColor(R.color.home_normal_text_color));
 				bnLive.setClickable(true);
 			}
