@@ -1,118 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
     <LinearLayout
+        android:id="@+id/top_layout"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:background="@color/background_gray"
-        android:orientation="vertical" 
-        >
+        android:orientation="vertical" >
 
-
-        <LinearLayout android:id="@+id/backbutton_layout"
+        <LinearLayout
+            android:id="@+id/backbutton_layout"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:paddingLeft="5dip"
-            android:paddingTop="3dip"
-            android:paddingBottom="3dip"
+            android:background="@color/background_color"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:background="@color/background_color">
-            
-            <ImageButton android:id="@+id/game_return_button"
+            android:paddingBottom="3dip"
+            android:paddingLeft="5dip"
+            android:paddingTop="3dip" >
+
+            <ImageButton
+                android:id="@+id/game_return_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/navigationbar_backbutton"
                 android:background="@null"
-                />
-            
-            </LinearLayout>
+                android:src="@drawable/navigationbar_backbutton" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/description_horizotal"
             android:layout_width="fill_parent"
             android:layout_height="25dp"
             android:layout_weight="0"
+            android:background="@color/desc_background_color"
             android:gravity="center_horizontal|left"
+            android:paddingBottom="2dp"
             android:paddingLeft="8dp"
             android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:textColor="@color/desc_text_color"
-            android:background="@color/desc_background_color"
-            android:textSize="@dimen/desc_text_size"
             android:text="一级提示："
-            />
-        <ImageView android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/title_bottom_line_tile"/>
-        <TextView 
+            android:textColor="@color/desc_text_color"
+            android:textSize="@dimen/desc_text_size" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/title_bottom_line_tile" />
+
+        <TextView
             android:id="@+id/description_vertical"
             android:layout_width="fill_parent"
             android:layout_height="25dp"
-            android:layout_weight="0"
-            android:gravity="center_horizontal|left"
             android:layout_gravity="left"
+            android:layout_weight="0"
+            android:background="@color/desc_background_color"
+            android:gravity="center_horizontal|left"
+            android:paddingBottom="2dp"
             android:paddingLeft="8dp"
             android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:textColor="@color/desc_text_color"
-            android:background="@color/desc_background_color"
-            android:textSize="@dimen/desc_text_size"
             android:text="点击显示二级提示"
-        />
+            android:textColor="@color/desc_text_color"
+            android:textSize="@dimen/desc_text_size" />
 
-    <ImageView android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/title_bottom_line_tile"/>
-        <ScrollView    android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="1dip"
-            android:layout_weight="1"
-            android:id="@+id/gridScrollView"
-            
-           >
-        <FrameLayout 
+        <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/girdFrameLayout"
-            
-            >
-       
-     
-         <com.crossword.view.MyGridView
+            android:layout_height="wrap_content"
+            android:background="@drawable/title_bottom_line_tile" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/top_layout"
+        android:background="@color/background_gray" >
+
+        <com.crossword.view.MyGridView
             android:id="@+id/grid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-         	android:fastScrollEnabled="true"
+            android:fastScrollEnabled="true"
             android:horizontalSpacing="1dp"
             android:listSelector="@null"
-            android:verticalSpacing="1dp"
-           android:numColumns="auto_fit"
             android:paddingBottom="1dip"
-            android:paddingTop="20dip"
             android:paddingLeft="23dip"
-           android:paddingRight="23dip"
-            >            
-             
+            android:paddingRight="23dip"
+            android:paddingTop="20dip"
+            android:verticalSpacing="1dp" >
         </com.crossword.view.MyGridView>
-        
-     
-       </FrameLayout>
-  </ScrollView>
+    </RelativeLayout>
 
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/keyboard_overlay"
-        android:layout_width="40dp"
-        android:layout_height="60dp"
-        android:layout_gravity="top|left"
-        android:layout_marginBottom="110dp"
-        android:background="@drawable/keyboard_overlay"
-        android:gravity="center"
-        android:textColor="#DDDDDD"
-        android:textSize="26sp"
-        android:visibility="invisible" />
 </RelativeLayout>

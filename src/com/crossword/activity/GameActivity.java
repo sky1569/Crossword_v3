@@ -126,8 +126,8 @@ public void onPause()
 	  //  module.parseGrid(this, this.url);
 	    //通过uniqueid查找grid，如果没有就会从网页下载
 		//获取girdFrameLayout
-		girdFrameLayout = (FrameLayout)findViewById(R.id.girdFrameLayout);
-		gridScrollView = (ScrollView)findViewById(R.id.gridScrollView);
+		//girdFrameLayout = (FrameLayout)findViewById(R.id.girdFrameLayout);
+		//gridScrollView = (ScrollView)findViewById(R.id.gridScrollView);
 		returnButton = (ImageButton)findViewById(R.id.game_return_button);
 		returnButton.setOnClickListener(new OnClickListener(){
 
@@ -224,7 +224,7 @@ public void onPause()
 		
 		
 		//画标尺
-		this.gridAdapter.drawRuler(this.girdFrameLayout);
+		//this.gridAdapter.drawRuler(this.girdFrameLayout);
 		
 	
 	}
@@ -253,7 +253,8 @@ public void onPause()
                 	txtDescriptionHor.setText("一级提示：");
                 }else{//其他情况打开键盘
                	
-                	inputMethodManager.showSoftInput(gridFrameLayout, 0);
+                	inputMethodManager.showSoftInput(v, 0);
+                	
                 }
 	       
 	         
