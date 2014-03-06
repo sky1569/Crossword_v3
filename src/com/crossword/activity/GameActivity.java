@@ -17,6 +17,7 @@ import android.util.TypedValue;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AnimationUtils;
@@ -112,8 +113,8 @@ public void onPause()
 	public void onCreate(Bundle savedInstanceState)
 	{
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.gamenew);
-	   
+	    setContentView(R.layout.game);
+	   // getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); 
 	    Intent intent2 = getIntent();
 		Bundle bundle2 = intent2.getExtras();
 		Grid currentGrid=(Grid)bundle2.getSerializable("currentGrid"); 
@@ -243,18 +244,18 @@ public void onPause()
 
             	TextView child = (TextView) this.gridView.getChildAt(position);
                 
-               // getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+               getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
             	InputMethodManager inputMethodManager = (InputMethodManager)
 	            		   getSystemService(Context.INPUT_METHOD_SERVICE);
               
-                if(child.getTag().equals(Crossword.AREA_BLOCK)){//点击灰色格子的时候隐藏键盘
-                	inputMethodManager.hideSoftInputFromWindow(gridView.getWindowToken(), 0);
-                	//this.setDescription(c, position)
+               if(child.getTag().equals(Crossword.AREA_BLOCK)){//点击灰色格子的时候隐藏键盘
+               	inputMethodManager.hideSoftInputFromWindow(gridView.getWindowToken(), 0);
+         
                 	txtDescriptionHor.setText("一级提示：");
                 }else{//其他情况打开键盘
                	
-                	inputMethodManager.showSoftInput(gridFrameLayout, 0);
-                }
+               inputMethodManager.showSoftInput(v, 0);
+              }
 	       
 	         
 

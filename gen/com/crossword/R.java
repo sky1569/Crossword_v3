@@ -309,7 +309,7 @@ public final class R {
         public static final int category_verses_finished_text=0x7f0b0005;
         public static final int crown_image_view=0x7f0b006a;
         public static final int desc=0x7f0b001d;
-        public static final int description=0x7f0b001b;
+        public static final int description=0x7f0b001a;
         public static final int description_horizotal=0x7f0b0015;
         public static final int description_vertical=0x7f0b0016;
         public static final int enroll_button=0x7f0b0033;
@@ -339,8 +339,8 @@ public final class R {
         public static final int individual_rank_text=0x7f0b0036;
         public static final int individual_return_button=0x7f0b0032;
         public static final int individual_setting_button=0x7f0b0038;
-        public static final int keyboard=0x7f0b001c;
-        public static final int keyboard_overlay=0x7f0b001a;
+        public static final int keyboard=0x7f0b001b;
+        public static final int keyboard_overlay=0x7f0b001c;
         public static final int line1=0x7f0b001e;
         public static final int line2=0x7f0b001f;
         public static final int linearLayout1=0x7f0b000f;

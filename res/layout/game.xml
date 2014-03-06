@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
     
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:background="@color/background_gray"
         android:orientation="vertical" 
         >
@@ -66,16 +67,25 @@
     <ImageView android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/title_bottom_line_tile"/>
+    
+    
+    </LinearLayout>
+    
+    <RelativeLayout android:layout_width = "fill_parent"
+        android:layout_height = "fill_parent"
+          android:background = "@color/background_gray">
+   
         <ScrollView    android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="1dip"
-            android:layout_weight="1"
             android:id="@+id/gridScrollView"
+          
             
            >
-        <FrameLayout 
+        <FrameLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+      
             android:id="@+id/girdFrameLayout"
             
             >
@@ -89,7 +99,7 @@
             android:horizontalSpacing="1dp"
             android:listSelector="@null"
             android:verticalSpacing="1dp"
-           android:numColumns="auto_fit"
+           
             android:paddingBottom="1dip"
             android:paddingTop="20dip"
             android:paddingLeft="23dip"
@@ -99,20 +109,12 @@
         </com.crossword.view.MyGridView>
         
      
-       </FrameLayout>
+      </FrameLayout>
   </ScrollView>
 
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/keyboard_overlay"
-        android:layout_width="40dp"
-        android:layout_height="60dp"
-        android:layout_gravity="top|left"
-        android:layout_marginBottom="110dp"
-        android:background="@drawable/keyboard_overlay"
-        android:gravity="center"
-        android:textColor="#DDDDDD"
-        android:textSize="26sp"
-        android:visibility="invisible" />
 </RelativeLayout>
+
+
+    
+
+</LinearLayout>

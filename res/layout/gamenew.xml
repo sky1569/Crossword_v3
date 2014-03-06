@@ -85,6 +85,13 @@
            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line2">
+      <ScrollView    android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="1dip"
+            android:layout_weight="1"
+            android:id="@+id/gridScrollView"
+            
+           >
       <FrameLayout 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -113,5 +120,6 @@
         
      
        </FrameLayout>
+         </ScrollView>
     </RelativeLayout>
 </RelativeLayout>
