@@ -259,6 +259,7 @@ public final class R {
         public static final int vol_next_2x=0x7f020075;
     }
     public static final class id {
+        public static final int TopLayout=0x7f0b0013;
         public static final int _category_gridlist_title=0x7f0b000a;
         public static final int accumulate_point_item_text=0x7f0b006e;
         public static final int action_settings=0x7f0b007f;
@@ -378,7 +379,6 @@ public final class R {
         public static final int title_rank_text=0x7f0b003a;
         public static final int title_register_text=0x7f0b0070;
         public static final int title_username_text=0x7f0b003b;
-        public static final int top_layout=0x7f0b0013;
         public static final int tourist_login_text=0x7f0b0061;
         public static final int username_item_text=0x7f0b006d;
         public static final int verses_category_layout=0x7f0b0004;

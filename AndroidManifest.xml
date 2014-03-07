@@ -12,7 +12,7 @@
         android:name="com.crossword.Crossword"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        android:theme="@android:style/Theme.NoTitleBar" >
         <activity
             android:name="com.crossword.activity.MainActivity"
             android:label="@string/app_name" >
@@ -30,11 +30,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.crossword.activity.GameActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTop"
+            android:name="com.crossword.activity.GameActivity"            
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
+
         </activity>
         <activity
             android:name="com.crossword.activity.CategoryActivity"
