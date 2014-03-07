@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.FrameLayout;
 import android.widget.GridView;
@@ -213,4 +214,9 @@ public class GameGridAdapter extends BaseAdapter {
 	}
 	
     
+	
+	public void ScrollToItem(ScrollView scrollView,View child){
+		
+		scrollView.scrollTo(0, child.getBottom() - 2*this.displayHeight);
+	}
 }
