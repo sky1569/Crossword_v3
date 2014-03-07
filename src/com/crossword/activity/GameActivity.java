@@ -165,9 +165,9 @@ public class GameActivity extends Activity implements OnTouchListener {
 		this.lastY = -1;
 		// this.completeFlag = false;
 		Display display = getWindowManager().getDefaultDisplay();
-		int height = display.getHeight();
-		int weight = display.getWidth();
-		int keyboardHeight = (int)(height / 4.4);
+	//	int height = display.getHeight();
+	//	int weight = display.getWidth();
+		//int keyboardHeight = (int)(height / 4.4);
 		this.txtDescriptionHor = (TextView)findViewById(R.id.description_horizotal);
 		this.txtDescriptionVer = (TextView)findViewById(R.id.description_vertical);
 
@@ -216,9 +216,9 @@ public class GameActivity extends Activity implements OnTouchListener {
 
 		android.view.ViewGroup.LayoutParams gridParams = this.gridView.getLayoutParams();
 
-		gridParams.height = (height - keyboardHeight - this.txtDescriptionHor.getLayoutParams().height*3);
+		//gridParams.height = (height - keyboardHeight - this.txtDescriptionHor.getLayoutParams().height*3);
 
-		gridParams.width = weight;
+	//	gridParams.width = weight;
 		this.gridView.setLayoutParams(gridParams);
 		this.gridAdapter = new GameGridAdapter(this, this.entities, this.width, this.height,this.boardLogic);
 
