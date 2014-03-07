@@ -4,11 +4,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-public class TimerTask implements Runnable
+public class MyTimerTask implements Runnable
 {
   private Handler handler;
   private String position;
-  public TimerTask(String position,Handler handler)
+  public MyTimerTask(String position,Handler handler)
   {
 	  this.position = position;
 	  this.handler = handler;

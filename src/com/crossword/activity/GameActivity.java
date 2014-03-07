@@ -4,6 +4,8 @@ package com.crossword.activity;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.R.array;
 import android.app.Activity;
@@ -40,10 +42,11 @@ import com.crossword.data.Description;
 import com.crossword.keyboard.KeyboardView;
 import com.crossword.keyboard.KeyboardViewInterface;
 import com.crossword.logic.BoardLogic;
-import com.crossword.logic.TimerTask;
+import com.crossword.logic.MyTimerTask;
 import com.crossword.utils.Module;
 import com.crossword.view.KeyboardPopupWindow;
 import com.crossword.view.MyGridView;
+
 
 
 public class GameActivity extends Activity implements OnTouchListener {
@@ -81,6 +84,8 @@ public class GameActivity extends Activity implements OnTouchListener {
 	
 	private int lastChildX;
 	private int lastChildY;
+	private TimerTask keyBoardDelayTimerTask;
+	private Timer timer;
 
 	@Override
 	public void onPause()
@@ -133,6 +138,9 @@ public class GameActivity extends Activity implements OnTouchListener {
 			return;
 		}
 
+		
+		timer = new Timer();
+		
 		//  this.entities= this.grid.getEntities();
 		this.entities = this.grid.getCharacters();
 
@@ -197,7 +205,15 @@ public class GameActivity extends Activity implements OnTouchListener {
 		this.gridView.setNumColumns(this.width);
 		this.gridView.setHandler(handler);
 
+		keyBoardDelayTimerTask = new TimerTask(){
 
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				handler.sendEmptyMessage(0x444);
+			}
+			
+		};
 		android.view.ViewGroup.LayoutParams gridParams = this.gridView.getLayoutParams();
 
 		gridParams.height = (height - keyboardHeight - this.txtDescriptionHor.getLayoutParams().height*3);
@@ -229,19 +245,7 @@ public class GameActivity extends Activity implements OnTouchListener {
             
 			TextView child = (TextView) this.gridView.getChildAt(position);
 		//	getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-			InputMethodManager inputMethodManager = (InputMethodManager)
-					getSystemService(Context.INPUT_METHOD_SERVICE);
-
-			if(child.getTag().equals(Crossword.AREA_BLOCK)){//点击灰色格子的时候隐藏键盘
-				inputMethodManager.hideSoftInputFromWindow(gridView.getWindowToken(), 0);
-
-				txtDescriptionHor.setText("一级提示：");
-			}else{//其他情况打开键盘
-
-				inputMethodManager.showSoftInput(v, 0);
-
-			}
-            
+			
 			
 			//int dx = child.getLeft() - lastChildX;
 			//int dy = child.getBottom() - lastChildY;
@@ -281,13 +285,47 @@ public class GameActivity extends Activity implements OnTouchListener {
 				return true;
 			}
 			int firstVP =this.gridView.getFirstVisiblePosition();
-			int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY()) - firstVP;
+			int position = this.gridView.pointToPosition((int)event.getX(), (int)event.getY());
 
 			int x = position % this.width;
 			int y = position / this.width;
 
 			TextView child = (TextView) gridView.getChildAt(position) ;
-			gridAdapter.ScrollToItem(gridScrollView, child);
+			
+			
+			InputMethodManager inputMethodManager = (InputMethodManager)
+					getSystemService(Context.INPUT_METHOD_SERVICE);
+
+			if(child.getTag().equals(Crossword.AREA_BLOCK)){//点击灰色格子的时候隐藏键盘
+				inputMethodManager.hideSoftInputFromWindow(gridView.getWindowToken(), 0);
+ 
+				txtDescriptionHor.setText("一级提示：");
+			}else{//其他情况打开键盘
+
+				
+				inputMethodManager.showSoftInput(v, 0);
+				
+	           new Thread(new Runnable(){
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						try {
+							Thread.sleep(500);
+							handler.sendEmptyMessage(0x444);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+	            	
+	            }).start();
+	            	
+			}
+				
+				
+			
+            
 			Log.v("childBottom", ""+child.getBottom());
 			lastChildX = child.getLeft();
 			lastChildY = child.getTop();
@@ -424,6 +462,8 @@ public class GameActivity extends Activity implements OnTouchListener {
 	} 
 
 
+	
+	
 
 	//负责消息的接收与处理
 	Handler handler = new Handler()
@@ -501,7 +541,7 @@ public class GameActivity extends Activity implements OnTouchListener {
 				if(boardLogic.getArea(x, y).equals(Crossword.UNFILLEDABLE))
 				{
 					String p = x+Crossword.UNFILLED+y;
-					new Thread(new TimerTask(p,handler)).start();
+					new Thread(new MyTimerTask(p,handler)).start();
 				}
 
 				if(boardLogic.isComplete(GameActivity.this)) 
@@ -551,6 +591,13 @@ public class GameActivity extends Activity implements OnTouchListener {
 				// 		this.setDescription(currentWordHor, currentWordVer, currentWord);
 				setDescription(currentC, index.get(0));
 				gridAdapter.notifyDataSetChanged();
+				break;
+				
+				
+			case 0x444:
+				int position = currentC.getY()*width + currentC.getX();
+				gridAdapter.ScrollToItem(gridScrollView, gridView.getChildAt(position));
+				keyBoardDelayTimerTask.cancel();
 				break;
 
 			}
