@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/top_layout"
@@ -63,31 +65,59 @@
             android:textColor="@color/desc_text_color"
             android:textSize="@dimen/desc_text_size" />
 
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/title_bottom_line_tile" />
+
+    <ImageView android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/title_bottom_line_tile"/>
+    
+    
     </LinearLayout>
+    
+    <RelativeLayout android:layout_width = "fill_parent"
+        android:layout_height = "fill_parent"
+          android:background = "@color/background_gray">
+   
+        <ScrollView    android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:id="@+id/gridScrollView"
+          
+            
+           >
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+      
+            android:id="@+id/girdFrameLayout"
+            
+            >
+       
+     
+         <com.crossword.view.MyGridView
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/top_layout"
-        android:background="@color/background_gray" >
-
-        <com.crossword.view.MyGridView
             android:id="@+id/grid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fastScrollEnabled="true"
             android:horizontalSpacing="1dp"
             android:listSelector="@null"
+
             android:paddingBottom="1dip"
             android:paddingLeft="23dip"
             android:paddingRight="23dip"
             android:paddingTop="20dip"
             android:verticalSpacing="1dp" >
         </com.crossword.view.MyGridView>
-    </RelativeLayout>
+
+        
+     
+      </FrameLayout>
+  </ScrollView>
 
 </RelativeLayout>
+
+
+    
+
+</LinearLayout>
+

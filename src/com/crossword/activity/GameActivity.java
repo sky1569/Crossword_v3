@@ -17,6 +17,7 @@ import android.util.TypedValue;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AnimationUtils;
@@ -113,7 +114,7 @@ public void onPause()
 	{
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.game);
-	   
+	   // getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); 
 	    Intent intent2 = getIntent();
 		Bundle bundle2 = intent2.getExtras();
 		Grid currentGrid=(Grid)bundle2.getSerializable("currentGrid"); 
@@ -126,8 +127,8 @@ public void onPause()
 	  //  module.parseGrid(this, this.url);
 	    //通过uniqueid查找grid，如果没有就会从网页下载
 		//获取girdFrameLayout
-		//girdFrameLayout = (FrameLayout)findViewById(R.id.girdFrameLayout);
-		//gridScrollView = (ScrollView)findViewById(R.id.gridScrollView);
+		girdFrameLayout = (FrameLayout)findViewById(R.id.girdFrameLayout);
+		gridScrollView = (ScrollView)findViewById(R.id.gridScrollView);
 		returnButton = (ImageButton)findViewById(R.id.game_return_button);
 		returnButton.setOnClickListener(new OnClickListener(){
 
@@ -224,7 +225,7 @@ public void onPause()
 		
 		
 		//画标尺
-		//this.gridAdapter.drawRuler(this.girdFrameLayout);
+		this.gridAdapter.drawRuler(this.girdFrameLayout);
 		
 	
 	}
@@ -242,20 +243,21 @@ public void onPause()
             	if(this.gridView.pointToPosition((int)event.getX(), (int)event.getY()) ==- 1)  break;
 
             	TextView child = (TextView) this.gridView.getChildAt(position);
-                
-               // getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
             	InputMethodManager inputMethodManager = (InputMethodManager)
 	            		   getSystemService(Context.INPUT_METHOD_SERVICE);
-              
-                if(child.getTag().equals(Crossword.AREA_BLOCK)){//点击灰色格子的时候隐藏键盘
-                	inputMethodManager.hideSoftInputFromWindow(gridView.getWindowToken(), 0);
-                	//this.setDescription(c, position)
+
+               if(child.getTag().equals(Crossword.AREA_BLOCK)){//点击灰色格子的时候隐藏键盘
+               	inputMethodManager.hideSoftInputFromWindow(gridView.getWindowToken(), 0);
+         
                 	txtDescriptionHor.setText("一级提示：");
                 }else{//其他情况打开键盘
                	
+
                 	inputMethodManager.showSoftInput(v, 0);
                 	
-                }
+              }
+
 	       
 	         
 
