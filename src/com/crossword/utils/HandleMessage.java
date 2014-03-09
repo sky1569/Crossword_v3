@@ -10,7 +10,6 @@ public class HandleMessage {
 		//要做的事情
 	      if(msg.what==1)
 	      {
-	    	 // m.setDisValue(x, y, value);
 	    	  
 	    	  
 	      }

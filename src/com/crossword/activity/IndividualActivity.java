@@ -76,14 +76,7 @@ public class IndividualActivity extends Activity {
 		individualAccumulatePointText = (TextView)findViewById(R.id.individual_accumulate_point_text);
 		
 		
-		//如果是游客登录
-		/*if(UserUtil.loginStatus == 0){
-			
-			individualAccountText.setText("游客登录");
-			individualRankText.setText("");
-			individualAccumulatePointText.setText("游客登录，无积分");
-			return;
-		}*/
+
 
 		
 		userUtil = new UserUtil();

@@ -21,18 +21,13 @@ import com.crossword.data.Grid;
 import com.crossword.data.Vol;
 
 public class GridListAdapter extends BaseAdapter {
-	private int columnNum ;
 	private int gridListLength;
 	private Context context;
 	private LinkedList<Grid> entities;
-	private Vol				vol;
-	//private
-	//private RelativeLayout volGridLayout;
 	private LayoutInflater inflater;
 	public GridListAdapter(Context context,LinkedList<Grid> entities){
 		this.context = context;
 		//列数是固定的3
-		this.columnNum = 3;
 		this.gridListLength = entities.size();
 		this.entities = entities;
 		System.out.println(entities.size());
@@ -69,14 +64,11 @@ public class GridListAdapter extends BaseAdapter {
 		RelativeLayout gridListLayout = (RelativeLayout) view.findViewById(R.id.gridList_layout);
 		gridListLayout.setLayoutParams(new GridView.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		TextView gridNumberText = (TextView)view.findViewById(R.id.grid_number_text);
-	//	TextView volScoreText = (TextView)view.findViewById(R.id.vol_score_text);
 		ImageView lockedView=(ImageView)view.findViewById(R.id.grid_lock_img);
 	     if(position < gridListLength){//若position不超过volLength,则显示所有期的信息；否则显示下一期和正在直播的
 	    	 Grid entity = entities.get(position);
 	    	 
 		    int gridLevel = entity.getLevel();
-		//	System.out.println("Level..."+gridLevel);
-		//	int score = entity.getScore();
 			gridNumberText.setText(""+gridLevel); 
 			if(entity.getIslocked()==Crossword.GRIDUNLOCKED) lockedView.setImageResource(R.drawable.unlocked_icon);
 				else lockedView.setImageResource(R.drawable.locked_icon);

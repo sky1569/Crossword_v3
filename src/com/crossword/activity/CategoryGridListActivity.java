@@ -61,7 +61,6 @@ public class CategoryGridListActivity extends Activity implements OnTouchListene
 		
     	try
     	{
-			TextView gridListTitleText = (TextView)findViewById(R.id.category_gridlist_title_text);
 			gridListView = (GridView) findViewById(R.id.category_gridlist_grid);
 			GridListAdapter gridListAdapter = new GridListAdapter(this,this.entities);
 			gridListView.setAdapter(gridListAdapter);
@@ -70,7 +69,6 @@ public class CategoryGridListActivity extends Activity implements OnTouchListene
     	}
     	catch(Exception e)
     	{
-    		Log.v("resume error", ""+this.entities.size());
 
     	}
     	
@@ -84,15 +82,10 @@ public class CategoryGridListActivity extends Activity implements OnTouchListene
 		    	int x = (int) event.getX();
 		    	int y = (int) event.getY();
 		    	int index = this.gridListView.pointToPosition(x, y);
-		    //	if(index >= this.entities.size()) 
-		    	//	break;
-		    	
 		    	if(index ==- 1)  break;
 		    	this.currentGrid = this.entities.get(index);
 		    	if(this.currentGrid.getIslocked()==Crossword.GRIDLOCKED)
 		    		break;
-		    	Log.v("”Œœ∑ƒ£ Ω≤‚ ‘", ""+this.currentGrid.getGameMode());
-		    	//System.out.println("index..."+index+"this.currentGrid..."+this.currentGrid==null?"t":"f");
 		    	Intent intent2 = new Intent();
 		    	intent2.setClass(this, GameActivity.class);
 		    	Bundle bundle2 = new Bundle();

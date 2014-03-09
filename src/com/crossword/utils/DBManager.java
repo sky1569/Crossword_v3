@@ -25,16 +25,9 @@ public class DBManager {
 		helper = new DBHelper(context);
 		//因为getWritableDatabase内部调用了mContext.openOrCreateDatabase(mName,0,mFactory);
 		//所以要确保context已经初始化，可以把实例化的DBManager的步骤放在Activity的onCreate里
-		//db = helper.getWritableDatabase();
 	}
 	
-	/*public void add(List<Grid> grids){
-		db.beginTransaction();
-		for(Grid g:grids){
-			
-		}
-	}*/
-	
+
 	
 	//将新的期信息加入到数据库中
 	public void add(Vol vol){
@@ -106,15 +99,6 @@ public class DBManager {
 		}
 		Log.v("添加成功", ""+grid.getVol());
 		
-		//db.close();
-		/*try{
-			db.execSQL("INSERT INTO "+Crossword.TABLE_NAME + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
-					new Object[]{grid.getFilename(),grid.getUniqueid(),grid.getVol(),grid.getLevel()
-					,grid.getCategory(),grid.getJsonData(),grid.getScore(),grid.getDate(),grid.getGamename(),
-					grid.getAunthor(),grid.getWidth(),grid.getHeight()});
-		}finally{
-		db.endTransaction();
-		}*/
 		
 	}
 	/**
@@ -141,11 +125,7 @@ public class DBManager {
 		cv.put("width", grid.getWidth());
 		cv.put("height", grid.getHeight());
 		
-		Log.v("更新.grid.getLevel().", ""+grid.getLevel());
-		Log.v("更新..grid.getUniqueid()..", ""+grid.getUniqueid());
-		
-		Log.v("更新..grid.getUniqueid()..", ""+grid.getJsonData());
-		//db = helper.getWritableDatabase();
+
 		Cursor c = queryCursorByKey(Crossword.GRID_TABLE,Crossword.columnsOfGridTable,"uniqueid",grid.getUniqueid());
 		if(c.getCount() == 0)
 			db.execSQL("update grid set uniqueid="+grid.getUniqueid()+" where volNumber="+grid.getVol()+" and level="+grid.getLevel());
@@ -185,7 +165,6 @@ public class DBManager {
 		Grid g = new Grid();
 		if(c.moveToFirst()){
 			String jsonData = c.getString(c.getColumnIndex("jsonData"));
-			Log.v("test..取值问题jsonData",jsonData);
 			g = jsonUtil.parseGridJson(jsonData);
 			if(g==null) Log.v("解析出错", "hh");
 		}
@@ -210,23 +189,16 @@ public class DBManager {
 		{
 			Grid g = new Grid();
 			g.setVol(c.getInt(c.getColumnIndex("volNumber")));
-		//	Log.v("entities.sizeg.getVol",""+c.getColumnIndex("volNumeber"));
 			g.setStar(c.getInt(c.getColumnIndex("star")));
-		//	Log.v("entities.sizeg.getStar",""+c.getColumnIndex("star"));
 			g.setLevel(c.getInt(c.getColumnIndex("level")));
-			//Log.v("entities.sizeg.getLevel()",""+g.getLevel());
-			
 			g.setIslocked(c.getInt(c.getColumnIndex("islocked")));
-		//	Log.v("entities.sizeg.getIslocked()",""+g.getIslocked());
 			g.setUniqueid(c.getInt(c.getColumnIndex("uniqueid"))==0?null:c.getInt(c.getColumnIndex("uniqueid")));
 		
 			g.setScore(c.getInt(c.getColumnIndex("score")));
-			Log.v("uniqueid", ""+g.getUniqueid()+"..."+c.getInt(c.getColumnIndex("uniqueid")));
 			
 			if(c.getString(c.getColumnIndex("jsonData"))!=null)
 			g.setJsonData(c.getString(c.getColumnIndex("jsonData")));
 			entities.add(g);
-			Log.v("entities.size",""+entities.size());
 		}
 
 		c.close();
@@ -345,28 +317,14 @@ public class DBManager {
 		db.close();
 		return entities;
 	}
-	/*public LinkedList<Grid> queryGridOfVol(int volNumber)
-	{	
-		db = helper.getWritableDatabase();
-		LinkedList<Grid> entities = new LinkedList<Grid>();
-		Cursor c = queryCursorByKey(Crossword.GRID_TABLE,Crossword.columnsOfGridTable,"volNumber",volNumber);
-		while(c.moveToNext())
-		{
-			Grid entity =new Grid();
-			
-			
-		}
-		return entities;
-	}*/
+
 	
 	/**
 	 * 查询grid表的所有grid，返回一个指针
 	 * @return
 	 */
 	public Cursor queryTheCursor(String tableName){
-		//db = helper.getWritableDatabase();
 		Cursor c = db.rawQuery("SELECT * FROM "+tableName, null);
-		//db.close();
 		return c;
 	}
 	
@@ -375,15 +333,9 @@ public class DBManager {
 	 *
 	 */
 	public Cursor queryCursorByKey(String tableName,String[] columns,String key,Object value){
-		//db = helper.getWritableDatabase();
-		
-		/*String[] columns = {"file","uniqueid","volNumber","level","degree","category","islocked",
-				//"star",
-				"jsonData","score",
-				             "date","gamename","author","width","height"};*/
+	
 		String selection = key+"="+value;
 		Cursor c = db.query(true, tableName, columns, selection, null, null, null, null, null);
-		//db.close();
 		return c;
 	}
 	

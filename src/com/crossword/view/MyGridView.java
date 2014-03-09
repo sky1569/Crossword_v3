@@ -42,15 +42,7 @@ public class MyGridView extends GridView implements OnKeyListener {
 		this.input = (InputMethodManager) context
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
 		this.setOnKeyListener(this);
-		/*
-		 * this.setOnTouchListener(new OnTouchListener(){
-		 * 
-		 * @Override public boolean onTouch(View arg0, MotionEvent arg1) { //
-		 * TODO Auto-generated method stub input.showSoftInput(MyGridView.this,
-		 * 0); return true; }
-		 * 
-		 * });
-		 */
+
 	}
 
 	public MyGridView(Context context, AttributeSet attr, int defStyle) {
@@ -69,9 +61,7 @@ public class MyGridView extends GridView implements OnKeyListener {
 		public boolean commitText(CharSequence text, int newCursorPosition) {
 			boolean success = super.commitText(text, newCursorPosition);
 			inputText = (String) text;
-			// Handler handler = new Handler();
 			handler.sendEmptyMessage(0x222);// 提交输入结果后需要进行显示的处理
-			// Toast.makeText(context, inputText, Toast.LENGTH_SHORT).show();
 			return success;
 		}
 
@@ -79,7 +69,6 @@ public class MyGridView extends GridView implements OnKeyListener {
 
 	@Override
 	public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
-		// super.onCreateInputConnection(outAttrs);
 		return new MyInputConnection(this, false);
 
 	}

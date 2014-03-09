@@ -35,8 +35,6 @@ public class JsonUtil {
 
 	//private String  jsonData;//用以存储解析后的json数据
 	private Context context;
-	private JSONObject jObj;//用以解析和存储的JSONObject对象
-	private DBManager dbManager;//数据库管理的对象
 	public JsonUtil(Context context){
 		
 		this.context = context;
@@ -70,7 +68,6 @@ public class JsonUtil {
 		BufferedReader bufferedReader = null;
 		StringBuilder sb  = new StringBuilder();
 		String s = "";
-		//Log.v("hh1", "sd");
 		try{
 			HttpClient client = new DefaultHttpClient();
 			HttpResponse response = client.execute(new HttpGet(url));
@@ -88,10 +85,8 @@ public class JsonUtil {
 				
 		}catch(Exception e){
 			
-			
-		//	Log.v("hh2", "sd");
+
 			e.printStackTrace();
-			//return s = "wrong";
 			return null;
 		}
 		String str = sb.toString();
@@ -99,7 +94,6 @@ public class JsonUtil {
 		if(str != null && str.startsWith("\ufeff")){
 			str = str.substring(1);
 		}
-		//Log.v("sb", str);
 		return str;
 	}
 	//读取json文件，转换成String变量再解析
@@ -119,7 +113,6 @@ public class JsonUtil {
 		    jsonObject = new JSONObject(jsonData);
 		    //解析JSON数据中包含的所有的Word信息
 		    //解析JSON数据中包含的所有的Character信息
-		    //jsonWordArray = jsonObject.getJSONArray("words");
 		    jsonCharacterArray = jsonObject.getJSONArray("words");
 		    for(int i = 0;i < jsonCharacterArray.length();i++){
 				
@@ -163,7 +156,6 @@ public class JsonUtil {
 		    	explanation.setTo(jExplanationObject.getInt("to"));
 		    	explanations.add(explanation);
 		    }
-		   // grid.setEntities(entities);
 		    grid.setCharacters(characters);
 		    grid.setExplanations(explanations);
 		    grid.setDescriptions(descriptions);
@@ -234,7 +226,6 @@ public class JsonUtil {
 		{
 			 jsonObject = new JSONObject(jsonData);
 			 vol.setIsbroad(jsonObject.getString("broad"));
-			// vol.setVolName(jsonObject.getString("name"));
 			 JSONObject jsonObj = jsonObject.getJSONObject("broad_vol");
 			 vol.setVolName(jsonObj.getString("name"));
 			 vol.setAmountOfLevels(jsonObj.getInt("amount_of_levels"));
@@ -293,7 +284,6 @@ public class JsonUtil {
 			jObj.put("islocked", grid.getIslocked());
 			jObj.put("star",grid.getStar());
 			//获取grid中的word信息
-			//LinkedList<Word> entities = grid.getEntities();
 			LinkedList<Character> characters = grid.getCharacters();
 			for(Character entity:characters){
 			   //可能一个字在多个词中重复出现，因此对于重复的词需要重复写入JSON文件

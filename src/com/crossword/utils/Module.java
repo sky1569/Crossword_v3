@@ -21,7 +21,6 @@ import com.crossword.logic.BoardLogic;
 
 public class Module {
 	 private Grid   grid;                   //从json中解析出grid的所有信息，包括关卡的信息以及所有的Word
-	 private Vol    currVol;                    //当前期
 	 
 	 private JsonUtil jsonUtil;
 	 private DBManager dbManager;
@@ -30,7 +29,6 @@ public class Module {
 	 
      private Context            context;
      
-   //  private BoardLogic 	boardLogic;
  	 
      public Module(Context context){
     	 this.context = context;
@@ -93,14 +91,10 @@ public class Module {
 			//如果没有查到，则打开网络访问
 			if(this.grid == null){
 			   //通过URL解析Json
-				//this.grid = parseGridFromUrl(this.context,Crossword.GRID_URL + uniqueid);
 				if((this.grid = parseGridFromUrl(this.context,Crossword.GRID_ROOT_URL +"vol="+vol+"&lv="+lv)).getFilename() == null){
 					return null;//要提示获取失败
 				}
 			}
-		//	Log.v("nima ",""+this.grid.getWidth());
-		//	Log.v("初始化测试json",this.grid.getJsonData());
-		//	boardLogic.initModule(this.grid);
 			return this.grid;
 			
 		}
@@ -149,8 +143,6 @@ public class Module {
 					{
 						if(i == 0) grid.setIslocked(Crossword.GRIDUNLOCKED);
 						else  grid.setIslocked(Crossword.GRIDLOCKED);
-						//grid.setGameMode(Crossword.GAMEMODEVOL);
-						
 					}
 					else {
 						 //  grid.setGameMode(Crossword.GAMEMODELIVE);

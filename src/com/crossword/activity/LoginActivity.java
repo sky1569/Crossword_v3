@@ -93,10 +93,6 @@ public class LoginActivity extends Activity {
 					Toast.makeText(LoginActivity.this, "µÇÂ¼³É¹¦£¡", Toast.LENGTH_SHORT).show();
 					ActivityUtil.startHoldOnActivity(LoginActivity.this);
 					LoginActivity.this.finish();
-					//Intent intent = new Intent(LoginActivity.this,GridListActivity.class);
-	               // intent.putExtras(bundle);
-	               // startActivity(intent);
-	               // LoginActivity.this.finish();
 				}
 			}else if(verify.equalsIgnoreCase("Wrong password!")){//ÃÜÂë´íÎó
 				Toast.makeText(LoginActivity.this, "ÃÜÂë´íÎó£¡", Toast.LENGTH_SHORT).show();
