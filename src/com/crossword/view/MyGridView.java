@@ -129,6 +129,10 @@ public class MyGridView extends GridView implements OnKeyListener {
 								}).show();
 
 			}
+			
+			
+		
+			
 		}
 		return true;
 	}

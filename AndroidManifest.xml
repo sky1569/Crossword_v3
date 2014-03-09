@@ -32,7 +32,7 @@
         <activity
             android:name="com.crossword.activity.GameActivity"            
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
+            android:windowSoftInputMode="adjustResize" >
 
         </activity>
         <activity

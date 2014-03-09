@@ -31,6 +31,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crossword.Crossword;
 import com.crossword.R;
@@ -45,6 +46,8 @@ import com.crossword.logic.BoardLogic;
 import com.crossword.logic.MyTimerTask;
 import com.crossword.utils.Module;
 import com.crossword.view.KeyboardPopupWindow;
+import com.crossword.view.KeyboardLayout;
+import com.crossword.view.KeyboardLayout.OnKybdsChangeListener;
 import com.crossword.view.MyGridView;
 
 
@@ -53,6 +56,7 @@ public class GameActivity extends Activity implements OnTouchListener {
 
 	//public enum GRID_MODE {NORMAL, CHECK, SOLVE};
 	//public  int CurrentMode;
+	private KeyboardLayout  gridWrapLayout;
 	private FrameLayout 	girdFrameLayout;
 	private ScrollView      gridScrollView;
 	private MyGridView 		gridView;
@@ -86,6 +90,7 @@ public class GameActivity extends Activity implements OnTouchListener {
 	private int lastChildY;
 	private TimerTask keyBoardDelayTimerTask;
 	private Timer timer;
+	private int keyboardState;
 
 	@Override
 	public void onPause()
@@ -116,7 +121,30 @@ public class GameActivity extends Activity implements OnTouchListener {
 		this.module = new Module(this);
 		this.boardLogic = new BoardLogic(this);
 		//通过uniqueid查找grid，如果没有就会从网页下载
+		//获取mainGameLayout，并设置监听
+		gridWrapLayout = (KeyboardLayout)findViewById(R.id.gridWrapLayout);
+		//keyboardState = KeyboardRelativeLayout.KEYBOARD_STATE_HIDE;
+		gridWrapLayout.setOnKbdStateListener(new OnKybdsChangeListener(){
+
+			@Override
+			public void onKeyBoardStateChange(int state) {
+				// TODO Auto-generated method stub
+				//keyboardState = state;
+				switch(state){
+				case KeyboardLayout.KEYBOARD_STATE_SHOW:
+					Toast.makeText(getApplicationContext(), "软键盘弹起",  
+                            Toast.LENGTH_SHORT).show(); 
+					break;
+					
+				case KeyboardLayout.KEYBOARD_STATE_HIDE:
+					Toast.makeText(getApplicationContext(), "软键盘隐藏", Toast.LENGTH_SHORT).show();
+					break;
+				}
+			}
+			
+		});
 		//获取girdFrameLayout
+		
 		girdFrameLayout = (FrameLayout)findViewById(R.id.girdFrameLayout);
 		gridScrollView = (ScrollView)findViewById(R.id.gridScrollView);
 		returnButton = (ImageButton)findViewById(R.id.game_return_button);
@@ -139,7 +167,7 @@ public class GameActivity extends Activity implements OnTouchListener {
 		}
 
 		
-		timer = new Timer();
+		//timer = new Timer();
 		
 		//  this.entities= this.grid.getEntities();
 		this.entities = this.grid.getCharacters();
@@ -205,15 +233,7 @@ public class GameActivity extends Activity implements OnTouchListener {
 		this.gridView.setNumColumns(this.width);
 		this.gridView.setHandler(handler);
 
-		keyBoardDelayTimerTask = new TimerTask(){
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				handler.sendEmptyMessage(0x444);
-			}
-			
-		};
 		android.view.ViewGroup.LayoutParams gridParams = this.gridView.getLayoutParams();
 
 		gridParams.height = (height - keyboardHeight - this.txtDescriptionHor.getLayoutParams().height*3);
@@ -244,16 +264,7 @@ public class GameActivity extends Activity implements OnTouchListener {
 			if(this.gridView.pointToPosition((int)event.getX(), (int)event.getY()) ==- 1)  break;
             
 			TextView child = (TextView) this.gridView.getChildAt(position);
-		//	getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-			
-			
-			//int dx = child.getLeft() - lastChildX;
-			//int dy = child.getBottom() - lastChildY;
-			//gridScrollView.scrollBy(0, dy);
-		
 
-			
-			//Log.i("dy", ""+dy);
 
 
 			if (child == null || child.getTag().equals(Crossword.AREA_BLOCK)) {
@@ -295,23 +306,23 @@ public class GameActivity extends Activity implements OnTouchListener {
 			
 			InputMethodManager inputMethodManager = (InputMethodManager)
 					getSystemService(Context.INPUT_METHOD_SERVICE);
-
+			
 			if(child.getTag().equals(Crossword.AREA_BLOCK)){//点击灰色格子的时候隐藏键盘
 				inputMethodManager.hideSoftInputFromWindow(gridView.getWindowToken(), 0);
  
 				txtDescriptionHor.setText("一级提示：");
 			}else{//其他情况打开键盘
 
-				
+				//if(getWindow().peekDecorView() == null || getWindow().peekDecorView().getWindowToken() == null){
 				inputMethodManager.showSoftInput(v, 0);
 				
-	           new Thread(new Runnable(){
+	            new Thread(new Runnable(){
 
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
 						try {
-							Thread.sleep(500);
+							Thread.sleep(300);
 							handler.sendEmptyMessage(0x444);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
@@ -320,11 +331,11 @@ public class GameActivity extends Activity implements OnTouchListener {
 					}
 	            	
 	            }).start();
+				//}
 	            	
 			}
 				
-				
-			
+
             
 			Log.v("childBottom", ""+child.getBottom());
 			lastChildX = child.getLeft();
@@ -567,7 +578,7 @@ public class GameActivity extends Activity implements OnTouchListener {
 
 
 
-					// Si la case suivante est disponible, met la case en jaune, remet l'ancienne en bleu, et set la nouvelle position
+					
 					if (cNext.getX() >= 0 && cNext.getX() < width
 							&& cNext.getY() >= 0 && cNext.getY() < height
 							&& boardLogic.isBlock(cNext.getX(),cNext.getY()) == false)
@@ -582,22 +593,20 @@ public class GameActivity extends Activity implements OnTouchListener {
 				gridAdapter.reDrawGridBackground(gridView);
 				setWordBackground(currentC,index.get(0),currentX, currentY);
 
-				//gridAdapter.reDrawGridBackground(gridView);
 				gridAdapter.notifyDataSetChanged();
 
-				//	
 
-
-				// 		this.setDescription(currentWordHor, currentWordVer, currentWord);
 				setDescription(currentC, index.get(0));
 				gridAdapter.notifyDataSetChanged();
+				
+				handler.sendEmptyMessage(0x444);
 				break;
 				
 				
 			case 0x444:
 				int position = currentC.getY()*width + currentC.getX();
 				gridAdapter.ScrollToItem(gridScrollView, gridView.getChildAt(position));
-				keyBoardDelayTimerTask.cancel();
+			
 				break;
 
 			}

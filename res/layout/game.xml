@@ -79,10 +79,11 @@
         android:layout_marginTop="1dip"
         android:background="@color/background_gray" >
 
-        <LinearLayout
+        <com.crossword.view.KeyboardLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:id="@+id/gridWrapLayout" >
 
             <FrameLayout
                 android:id="@+id/girdFrameLayout"
@@ -106,7 +107,7 @@
             </FrameLayout>
 
          
-        </LinearLayout>
+        </com.crossword.view.KeyboardLayout>
     </ScrollView>
 
 </RelativeLayout>
