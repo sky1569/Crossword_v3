@@ -101,34 +101,49 @@ public class MyGridView extends GridView implements OnKeyListener {
 		// TODO Auto-generated method stub
 		if (event.getAction() == KeyEvent.ACTION_UP
 				&& event.getRepeatCount() == 0) {
-			if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+			
+			switch(keyCode){
+			
+			case KeyEvent.KEYCODE_DEL:
+				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
 
-				new AlertDialog.Builder(context)
-						.setTitle("删除警告")
-						.setMessage("确定要删除所有内容吗？")
-						.setPositiveButton("确定",
-								new DialogInterface.OnClickListener() {
+					new AlertDialog.Builder(context)
+							.setTitle("删除警告")
+							.setMessage("确定要删除所有内容吗？")
+							.setPositiveButton("确定",
+									new DialogInterface.OnClickListener() {
 
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-										// TODO Auto-generated method stub
-										inputText = Crossword.UNFILLED;
-										handler.sendEmptyMessage(0x222);
-									}
-								})
-						.setNegativeButton("取消",
-								new DialogInterface.OnClickListener() {
+										@Override
+										public void onClick(DialogInterface dialog,
+												int which) {
+											// TODO Auto-generated method stub
+											inputText = Crossword.UNFILLED;
+											handler.sendEmptyMessage(0x222);
+										}
+									})
+							.setNegativeButton("取消",
+									new DialogInterface.OnClickListener() {
 
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-										// TODO Auto-generated method stub
+										@Override
+										public void onClick(DialogInterface dialog,
+												int which) {
+											// TODO Auto-generated method stub
 
-									}
-								}).show();
+										}
+									}).show();
 
+				
 			}
+				
+				break;
+				
+			case KeyEvent.KEYCODE_BACK:
+				handler.sendEmptyMessage(Crossword.FINISH_GAME);
+				break;
+         
+			}
+			
+			
 			
 			
 		

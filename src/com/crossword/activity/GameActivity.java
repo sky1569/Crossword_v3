@@ -45,9 +45,7 @@ import com.crossword.keyboard.KeyboardViewInterface;
 import com.crossword.logic.BoardLogic;
 import com.crossword.logic.MyTimerTask;
 import com.crossword.utils.Module;
-import com.crossword.view.KeyboardPopupWindow;
-import com.crossword.view.KeyboardLayout;
-import com.crossword.view.KeyboardLayout.OnKybdsChangeListener;
+
 import com.crossword.view.MyGridView;
 
 
@@ -56,7 +54,7 @@ public class GameActivity extends Activity implements OnTouchListener {
 
 	//public enum GRID_MODE {NORMAL, CHECK, SOLVE};
 	//public  int CurrentMode;
-	private KeyboardLayout  gridWrapLayout;
+
 	private FrameLayout 	girdFrameLayout;
 	private ScrollView      gridScrollView;
 	private MyGridView 		gridView;
@@ -122,27 +120,8 @@ public class GameActivity extends Activity implements OnTouchListener {
 		this.boardLogic = new BoardLogic(this);
 		//通过uniqueid查找grid，如果没有就会从网页下载
 		//获取mainGameLayout，并设置监听
-		gridWrapLayout = (KeyboardLayout)findViewById(R.id.gridWrapLayout);
-		//keyboardState = KeyboardRelativeLayout.KEYBOARD_STATE_HIDE;
-		gridWrapLayout.setOnKbdStateListener(new OnKybdsChangeListener(){
-
-			@Override
-			public void onKeyBoardStateChange(int state) {
-				// TODO Auto-generated method stub
-				//keyboardState = state;
-				switch(state){
-				case KeyboardLayout.KEYBOARD_STATE_SHOW:
-					Toast.makeText(getApplicationContext(), "软键盘弹起",  
-                            Toast.LENGTH_SHORT).show(); 
-					break;
-					
-				case KeyboardLayout.KEYBOARD_STATE_HIDE:
-					Toast.makeText(getApplicationContext(), "软键盘隐藏", Toast.LENGTH_SHORT).show();
-					break;
-				}
-			}
-			
-		});
+	
+	
 		//获取girdFrameLayout
 		
 		girdFrameLayout = (FrameLayout)findViewById(R.id.girdFrameLayout);
@@ -602,11 +581,15 @@ public class GameActivity extends Activity implements OnTouchListener {
 				handler.sendEmptyMessage(0x444);
 				break;
 				
-				
+				 
 			case 0x444:
 				int position = currentC.getY()*width + currentC.getX();
 				gridAdapter.ScrollToItem(gridScrollView, gridView.getChildAt(position));
 			
+				break;
+				
+			case Crossword.FINISH_GAME:
+				GameActivity.this.finish();
 				break;
 
 			}

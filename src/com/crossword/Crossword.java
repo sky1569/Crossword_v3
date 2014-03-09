@@ -102,6 +102,9 @@ public class Crossword extends Application {
 	
 	
 	
+	//定义各种消息
+	public static final int FINISH_GAME = 0x2312;
+	
    // public static final String  BLOCK = "#";
    // public static final String  BLANK = " ";
     private static Context context;
