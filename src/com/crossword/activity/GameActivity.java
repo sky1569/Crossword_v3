@@ -291,11 +291,13 @@ public class GameActivity extends Activity implements OnTouchListener {
 			int y = position / this.width;
 
 			TextView child = (TextView) gridView.getChildAt(position) ;
-			
+			if(child == null)
+				return false;
 			
 			InputMethodManager inputMethodManager = (InputMethodManager)
 					getSystemService(Context.INPUT_METHOD_SERVICE);
 
+			
 			if(child.getTag().equals(Crossword.AREA_BLOCK)){//点击灰色格子的时候隐藏键盘
 				inputMethodManager.hideSoftInputFromWindow(gridView.getWindowToken(), 0);
  
